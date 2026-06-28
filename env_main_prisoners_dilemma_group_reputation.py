@@ -31,7 +31,7 @@ from collections import defaultdict, Counter
 # Add project root directory to Python path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
-from agentsociety2.agent.base import AgentBase, AgentLLM
+from llm_cooperation_lab.agent.base import AgentBase, AgentLLM
 from dotenv import load_dotenv
 PAYOFF_MATRIX = {
     ("Yes", "Yes"): (3, 3),

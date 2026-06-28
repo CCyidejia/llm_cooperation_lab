@@ -31,7 +31,7 @@ from scipy import stats
 
 # ------- 全局配置 -------
 # 设置结果目录路径
-result_dir = r"d:/常用/agentsociety/agentsociety/packages/agentsociety2/result_trust_game_population_reward/040503_deepseek-v3"
+result_dir = r"d:/常用/agentsociety2/result_trust_game_population_reward/040503_deepseek-v3"
 data_dir = os.path.join(result_dir, "data")
 
 

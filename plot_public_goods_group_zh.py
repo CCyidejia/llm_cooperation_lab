@@ -28,7 +28,7 @@ MAX_CONTRIBUTION = 20
 INITIAL_ENDOWMENT = 20
 NUM_AGENTS = 24
 
-result_dir = r"d:\常用\agentsociety\agentsociety\packages\agentsociety2\result_public_goods_group_punishment\result_032801_deepseek-r1"
+result_dir = r"d:\常用\agentsociety2\result_public_goods_group_punishment\result_032801_deepseek-r1"
 data_dir = result_dir
 
 

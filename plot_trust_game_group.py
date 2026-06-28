@@ -15,7 +15,7 @@ from scipy import stats
 
 # ------- Global Configuration -------
 # Set result directory path
-result_dir = r"d:/常用/agentsociety/agentsociety/packages/agentsociety2/result_trust_game_group_reputation/032103_qwen3-next-80b-a3b-instruct"
+result_dir = r"d:/常用/agentsociety2/result_trust_game_group_reputation/032103_qwen3-next-80b-a3b-instruct"
 data_dir = os.path.join(result_dir, "data")  # Use data subfolder since data is stored there
 
 # ------- Helper Functions -------

@@ -30,7 +30,7 @@ from scipy import stats
 
 # ------- 全局配置 -------
 # 设置结果目录路径
-result_dir = r"d:/常用/agentsociety/agentsociety/packages/agentsociety2/result_prisoners_dilemma_group/35轮_3次_012701_deepseek-r1"
+result_dir = r"d:/常用/agentsociety2/result_prisoners_dilemma_group/35轮_3次_012701_deepseek-r1"
 data_dir = os.path.join(result_dir, "data")
 # 仅当结果目录名为下列之一时，绘图只使用前 N 轮（路径最后一级目录名需完全一致）
 RESULT_DIR_MAX_ROUNDS = {

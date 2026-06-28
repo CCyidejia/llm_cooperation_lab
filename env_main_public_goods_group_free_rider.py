@@ -19,7 +19,7 @@ from collections import defaultdict, Counter
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 # V2 framework core components import
-from agentsociety2.agent.base import AgentBase, AgentLLM
+from llm_cooperation_lab.agent.base import AgentBase, AgentLLM
 from dotenv import load_dotenv
 from LLMAPI.淘宝新买的 import LLMAgent
 

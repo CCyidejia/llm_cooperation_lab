@@ -22,7 +22,7 @@ import random
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 # V2 framework core components import
-from agentsociety2.agent.base import AgentBase, AgentLLM
+from llm_cooperation_lab.agent.base import AgentBase, AgentLLM
 from dotenv import load_dotenv
 from LLMAPI.wuwen import LLMAgent
 
@@ -1137,7 +1137,7 @@ async def _initialize_llm_system(config: dict) -> AgentLLM:
         llm_agent = LLMAgent(name="TrustGamePopulation_LLM")
         
         # Create AgentLLM wrapper with LLMAgent as router
-        from agentsociety2.agent.base import AgentLLM
+        from llm_cooperation_lab.agent.base import AgentLLM
         agent_llm = AgentLLM(
             router=llm_agent,
             model_name=getattr(llm_agent, 'model', None)

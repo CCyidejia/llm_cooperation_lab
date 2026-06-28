@@ -14,7 +14,7 @@ from scipy import stats
 
 # ------- Global Configuration -------
 # Set result directory path
-result_dir = r"d:/常用/agentsociety/agentsociety/packages/agentsociety2/result_prisoners_dilemma_group/10轮_3次_012404_llama3-8b"
+result_dir = r"d:/常用/agentsociety2/result_prisoners_dilemma_group/10轮_3次_012404_llama3-8b"
 data_dir = os.path.join(result_dir, "data")
 
 # ------- Helper Functions -------

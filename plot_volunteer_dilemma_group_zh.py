@@ -29,7 +29,7 @@ from scipy import stats
 NUM_AGENTS = 24
 NUM_ROUNDS = 10
 
-result_dir = r"d:\常用\agentsociety\agentsociety\packages\agentsociety2\result_volunteer_dilemma_group_punishment\040501_deepseek-r1"
+result_dir = r"d:\常用\agentsociety2\result_volunteer_dilemma_group_punishment\040501_deepseek-r1"
 data_file = os.path.join(result_dir, "data", "game_logs.json")
 
 

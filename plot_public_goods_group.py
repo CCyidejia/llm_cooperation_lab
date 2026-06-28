@@ -19,7 +19,7 @@ INITIAL_ENDOWMENT = 20          # 初始禀赋
 NUM_AGENTS = 24                 # 代理数量
 
 # 设置结果目录路径
-result_dir = r"d:\常用\agentsociety\agentsociety\packages\agentsociety2\result_public_goods_group_reputation\result_032103_deepseek-v3"
+result_dir = r"d:\常用\agentsociety2\result_public_goods_group_reputation\result_032103_deepseek-v3"
 
 # 数据目录路径
 data_dir = result_dir

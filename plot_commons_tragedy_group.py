@@ -20,7 +20,7 @@ CONFIDENCE_LEVEL = 0.95         # 置信水平
 
 # 设置结果目录路径（可配置）
 # 使用原始字符串避免反斜杠转义问题
-result_dir = r"d:\常用\agentsociety\agentsociety\packages\agentsociety2\result_commons_tragedy_group\result_011403_qwen3-8b"
+result_dir = r"d:\常用\agentsociety2\result_commons_tragedy_group\result_011403_qwen3-8b"
 
 # 数据文件路径
 data_file = os.path.join(result_dir, "data/game_logs.json")

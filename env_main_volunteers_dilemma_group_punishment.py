@@ -28,7 +28,7 @@ from collections import defaultdict, Counter
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
-from agentsociety2.agent.base import AgentBase, AgentLLM
+from llm_cooperation_lab.agent.base import AgentBase, AgentLLM
 from dotenv import load_dotenv
 from LLMAPI.wuwen import LLMAgent
 
@@ -610,7 +610,7 @@ async def main():
     print("=" * 60)
 
     print("Initializing LLM...")
-    from agentsociety2.agent.base import AgentLLM
+    from llm_cooperation_lab.agent.base import AgentLLM
 
     try:
         llm_agent = LLMAgent()

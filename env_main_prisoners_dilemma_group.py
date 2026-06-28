@@ -21,8 +21,8 @@ from collections import defaultdict, Counter
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 # V2 framework core components import
-from agentsociety2.agent.base import AgentBase, AgentLLM
-from agentsociety2.config.llm import LLMConfig
+from llm_cooperation_lab.agent.base import AgentBase, AgentLLM
+from llm_cooperation_lab.config.llm import LLMConfig
 from dotenv import load_dotenv
 
 PAYOFF_MATRIX = {

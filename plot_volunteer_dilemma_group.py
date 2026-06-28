@@ -18,7 +18,7 @@ NUM_AGENTS = 24                 # 代理数量
 NUM_ROUNDS = 10                 # 轮次数量
 
 # 设置结果目录路径
-result_dir = r"d:\常用\agentsociety\agentsociety\packages\agentsociety2\result_volunteer_dilemma_group_reputation\032202_qwen3-next-80b-a3b-instruct"
+result_dir = r"d:\常用\agentsociety2\result_volunteer_dilemma_group_reputation\032202_qwen3-next-80b-a3b-instruct"
 
 # 数据文件路径
 data_file = os.path.join(result_dir, "data", "game_logs.json")

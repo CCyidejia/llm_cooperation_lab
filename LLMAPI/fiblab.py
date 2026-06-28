@@ -280,7 +280,7 @@ class LLMAgent:
 
 
 if __name__ == "__main__":
-    # 本地查看可用模型 id：python -m LLMAPI.fiblab （需在 packages/agentsociety2 下或设置 PYTHONPATH）
+    # 本地查看可用模型 id：python -m LLMAPI.fiblab （需在 project root 下或设置 PYTHONPATH）
     try:
         data = fetch_fiblab_models()
         rows = data.get("data") or []
