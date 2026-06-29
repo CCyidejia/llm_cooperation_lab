@@ -99,7 +99,7 @@ class LLMAgent:
         }
 
         model_lower = (self.model or "").lower()
-        max_out = 4096 if ("r1" in model_lower or "reasoner" in model_lower or "reasoning" in model_lower) else 500
+        max_out = int(os.getenv("ZGC_MAX_TOKENS", "8192"))
 
         # 部分模型（如部分 Claude）不允许同时传 temperature 与 top_p，网关会返回 invalid_request_error
         payload = {
@@ -129,10 +129,28 @@ class LLMAgent:
                 print(f"[{self.name}] No choices in API response")
                 return "API Call Failed: No choices in API response"
 
-            msg = response_json["choices"][0].get("message") or {}
+            choice = response_json["choices"][0]
+            msg = choice.get("message") or {}
             raw_content = msg.get("content")
-            reply = (raw_content or "").strip() if isinstance(raw_content, str) else ""
+            if isinstance(raw_content, str):
+                reply = raw_content.strip()
+            elif isinstance(raw_content, list):
+                parts = []
+                for item in raw_content:
+                    if isinstance(item, dict):
+                        value = item.get("text") or item.get("content") or ""
+                        if isinstance(value, str):
+                            parts.append(value)
+                    elif isinstance(item, str):
+                        parts.append(item)
+                reply = "".join(parts).strip()
+            else:
+                reply = ""
+
             if not reply:
+                refusal = msg.get("refusal")
+                if isinstance(refusal, str) and refusal.strip():
+                    return f"API Call Failed: Model refusal: {refusal.strip()}"
                 for key in ("reasoning_content", "reasoning", "thinking"):
                     alt = msg.get(key)
                     if isinstance(alt, str) and alt.strip():
@@ -144,8 +162,9 @@ class LLMAgent:
                         break
 
             if not reply:
-                print(f"[{self.name}] Empty content in API response; message keys: {list(msg.keys())}")
-                return "API Call Failed: Empty content in API response"
+                finish_reason = choice.get("finish_reason", "unknown")
+                print(f"[{self.name}] Empty content in API response; finish_reason={finish_reason}; message keys: {list(msg.keys())}")
+                return f"API Call Failed: Empty content in API response; finish_reason={finish_reason}"
 
             output_tokens = self.count_tokens([{"role": "assistant", "content": reply}])
             self.total_output_tokens += output_tokens

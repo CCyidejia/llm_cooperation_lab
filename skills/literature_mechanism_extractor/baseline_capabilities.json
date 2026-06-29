@@ -1,0 +1,55 @@
+﻿{
+  "baseline_name": "public_goods_group",
+  "baseline_file": "env_main_public_goods_group.py",
+  "game_type": "repeated_public_goods_game",
+  "current_game_parameters": {
+    "num_agents": 24,
+    "initial_endowment": 20,
+    "contribution_range": [0, 20],
+    "public_pool_multiplier": 9.6,
+    "num_rounds": 30,
+    "simultaneous_decision": true
+  },
+  "current_agent_information": {
+    "visible_history": ["round", "total_contribution", "public_pool_gain"],
+    "hidden_by_default": [
+      "individual_contributions",
+      "individual_payoffs",
+      "reputation_scores",
+      "punishment_records",
+      "reward_records"
+    ]
+  },
+  "implementation_surfaces": [
+    {
+      "name": "prompt_context",
+      "baseline_location": "PublicGoodsAgent.choose_action",
+      "supports": ["add mechanism rules", "show public history", "show individual history if enabled", "show reputation or image score if added", "show punishment or reward opportunities"]
+    },
+    {
+      "name": "action_space",
+      "baseline_location": "PublicGoodsAgent.choose_action response parsing",
+      "supports": ["contribution amount only"],
+      "requires_extension_for": ["punishment target selection", "reward target selection", "institution choice", "message or signaling actions"]
+    },
+    {
+      "name": "payoff_function",
+      "baseline_location": "PublicGoodsEnvironment.run_interaction",
+      "supports": ["private_savings + public_gain_share"],
+      "requires_extension_for": ["punishment cost and target loss", "reward cost and target gain", "participation fees", "institutional transfer rules"]
+    },
+    {
+      "name": "state_memory",
+      "baseline_location": "PublicGoodsAgent.update_state/update_history",
+      "supports": ["own contribution history", "own payoff history", "round summary history"],
+      "requires_extension_for": ["public reputation score", "image score", "sanctioning institution membership", "individual-level public history"]
+    },
+    {
+      "name": "logging_metrics",
+      "baseline_location": "PublicGoodsEnvironment.game_logs/get_game_summary",
+      "supports": ["average contribution", "choice distribution", "total contribution", "payoffs"],
+      "requires_extension_for": ["cooperation rate threshold", "punishment frequency", "reward frequency", "reputation distribution", "institution adoption rate"]
+    }
+  ],
+  "preferred_mechanism_types": ["punishment", "reward", "reputation", "image_scoring", "indirect_reciprocity", "institution_choice", "partner_selection", "communication", "history_visibility"]
+}

@@ -1,0 +1,222 @@
+{
+  "schema_version": "public-goods-mechanism-v1",
+  "source": {
+    "input_type": "pdf",
+    "file_name": "Altruistic punishment in humans.pdf",
+    "extraction_method": "llm_structured_extraction"
+  },
+  "paper": {
+    "title": "Altruistic punishment in humans",
+    "authors": [
+      "Ernst Fehr",
+      "Simon Gächter"
+    ],
+    "year": 2002,
+    "research_question": "Whether costly punishment of defectors promotes cooperation among anonymous strangers when reputation and direct reciprocity are ruled out.",
+    "study_type": "laboratory experiment",
+    "sample": "240 students",
+    "setting": "Anonymous public goods experiment with random rematching and real monetary stakes."
+  },
+  "game_context": {
+    "game_type": "public_goods_game",
+    "rounds": 6,
+    "group_size": 4,
+    "endowment": 20,
+    "mpcr_or_multiplier": "MPCR=0.4; group multiplier=1.6",
+    "real_incentives": true,
+    "baseline_condition": "No-punishment public goods game: simultaneous contributions, then contribution feedback, no sanction stage."
+  },
+  "mechanisms": [
+    {
+      "mechanism_id": "M1",
+      "name": "Altruistic peer punishment of defectors",
+      "type": "punishment",
+      "summary": "After observing group members' contributions, each subject can pay to reduce another member's payoff. Punishment is costly to the punisher, yields no direct material gain, and is mainly directed at below-average contributors, increasing cooperation.",
+      "actors": {
+        "decision_maker": "Each group member after contribution feedback",
+        "target": "Other group members, especially below-average contributors",
+        "observer": "Participants observe contributions, not identities; punishment decisions are simultaneous"
+      },
+      "timing": {
+        "stage": "Post-contribution punishment stage",
+        "frequency": "Every period in punishment treatment"
+      },
+      "information_structure": {
+        "anonymity": "Anonymous; identities not revealed; no subject met another more than once",
+        "public_information": [
+          "Own contribution",
+          "Other group members' contributions after contribution stage"
+        ],
+        "private_information": [
+          "Own punishment assignments/costs"
+        ],
+        "history_visibility": "No reputation formation; limited own past experience across periods"
+      },
+      "action_space_changes": [
+        {
+          "action": "assign_punishment_points",
+          "range_or_options": "0-10 points per other group member",
+          "condition": "Available after observing contributions in punishment treatment"
+        }
+      ],
+      "payoff_changes": [
+        {
+          "who_pays": "Punisher",
+          "who_receives_or_loses": "Punisher loses cost",
+          "amount_or_formula": "1 MU per punishment point assigned",
+          "condition": "For each point assigned"
+        },
+        {
+          "who_pays": "Punished target",
+          "who_receives_or_loses": "Target loses payoff",
+          "amount_or_formula": "3 MUs per punishment point received",
+          "condition": "For each point received from another member"
+        }
+      ],
+      "state_variables": [
+        {
+          "name": "punishment_points_sent",
+          "type": "round_log",
+          "update_rule": "Record points each agent assigns to each other agent after contributions"
+        },
+        {
+          "name": "punishment_points_received",
+          "type": "round_log",
+          "update_rule": "Sum points received by each agent in the punishment stage"
+        },
+        {
+          "name": "punishment_cost",
+          "type": "agent_state",
+          "update_rule": "Subtract 1 MU times points sent from punisher payoff"
+        },
+        {
+          "name": "punishment_penalty",
+          "type": "agent_state",
+          "update_rule": "Subtract 3 MUs times points received from target payoff"
+        },
+        {
+          "name": "deviation_from_others_average_contribution",
+          "type": "metric",
+          "update_rule": "Agent contribution minus average contribution of the other group members"
+        }
+      ],
+      "prompt_requirements": [
+        "Tell agents they may assign 0-10 punishment points to each other group member after seeing contributions.",
+        "State that each point costs the punisher 1 MU and reduces the target payoff by 3 MUs.",
+        "State anonymity and lack of future interaction/reputation if modeled."
+      ],
+      "metrics": [
+        {
+          "name": "mean_contribution",
+          "definition": "Average contribution to the public good by period and treatment"
+        },
+        {
+          "name": "full_contribution_rate",
+          "definition": "Fraction contributing entire 20 MU endowment"
+        },
+        {
+          "name": "zero_contribution_rate",
+          "definition": "Fraction contributing 0 MUs"
+        },
+        {
+          "name": "punishment_frequency",
+          "definition": "Count or fraction of positive punishment assignments"
+        },
+        {
+          "name": "punishment_by_negative_deviation",
+          "definition": "Punishment received as a function of falling below others' average contribution"
+        },
+        {
+          "name": "net_payoff",
+          "definition": "Public goods payoff minus punishment costs and penalties"
+        }
+      ],
+      "implementation_notes": {
+        "directly_implementable_in_current_baseline": false,
+        "required_surfaces": [
+          "action_space",
+          "payoff_function",
+          "state_memory",
+          "prompt_context",
+          "logging_metrics"
+        ],
+        "minimal_code_changes": [
+          "Add post-contribution punishment action for each ordered pair of distinct group members.",
+          "Reveal round contributions before punishment decisions.",
+          "Apply payoff update: sender cost=points, target penalty=3*points.",
+          "Log punishment matrix, contribution deviations, and cooperation metrics."
+        ],
+        "risks_or_assumptions": [
+          "Baseline may not support multi-stage rounds or pairwise actions.",
+          "LLM agents may require clear prompts to avoid confusion between contribution and punishment stages.",
+          "If identities/history persist, reputation effects may confound punishment."
+        ]
+      },
+      "confidence": 0.96
+    }
+  ],
+  "implementation_mapping": {
+    "target_baseline": "env_main_public_goods_group.py",
+    "required_surfaces": [
+      "prompt_context",
+      "action_space",
+      "payoff_function",
+      "state_memory",
+      "logging_metrics"
+    ],
+    "directly_implementable": [
+      "Contribution feedback before sanction stage",
+      "Punishment payoff costs and penalties",
+      "Logging contributions and punishments"
+    ],
+    "requires_baseline_extension": [
+      "Multi-stage round flow",
+      "Pairwise punishment action matrix",
+      "Optional stranger rematching/no-reputation controls"
+    ],
+    "implementation_order": [
+      "Add contribution feedback state",
+      "Add punishment action space",
+      "Apply punishment payoff function",
+      "Add logs and metrics",
+      "Update prompts and experiment configs"
+    ]
+  },
+  "experiment_design": {
+    "baseline_condition": "Anonymous stranger public goods game without punishment.",
+    "treatment_conditions": [
+      "Anonymous stranger public goods game with post-contribution costly punishment."
+    ],
+    "control_variables": [
+      "group_size=4",
+      "endowment=20",
+      "MPCR=0.4",
+      "simultaneous contribution decisions",
+      "anonymous participants",
+      "random rematching/no repeated pairings",
+      "six periods per condition"
+    ],
+    "suggested_rounds": 6,
+    "suggested_runs": 10
+  },
+  "evidence": {
+    "cooperation_outcomes": [
+      "Punishment occurred frequently: 84.3% punished at least once; 34.3% punished more than five times.",
+      "74.2% of punishment acts were imposed on below-average contributors by above-average contributors.",
+      "Average cooperation was much higher with punishment than without punishment in both treatment orders.",
+      "In final punishment period, 38.9% contributed all 20 MUs and 77.8% contributed at least 15 MUs.",
+      "In final no-punishment period, 58.9% contributed nothing and 75.6% contributed 5 MUs or less."
+    ],
+    "reported_effect_direction": "Punishment strongly increased and sustained cooperation; cooperation declined without punishment.",
+    "reported_effect_size": "A 10 MU negative deviation from others' average contribution increased others' punishment expenditure by 6.22 MUs, imposing an 18.66 MU payoff reduction.",
+    "key_quotes_or_passages": [
+      "Cooperation flourishes if altruistic punishment is possible, and breaks down if it is ruled out.",
+      "Each point assigned cost the punished member 3 MUs and the punishing member 1 MU.",
+      "The punishment of non-cooperators substantially increased the amount that subjects invested in the public good."
+    ]
+  },
+  "uncertainties": [
+    "Only the first part of the source text was available in this extraction pass; methods details beyond the excerpt may be incomplete.",
+    "Exact baseline code capabilities are unknown."
+  ]
+}
