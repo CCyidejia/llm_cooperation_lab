@@ -6,7 +6,7 @@ import asyncio
 
 # 无问苍穹平台配置
 API_BASE_URL = "https://cloud.infini-ai.com/maas/v1"
-DEFAULT_MODEL = "deepseek-v4-pro"  # 无问苍穹模型
+DEFAULT_MODEL = "qwen3-next-80b-a3b-instruct"  # 无问苍穹模型
 # 从环境变量获取API key，或使用默认值
 API_KEY = os.getenv("WUWEN_API_KEY")
 

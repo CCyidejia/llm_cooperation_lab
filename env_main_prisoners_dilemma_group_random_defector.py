@@ -42,7 +42,7 @@ def get_payoff(action1: str, action2: str):
 load_dotenv()
 
 # Ensure results directory exists
-os.makedirs("result_prisoners_dilemma_group", exist_ok=True)
+os.makedirs("result_prisoners_dilemma_group_random_defector", exist_ok=True)
 
 # 配置日志记录
 logging.basicConfig(
@@ -432,9 +432,17 @@ class PrisonersDilemmaEnvironment:
         }
         
         try:
-            # 2. 使用异步调用make_decision方法，并发执行两个agent的决策
-            action1, explanation1 = await agent1.make_decision(agent2._id, agent2.name, self.memory_size)
-            action2, explanation2 = await agent2.make_decision(agent1._id, agent1.name, self.memory_size)
+            # 2. Randomly force one paired agent to defect without an LLM call.
+            #    The other agent still uses the LLM to make a decision.
+            forced_defector, llm_decider = random.sample([agent1, agent2], 2)
+            if forced_defector is agent1:
+                action1 = "No"
+                explanation1 = "Forced defector: chose No without LLM call."
+                action2, explanation2 = await agent2.make_decision(agent1._id, agent1.name, self.memory_size)
+            else:
+                action1, explanation1 = await agent1.make_decision(agent2._id, agent2.name, self.memory_size)
+                action2 = "No"
+                explanation2 = "Forced defector: chose No without LLM call."
             
             # 3. 计算收益
             payoff1, payoff2 = get_payoff(action1, action2)
@@ -457,6 +465,10 @@ class PrisonersDilemmaEnvironment:
                 "choice2": action2,
                 "explanation1": explanation1,
                 "explanation2": explanation2,
+                "forced_defector_id": forced_defector._id,
+                "forced_defector_name": forced_defector.name,
+                "llm_decider_id": llm_decider._id,
+                "llm_decider_name": llm_decider.name,
                 "payoff1": payoff1,
                 "payoff2": payoff2,
                 "cooperation": (action1 == "Yes" and action2 == "Yes")
@@ -492,7 +504,7 @@ class PrisonersDilemmaEnvironment:
         if main_result_dir:
             result_dir = main_result_dir
         else:
-            result_dir = os.path.join("result_prisoners_dilemma_group", experiment_name)
+            result_dir = os.path.join("result_prisoners_dilemma_group_random_defector", experiment_name)
         
         data_dir = os.path.join(result_dir, "data")
         os.makedirs(data_dir, exist_ok=True)
@@ -582,8 +594,8 @@ async def main():
     TOTAL_INTERACTIONS = TOTAL_POPULATION_ROUNDS * (NUM_AGENTS // 2)  # 总交互次数
     
     # --- 用户自定义文件夹名称 ---
-    base_result_dir = "result_prisoners_dilemma_group"
-    base_experiment_name = input("Please enter experiment folder name (e.g., 'PD_group_test1'): ").strip()
+    base_result_dir = "result_prisoners_dilemma_group_random_defector"
+    base_experiment_name = input("Please enter experiment folder name (e.g., 'PD_group_random_defector_test1'): ").strip()
     if not base_experiment_name:
         base_experiment_name = f"PrisonersDilemma_{datetime.now().strftime('%m%d%H%M')}"
 

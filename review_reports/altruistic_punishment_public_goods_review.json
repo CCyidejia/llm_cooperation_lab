@@ -1,0 +1,95 @@
+{
+  "schema_version": "consistency-review-v1",
+  "overall_status": "pass",
+  "confidence": 0.82,
+  "paper_mechanism_alignment": {
+    "status": "pass",
+    "findings": [
+      "Mechanism JSON captures the core cooperation mechanism: after simultaneous contributions are revealed, each participant can assign 0-10 costly punishment points to each other participant.",
+      "Payoff effects match the paper excerpt: each point costs the punisher 1 MU and reduces the target payoff by 3 MUs.",
+      "Information needed for the mechanism is represented: contribution feedback before punishment, anonymity/no identity emphasis, and simultaneous punishment decisions.",
+      "Evidence summary correctly reports the direction that costly punishment sustains/increases cooperation and is concentrated on below-average contributors."
+    ],
+    "missing_or_uncertain": [
+      "Full-method details outside the provided excerpt, such as exact post-punishment feedback visibility and any payoff-floor handling, remain uncertain but are not required for basic mechanism transfer."
+    ],
+    "quality_notes": [
+      "Paper-specific parameters such as group size 4, six periods, and stranger rematching are included as source context; they should remain non-binding for the baseline unless explicitly configured as optional experiments."
+    ]
+  },
+  "mechanism_completeness": {
+    "status": "pass",
+    "findings": [
+      "Mechanism JSON is complete enough to implement the mechanism in the baseline: it specifies timing, action space, payoff changes, required state variables, prompt requirements, and metrics.",
+      "It identifies likely required implementation surfaces: prompt context, action space, payoff function, state memory, and logging metrics.",
+      "It flags risks around multi-stage rounds and pairwise actions, which are the main baseline extensions needed."
+    ],
+    "missing_or_uncertain": [
+      "Exact baseline support for multi-stage interaction was unknown at extraction time.",
+      "The metric deviation_from_others_average_contribution is specified in the mechanism, while the plan later uses group-average wording; this should be harmonized for analysis consistency."
+    ],
+    "quality_notes": [
+      "Optional no-reputation/rematching controls are useful for faithful human-experiment replication but are not required under the mechanism-transfer rule."
+    ]
+  },
+  "plan_alignment": {
+    "status": "pass",
+    "covered_surfaces": [
+      "Adds a post-contribution punishment action method and pairwise punishment matrix.",
+      "Extends prompts so contribution and punishment decisions are separate and punishment prompts reveal current-round contributions plus cost/penalty rules.",
+      "Preserves the baseline public-goods payoff calculation before applying punishment costs and penalties.",
+      "Adds punishment histories, punishment matrix, costs, penalties, base/final payoff logs, and summary metrics.",
+      "Adds an enable_punishment treatment setting while stating that num_agents, endowment, multiplier, total rounds, and group architecture must be preserved."
+    ],
+    "missing_surfaces": [],
+    "inconsistent_items": [
+      "Plan uses deviation_from_group_average terminology rather than the mechanism's deviation_from_others_average_contribution; this is not payoff-critical but should be made consistent for evidence-style metrics."
+    ]
+  },
+  "baseline_feasibility": {
+    "status": "pass",
+    "valid_targets": [
+      "PublicGoodsAgent.choose_action is a plausible surface for preserving contribution prompts and adding a separate punishment prompt/method.",
+      "PublicGoodsAgent.update_state, update_history, get_state_summary, and _build_history_string are plausible state/history extension points.",
+      "PublicGoodsEnvironment.run_interaction is the plausible location for adding the second stage and applying punishment after base payoff calculation.",
+      "PublicGoodsEnvironment.get_game_summary and game_logs/output serialization are plausible logging and metric surfaces."
+    ],
+    "risky_targets": [
+      "main.EXPERIMENT_SETTINGS is not visible in the provided baseline excerpt, so the exact config insertion point should be verified in the full file.",
+      "The baseline has a 24-agent group architecture; pairwise punishment over all other agents is feasible but may greatly increase prompt length, parsing complexity, and LLM cost.",
+      "Sequential implementation must ensure punishment choices are collected without revealing earlier agents' punishment choices before all punishment decisions are submitted."
+    ],
+    "missing_targets": []
+  },
+  "required_fixes": [],
+  "recommended_fixes": [
+    {
+      "priority": "medium",
+      "target": "plan",
+      "issue": "The plan does not explicitly state that all punishment decisions must be collected before any punishment outcomes are revealed or applied.",
+      "suggested_fix": "Add an acceptance criterion to C1/C3: collect all agents' punishment matrices using only contribution feedback, then apply costs and penalties after all punishment decisions are complete."
+    },
+    {
+      "priority": "medium",
+      "target": "plan",
+      "issue": "Deviation metric terminology differs from the mechanism JSON.",
+      "suggested_fix": "Compute and log deviation_from_others_average_contribution, or explicitly document that group-average deviation is a scaled proxy and keep naming consistent."
+    },
+    {
+      "priority": "low",
+      "target": "plan",
+      "issue": "Config target main.EXPERIMENT_SETTINGS is not confirmed in the excerpt.",
+      "suggested_fix": "Verify the full baseline's actual configuration object/function and update C6 target_location if needed."
+    },
+    {
+      "priority": "low",
+      "target": "mechanism",
+      "issue": "Paper experimental parameters are listed as control variables, which could be misread as required baseline changes.",
+      "suggested_fix": "Label group size, six periods, and rematching/no-reputation as paper-context or optional replication controls, not mechanism-transfer requirements."
+    }
+  ],
+  "approval_for_next_step": {
+    "ready_for_code_implementation": true,
+    "reason": "The mechanism and plan preserve the baseline game's native parameters and architecture while adding the intended costly post-contribution peer-punishment stage. Remaining issues are implementation-quality clarifications, not blockers."
+  }
+}

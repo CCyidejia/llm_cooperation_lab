@@ -1,0 +1,52 @@
+{
+  "schema_version": "code-implementation-report-v1",
+  "source_baseline": "env_main_public_goods_group.py",
+  "implementation_plan": "implementation_plans\\positive_interactions_promote_public_cooperation_env_main_public_goods_group_plan.json",
+  "review_report": "review_reports\\positive_interactions_promote_public_cooperation_env_main_public_goods_group_review.json",
+  "output_file": "env_main_public_goods_group_positive_interactions_auto.py",
+  "baseline_sha256_before": "4d47d78f1c828a567b709875a21dafe76824d8cd2b2ad466dde8749c7cb68886",
+  "output_sha256": "9e6264dbefec1dab7b8cbd3e2b94580967d9f21de5fd09037da493f05aabb01b",
+  "implemented_change_ids": [
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5",
+    "C6"
+  ],
+  "applied_edits": [
+    "C2a: replace PublicGoodsAgent.__init__",
+    "C2b: replace PublicGoodsAgent.update_state",
+    "C2c: replace PublicGoodsAgent.get_state_summary",
+    "C4a: replace PublicGoodsAgent._build_history_string",
+    "C4b: replace PublicGoodsAgent.choose_action",
+    "C3: insert PublicGoodsAgent.choose_reward_actions",
+    "C1: replace PublicGoodsEnvironment.__init__",
+    "C5: replace PublicGoodsEnvironment.run_interaction",
+    "C6: replace PublicGoodsEnvironment.get_game_summary"
+  ],
+  "preserved_baseline_file": true,
+  "syntax_check": "pass",
+  "validation_status": "fail",
+  "validation_issues": [
+    "missing required snippet: choose_punishment_actions",
+    "missing required snippet: punishment_matrix",
+    "missing required snippet: punishment_costs",
+    "missing required snippet: punishment_penalties",
+    "missing required snippet: base_payoffs",
+    "missing required snippet: punishment_frequency",
+    "missing required snippet: average_punishment_sent",
+    "missing required snippet: average_punishment_received",
+    "missing required snippet: choose_ir_help_action",
+    "missing required snippet: public_reputation_ledger",
+    "missing required snippet: ir_logs",
+    "missing required snippet: reputation",
+    "missing required snippet: help",
+    "missing required snippet: ir_payoff_adjustments"
+  ],
+  "manual_review_needed": [
+    "Unsupported copy_file and replace_code_in_function operations were removed so every edit uses only replace_method or insert_method_in_class.",
+    "Existing baseline experiment settings and environment construction can remain unchanged because reward parameters are optional constructor defaults in the mechanism variant.",
+    "Baseline public-goods payoffs are computed and stored before reward costs or benefits; payoffs/final_payoffs represent mechanism-adjusted outcomes for compatibility."
+  ]
+}

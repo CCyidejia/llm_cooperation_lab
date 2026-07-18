@@ -1,0 +1,526 @@
+{
+  "schema_version": "implementation-plan-v1",
+  "target_baseline": "env_main_public_goods_group.py",
+  "mechanism_source": "mechanisms\\positive_interactions_promote_public_cooperation_mechanism.json",
+  "baseline_summary": {
+    "file": "env_main_public_goods_group.py",
+    "classes": {
+      "PublicGoodsAgent": {
+        "purpose": "LLM-controlled public goods participant with internal contribution and payoff history.",
+        "key_methods": {
+          "__init__": "Initializes agent identity, LLM/environment references, contribution/payoff histories, and contribution bounds.",
+          "choose_action": "Prompts the LLM for a public-goods contribution and parses an integer contribution.",
+          "_build_history_string": "Builds text history shown in the contribution prompt.",
+          "update_state": "Records own contribution and round outcome.",
+          "update_history": "Stores full round summaries for later prompt context.",
+          "get_state_summary": "Returns serialized agent state."
+        }
+      },
+      "PublicGoodsEnvironment": {
+        "purpose": "Runs simultaneous 24-agent repeated public goods rounds.",
+        "key_methods": {
+          "__init__": "Stores baseline game parameters and initializes logs/statistics.",
+          "set_agents": "Registers agents and sets environment references.",
+          "run_interaction": "Runs one public goods round: gets contributions, computes baseline PGG payoffs, updates histories, and logs.",
+          "get_game_summary": "Aggregates contribution statistics and choice distribution."
+        }
+      }
+    },
+    "functions": {
+      "main": "Defines baseline experiment settings, creates agents/environment, runs all rounds, and saves logs/statistics/states.",
+      "run_experiment": "Wrapper that invokes main once per experiment index."
+    },
+    "detected_capabilities": {
+      "agent_decision_method_candidates": [
+        "PublicGoodsAgent.choose_action"
+      ],
+      "environment_round_method_candidates": [
+        "PublicGoodsEnvironment.run_interaction"
+      ],
+      "state_update_candidates": [
+        "PublicGoodsAgent._build_history_string",
+        "PublicGoodsAgent.update_history",
+        "PublicGoodsAgent.update_state"
+      ],
+      "summary_or_logging_candidates": [
+        "PublicGoodsAgent.get_state_summary",
+        "PublicGoodsEnvironment.get_game_summary"
+      ],
+      "existing_group_architecture": "All 24 agents participate together in every round with persistent Agent_1 ... Agent_24 identities.",
+      "existing_payoff_formula": "baseline_payoff_i = initial_endowment - contribution_i + (sum_contributions * public_pool_multiplier / num_agents)",
+      "existing_baseline_parameters": {
+        "num_agents": 24,
+        "initial_endowment": 20,
+        "public_pool_multiplier": 9.6,
+        "num_rounds": 30,
+        "num_experiment_runs": 3,
+        "matching_or_grouping": "single persistent 24-agent group"
+      }
+    }
+  },
+  "baseline_invariants": {
+    "preserve_num_agents": true,
+    "preserve_initial_endowment": true,
+    "preserve_public_pool_multiplier": true,
+    "preserve_total_rounds": true,
+    "preserve_experiment_repeat_count": true,
+    "preserve_existing_group_or_matching_architecture": true,
+    "rule": "Keep all baseline game and experiment settings unchanged; add only the mechanism."
+  },
+  "mechanism_summary": {
+    "mechanism_id": "M1",
+    "name": "Costly targeted reward after each public-goods round",
+    "type": "reward",
+    "summary": "After each public-goods contribution round, every agent observes the named contributions of the other persistent group members and may choose reward or no reward for each other agent. Rewards are directed and costly to the giver while increasing the target's payoff, enabling positive targeted reciprocity without changing the baseline public-goods contribution game."
+  },
+  "required_code_changes": [
+    {
+      "change_id": "C1",
+      "surface": "experiment_config",
+      "target_location": "module-level configuration and PublicGoodsEnvironment.__init__",
+      "operation": "add reward-mechanism configuration without altering baseline game settings",
+      "description": "Introduce explicit mechanism-only configuration for the targeted reward stage. Do not change EXPERIMENT_SETTINGS values for num_agents, initial_endowment, public_pool_multiplier, num_rounds, random_seed, or NUM_EXPERIMENT_RUNS.",
+      "details": {
+        "specific implementation guidance": "Add mechanism fields such as targeted_reward_enabled, reward_cost, and reward_benefit either as module-level constants or as optional PublicGoodsEnvironment.__init__ parameters with defaults passed from main. These are mechanism parameters, not replacements for baseline public-goods parameters.",
+        "recommended_default_assumption": "Because the provided mechanism extraction does not specify exact cost-benefit values, use a clearly named configurable assumption such as reward_cost = 1.0 and reward_benefit = 3.0, or project-approved equivalents. Record these values in experiment_config.json under a separate reward_mechanism section.",
+        "do_not_change": [
+          "EXPERIMENT_SETTINGS['num_agents']",
+          "EXPERIMENT_SETTINGS['initial_endowment']",
+          "EXPERIMENT_SETTINGS['public_pool_multiplier']",
+          "EXPERIMENT_SETTINGS['num_rounds']",
+          "NUM_EXPERIMENT_RUNS",
+          "single-group 24-agent architecture"
+        ]
+      },
+      "depends_on": [],
+      "acceptance_criteria": [
+        "The saved experiment_config.json still reports num_agents=24, initial_endowment=20, public_pool_multiplier=9.6, and num_rounds=30.",
+        "Reward mechanism parameters are stored separately from the baseline public-goods settings.",
+        "No paper group-size or multiplier settings are copied into the baseline."
+      ]
+    },
+    {
+      "change_id": "C2",
+      "surface": "state_memory",
+      "target_location": "PublicGoodsAgent.__init__, PublicGoodsAgent.update_state, PublicGoodsAgent.get_state_summary, PublicGoodsEnvironment.__init__",
+      "operation": "add reward-stage state variables",
+      "description": "Add state needed to support persistent targeted positive interactions and later analysis.",
+      "details": {
+        "specific implementation guidance": "In PublicGoodsAgent, add histories for rewards_given, rewards_received, reward_costs_paid, reward_benefits_received, baseline_payoff_history, and total_payoff_history. Either extend update_state with optional keyword arguments or add a new update_reward_state method so the existing contribution history remains intact. In PublicGoodsEnvironment, initialize counters/lists for reward_actions_by_round, total_reward_actions, possible_reward_actions, reward_cost_total, reward_benefit_total, baseline_payoff_records, and total_payoff_records.",
+        "history_granularity": "Reward actions should be represented as directed ordered pairs from giver agent id/name to target agent id/name with binary reward/no_reward decisions.",
+        "identity_requirement": "Use the existing persistent agent names and ids; do not shuffle or rematch agents."
+      },
+      "depends_on": [
+        "C1"
+      ],
+      "acceptance_criteria": [
+        "Agent state summaries include both baseline public-goods outcomes and reward-stage payoff components.",
+        "Environment has a place to store all directed rewards for every round.",
+        "Existing contribution histories remain available and are not overwritten."
+      ]
+    },
+    {
+      "change_id": "C3",
+      "surface": "action_space",
+      "target_location": "PublicGoodsAgent.choose_reward_actions",
+      "operation": "add new post-contribution reward decision method",
+      "description": "Create a new asynchronous method allowing each agent to choose reward or no reward for every other agent after observing current-round contributions.",
+      "details": {
+        "specific implementation guidance": "Add async def choose_reward_actions(self, current_round, observed_contributions, baseline_payoffs, reward_cost, reward_benefit). The method should build a prompt listing all other agents by stable name/id and their current contribution. It should ask for a binary reward decision for each other group member only, excluding self. Parse robustly into a dict keyed by target agent id or name with values 1 for reward and 0 for no reward.",
+        "prompt_requirements": [
+          "State that the same group members remain together across rounds.",
+          "State that this is a second stage after the public-goods contribution decision.",
+          "Show current-round individual contributions for all named group members.",
+          "Explain that choosing reward costs the giver reward_cost coins and gives the target reward_benefit coins.",
+          "Ask for reward/no reward for each other player.",
+          "Require a machine-parseable response format, preferably JSON object mapping target names to 0 or 1."
+        ],
+        "fallback_behavior": "If the LLM call fails or parsing is invalid, default to no rewards for all targets, not random rewards.",
+        "validation": "Reject self-rewards, unknown target names/ids, non-binary values, and duplicate target entries. Missing valid targets should default to 0."
+      },
+      "depends_on": [
+        "C1",
+        "C2"
+      ],
+      "acceptance_criteria": [
+        "Each agent can return up to num_agents - 1 directed reward decisions per round.",
+        "No agent can reward itself.",
+        "Invalid or failed reward decisions default to no_reward without interrupting the round.",
+        "Contribution decisions still use PublicGoodsAgent.choose_action and remain integer contributions from 0 to initial_endowment."
+      ]
+    },
+    {
+      "change_id": "C4",
+      "surface": "prompt_context",
+      "target_location": "PublicGoodsAgent._build_history_string and PublicGoodsAgent.choose_action",
+      "operation": "add stable-identity and mechanism context while preserving contribution choice bounds",
+      "description": "Give agents the minimum context required for the targeted reward mechanism: persistent identities and awareness that a reward stage follows the contribution stage.",
+      "details": {
+        "specific implementation guidance": "In choose_action, keep the existing contribution decision prompt structure and numeric contribution bounds unchanged. Add concise text that the agent is interacting with the same named group members across rounds and that after contributions are observed there will be a reward/no-reward stage. Do not alter the public-goods payoff description except to preserve the existing formula and parameters. In _build_history_string, optionally include prior round named contributions and reward summaries only if needed for direct reciprocity; ensure current-round named contributions are supplied in choose_reward_actions rather than replacing the contribution prompt.",
+        "do_not_change": [
+          "Contribution range",
+          "initial_endowment displayed to agents",
+          "public_pool_multiplier displayed to agents",
+          "num_agents displayed to agents",
+          "round numbering"
+        ]
+      },
+      "depends_on": [
+        "C2",
+        "C3"
+      ],
+      "acceptance_criteria": [
+        "Contribution prompt still asks for one integer between 0 and 20.",
+        "Agents are informed of persistent group membership.",
+        "The public-goods rule in the contribution prompt still uses baseline initial_endowment=20, public_pool_multiplier=9.6, and num_agents=24.",
+        "Reward-stage prompt separately shows named contribution information needed for targeted rewards."
+      ]
+    },
+    {
+      "change_id": "C5",
+      "surface": "matching_or_grouping",
+      "target_location": "PublicGoodsEnvironment.run_interaction",
+      "operation": "insert second-stage directed reward collection after baseline payoff calculation",
+      "description": "Modify the round sequence so the baseline contribution stage and baseline payoff calculation occur first, then the targeted reward stage is run among the same 24 agents.",
+      "details": {
+        "specific implementation guidance": "After the current code validates contributions and computes total_contribution, public_pool_gain, gain_per_agent, and baseline payoffs, preserve those values in a separate baseline_payoffs dict. Then, if targeted_reward_enabled is true, concurrently call each agent's choose_reward_actions using current contributions and baseline payoffs. Convert returned decisions into a directed reward_actions structure containing giver, target, action, cost, and benefit. Do not form subgroups, rematch agents, or reduce the group to paper group_size=4.",
+        "ordered_pair_count": "For n agents, the maximum possible directed rewards per round is n * (n - 1). With the preserved baseline n=24, this is 552 possible directed reward decisions per round.",
+        "sequence": [
+          "collect contributions",
+          "validate contributions",
+          "compute baseline PGG payoff exactly as before",
+          "collect targeted reward decisions",
+          "apply reward-stage payoff effects",
+          "update histories and logs"
+        ]
+      },
+      "depends_on": [
+        "C3",
+        "C4"
+      ],
+      "acceptance_criteria": [
+        "The baseline public-goods payoff for each agent is computed before rewards and stored.",
+        "Reward decisions are made only after current-round contributions are known.",
+        "All directed reward decisions occur within the existing single persistent 24-agent group.",
+        "There is no change to the number of agents or group architecture."
+      ]
+    },
+    {
+      "change_id": "C6",
+      "surface": "payoff_function",
+      "target_location": "PublicGoodsEnvironment.run_interaction",
+      "operation": "apply reward costs and benefits on top of preserved baseline payoffs",
+      "description": "Extend payoffs by adding the reward-stage effects while keeping the original public-goods payoff formula unchanged as the baseline component.",
+      "details": {
+        "specific implementation guidance": "Rename or duplicate the existing payoffs dict as baseline_payoffs immediately after the public-goods payoff loop. Initialize final_payoffs as a copy of baseline_payoffs. For each valid directed reward from giver g to target t: final_payoffs[g] -= reward_cost and final_payoffs[t] += reward_benefit. Use final_payoffs for agent outcome updates and total payoff metrics, while retaining baseline_payoffs for decomposition logs.",
+        "baseline_formula_to_preserve": "baseline_payoff_i = initial_endowment - contribution_i + ((sum_j contribution_j) * public_pool_multiplier / num_agents)",
+        "reward_formula": "final_payoff_i = baseline_payoff_i - reward_cost * rewards_given_count_i + reward_benefit * rewards_received_count_i",
+        "payoff_bounds": "Do not impose new payoff caps unless the existing baseline already had caps; it currently does not.",
+        "naming": "Use payoffs or final_payoffs consistently in saved outputs, but include baseline_payoffs separately to show the mechanism effect."
+      },
+      "depends_on": [
+        "C5"
+      ],
+      "acceptance_criteria": [
+        "When no rewards are selected, final_payoffs exactly equal baseline_payoffs.",
+        "Each reward decreases only the giver's payoff by reward_cost and increases only the target's payoff by reward_benefit.",
+        "Contributions, total_contribution, public_pool_gain, and gain_per_agent are unaffected by reward actions within the same round.",
+        "Agent update_state records the final payoff while preserving access to baseline payoff decomposition."
+      ]
+    },
+    {
+      "change_id": "C7",
+      "surface": "logging_metrics",
+      "target_location": "PublicGoodsEnvironment.run_interaction, PublicGoodsEnvironment.get_game_summary",
+      "operation": "log reward-stage decisions and aggregate cooperation metrics",
+      "description": "Extend per-round logs and game summary metrics to measure cooperation, reward use, and payoff effects.",
+      "details": {
+        "specific implementation guidance": "In each interaction_log, include baseline_payoffs, final_payoffs, reward_actions, reward_decision_explanations, rewards_given_count_by_agent, rewards_received_count_by_agent, reward_cost_paid_by_agent, reward_benefit_received_by_agent, total_reward_actions, possible_reward_actions, and reward_frequency. In get_game_summary, compute average_contribution as before, plus reward_frequency, average_baseline_payoff, average_total_payoff, average_reward_cost_paid, average_reward_benefit_received, total_reward_actions, and possible_reward_actions.",
+        "reward_frequency_definition": "total valid directed rewards selected divided by total possible directed reward opportunities across all completed rounds: completed_rounds * num_agents * (num_agents - 1).",
+        "cooperation_metric": "Keep existing average_contribution and choice_distribution; add per-round average contribution if convenient for trend analysis."
+      },
+      "depends_on": [
+        "C6"
+      ],
+      "acceptance_criteria": [
+        "Game logs contain enough information to reconstruct who rewarded whom in each round.",
+        "Game summary includes both baseline public-goods payoff and final payoff including rewards.",
+        "Reward frequency is zero when no reward actions are selected and one only if every possible directed reward is selected.",
+        "Existing fields used by downstream result files remain present where possible."
+      ]
+    },
+    {
+      "change_id": "C8",
+      "surface": "logging_metrics",
+      "target_location": "main result-saving block",
+      "operation": "save new mechanism fields in output JSON files",
+      "description": "Ensure saved game logs, interaction results, game statistics, and agent states include the reward mechanism data.",
+      "details": {
+        "specific implementation guidance": "When writing game_logs, env.game_logs will already include mechanism fields. Update interaction_results construction so it does not drop baseline_payoffs, final_payoffs, reward_actions, reward_frequency, reward counts, and reward payoff components. Update agent_states so each agent's get_state_summary includes reward histories and payoff decomposition. Add reward_mechanism configuration to experiment_config.json without modifying baseline settings.",
+        "compatibility": "Retain existing keys such as round, total_contribution, public_pool_gain, gain_per_agent, agent_contributions, explanations, payoffs, and timestamp. If payoffs is kept as the final payoff field, add baseline_payoffs explicitly."
+      },
+      "depends_on": [
+        "C7"
+      ],
+      "acceptance_criteria": [
+        "Saved JSON files include directed reward data for every round.",
+        "Existing contribution and payoff outputs remain available.",
+        "Experiment config records reward_cost and reward_benefit separately from baseline game settings."
+      ]
+    }
+  ],
+  "new_state_variables": [
+    {
+      "name": "targeted_reward_enabled",
+      "owner": "PublicGoodsEnvironment",
+      "type": "bool",
+      "purpose": "Controls whether the added reward mechanism stage is active."
+    },
+    {
+      "name": "reward_cost",
+      "owner": "PublicGoodsEnvironment",
+      "type": "float",
+      "purpose": "Mechanism-only cost paid by a reward giver for each directed reward."
+    },
+    {
+      "name": "reward_benefit",
+      "owner": "PublicGoodsEnvironment",
+      "type": "float",
+      "purpose": "Mechanism-only benefit received by a reward target for each directed reward."
+    },
+    {
+      "name": "reward_actions_by_round",
+      "owner": "PublicGoodsEnvironment",
+      "type": "list[dict]",
+      "purpose": "Stores all directed reward decisions for each round."
+    },
+    {
+      "name": "baseline_payoff_records",
+      "owner": "PublicGoodsEnvironment",
+      "type": "list[dict]",
+      "purpose": "Stores pre-reward public-goods payoff by agent for payoff decomposition."
+    },
+    {
+      "name": "total_payoff_records",
+      "owner": "PublicGoodsEnvironment",
+      "type": "list[dict]",
+      "purpose": "Stores final payoff including reward costs and benefits by agent."
+    },
+    {
+      "name": "total_reward_actions",
+      "owner": "PublicGoodsEnvironment",
+      "type": "int",
+      "purpose": "Cumulative count of selected directed rewards."
+    },
+    {
+      "name": "possible_reward_actions",
+      "owner": "PublicGoodsEnvironment",
+      "type": "int",
+      "purpose": "Cumulative count of possible directed reward opportunities."
+    },
+    {
+      "name": "_rewards_given_history",
+      "owner": "PublicGoodsAgent",
+      "type": "list",
+      "purpose": "Per-round record of targets this agent rewarded."
+    },
+    {
+      "name": "_rewards_received_history",
+      "owner": "PublicGoodsAgent",
+      "type": "list",
+      "purpose": "Per-round record of givers who rewarded this agent."
+    },
+    {
+      "name": "_baseline_payoff_history",
+      "owner": "PublicGoodsAgent",
+      "type": "list[float]",
+      "purpose": "Agent's payoff from the public-goods stage before reward effects."
+    },
+    {
+      "name": "_reward_cost_paid_history",
+      "owner": "PublicGoodsAgent",
+      "type": "list[float]",
+      "purpose": "Per-round reward costs paid by the agent."
+    },
+    {
+      "name": "_reward_benefit_received_history",
+      "owner": "PublicGoodsAgent",
+      "type": "list[float]",
+      "purpose": "Per-round reward benefits received by the agent."
+    },
+    {
+      "name": "_total_payoff_history",
+      "owner": "PublicGoodsAgent",
+      "type": "list[float]",
+      "purpose": "Agent's final payoff after public-goods payoff plus reward-stage effects."
+    }
+  ],
+  "new_logs": [
+    {
+      "name": "baseline_payoffs",
+      "location": "interaction_log",
+      "definition": "Payoff by agent from the original public-goods formula before reward effects."
+    },
+    {
+      "name": "final_payoffs",
+      "location": "interaction_log",
+      "definition": "Payoff by agent after subtracting reward costs and adding reward benefits."
+    },
+    {
+      "name": "reward_actions",
+      "location": "interaction_log",
+      "definition": "List or matrix of directed reward decisions with giver, target, action, cost, and benefit."
+    },
+    {
+      "name": "reward_decision_explanations",
+      "location": "interaction_log",
+      "definition": "LLM explanations or parse notes for reward decisions by giver."
+    },
+    {
+      "name": "rewards_given_count_by_agent",
+      "location": "interaction_log",
+      "definition": "Number of directed rewards each agent gave in the round."
+    },
+    {
+      "name": "rewards_received_count_by_agent",
+      "location": "interaction_log",
+      "definition": "Number of directed rewards each agent received in the round."
+    },
+    {
+      "name": "reward_cost_paid_by_agent",
+      "location": "interaction_log",
+      "definition": "Total reward cost paid by each agent in the round."
+    },
+    {
+      "name": "reward_benefit_received_by_agent",
+      "location": "interaction_log",
+      "definition": "Total reward benefit received by each agent in the round."
+    },
+    {
+      "name": "reward_frequency",
+      "location": "interaction_log and game_summary",
+      "definition": "Selected directed rewards divided by possible directed reward opportunities."
+    }
+  ],
+  "new_metrics": [
+    {
+      "name": "average_contribution",
+      "definition": "Existing mean contribution across all agent-round decisions; keep unchanged."
+    },
+    {
+      "name": "per_round_average_contribution",
+      "definition": "Mean contribution per completed round for cooperation trend analysis."
+    },
+    {
+      "name": "reward_frequency",
+      "definition": "Fraction of possible directed reward actions selected."
+    },
+    {
+      "name": "average_baseline_payoff",
+      "definition": "Mean public-goods payoff before reward-stage costs and benefits."
+    },
+    {
+      "name": "average_total_payoff",
+      "definition": "Mean final payoff after public-goods payoff plus reward-stage costs and benefits."
+    },
+    {
+      "name": "average_reward_cost_paid",
+      "definition": "Mean cost paid for giving rewards per agent-round."
+    },
+    {
+      "name": "average_reward_benefit_received",
+      "definition": "Mean benefit received from rewards per agent-round."
+    },
+    {
+      "name": "total_reward_actions",
+      "definition": "Total number of directed reward actions selected across all completed rounds."
+    },
+    {
+      "name": "possible_reward_actions",
+      "definition": "Total directed reward opportunities across all completed rounds."
+    }
+  ],
+  "implementation_order": [
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5",
+    "C6",
+    "C7",
+    "C8"
+  ],
+  "tests_or_checks": [
+    {
+      "name": "baseline parameter preservation check",
+      "description": "Verify EXPERIMENT_SETTINGS still has num_agents=24, initial_endowment=20, public_pool_multiplier=9.6, num_rounds=30, and NUM_EXPERIMENT_RUNS remains 3."
+    },
+    {
+      "name": "baseline payoff decomposition check",
+      "description": "For a synthetic contribution vector, confirm baseline_payoffs equal initial_endowment - contribution + total_contribution * public_pool_multiplier / num_agents exactly as before."
+    },
+    {
+      "name": "no-reward equivalence check",
+      "description": "Force all reward decisions to 0 and confirm final_payoffs equal baseline_payoffs for every agent and reward_frequency is 0."
+    },
+    {
+      "name": "single-reward payoff check",
+      "description": "Force exactly one reward from Agent_1 to Agent_2 and confirm Agent_1 final payoff decreases by reward_cost, Agent_2 final payoff increases by reward_benefit, and all other final payoffs equal baseline payoffs."
+    },
+    {
+      "name": "directed pair count check",
+      "description": "With 24 agents, confirm possible_reward_actions increments by 24 * 23 = 552 per round."
+    },
+    {
+      "name": "self-reward validation check",
+      "description": "Provide a malformed reward response containing a self-reward and confirm it is ignored or corrected to no_reward."
+    },
+    {
+      "name": "invalid reward parse fallback check",
+      "description": "Simulate an invalid LLM reward response and confirm the method defaults to no rewards without failing the round."
+    },
+    {
+      "name": "saved output completeness check",
+      "description": "After a short run, inspect game_logs, interaction_results, game_stats, and agent_states JSON files for baseline_payoffs, final_payoffs, reward_actions, reward_frequency, and reward payoff components."
+    },
+    {
+      "name": "identity persistence check",
+      "description": "Confirm Agent_1 through Agent_24 names remain stable across all contribution and reward prompts and logs."
+    }
+  ],
+  "risks": [
+    {
+      "risk": "The provided mechanism extraction does not specify exact reward cost-benefit parameters.",
+      "mitigation": "Use clearly named configurable mechanism constants and record them in output config; do not treat them as changes to baseline public-goods parameters."
+    },
+    {
+      "risk": "The 24-agent baseline creates 552 possible directed reward decisions per round, which may produce long prompts and increase LLM cost or parsing errors.",
+      "mitigation": "Use compact tabular or JSON-oriented prompts and robust default-to-no-reward parsing."
+    },
+    {
+      "risk": "Showing individual current-round contributions changes information relative to the baseline prompt, which only showed total contributions.",
+      "mitigation": "Restrict individual contribution disclosure to the reward stage where it is necessary for the targeted reward mechanism; keep contribution choice bounds and baseline payoff rules unchanged."
+    },
+    {
+      "risk": "Adding awareness of the upcoming reward stage may influence contribution decisions before rewards are applied.",
+      "mitigation": "This is part of the mechanism's incentive structure; keep the text concise and do not otherwise alter game parameters."
+    },
+    {
+      "risk": "If payoffs field semantics change from baseline payoff to final payoff, downstream analysis may be confused.",
+      "mitigation": "Log both baseline_payoffs and final_payoffs explicitly and document payoffs as final if reused."
+    }
+  ],
+  "out_of_scope": [
+    "Do not change the baseline number of agents from 24 to the paper's group size of 4.",
+    "Do not change the baseline initial endowment of 20.",
+    "Do not change the baseline public_pool_multiplier of 9.6 to the paper multiplier of 1.6.",
+    "Do not change the baseline number of rounds, which is 30.",
+    "Do not change the experiment repeat count, which is 3.",
+    "Do not create new matching, rematching, subgroup, or partner-shuffling logic.",
+    "Do not implement punishment-only or reward-plus-punishment treatments from mechanisms M2 or M3.",
+    "Do not add paper treatment comparisons PN, RN, RNP as an experiment loop unless a later task explicitly requests treatment toggles.",
+    "Do not cap or normalize payoffs beyond the existing baseline behavior.",
+    "Do not replace the baseline public-goods payoff formula; only add reward-stage costs and benefits after computing the baseline payoff.",
+    "Changing baseline number of agents, initial endowment, multiplier/MPCR/payoff constants, number of rounds, experiment repeat count, or group/matching architecture."
+  ]
+}

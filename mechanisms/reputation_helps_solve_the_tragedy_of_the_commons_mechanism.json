@@ -1,0 +1,217 @@
+{
+  "schema_version": "public-goods-mechanism-v1",
+  "source": {
+    "input_type": "pdf",
+    "file_name": "Reputation helps solve the ‘tragedy of the commons’.pdf",
+    "extraction_method": "llm_structured_extraction"
+  },
+  "paper": {
+    "title": "Reputation helps solve the ‘tragedy of the commons’",
+    "authors": [
+      "Manfred Milinski",
+      "Dirk Semmann",
+      "Hans-Jürgen Krambeck"
+    ],
+    "year": 2002,
+    "research_question": "Can reputation from an indirect reciprocity game sustain contributions in a public goods game?",
+    "study_type": "computerized lab experiment",
+    "sample": "114 first-year students in 19 groups of 6",
+    "setting": "anonymous pseudonymous groups playing public goods and indirect reciprocity games"
+  },
+  "game_context": {
+    "game_type": "public_goods_game",
+    "rounds": 20,
+    "group_size": 6,
+    "endowment": "starting account DM 20; per-round PGG endowment not specified in excerpt",
+    "mpcr_or_multiplier": null,
+    "real_incentives": true,
+    "baseline_condition": "public goods rounds played without expected later indirect reciprocity/reputation benefits"
+  },
+  "mechanisms": [
+    {
+      "mechanism_id": "M1",
+      "name": "Reputation-coupled indirect reciprocity",
+      "type": "mixed",
+      "summary": "Players' giving histories in both the public goods and indirect reciprocity games were publicly displayed before indirect reciprocity decisions, making public-goods contributions valuable for maintaining a good reputation and receiving later help.",
+      "actors": {
+        "decision_maker": "public goods contributor and indirect-reciprocity donor",
+        "target": "potential receiver whose reputation/history is displayed",
+        "observer": "all group members"
+      },
+      "timing": {
+        "stage": "public goods contribution history is observed during later indirect reciprocity donor decisions",
+        "frequency": "alternating IR and PGG rounds for first 16 rounds, then terminal PGG rounds"
+      },
+      "information_structure": {
+        "anonymity": "real identities anonymous; stable pseudonyms used throughout game",
+        "public_information": [
+          "pseudonym-linked history of giving in indirect reciprocity game",
+          "pseudonym-linked history of contributions in public goods game"
+        ],
+        "private_information": [],
+        "history_visibility": "receiver's giving history in both games displayed simultaneously for all players in each indirect reciprocity round"
+      },
+      "action_space_changes": [
+        {
+          "action": "indirect reciprocity help decision",
+          "range_or_options": "help/give or not help; exact amount not specified in excerpt",
+          "condition": "donor observes receiver's reputation/history"
+        },
+        {
+          "action": "public goods contribution",
+          "range_or_options": "contribution amount; exact range not specified in excerpt",
+          "condition": "contribution affects visible reputation"
+        }
+      ],
+      "payoff_changes": [
+        {
+          "who_pays": "indirect reciprocity donor",
+          "who_receives_or_loses": "receiver",
+          "amount_or_formula": "costly help creates benefit; exact cost/benefit not specified in excerpt",
+          "condition": "donor chooses to help, often favoring good reputation"
+        },
+        {
+          "who_pays": "none directly in PGG mechanism",
+          "who_receives_or_loses": "future self via reputation-mediated help",
+          "amount_or_formula": "future expected help depends on observed giving history",
+          "condition": "higher PGG contribution improves reputation"
+        }
+      ],
+      "state_variables": [
+        {
+          "name": "pg_contribution_history",
+          "type": "agent_state",
+          "update_rule": "append each agent's public goods contribution by round under pseudonym"
+        },
+        {
+          "name": "ir_giving_history",
+          "type": "agent_state",
+          "update_rule": "append each donor's help/giving decisions in indirect reciprocity rounds"
+        },
+        {
+          "name": "reputation_or_image_score",
+          "type": "agent_state",
+          "update_rule": "derived from visible history of giving in both games"
+        },
+        {
+          "name": "mean_pgg_contribution",
+          "type": "metric",
+          "update_rule": "average public goods contribution per group and round"
+        },
+        {
+          "name": "profit",
+          "type": "metric",
+          "update_rule": "track monetary earnings across both games"
+        }
+      ],
+      "prompt_requirements": [
+        "Tell agents their stable pseudonym and that histories may be visible to others.",
+        "Show each potential receiver's prior PGG contributions and IR giving before IR help decisions.",
+        "Make clear that PGG contributions can affect later reputation and help received."
+      ],
+      "metrics": [
+        {
+          "name": "mean_public_goods_contribution",
+          "definition": "average contribution to the public good by round/group"
+        },
+        {
+          "name": "contribution_decay",
+          "definition": "change in PGG contribution over repeated PGG rounds"
+        },
+        {
+          "name": "help_received_by_reputation",
+          "definition": "association between visible giving history/image score and probability of receiving IR help"
+        },
+        {
+          "name": "total_profit",
+          "definition": "monetary earnings across all rounds"
+        }
+      ],
+      "implementation_notes": {
+        "directly_implementable_in_current_baseline": false,
+        "required_surfaces": [
+          "prompt_context",
+          "action_space",
+          "state_memory",
+          "logging_metrics",
+          "payoff_function"
+        ],
+        "minimal_code_changes": [
+          "add stable pseudonyms and per-agent history logs",
+          "add indirect reciprocity rounds with donor-receiver matching and help action",
+          "display target histories in prompts before IR decisions",
+          "log reputation/image metrics and help received",
+          "optionally add treatment schedule alternating PGG and IR rounds"
+        ],
+        "risks_or_assumptions": [
+          "exact IR cost-benefit parameters and PGG endowment/multiplier not available in excerpt",
+          "LLM agents may require explicit prompt incentives to value future reputation",
+          "baseline PGG may not support multi-stage mixed games without extension"
+        ]
+      },
+      "confidence": 0.86
+    }
+  ],
+  "implementation_mapping": {
+    "target_baseline": "env_main_public_goods_group.py",
+    "required_surfaces": [
+      "prompt_context",
+      "action_space",
+      "payoff_function",
+      "state_memory",
+      "logging_metrics"
+    ],
+    "directly_implementable": [
+      "log and display prior PGG contribution history",
+      "compute cooperation/reputation metrics"
+    ],
+    "requires_baseline_extension": [
+      "indirect reciprocity game stage",
+      "donor-receiver matching",
+      "help/no-help action and payoff transfer",
+      "alternating treatment schedule"
+    ],
+    "implementation_order": [
+      "add per-agent state_memory for pseudonym-linked histories",
+      "add prompt_context visibility of histories",
+      "extend action_space with IR help decisions",
+      "extend payoff_function for IR help costs/benefits",
+      "add treatment schedules and logging_metrics"
+    ]
+  },
+  "experiment_design": {
+    "baseline_condition": "eight public goods rounds before any indirect reciprocity, or terminal PGG rounds after subjects are told no further IR rounds will occur",
+    "treatment_conditions": [
+      "alternating indirect reciprocity and public goods rounds through round 16",
+      "unexpected versus announced absence of further indirect reciprocity from round 17"
+    ],
+    "control_variables": [
+      "group size 6",
+      "stable pseudonyms",
+      "anonymous decisions",
+      "monetary incentives",
+      "same total number of PGG and IR opportunities where applicable"
+    ],
+    "suggested_rounds": 20,
+    "suggested_runs": 19
+  },
+  "evidence": {
+    "cooperation_outcomes": [
+      "Alternating public goods with indirect reciprocity maintained unexpectedly high public-goods contributions.",
+      "When indirect reciprocity rounds were not expected, public-goods contributions dropped quickly to zero.",
+      "Groups starting with eight public goods rounds showed usual decline from round 1 to round 8."
+    ],
+    "reported_effect_direction": "positive: reputation opportunities increased and sustained cooperation; removing expected reputation benefits reduced cooperation",
+    "reported_effect_size": "PGG-first decline: paired t-test round 1 vs 8, n=9 groups, t=6.958, P<0.0001; other exact effect sizes not in excerpt",
+    "key_quotes_or_passages": [
+      "the need to maintain reputation for indirect reciprocity maintains contributions to the public good at an unexpectedly high level",
+      "if rounds of indirect reciprocation are not expected, then contributions to the public good drop quickly to zero",
+      "each potential receiver’s history of giving both in the indirect reciprocity and the public goods game was displayed simultaneously for all players",
+      "players would risk their reputation if they would not cooperate in a public goods game that is alternated with the indirect reciprocity game"
+    ]
+  },
+  "uncertainties": [
+    "Exact per-round PGG endowment, multiplier/MPCR, and IR cost-benefit values are not provided in the excerpt.",
+    "Full numerical contribution levels are unavailable from the truncated source text."
+  ]
+}

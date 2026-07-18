@@ -1,0 +1,42 @@
+{
+  "schema_version": "code-implementation-report-v1",
+  "source_baseline": "env_main_public_goods_group.py",
+  "implementation_plan": "implementation_plans\\reputation_helps_solve_the_tragedy_of_the_commons_env_main_public_goods_group_plan.json",
+  "review_report": "review_reports\\reputation_helps_solve_the_tragedy_of_the_commons_env_main_public_goods_group_review.json",
+  "output_file": "env_main_public_goods_group_second_paper_auto.py",
+  "baseline_sha256_before": "4d47d78f1c828a567b709875a21dafe76824d8cd2b2ad466dde8749c7cb68886",
+  "output_sha256": "0bb04af8b0bcc76b64f48d9d80a58b775289f4a69cdae00dcfb4e5ad22c15c54",
+  "implemented_change_ids": [
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5",
+    "C6"
+  ],
+  "applied_edits": [
+    "C1: replace PublicGoodsAgent.__init__",
+    "C1: replace PublicGoodsAgent.update_state",
+    "C1: replace PublicGoodsAgent.get_state_summary",
+    "C3: replace PublicGoodsAgent._build_history_string",
+    "C3: replace PublicGoodsAgent.choose_action",
+    "C4: insert PublicGoodsAgent.choose_ir_help_action",
+    "C2: replace PublicGoodsEnvironment.__init__",
+    "C2: insert PublicGoodsEnvironment._ensure_reputation_ledger",
+    "C6: replace PublicGoodsEnvironment.run_interaction",
+    "C6: replace PublicGoodsEnvironment.get_game_summary",
+    "C2: insert PublicGoodsEnvironment._public_reputation_snapshot",
+    "C2: insert PublicGoodsEnvironment._get_receiver_visible_history",
+    "C2: insert PublicGoodsEnvironment._recompute_reputation_score",
+    "C5: insert PublicGoodsEnvironment._create_ir_pairings"
+  ],
+  "preserved_baseline_file": true,
+  "syntax_check": "pass",
+  "validation_status": "pass",
+  "validation_issues": [],
+  "manual_review_needed": [
+    "Removed the previous unsupported insert_into_dict and replace_snippet edits so every edit operation is either insert_method_in_class or replace_method.",
+    "No baseline-native game settings such as num_agents, initial_endowment, public_pool_multiplier, num_rounds, random_seed, or repeat-count settings are changed by this patch.",
+    "The optional mechanism_config constructor parameter defaults to the new mechanism without requiring main-file settings edits; callers may pass {'enabled': False} to disable the mechanism while retaining baseline public-goods payoff calculations."
+  ]
+}

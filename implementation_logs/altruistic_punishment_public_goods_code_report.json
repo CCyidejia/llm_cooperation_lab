@@ -1,0 +1,30 @@
+﻿{
+    "schema_version":  "code-implementation-report-v1",
+    "source_baseline":  "env_main_public_goods_group.py",
+    "implementation_plan":  "implementation_plans\\altruistic_punishment_public_goods_plan.json",
+    "review_report":  "review_reports\\altruistic_punishment_public_goods_review.json",
+    "output_file":  "env_main_public_goods_group_altruistic_punishment.py",
+    "baseline_sha256_before":  "4d47d78f1c828a567b709875a21dafe76824d8cd2b2ad466dde8749c7cb68886",
+    "output_sha256":  "c18adbe640924e12f0541c322de4c8a2eb2ec50eb5a9ad701858a77ea214bfd1",
+    "implemented_change_ids":  [
+                                   "C1",
+                                   "C2",
+                                   "C3",
+                                   "C4",
+                                   "C5",
+                                   "C6"
+                               ],
+    "applied_edits":  [
+                          "C1: insert PublicGoodsAgent.choose_punishment_actions",
+                          "C3: replace PublicGoodsEnvironment.run_interaction"
+                      ],
+    "preserved_baseline_file":  true,
+    "syntax_check":  "pass",
+    "validation_status":  "pass",
+    "validation_issues":  [
+
+                          ],
+    "manual_review_needed":  [
+                                 "Manual post-generation fix applied: restored agent initialization/set_environment, added punishment state histories and summary metrics, corrected target-side punishment penalties, and preserved legacy payoffs field for result export."
+                             ]
+}

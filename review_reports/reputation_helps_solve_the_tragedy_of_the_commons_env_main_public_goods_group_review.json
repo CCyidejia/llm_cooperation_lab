@@ -1,0 +1,98 @@
+{
+  "schema_version": "consistency-review-v1",
+  "overall_status": "pass",
+  "confidence": 0.84,
+  "paper_mechanism_alignment": {
+    "status": "pass",
+    "findings": [
+      "Mechanism JSON captures the core cooperation-promoting mechanism: stable pseudonyms, public reputation/history, public-goods contributions becoming visible in later indirect-reciprocity help decisions, and payoff consequences through costly help.",
+      "Timing is captured at the mechanism level: public-goods histories are displayed during indirect-reciprocity decisions and reputation incentives sustain later public-goods cooperation.",
+      "Information requirements are captured: receiver histories of both public-goods contributions and indirect-reciprocity giving are visible under pseudonyms.",
+      "Evidence direction is accurately represented: expected indirect reciprocity sustains public-goods contributions; removing expected reputation benefits reduces contributions."
+    ],
+    "missing_or_uncertain": [
+      "Exact indirect-reciprocity cost and benefit values are not available in the provided excerpt.",
+      "Exact public-goods action range and payoff parameters for the paper experiment are not available in the provided excerpt.",
+      "Full numerical contribution trajectories and effect sizes beyond the excerpt are uncertain."
+    ],
+    "quality_notes": [
+      "The mechanism JSON includes paper-specific sample size, group size, and round schedule as context, but these should remain contextual only and not be imposed on the baseline under mechanism-transfer rules."
+    ]
+  },
+  "mechanism_completeness": {
+    "status": "pass",
+    "findings": [
+      "Mechanism JSON identifies the implementation surfaces needed for transfer: prompt context, action space, state memory, logging metrics, and payoff function.",
+      "The required state variables are sufficient for implementation in the baseline: pseudonym-linked public-goods history, indirect-reciprocity giving/receiving history, derived reputation score, and profit metrics.",
+      "The mechanism correctly avoids direct monetary reputation bonuses; reputation affects payoffs through help decisions."
+    ],
+    "missing_or_uncertain": [
+      "Mechanism-only IR cost and benefit parameters require explicit implementation assumptions or validated configuration because they are not specified in the excerpt.",
+      "The exact reputation/image-score formula is not specified and should remain an analytical/display summary rather than a direct payoff rule."
+    ],
+    "quality_notes": [
+      "Completeness is adequate for mechanism transfer, not full human-subject replication, because missing paper constants can be treated as transparent mechanism-only configuration."
+    ]
+  },
+  "plan_alignment": {
+    "status": "pass",
+    "covered_surfaces": [
+      "state_memory: agent histories, public reputation ledger, IR logs, reputation snapshots",
+      "prompt_context: public-goods prompts become reputation-aware; IR prompts display receiver history",
+      "action_space: new binary indirect-reciprocity help decision method",
+      "matching_or_grouping: donor-receiver pairings within the existing 24-agent group",
+      "payoff_function: unchanged public-goods payoff computed first, then separate IR adjustment",
+      "logging_metrics: baseline and final payoffs, help decisions, reputation snapshots, cooperation metrics",
+      "experiment_config: nested mechanism configuration without changing baseline settings",
+      "result_saving: extended logs and agent states while preserving existing files"
+    ],
+    "missing_surfaces": [],
+    "inconsistent_items": [
+      "C8 uses placeholder strings for ir_help_cost and ir_help_benefit; this is acceptable as planning language but should not be copied literally into code. Use numeric values or explicit required-config validation."
+    ]
+  },
+  "baseline_feasibility": {
+    "status": "pass",
+    "valid_targets": [
+      "PublicGoodsAgent.__init__ can hold pseudonym and history fields.",
+      "PublicGoodsAgent.get_state_summary can be extended with reputation and IR state.",
+      "PublicGoodsAgent._build_history_string and choose_action are plausible prompt-context targets.",
+      "A new PublicGoodsAgent.choose_ir_help_action method is feasible using the existing LLM retry helper.",
+      "PublicGoodsEnvironment.__init__ can hold mechanism_config, public ledger, IR logs, and reputation snapshots.",
+      "PublicGoodsEnvironment.run_interaction is the correct surface for adding the post-PGG IR stage and preserving baseline payoff components.",
+      "PublicGoodsEnvironment.get_game_summary can be extended with mechanism metrics.",
+      "main and result-saving blocks are plausible locations for nested config and extended JSON outputs."
+    ],
+    "risky_targets": [
+      "Adding one IR LLM decision per agent per round substantially increases LLM calls and runtime.",
+      "Prompt context for 24 agents over 30 rounds may become too long unless bounded summaries are used.",
+      "Updating existing outcome_history with final payoff could obscure baseline payoff unless baseline_pg_payoff and ir_adjustment are logged separately."
+    ],
+    "missing_targets": []
+  },
+  "required_fixes": [],
+  "recommended_fixes": [
+    {
+      "priority": "medium",
+      "target": "plan",
+      "issue": "IR help cost and benefit are represented as placeholders in C8.",
+      "suggested_fix": "Before coding, choose documented numeric mechanism-only defaults or implement strict mechanism_config validation requiring numeric ir_help_cost and ir_help_benefit; log the chosen values in experiment_config.json."
+    },
+    {
+      "priority": "low",
+      "target": "plan",
+      "issue": "The IR pairing rule does not require each agent to be a receiver once per IR stage, although the paper did this within six-person groups.",
+      "suggested_fix": "Optionally use a shuffled rotation/permutation so every existing baseline agent is donor once and receiver once per mechanism stage, without changing the 24-agent group architecture."
+    },
+    {
+      "priority": "low",
+      "target": "plan",
+      "issue": "The reputation score formula is intentionally unspecified but could be mistaken for a payoff variable.",
+      "suggested_fix": "Document that reputation_or_image_score is derived only for display/analysis and never directly changes payoff except through donor help decisions."
+    }
+  ],
+  "approval_for_next_step": {
+    "ready_for_code_implementation": true,
+    "reason": "The mechanism and plan preserve baseline invariants while adding the reputation-coupled indirect-reciprocity mechanism. Remaining issues are implementation-quality clarifications, not blocking consistency failures."
+  }
+}

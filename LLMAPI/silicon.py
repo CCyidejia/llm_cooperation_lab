@@ -2,14 +2,19 @@ import os
 import requests
 import json
 import asyncio
+import re
 # import tiktoken
 
 
 # SiliconFlow platform Qwen3-8B configuration
 API_BASE_URL = "https://api.siliconflow.cn/v1"
-DEFAULT_MODEL = "Qwen/Qwen2.5-7B-Instruct" # Specify the Qwen3-8B model
+DEFAULT_MODEL = os.getenv("SILICON_DEFAULT_MODEL", "Qwen/Qwen2.5-7B-Instruct") # Specify the Qwen3-8B model
 # Ensure the API key is retrieved from an environment variable, with a fallback.
 API_KEY = os.getenv("SILICON_API_KEY")
+REQUEST_TIMEOUT = int(os.getenv("SILICON_TIMEOUT", "300"))
+MAX_TOKENS = int(os.getenv("SILICON_MAX_TOKENS", "500"))
+TEMPERATURE = float(os.getenv("SILICON_TEMPERATURE", "0.2"))
+TOP_P = float(os.getenv("SILICON_TOP_P", "0.7"))
 
 class LLMAgent:
     """
@@ -44,8 +49,15 @@ class LLMAgent:
         Returns:
             str: LLM 的原始文本回复。如果API调用失败，返回明确的错误信息。
         """
+        concise_system_message = (
+            f"{system_message}\n"
+            "Return only the final answer requested by the user. "
+            "Do not reveal chain-of-thought or hidden reasoning. "
+            "Keep explanations concise."
+        ).strip()
+
         messages = [
-            {"role": "system", "content": system_message},
+            {"role": "system", "content": concise_system_message},
             {"role": "user", "content": user_prompt}
         ]
 
@@ -62,9 +74,9 @@ class LLMAgent:
             "model": self.model,
             "messages": messages, # Use the constructed messages list directly
             "stream": False,
-            "max_tokens": 500, # Increase max_tokens to handle more complex responses
-            "temperature": 0.7,
-            "top_p": 0.7,
+            "max_tokens": MAX_TOKENS,
+            "temperature": TEMPERATURE,
+            "top_p": TOP_P,
             # top_k and frequency_penalty might not be universally supported or named differently.
             # Commenting them out for broader compatibility unless specified by SiliconFlow's docs.
             # "top_k": 50,
@@ -73,7 +85,7 @@ class LLMAgent:
 
         try:
             # ✅ Use the requests library to call SiliconFlow API with timeout
-            response = requests.post(self.url, headers=headers, json=payload, timeout=100)
+            response = requests.post(self.url, headers=headers, json=payload, timeout=REQUEST_TIMEOUT)
             response.raise_for_status() # Check for HTTP errors (e.g., 4xx, 5xx)
 
             # 检查响应是否包含有效的JSON数据
@@ -91,6 +103,7 @@ class LLMAgent:
                     return f"API Call Failed: {error_msg}"
                 
                 reply = response_json["choices"][0]["message"]["content"].strip()
+                reply = re.sub(r"<think>.*?</think>", "", reply, flags=re.DOTALL | re.IGNORECASE).strip()
                 
                 # 确保回复不为空
                 if not reply:

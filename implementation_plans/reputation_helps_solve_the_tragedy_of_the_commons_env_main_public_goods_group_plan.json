@@ -1,0 +1,586 @@
+{
+  "schema_version": "implementation-plan-v1",
+  "target_baseline": "env_main_public_goods_group.py",
+  "mechanism_source": "mechanisms\\reputation_helps_solve_the_tragedy_of_the_commons_mechanism.json",
+  "baseline_summary": {
+    "file": "env_main_public_goods_group.py",
+    "classes": {
+      "PublicGoodsAgent": {
+        "purpose": "LLM-driven participant in repeated public goods game; tracks own contribution and payoff history and builds contribution prompts.",
+        "key_methods": [
+          "__init__",
+          "update_state",
+          "update_history",
+          "get_state_summary",
+          "_build_history_string",
+          "choose_action",
+          "_call_llm_with_retry"
+        ]
+      },
+      "PublicGoodsEnvironment": {
+        "purpose": "Runs simultaneous 24-agent public goods rounds, computes baseline public-goods payoffs, updates histories, and logs results.",
+        "key_methods": [
+          "__init__",
+          "set_agents",
+          "_get_agent_by_id",
+          "run_interaction",
+          "get_game_summary"
+        ]
+      }
+    },
+    "functions": {
+      "main": "Creates 24 agents, environment, runs 30 public-goods rounds, and saves config/log/stat/state/result JSON outputs.",
+      "run_experiment": "Wrapper for one experiment run."
+    },
+    "detected_capabilities": {
+      "agent_decision_method_candidates": [
+        "PublicGoodsAgent.choose_action"
+      ],
+      "environment_round_method_candidates": [
+        "PublicGoodsEnvironment.run_interaction"
+      ],
+      "state_update_candidates": [
+        "PublicGoodsAgent._build_history_string",
+        "PublicGoodsAgent.update_history",
+        "PublicGoodsAgent.update_state"
+      ],
+      "summary_or_logging_candidates": [
+        "PublicGoodsAgent.get_state_summary",
+        "PublicGoodsEnvironment.get_game_summary"
+      ],
+      "current_action_space": "Each agent chooses an integer public-goods contribution from 0 to initial_endowment/max_contribution.",
+      "current_payoff_formula": "private_savings = initial_endowment - contribution; public_pool_gain = total_contribution * public_pool_multiplier; gain_per_agent = public_pool_gain / num_agents; payoff = private_savings + gain_per_agent.",
+      "current_history_visibility": "Agents currently see only aggregate prior total contribution and public fund gain, not pseudonym-linked individual contribution histories."
+    }
+  },
+  "baseline_invariants": {
+    "preserve_num_agents": true,
+    "preserve_initial_endowment": true,
+    "preserve_public_pool_multiplier": true,
+    "preserve_total_rounds": true,
+    "preserve_experiment_repeat_count": true,
+    "preserve_existing_group_or_matching_architecture": true,
+    "rule": "Keep all baseline game and experiment settings unchanged; add only the mechanism."
+  },
+  "mechanism_summary": {
+    "mechanism_id": "M1",
+    "name": "Reputation-coupled indirect reciprocity",
+    "type": "mixed",
+    "summary": "Add stable pseudonym-linked public histories and an indirect-reciprocity help decision stage in which donors observe a receiver's prior public-goods contributions and prior help decisions. Public-goods contributions therefore become reputation-relevant and can influence later help received. The baseline public-goods payoff formula must be computed unchanged first; indirect-reciprocity help costs and benefits are added only as a separate mechanism payoff adjustment."
+  },
+  "required_code_changes": [
+    {
+      "change_id": "C1",
+      "surface": "state_memory",
+      "target_location": "PublicGoodsAgent.__init__, PublicGoodsAgent.update_state, PublicGoodsAgent.get_state_summary",
+      "operation": "add reputation and indirect-reciprocity state",
+      "description": "Extend each agent with stable pseudonym-linked histories needed by the reputation mechanism while preserving existing public-goods state variables.",
+      "details": {
+        "add_agent_fields": [
+          "self.pseudonym: use the existing stable self._name unless a separate alias is desired; do not randomize across rounds.",
+          "self.pg_contribution_history: list of dicts with round, contribution, baseline_pg_payoff.",
+          "self.ir_giving_history: list of dicts with round, receiver_id, receiver_name, helped, cost, explanation.",
+          "self.ir_receiving_history: list of dicts with round, donor_id, donor_name, helped, benefit.",
+          "self.reputation_or_image_score: numeric derived score updated after each round."
+        ],
+        "update_state_guidance": "Keep the existing _my_history and _outcome_history updates intact. Add optional keyword-compatible fields or create a separate method for appending public-goods contribution history so existing calls do not break.",
+        "get_state_summary_guidance": "Return existing fields plus pg_contribution_history, ir_giving_history, ir_receiving_history, reputation_or_image_score, total_help_given, total_help_received, and total_mechanism_payoff_adjustment.",
+        "do_not_change": [
+          "initial_endowment",
+          "max_contribution",
+          "min_contribution",
+          "existing _my_history semantics",
+          "existing outcome_history semantics except it may store final payoff after mechanism adjustment if clearly logged separately"
+        ]
+      },
+      "depends_on": [],
+      "acceptance_criteria": [
+        "Agent initialization still works with the same constructor signature.",
+        "Existing contribution histories remain available exactly as before.",
+        "Each agent state JSON includes public-goods contribution history and indirect-reciprocity giving/receiving history.",
+        "Agent names remain stable across all rounds and can serve as pseudonyms."
+      ]
+    },
+    {
+      "change_id": "C2",
+      "surface": "state_memory",
+      "target_location": "PublicGoodsEnvironment.__init__, PublicGoodsEnvironment.run_interaction",
+      "operation": "add environment-level public reputation ledger",
+      "description": "Maintain a complete public ledger of pseudonym-linked public-goods contributions and indirect-reciprocity help decisions for use in prompts and analysis.",
+      "details": {
+        "add_environment_fields": [
+          "self.public_reputation_ledger: dict keyed by agent_id with name, pg_contributions, ir_given, ir_received, reputation_score.",
+          "self.ir_logs: list of per-round indirect reciprocity decision logs.",
+          "self.reputation_scores_by_round: list of per-round reputation score snapshots."
+        ],
+        "ledger_update_timing": "After all public-goods contributions are collected and baseline public-goods payoffs are computed, append each agent's current contribution to the ledger. After the indirect-reciprocity stage, append help decisions and update reputation scores.",
+        "score_formula_guidance": "Use a transparent derived score based only on visible histories, for example normalized average public-goods contribution plus help-giving rate. The score is informational and analytical; it should not directly alter public-goods payoffs except through agents' help decisions.",
+        "visibility_guidance": "The ledger is public prompt context, not private hidden state."
+      },
+      "depends_on": [
+        "C1"
+      ],
+      "acceptance_criteria": [
+        "For every completed round, the ledger contains one public-goods contribution entry for each agent.",
+        "For every completed indirect-reciprocity opportunity, the ledger records donor, receiver, help decision, and payoff adjustment.",
+        "Reputation scores are reproducible from logged histories."
+      ]
+    },
+    {
+      "change_id": "C3",
+      "surface": "prompt_context",
+      "target_location": "PublicGoodsAgent._build_history_string, PublicGoodsAgent.choose_action",
+      "operation": "make public-goods decisions reputation-aware",
+      "description": "Revise public-goods contribution prompts so agents know their contributions are pseudonym-linked and may be visible to others during later help decisions, without changing the contribution range or public-goods payoff rules.",
+      "details": {
+        "history_display_change": "Keep the existing aggregate history lines. Add a concise public reputation section showing pseudonym-linked prior public-goods contributions and prior indirect-reciprocity help decisions for all agents, or a bounded recent-history version if prompts become too long.",
+        "prompt_additions": [
+          "Tell the agent its stable pseudonym/name.",
+          "Tell the agent that prior public-goods contributions and help decisions are visible to other participants in later indirect-reciprocity help decisions.",
+          "Tell the agent that the public-goods payoff rule remains: contributions are multiplied by the public_pool_multiplier and divided equally among all num_agents players.",
+          "Do not instruct the agent to follow any particular strategy; only describe the informational/reputational consequences."
+        ],
+        "bounded_memory_guidance": "Use the existing memory_size parameter to limit displayed detailed rows if needed, but preserve full logs in machine-readable state.",
+        "do_not_change": [
+          "The integer contribution action range.",
+          "The baseline public-goods payoff explanation.",
+          "The current LLM parsing behavior for contribution amounts except as necessary for robustness."
+        ]
+      },
+      "depends_on": [
+        "C1",
+        "C2"
+      ],
+      "acceptance_criteria": [
+        "Contribution prompts include the agent's stable pseudonym.",
+        "Contribution prompts explicitly state that contribution history can affect later reputation/help decisions.",
+        "Contribution prompts still state the unchanged baseline endowment, multiplier, number of players, and contribution range.",
+        "No baseline game parameter is replaced by paper-specific values."
+      ]
+    },
+    {
+      "change_id": "C4",
+      "surface": "action_space",
+      "target_location": "PublicGoodsAgent.choose_ir_help_action",
+      "operation": "add new indirect-reciprocity help decision method",
+      "description": "Add a new LLM decision method for donors to choose whether to help a receiver after observing the receiver's visible reputation/history.",
+      "details": {
+        "new_method_signature": "async def choose_ir_help_action(self, receiver_agent, receiver_visible_history: dict, ir_help_cost: float, ir_help_benefit: float, current_round: int) -> tuple[bool, str]",
+        "action_options": "Binary help decision: help/give or do not help. Parse yes/no, help/no help, or 1/0 robustly. Default to no help on parsing or LLM failure.",
+        "prompt_context": [
+          "Identify donor pseudonym and receiver pseudonym.",
+          "Display receiver's prior public-goods contribution history.",
+          "Display receiver's prior indirect-reciprocity giving history.",
+          "Display receiver's current reputation/image score if implemented.",
+          "State that choosing help costs the donor ir_help_cost mechanism coins and gives the receiver ir_help_benefit mechanism coins.",
+          "Ask for HELP or NO_HELP first, followed by a brief explanation."
+        ],
+        "important_constraint": "The help action is an added mechanism stage; it must not change the public-goods contribution action range or baseline public-goods payoff calculation."
+      },
+      "depends_on": [
+        "C1",
+        "C2"
+      ],
+      "acceptance_criteria": [
+        "Each call returns a boolean help decision and explanation.",
+        "Invalid or unparsable LLM responses are handled without crashing and default to no help.",
+        "The receiver prompt context contains visible public-goods and help histories.",
+        "No public-goods contribution is requested in this method."
+      ]
+    },
+    {
+      "change_id": "C5",
+      "surface": "matching_or_grouping",
+      "target_location": "PublicGoodsEnvironment.run_interaction, new PublicGoodsEnvironment._create_ir_pairings",
+      "operation": "add within-group donor-receiver pairing for mechanism stage",
+      "description": "Create indirect-reciprocity donor-receiver opportunities within the existing 24-agent group after the public-goods contribution stage, without changing the baseline group size or main round count.",
+      "details": {
+        "new_helper_method": "def _create_ir_pairings(self, interaction_num: int) -> list[tuple[PublicGoodsAgent, PublicGoodsAgent]]",
+        "pairing_rule": "Use all existing agents as donors once per round. Assign each donor one receiver from the same existing group, excluding self. Use the existing RANDOM_SEED/random module for reproducibility. A simple shuffled rotation is acceptable.",
+        "preserve_architecture": "Do not split the 24 agents into paper-style groups of 6. Do not change the number of public-goods rounds. Do not add extra outer-loop rounds.",
+        "timing": "Within each existing run_interaction call: collect PGG contributions, compute baseline PGG payoffs, update visible PGG ledger, then run IR help decisions and apply mechanism payoff adjustments.",
+        "alternative_if_prompt_cost_too_high": "Optionally allow a mechanism_config flag ir_stage_enabled=True and ir_pairings_per_round='all_donors_once'; default should implement the mechanism when enabled, while preserving baseline settings."
+      },
+      "depends_on": [
+        "C2",
+        "C4"
+      ],
+      "acceptance_criteria": [
+        "There are still exactly EXPERIMENT_SETTINGS['num_rounds'] calls to env.run_interaction per experiment.",
+        "All pairings occur among the existing env.agents list.",
+        "No agent is paired with itself as receiver.",
+        "The baseline all-agent public-goods group remains intact."
+      ]
+    },
+    {
+      "change_id": "C6",
+      "surface": "payoff_function",
+      "target_location": "PublicGoodsEnvironment.run_interaction",
+      "operation": "apply indirect-reciprocity payoff adjustment after baseline payoff",
+      "description": "Preserve the existing public-goods payoff formula exactly, then add separate help cost/benefit adjustments from the indirect-reciprocity mechanism.",
+      "details": {
+        "baseline_formula_preservation": "Keep total_contribution, public_pool_gain, gain_per_agent, private_savings, and baseline total_gain calculation unchanged.",
+        "new_payoff_fields": [
+          "baseline_pg_payoffs: payoff from unchanged public-goods formula.",
+          "ir_payoff_adjustments: per-agent sum of benefits received minus help costs paid.",
+          "final_payoffs: baseline_pg_payoffs + ir_payoff_adjustments."
+        ],
+        "mechanism_parameters": "Add mechanism-specific parameters such as ir_help_cost and ir_help_benefit in a nested mechanism_config or environment attributes. These are not replacements for baseline initial_endowment or public_pool_multiplier. Because the paper excerpt does not specify exact IR cost/benefit values, make them explicit and logged. Avoid using paper settings as replacements for baseline settings.",
+        "suggested_default_handling": "If defaults are required, choose small documented mechanism-only values and log them; alternatively require explicit values in mechanism_config. Do not derive them by changing initial_endowment.",
+        "state_update_guidance": "When updating existing agent outcome history, either store final_payoff while also logging baseline_pg_payoff separately, or add a separate final_outcome field. The machine-readable round log must preserve both baseline and final values.",
+        "no_direct_reputation_bonus": "Do not add a direct monetary bonus for reputation score. Reputation affects payoffs only through donor help decisions."
+      },
+      "depends_on": [
+        "C4",
+        "C5"
+      ],
+      "acceptance_criteria": [
+        "For a no-help round, final_payoffs equal baseline_pg_payoffs for every agent.",
+        "For each help decision, donor final payoff decreases by ir_help_cost and receiver final payoff increases by ir_help_benefit.",
+        "Baseline public-goods payoff components remain numerically identical to the original implementation for the same contribution vector.",
+        "Logs include baseline payoff, IR adjustment, and final payoff separately."
+      ]
+    },
+    {
+      "change_id": "C7",
+      "surface": "logging_metrics",
+      "target_location": "PublicGoodsEnvironment.run_interaction, PublicGoodsEnvironment.get_game_summary",
+      "operation": "extend logs and summary metrics",
+      "description": "Add round-level logs and aggregate metrics needed to evaluate reputation-coupled indirect reciprocity while retaining existing log fields.",
+      "details": {
+        "extend_interaction_log_with": [
+          "baseline_pg_payoffs",
+          "ir_pairings",
+          "ir_decisions",
+          "ir_payoff_adjustments",
+          "final_payoffs",
+          "public_reputation_snapshot",
+          "mean_public_goods_contribution",
+          "help_rate",
+          "help_received_by_reputation_inputs"
+        ],
+        "extend_game_summary_with": [
+          "mean_public_goods_contribution_by_round",
+          "contribution_decay",
+          "overall_help_rate",
+          "average_help_received_by_reputation_score",
+          "total_profit_by_agent",
+          "average_final_payoff",
+          "average_ir_adjustment"
+        ],
+        "preserve_existing_fields": [
+          "total_interactions",
+          "success_count",
+          "success_rate",
+          "average_contribution",
+          "choice_distribution"
+        ],
+        "metric_definitions": {
+          "mean_public_goods_contribution_by_round": "total_contribution / num_agents for each round.",
+          "contribution_decay": "mean contribution in final public-goods round minus mean contribution in first public-goods round, or a list of round-to-round changes.",
+          "overall_help_rate": "number of HELP decisions divided by total IR decisions.",
+          "average_help_received_by_reputation_score": "summary association table or bins comparing receiver reputation score to help probability.",
+          "total_profit_by_agent": "sum of final_payoffs across rounds by agent pseudonym."
+        }
+      },
+      "depends_on": [
+        "C2",
+        "C6"
+      ],
+      "acceptance_criteria": [
+        "Existing game_logs JSON consumers can still read original fields.",
+        "New IR and reputation fields are present in every round log.",
+        "Game summary includes cooperation and mechanism metrics.",
+        "Metrics can be computed from saved logs without re-running the experiment."
+      ]
+    },
+    {
+      "change_id": "C8",
+      "surface": "experiment_config",
+      "target_location": "main",
+      "operation": "add nested mechanism configuration without altering baseline settings",
+      "description": "Record mechanism-specific settings separately from baseline public-goods experiment settings.",
+      "details": {
+        "add_to_EXPERIMENT_SETTINGS": {
+          "mechanism": {
+            "enabled": true,
+            "name": "reputation_coupled_indirect_reciprocity",
+            "ir_help_cost": "mechanism-only explicit value",
+            "ir_help_benefit": "mechanism-only explicit value",
+            "ir_pairing_rule": "all_donors_once_same_group_no_self",
+            "reputation_history_visibility": "public_pseudonym_linked"
+          }
+        },
+        "do_not_change_values": [
+          "num_agents remains 24",
+          "initial_endowment remains 20",
+          "public_pool_multiplier remains 9.6",
+          "num_rounds remains 30",
+          "NUM_EXPERIMENT_RUNS remains 3"
+        ],
+        "environment_constructor_guidance": "Either pass mechanism_config to PublicGoodsEnvironment as an optional new parameter with a default, or set environment attributes after construction. Preserve existing positional parameters and behavior where possible.",
+        "save_guidance": "Saved experiment_config.json should include the nested mechanism settings so cost/benefit assumptions are transparent."
+      },
+      "depends_on": [
+        "C5",
+        "C6"
+      ],
+      "acceptance_criteria": [
+        "Baseline settings in EXPERIMENT_SETTINGS are unchanged.",
+        "Mechanism settings are clearly nested and labeled as mechanism-only.",
+        "The experiment repeat count remains unchanged in the __main__ block.",
+        "The results config file records the mechanism settings."
+      ]
+    },
+    {
+      "change_id": "C9",
+      "surface": "logging_metrics",
+      "target_location": "main result-saving block",
+      "operation": "save extended agent and interaction outputs",
+      "description": "Ensure existing output files include new reputation and indirect-reciprocity data while preserving their current filenames and core fields.",
+      "details": {
+        "agent_states_extension": [
+          "pseudonym",
+          "pg_contribution_history",
+          "ir_giving_history",
+          "ir_receiving_history",
+          "reputation_or_image_score",
+          "state_summary with new fields"
+        ],
+        "interaction_results_extension": [
+          "baseline_pg_payoffs",
+          "ir_decisions",
+          "ir_payoff_adjustments",
+          "final_payoffs",
+          "public_reputation_snapshot",
+          "help_rate"
+        ],
+        "additional_optional_file": "Optionally save reputation_metrics{experiment_index}.json if the summary becomes too large, but do not remove existing files."
+      },
+      "depends_on": [
+        "C7",
+        "C8"
+      ],
+      "acceptance_criteria": [
+        "game_logs, game_stats, agent_states, and interaction_results are still saved.",
+        "New fields are serializable to JSON.",
+        "No existing output file is renamed or omitted."
+      ]
+    }
+  ],
+  "new_state_variables": [
+    {
+      "name": "pseudonym",
+      "owner": "PublicGoodsAgent",
+      "type": "string",
+      "description": "Stable public identifier; use existing agent.name unless a separate alias is introduced."
+    },
+    {
+      "name": "pg_contribution_history",
+      "owner": "PublicGoodsAgent",
+      "type": "list[dict]",
+      "description": "Per-round public-goods contributions linked to the agent pseudonym."
+    },
+    {
+      "name": "ir_giving_history",
+      "owner": "PublicGoodsAgent",
+      "type": "list[dict]",
+      "description": "Indirect-reciprocity help decisions made by the agent as donor."
+    },
+    {
+      "name": "ir_receiving_history",
+      "owner": "PublicGoodsAgent",
+      "type": "list[dict]",
+      "description": "Indirect-reciprocity help outcomes received by the agent as receiver."
+    },
+    {
+      "name": "reputation_or_image_score",
+      "owner": "PublicGoodsAgent",
+      "type": "float",
+      "description": "Derived visible score summarizing public-goods contribution history and help-giving history."
+    },
+    {
+      "name": "public_reputation_ledger",
+      "owner": "PublicGoodsEnvironment",
+      "type": "dict",
+      "description": "Public pseudonym-linked ledger of all agents' public-goods and indirect-reciprocity histories."
+    },
+    {
+      "name": "ir_logs",
+      "owner": "PublicGoodsEnvironment",
+      "type": "list[dict]",
+      "description": "Full record of donor-receiver pairings, help decisions, explanations, and payoff adjustments."
+    },
+    {
+      "name": "reputation_scores_by_round",
+      "owner": "PublicGoodsEnvironment",
+      "type": "list[dict]",
+      "description": "Round snapshots of reputation/image scores."
+    },
+    {
+      "name": "mechanism_config",
+      "owner": "PublicGoodsEnvironment",
+      "type": "dict",
+      "description": "Nested mechanism-only configuration for IR help cost, benefit, pairing rule, and visibility."
+    }
+  ],
+  "new_logs": [
+    {
+      "name": "baseline_pg_payoffs",
+      "location": "interaction_log",
+      "description": "Payoffs from the unchanged public-goods formula before indirect-reciprocity adjustments."
+    },
+    {
+      "name": "ir_pairings",
+      "location": "interaction_log",
+      "description": "Donor-receiver pairs used in the indirect-reciprocity stage."
+    },
+    {
+      "name": "ir_decisions",
+      "location": "interaction_log",
+      "description": "For each donor, receiver, help/no-help decision, parsed response, and explanation."
+    },
+    {
+      "name": "ir_payoff_adjustments",
+      "location": "interaction_log",
+      "description": "Per-agent mechanism payoff adjustment from help costs and benefits."
+    },
+    {
+      "name": "final_payoffs",
+      "location": "interaction_log",
+      "description": "Baseline public-goods payoff plus indirect-reciprocity adjustment."
+    },
+    {
+      "name": "public_reputation_snapshot",
+      "location": "interaction_log",
+      "description": "Visible history and reputation score snapshot after the round."
+    },
+    {
+      "name": "mechanism",
+      "location": "experiment_config.json",
+      "description": "Nested configuration describing the reputation-coupled indirect-reciprocity mechanism and its explicit cost/benefit assumptions."
+    }
+  ],
+  "new_metrics": [
+    {
+      "name": "mean_public_goods_contribution",
+      "definition": "Average public-goods contribution per round: total_contribution / num_agents."
+    },
+    {
+      "name": "contribution_decay",
+      "definition": "Change in mean public-goods contribution over time, including first-round to final-round difference."
+    },
+    {
+      "name": "overall_help_rate",
+      "definition": "HELP decisions divided by total indirect-reciprocity decisions."
+    },
+    {
+      "name": "help_received_by_reputation",
+      "definition": "Association between receiver reputation/image score or visible history bins and probability of receiving help."
+    },
+    {
+      "name": "total_profit",
+      "definition": "Sum of final payoffs across public-goods and indirect-reciprocity mechanism adjustments."
+    },
+    {
+      "name": "average_ir_adjustment",
+      "definition": "Average per-agent payoff adjustment from indirect reciprocity per round and across the full experiment."
+    },
+    {
+      "name": "reputation_score_by_round",
+      "definition": "Reputation/image score for each pseudonym after each round."
+    }
+  ],
+  "implementation_order": [
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5",
+    "C6",
+    "C7",
+    "C8",
+    "C9"
+  ],
+  "tests_or_checks": [
+    {
+      "name": "baseline_parameter_invariance_check",
+      "description": "Verify num_agents=24, initial_endowment=20, public_pool_multiplier=9.6, num_rounds=30, and NUM_EXPERIMENT_RUNS=3 remain unchanged."
+    },
+    {
+      "name": "baseline_payoff_equivalence_check",
+      "description": "For a fixed contribution vector, compare baseline_pg_payoffs against the original formula: initial_endowment - contribution + total_contribution * public_pool_multiplier / num_agents."
+    },
+    {
+      "name": "no_help_payoff_check",
+      "description": "Force all IR decisions to NO_HELP and verify final_payoffs equal baseline_pg_payoffs and ir_payoff_adjustments are all zero."
+    },
+    {
+      "name": "single_help_payoff_check",
+      "description": "Force one donor to HELP one receiver and verify donor adjustment is -ir_help_cost, receiver adjustment is +ir_help_benefit, and other agents have zero IR adjustment."
+    },
+    {
+      "name": "pairing_validity_check",
+      "description": "Verify each donor is an existing agent, each receiver is an existing agent, and donor_id != receiver_id for all IR pairings."
+    },
+    {
+      "name": "round_count_check",
+      "description": "Verify each experiment still produces exactly 30 interaction logs and the main loop still calls run_interaction once per public-goods round."
+    },
+    {
+      "name": "history_visibility_check",
+      "description": "After at least two rounds, inspect an IR prompt or generated receiver_visible_history to confirm it includes receiver prior PGG contributions and IR giving history."
+    },
+    {
+      "name": "json_serialization_check",
+      "description": "Run one short mocked experiment or dry-run serialization path and verify game_logs, game_stats, agent_states, and interaction_results can be dumped to JSON with new fields."
+    },
+    {
+      "name": "llm_parse_fallback_check",
+      "description": "Mock invalid IR LLM responses and verify choose_ir_help_action defaults safely to NO_HELP without raising an exception."
+    },
+    {
+      "name": "metric_consistency_check",
+      "description": "Verify mean_public_goods_contribution, help_rate, total_profit, and reputation snapshots are derivable from logged round data."
+    }
+  ],
+  "risks": [
+    {
+      "risk": "The source excerpt does not specify exact indirect-reciprocity help cost and benefit values.",
+      "mitigation": "Use explicit mechanism_config parameters, log them, and do not treat them as baseline game constants."
+    },
+    {
+      "risk": "Adding an IR decision for every donor every round increases LLM calls substantially.",
+      "mitigation": "Keep the mechanism stage configurable and use bounded reputation-history prompt context while preserving full machine-readable logs."
+    },
+    {
+      "risk": "Prompt context may become too long when displaying 24 agents' histories over 30 rounds.",
+      "mitigation": "Display concise reputation summaries plus recent detailed history; preserve full ledger in logs."
+    },
+    {
+      "risk": "Reputation score formula is not specified in the paper excerpt.",
+      "mitigation": "Make reputation score a transparent derived metric from visible histories and avoid direct payoff effects from the score."
+    },
+    {
+      "risk": "The original paper alternated PGG and IR games over a different group size and round schedule.",
+      "mitigation": "Do not import paper group size or round schedule; implement the mechanism within each existing baseline round."
+    },
+    {
+      "risk": "Existing outcome_history semantics may become ambiguous if final payoffs include IR adjustments.",
+      "mitigation": "Log baseline_pg_payoff, ir_adjustment, and final_payoff separately and document which value update_state stores."
+    }
+  ],
+  "out_of_scope": [
+    "Changing baseline num_agents from 24 to the paper's group size 6.",
+    "Changing baseline initial_endowment from 20.",
+    "Changing baseline public_pool_multiplier from 9.6.",
+    "Changing baseline num_rounds from 30 to the paper's 20 rounds.",
+    "Changing NUM_EXPERIMENT_RUNS from 3 to the paper's 19 groups/runs.",
+    "Replacing the baseline all-agent public-goods group architecture with paper-specific six-person groups.",
+    "Implementing the paper's exact alternating 16-round then terminal-round schedule if doing so would change the baseline round count or main experiment structure.",
+    "Using paper experimental parameter values that are absent from the excerpt as if they were known.",
+    "Adding direct monetary rewards for reputation score independent of actual help decisions.",
+    "Changing the public-goods contribution action range or baseline public-goods payoff formula.",
+    "Changing baseline number of agents, initial endowment, multiplier/MPCR/payoff constants, number of rounds, experiment repeat count, or group/matching architecture."
+  ]
+}

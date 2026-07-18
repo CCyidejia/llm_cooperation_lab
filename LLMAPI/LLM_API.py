@@ -7,8 +7,8 @@ import concurrent.futures
 import asyncio
 
 # xty.app 平台配置
-API_BASE_URL = "https://api.xty.app/v1"
-DEFAULT_MODEL = "deepseek-v4-pro"#ult model to qwq-32b as user specified
+API_BASE_URL = "https://hk.xty.app/v1"
+DEFAULT_MODEL = os.getenv("OPENAI_DEFAULT_MODEL", "qwen3-next-80b-a3b-instruct")
 API_KEY = os.getenv("OPENAI_API_KEY")
 
 # Initialize a separate httpx client for direct API calls,

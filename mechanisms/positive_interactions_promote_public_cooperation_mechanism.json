@@ -1,0 +1,373 @@
+{
+  "schema_version": "public-goods-mechanism-v1",
+  "source": {
+    "input_type": "pdf",
+    "file_name": "Positive_Interactions_Promote_Public_Cooperation.pdf",
+    "extraction_method": "llm_structured_extraction"
+  },
+  "paper": {
+    "title": "Positive interactions promote public cooperation",
+    "authors": [
+      "David G. Rand",
+      "Anna Dreber",
+      "Tore Ellingsen",
+      "Drew Fudenberg",
+      "Martin A. Nowak"
+    ],
+    "year": 2009,
+    "research_question": "Whether positive targeted interactions can sustain cooperation in repeated public goods games as effectively as punishment and with higher payoffs.",
+    "study_type": "laboratory experiment",
+    "sample": "192 subjects at Harvard Business School Computer Lab for Experimental Research",
+    "setting": "Anonymous computer-mediated repeated groups of four with persistent group membership"
+  },
+  "game_context": {
+    "game_type": "public_goods_game",
+    "rounds": null,
+    "group_size": 4,
+    "endowment": 20,
+    "mpcr_or_multiplier": "1.6 multiplier, split equally among 4 players",
+    "real_incentives": true,
+    "baseline_condition": "Standard repeated public goods game with no targeted second-stage interaction"
+  },
+  "mechanisms": [
+    {
+      "mechanism_id": "M1",
+      "name": "Costly targeted reward after each public-goods round",
+      "type": "reward",
+      "summary": "After observing group contributions, players can direct rewards to specific group members, enabling positive reciprocity toward contributors and maintaining high cooperation with higher total earnings than punishment-only settings.",
+      "actors": {
+        "decision_maker": "Each group member",
+        "target": "Each other group member",
+        "observer": "Group members via repeated interaction and persistent identities"
+      },
+      "timing": {
+        "stage": "Second stage after each public-goods contribution round",
+        "frequency": "Every round"
+      },
+      "information_structure": {
+        "anonymity": "Subjects anonymous but interacted with the same three people throughout; identities persisted within group",
+        "public_information": [
+          "Group membership persisted",
+          "Prior round contributions available for targeted response"
+        ],
+        "private_information": [],
+        "history_visibility": "Player identities persist across rounds, allowing behavior toward specific individuals to condition on past contributions"
+      },
+      "action_space_changes": [
+        {
+          "action": "reward target",
+          "range_or_options": "For each other group member: reward or no action",
+          "condition": "Available in RN and RNP treatments after PGG stage"
+        }
+      ],
+      "payoff_changes": [
+        {
+          "who_pays": "Reward giver",
+          "who_receives_or_loses": "Reward target receives benefit",
+          "amount_or_formula": "Costly reward; exact cost-benefit ratio not specified in provided excerpt",
+          "condition": "When reward action is selected"
+        }
+      ],
+      "state_variables": [
+        {
+          "name": "contribution_history_by_player",
+          "type": "agent_state",
+          "update_rule": "Record each player's PGG contribution each round for future targeted decisions"
+        },
+        {
+          "name": "reward_actions",
+          "type": "round_log",
+          "update_rule": "Record directed reward choices between players after each round"
+        },
+        {
+          "name": "average_contribution",
+          "type": "metric",
+          "update_rule": "Mean PGG contribution per round/group"
+        },
+        {
+          "name": "total_payoff",
+          "type": "metric",
+          "update_rule": "PGG payoff plus reward-stage costs and benefits"
+        }
+      ],
+      "prompt_requirements": [
+        "Tell agents they remain with the same group across rounds.",
+        "Show or summarize each group member's prior contribution before targeted reward choices.",
+        "Allow agent to choose reward/no action for each other group member."
+      ],
+      "metrics": [
+        {
+          "name": "average_contribution",
+          "definition": "Mean amount contributed to the public pool per round"
+        },
+        {
+          "name": "reward_frequency",
+          "definition": "Fraction of possible directed reward actions used"
+        },
+        {
+          "name": "average_total_payoff",
+          "definition": "Mean payoff including PGG and targeted interaction payoffs"
+        },
+        {
+          "name": "percent_maximum_possible_payoff",
+          "definition": "Achieved payoff as a percentage of full-cooperation/full-reward benchmark"
+        }
+      ],
+      "implementation_notes": {
+        "directly_implementable_in_current_baseline": false,
+        "required_surfaces": [
+          "action_space",
+          "payoff_function",
+          "state_memory",
+          "prompt_context",
+          "logging_metrics"
+        ],
+        "minimal_code_changes": [
+          "Add post-PGG targeted reward stage with directed choices for each ordered pair.",
+          "Expose contribution history or last-round contributions to agents.",
+          "Apply reward costs and benefits to payoffs.",
+          "Log directed reward frequency and total payoff."
+        ],
+        "risks_or_assumptions": [
+          "Exact reward cost-benefit parameters must be recovered from full methods or chosen as a calibrated assumption.",
+          "Persistent identities are essential; shuffling identifiers would change mechanism."
+        ]
+      },
+      "confidence": 0.9
+    },
+    {
+      "mechanism_id": "M2",
+      "name": "Costly targeted punishment after each public-goods round",
+      "type": "punishment",
+      "summary": "After observing contributions, players can punish specific group members, especially free riders, sustaining cooperation relative to no-targeted-interaction control but reducing payoffs through destructive costs.",
+      "actors": {
+        "decision_maker": "Each group member",
+        "target": "Each other group member",
+        "observer": "Group members via persistent repeated interaction"
+      },
+      "timing": {
+        "stage": "Second stage after each public-goods contribution round",
+        "frequency": "Every round"
+      },
+      "information_structure": {
+        "anonymity": "Anonymous to experimenters/real identities, but fixed in-game identifiers within group",
+        "public_information": [
+          "Prior contributions available for targeted response"
+        ],
+        "private_information": [],
+        "history_visibility": "Persistent identities allow direct reciprocity over rounds"
+      },
+      "action_space_changes": [
+        {
+          "action": "punish target",
+          "range_or_options": "For each other group member: punish or no action",
+          "condition": "Available in PN and RNP treatments after PGG stage"
+        }
+      ],
+      "payoff_changes": [
+        {
+          "who_pays": "Punisher",
+          "who_receives_or_loses": "Target loses payoff",
+          "amount_or_formula": "Costly punishment; exact cost and loss not specified in provided excerpt",
+          "condition": "When punishment action is selected"
+        }
+      ],
+      "state_variables": [
+        {
+          "name": "punishment_actions",
+          "type": "round_log",
+          "update_rule": "Record directed punishment choices between players after each round"
+        },
+        {
+          "name": "punishment_frequency",
+          "type": "metric",
+          "update_rule": "Fraction of possible punishment actions used"
+        }
+      ],
+      "prompt_requirements": [
+        "Show agents each other member's contribution history or last contribution.",
+        "Allow punish/no-action choices toward each other group member."
+      ],
+      "metrics": [
+        {
+          "name": "punishment_frequency",
+          "definition": "Fraction of possible directed punishment actions used"
+        },
+        {
+          "name": "average_contribution",
+          "definition": "Mean PGG contribution per round"
+        },
+        {
+          "name": "average_total_payoff",
+          "definition": "Mean payoff net of punishment costs and target losses"
+        }
+      ],
+      "implementation_notes": {
+        "directly_implementable_in_current_baseline": false,
+        "required_surfaces": [
+          "action_space",
+          "payoff_function",
+          "state_memory",
+          "prompt_context",
+          "logging_metrics"
+        ],
+        "minimal_code_changes": [
+          "Add post-PGG targeted punishment stage.",
+          "Apply punisher cost and target loss.",
+          "Log punishment use and net payoff."
+        ],
+        "risks_or_assumptions": [
+          "Punishment may be antisocial or retaliatory, not only directed at free riders.",
+          "Exact sanction parameters need full methods."
+        ]
+      },
+      "confidence": 0.86
+    },
+    {
+      "mechanism_id": "M3",
+      "name": "Combined reward, no-action, and punishment targeted interaction",
+      "type": "mixed",
+      "summary": "Players can choose reward, no action, or punishment toward each other after each PGG round. When both positive and negative reciprocity are available, reward use increases contributions and payoffs, while punishment does not improve contributions and lowers payoff.",
+      "actors": {
+        "decision_maker": "Each group member",
+        "target": "Each other group member",
+        "observer": "Fixed group members"
+      },
+      "timing": {
+        "stage": "Second stage after each PGG round",
+        "frequency": "Every round"
+      },
+      "information_structure": {
+        "anonymity": "Anonymous but stable group identifiers",
+        "public_information": [
+          "Contributions and targeted interaction opportunities"
+        ],
+        "private_information": [],
+        "history_visibility": "Same partners throughout session, enabling direct reciprocity"
+      },
+      "action_space_changes": [
+        {
+          "action": "targeted response",
+          "range_or_options": "reward, no action, punishment for each other group member",
+          "condition": "Available in RNP treatment"
+        }
+      ],
+      "payoff_changes": [
+        {
+          "who_pays": "Actor selecting reward or punishment",
+          "who_receives_or_loses": "Reward target gains; punishment target loses",
+          "amount_or_formula": "Costly directed interaction; exact amounts not in provided excerpt",
+          "condition": "When non-neutral action selected"
+        }
+      ],
+      "state_variables": [
+        {
+          "name": "targeted_interaction_matrix",
+          "type": "round_log",
+          "update_rule": "For every ordered player pair, store reward/no-action/punishment each round"
+        },
+        {
+          "name": "net_targeted_payoff",
+          "type": "agent_state",
+          "update_rule": "Accumulate costs paid and benefits/losses received from targeted interactions"
+        }
+      ],
+      "prompt_requirements": [
+        "For each other player, ask agent to choose reward, no action, or punishment after seeing contribution information."
+      ],
+      "metrics": [
+        {
+          "name": "reward_vs_punishment_frequency",
+          "definition": "Relative use of reward and punishment over time"
+        },
+        {
+          "name": "contribution_by_treatment",
+          "definition": "Mean contribution under control, PN, RN, and RNP"
+        },
+        {
+          "name": "payoff_by_treatment",
+          "definition": "Mean total payoff under control, PN, RN, and RNP"
+        }
+      ],
+      "implementation_notes": {
+        "directly_implementable_in_current_baseline": false,
+        "required_surfaces": [
+          "action_space",
+          "payoff_function",
+          "state_memory",
+          "prompt_context",
+          "logging_metrics"
+        ],
+        "minimal_code_changes": [
+          "Add configurable targeted-interaction treatment with option set {reward, none, punish}.",
+          "Maintain stable player IDs and per-player histories.",
+          "Compute directed interaction payoffs and log use over time."
+        ],
+        "risks_or_assumptions": [
+          "Reward and punishment effects are not additive.",
+          "Requires simultaneous or well-defined directed choices among all ordered pairs."
+        ]
+      },
+      "confidence": 0.88
+    }
+  ],
+  "implementation_mapping": {
+    "target_baseline": "env_main_public_goods_group.py",
+    "required_surfaces": [
+      "prompt_context",
+      "action_space",
+      "payoff_function",
+      "state_memory",
+      "logging_metrics"
+    ],
+    "directly_implementable": [],
+    "requires_baseline_extension": [
+      "Post-contribution targeted interaction stage",
+      "Stable in-game player identities/history display",
+      "Directed reward/punishment payoff accounting",
+      "Treatment flags for control, PN, RN, RNP"
+    ],
+    "implementation_order": [
+      "Add persistent player IDs and contribution history",
+      "Add configurable second-stage action space",
+      "Implement reward/punishment payoff updates",
+      "Expose history and action options in prompts",
+      "Add metrics for contributions, reward/punishment frequency, and total payoff"
+    ]
+  },
+  "experiment_design": {
+    "baseline_condition": "Repeated PGG only, no targeted interactions",
+    "treatment_conditions": [
+      "PN: punishment or no action after each PGG round",
+      "RN: reward or no action after each PGG round",
+      "RNP: reward, no action, or punishment after each PGG round"
+    ],
+    "control_variables": [
+      "group_size=4",
+      "endowment=20 MUs",
+      "multiplier=1.6",
+      "same partners throughout session",
+      "subjects not told total number of rounds"
+    ],
+    "suggested_rounds": null,
+    "suggested_runs": null
+  },
+  "evidence": {
+    "cooperation_outcomes": [
+      "Control contributions declined over rounds.",
+      "Punishment-only maintained high contributions.",
+      "Reward-only and reward-plus-punishment were equally effective in maintaining cooperation.",
+      "Reward treatments generated larger absolute payoffs than punishment-only."
+    ],
+    "reported_effect_direction": "Targeted interactions increase cooperation versus control; reward matches punishment for cooperation and outperforms punishment on total earnings.",
+    "reported_effect_size": "",
+    "key_quotes_or_passages": [
+      "Reward is as effective as punishment for maintaining public cooperation and leads to higher total earnings.",
+      "When both options are available, reward leads to increased contributions and payoff, while punishment has no effect on contributions and leads to lower payoff.",
+      "It is not punishment per se which is important for sustaining contributions, but rather the possibility of targeted interactions."
+    ]
+  },
+  "uncertainties": [
+    "Exact number of rounds and exact reward/punishment cost-benefit parameters are not available in the provided excerpt."
+  ]
+}

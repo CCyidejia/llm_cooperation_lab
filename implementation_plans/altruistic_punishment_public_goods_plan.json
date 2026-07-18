@@ -1,0 +1,286 @@
+{
+  "schema_version": "implementation-plan-v1",
+  "target_baseline": "env_main_public_goods_group.py",
+  "mechanism_source": "mechanisms\\altruistic_punishment_in_humans_mechanism.json",
+  "baseline_summary": {
+    "file": "env_main_public_goods_group.py",
+    "classes": {
+      "PublicGoodsAgent": {
+        "line": 46,
+        "methods": {
+          "__init__": 52,
+          "set_environment": 69,
+          "update_state": 74,
+          "update_history": 82,
+          "get_state_summary": 86,
+          "_build_history_string": 96,
+          "init": 115,
+          "name": 119,
+          "dump": 122,
+          "load": 125,
+          "ask": 130,
+          "step": 134,
+          "choose_action": 138,
+          "_get_stable_choice": 248,
+          "_call_llm_with_retry": 275
+        }
+      },
+      "PublicGoodsEnvironment": {
+        "line": 295,
+        "methods": {
+          "__init__": 301,
+          "set_agents": 326,
+          "_get_agent_by_id": 332,
+          "run_interaction": 336,
+          "get_game_summary": 433
+        }
+      }
+    },
+    "functions": {
+      "main": 443,
+      "run_experiment": 556
+    },
+    "detected_capabilities": {
+      "contribution_decision": true,
+      "single_stage_round": true,
+      "payoff_calculation": true,
+      "round_history": true,
+      "game_summary": true
+    }
+  },
+  "baseline_invariants": {
+    "preserve_num_agents": true,
+    "preserve_initial_endowment": true,
+    "preserve_public_pool_multiplier": true,
+    "preserve_total_rounds": true,
+    "preserve_existing_group_architecture": true,
+    "rule": "Transfer only the cooperation-promoting mechanism; do not overwrite baseline game parameters with paper experiment parameters."
+  },
+  "mechanism_summary": {
+    "mechanism_id": "M1",
+    "name": "Altruistic peer punishment of defectors",
+    "type": "punishment",
+    "summary": "After observing group members' contributions, each subject can pay to reduce another member's payoff. Punishment is costly to the punisher, yields no direct material gain, and is mainly directed at below-average contributors, increasing cooperation."
+  },
+  "required_code_changes": [
+    {
+      "change_id": "C1",
+      "surface": "action_space",
+      "target_location": "PublicGoodsAgent.choose_action and new PublicGoodsAgent.choose_punishment_actions",
+      "operation": "add_method_and_prompt",
+      "description": "Add a post-contribution punishment decision stage after all contributions are known.",
+      "details": {
+        "new_method": "choose_punishment_actions(round_contributions, punishment_point_range=(0, 10))",
+        "decision_format": "Return a JSON object mapping target agent names to integer punishment points.",
+        "allowed_targets": "All other agents participating in the baseline interaction; self-punishment is disallowed.",
+        "range": "0-10 punishment points per target agent",
+        "parser_requirement": "Clamp invalid, missing, self-targeted, or non-integer values to 0."
+      },
+      "depends_on": [],
+      "acceptance_criteria": [
+        "Each agent can make contribution and punishment decisions in separate stages.",
+        "Punishment actions are represented as a pairwise matrix or nested dictionary."
+      ]
+    },
+    {
+      "change_id": "C2",
+      "surface": "prompt_context",
+      "target_location": "PublicGoodsAgent.choose_action and new punishment prompt",
+      "operation": "extend_prompt",
+      "description": "Expose contribution feedback and punishment rules to agents before punishment decisions.",
+      "details": {
+        "contribution_prompt": "Keep contribution prompt focused on contribution amount only.",
+        "punishment_prompt": "Show all group members' contribution amounts, explain sender cost=1 MU per point and target loss=3 MU per point, and ask for punishment points for each other agent.",
+        "anonymity_control": "Preserve the baseline agent architecture. Use current-round display labels for punishment targeting and avoid adding extra identity/history exposure beyond what the baseline already provides."
+      },
+      "depends_on": [
+        "C1"
+      ],
+      "acceptance_criteria": [
+        "LLM receives clear separation between contribution and punishment stages.",
+        "Prompt includes cost and penalty formulas."
+      ]
+    },
+    {
+      "change_id": "C3",
+      "surface": "payoff_function",
+      "target_location": "PublicGoodsEnvironment.run_interaction",
+      "operation": "modify_payoff_calculation",
+      "description": "Apply punishment costs and penalties after public goods payoff calculation.",
+      "details": {
+        "base_payoff": "Use the baseline public goods payoff formula unchanged before applying mechanism costs/penalties.",
+        "punishment_cost": "sum(points_sent_by_agent)",
+        "punishment_penalty": "3 * sum(points_received_by_agent)",
+        "final_payoff": "base_payoff - punishment_cost - punishment_penalty"
+      },
+      "depends_on": [
+        "C1"
+      ],
+      "acceptance_criteria": [
+        "Payoff log contains base_payoff, punishment_cost, punishment_penalty, and final payoff.",
+        "Sender cost and target penalty match the extracted mechanism."
+      ]
+    },
+    {
+      "change_id": "C4",
+      "surface": "state_memory",
+      "target_location": "PublicGoodsAgent.update_state/update_history and round_summary",
+      "operation": "add_state_variables",
+      "description": "Store punishment sent, punishment received, and contribution deviation information.",
+      "details": {
+        "agent_state": [
+          "punishment_sent_history",
+          "punishment_received_history"
+        ],
+        "round_summary": [
+          "punishment_matrix",
+          "punishment_costs",
+          "punishment_penalties",
+          "deviation_from_group_average"
+        ]
+      },
+      "depends_on": [
+        "C1",
+        "C3"
+      ],
+      "acceptance_criteria": [
+        "Agent state dump includes punishment histories.",
+        "Round history exposes contribution and sanction outcomes needed for later prompts or analysis."
+      ]
+    },
+    {
+      "change_id": "C5",
+      "surface": "logging_metrics",
+      "target_location": "PublicGoodsEnvironment.game_logs/get_game_summary and saved interaction_results",
+      "operation": "extend_outputs",
+      "description": "Add punishment and cooperation metrics to experiment outputs.",
+      "details": {
+        "new_logs": [
+          "punishment_matrix",
+          "punishment_costs",
+          "punishment_penalties",
+          "base_payoffs",
+          "final_payoffs"
+        ],
+        "new_summary_metrics": [
+          "average_contribution",
+          "full_contribution_rate",
+          "zero_contribution_rate",
+          "punishment_frequency",
+          "average_punishment_sent",
+          "average_punishment_received",
+          "average_final_payoff"
+        ]
+      },
+      "depends_on": [
+        "C3",
+        "C4"
+      ],
+      "acceptance_criteria": [
+        "JSON outputs contain enough fields to plot contribution and punishment dynamics.",
+        "Summary metrics can compare baseline no-punishment and punishment treatment."
+      ]
+    },
+    {
+      "change_id": "C6",
+      "surface": "experiment_config",
+      "target_location": "main.EXPERIMENT_SETTINGS",
+      "operation": "add_treatment_config",
+      "description": "Add explicit punishment treatment settings while keeping baseline defaults recoverable.",
+      "details": {
+        "settings": {
+          "enable_punishment": true,
+          "punishment_point_min": 0,
+          "punishment_point_max": 10,
+          "punishment_cost_per_point": 1,
+          "punishment_penalty_per_point": 3
+        }
+      },
+      "depends_on": [],
+      "acceptance_criteria": [
+        "A single setting can disable punishment and reproduce the original no-punishment baseline without changing num_agents, initial_endowment, multiplier, or rounds.",
+        "Treatment parameters are saved in experiment_config.json."
+      ]
+    }
+  ],
+  "new_state_variables": [
+    {
+      "name": "punishment_matrix",
+      "owner": "environment",
+      "type": "dict[punisher][target] -> int"
+    },
+    {
+      "name": "punishment_sent_history",
+      "owner": "agent",
+      "type": "list[dict]"
+    },
+    {
+      "name": "punishment_received_history",
+      "owner": "agent",
+      "type": "list[dict]"
+    },
+    {
+      "name": "base_payoffs",
+      "owner": "environment",
+      "type": "dict[agent_id] -> float"
+    },
+    {
+      "name": "final_payoffs",
+      "owner": "environment",
+      "type": "dict[agent_id] -> float"
+    }
+  ],
+  "new_logs": [
+    "punishment_matrix",
+    "punishment_costs",
+    "punishment_penalties",
+    "base_payoffs",
+    "final_payoffs",
+    "contribution_deviations"
+  ],
+  "new_metrics": [
+    {
+      "name": "full_contribution_rate",
+      "definition": "fraction of decisions equal to initial_endowment"
+    },
+    {
+      "name": "zero_contribution_rate",
+      "definition": "fraction of decisions equal to 0"
+    },
+    {
+      "name": "punishment_frequency",
+      "definition": "positive punishment assignments divided by possible directed punishment assignments"
+    },
+    {
+      "name": "average_final_payoff",
+      "definition": "mean final payoff after punishment costs and penalties"
+    }
+  ],
+  "implementation_order": [
+    "C6",
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5"
+  ],
+  "tests_or_checks": [
+    "Run a deterministic no-punishment configuration and verify output fields match original contribution payoff formula.",
+    "Run a tiny mock round with fixed contributions and fixed punishment matrix; verify sender costs and target penalties exactly.",
+    "Check that self-punishment and out-of-range punishment points are clamped to 0.",
+    "Check generated JSON files include punishment fields and remain serializable.",
+    "Compare average contribution and full contribution rate between no-punishment and punishment treatment."
+  ],
+  "risks": [
+    "Paper experiment settings such as human group size, session order, and rematching are source context, not required baseline changes for mechanism transfer.",
+    "The baseline may already expose persistent agent identities or history; preserve existing baseline information structure unless the mechanism itself requires a change.",
+    "Adding a second LLM call per agent per round substantially increases token cost and runtime.",
+    "LLM punishment JSON parsing must be robust to natural-language answers."
+  ],
+  "out_of_scope": [
+    "Direct code modification of env_main_public_goods_group.py",
+    "Experiment execution",
+    "Plot generation",
+    "Changing baseline participant count, initial endowment, public pool multiplier, total rounds, or group architecture to match the paper's human experiment settings"
+  ]
+}

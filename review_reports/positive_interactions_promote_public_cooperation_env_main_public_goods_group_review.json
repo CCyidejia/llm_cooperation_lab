@@ -1,0 +1,101 @@
+{
+  "schema_version": "consistency-review-v1",
+  "overall_status": "pass",
+  "confidence": 0.86,
+  "paper_mechanism_alignment": {
+    "status": "pass",
+    "findings": [
+      "mechanism.json captures the central cooperation-promoting mechanism: a post-public-goods targeted reward stage with persistent identities, observation of contributions, directed reward/no-action choices, and payoff effects through giver cost and target benefit.",
+      "mechanism.json also captures related punishment and combined treatments from the paper without requiring them for the selected reward-only transfer.",
+      "evidence summary matches the paper excerpt: reward maintains cooperation comparably to punishment and yields higher absolute payoffs than punishment-only settings."
+    ],
+    "missing_or_uncertain": [
+      "Exact reward cost-benefit parameters are not specified in the provided excerpt and are correctly flagged as uncertain.",
+      "Visibility rules for targeted-interaction outcomes are not fully specified: it is unclear from the provided excerpt whether all group members or only involved parties observe each directed reward/punishment result."
+    ],
+    "quality_notes": [
+      "Paper-specific sample size, group size, session design, unknown horizon, and treatment counts are captured as paper context but should not be treated as baseline implementation requirements."
+    ]
+  },
+  "mechanism_completeness": {
+    "status": "pass",
+    "findings": [
+      "The M1 reward mechanism specifies required implementation surfaces: action space, payoff function, state/history, prompt context, and logging metrics.",
+      "The mechanism is complete enough for baseline transfer if reward_cost and reward_benefit are treated as explicit configurable mechanism assumptions.",
+      "Persistent identities and contribution visibility are identified as essential requirements."
+    ],
+    "missing_or_uncertain": [
+      "Exact reward payoff parameters remain missing_or_uncertain unless recovered from full methods or supplementary materials.",
+      "The mechanism does not definitively specify whether previous reward actions should be displayed to agents in future prompts."
+    ],
+    "quality_notes": [
+      "Including M2 and M3 is broader than necessary for the selected transfer, but the implementation plan correctly scopes to M1 reward-only."
+    ]
+  },
+  "plan_alignment": {
+    "status": "pass",
+    "covered_surfaces": [
+      "experiment_config: adds targeted_reward_enabled, reward_cost, and reward_benefit separately from baseline game settings.",
+      "state_memory: adds per-agent and environment reward histories, baseline payoff records, and final payoff records.",
+      "action_space: adds post-contribution choose_reward_actions with one binary directed choice per other agent.",
+      "prompt_context: adds persistent-identity and reward-stage context while preserving contribution bounds and public-goods rules.",
+      "matching_or_grouping: inserts reward stage into the existing single persistent 24-agent group without subgrouping or rematching.",
+      "payoff_function: preserves baseline PGG payoff and applies reward costs/benefits afterward.",
+      "logging_metrics: records directed rewards, reward frequency, baseline payoffs, final payoffs, and payoff decomposition.",
+      "result_saving: preserves existing outputs while adding reward mechanism data."
+    ],
+    "missing_surfaces": [],
+    "inconsistent_items": [
+      "The plan intentionally implements only M1 reward-only and excludes punishment/RNP; this is consistent with mechanism-transfer focus on positive targeted interactions, but should be documented as the selected mechanism scope."
+    ]
+  },
+  "baseline_feasibility": {
+    "status": "pass",
+    "valid_targets": [
+      "PublicGoodsAgent.__init__ is a plausible place to add reward and payoff-decomposition histories.",
+      "PublicGoodsAgent.choose_action and _build_history_string are plausible prompt-context targets.",
+      "Adding PublicGoodsAgent.choose_reward_actions as a new method is feasible.",
+      "PublicGoodsEnvironment.__init__ is a plausible place for reward configuration and aggregate counters.",
+      "PublicGoodsEnvironment.run_interaction is the correct location to insert the second-stage reward collection and payoff adjustment after baseline payoff calculation.",
+      "PublicGoodsEnvironment.get_game_summary is the correct aggregation surface for reward metrics.",
+      "main result-saving block is the correct surface for persisting new mechanism fields."
+    ],
+    "risky_targets": [
+      "The plan mentions module-level configuration, but EXPERIMENT_SETTINGS is local inside main; implementation should target main's EXPERIMENT_SETTINGS and/or explicit PublicGoodsEnvironment constructor parameters.",
+      "The baseline contribution collection is described as concurrent but currently awaits coroutine objects sequentially; adding reward collection should be implemented carefully with asyncio.gather if true concurrency is desired.",
+      "The 24-agent architecture creates 552 reward decisions per round, which is feasible but prompt-cost and parsing-risk heavy."
+    ],
+    "missing_targets": []
+  },
+  "required_fixes": [],
+  "recommended_fixes": [
+    {
+      "priority": "medium",
+      "target": "mechanism",
+      "issue": "Exact reward cost-benefit values are missing_or_uncertain.",
+      "suggested_fix": "If available in the full paper methods or supplement, recover and record the exact reward cost and benefit. If not, keep reward_cost and reward_benefit as clearly named configurable mechanism assumptions and log them in experiment_config.json."
+    },
+    {
+      "priority": "medium",
+      "target": "mechanism",
+      "issue": "Visibility of previous targeted reward actions is not fully specified.",
+      "suggested_fix": "Clarify whether future prompts should show prior reward actions/rewards received. If uncertain, document the implementation choice and keep current-round contribution visibility as the minimum required mechanism information."
+    },
+    {
+      "priority": "low",
+      "target": "plan",
+      "issue": "Configuration target wording partly references module-level settings, while baseline EXPERIMENT_SETTINGS is local to main.",
+      "suggested_fix": "In implementation, add reward mechanism configuration either inside main's EXPERIMENT_SETTINGS under a separate reward_mechanism key or as explicit PublicGoodsEnvironment constructor defaults, without modifying baseline PGG parameters."
+    },
+    {
+      "priority": "low",
+      "target": "plan",
+      "issue": "Reward-only scope excludes M2 and M3 from mechanism.json.",
+      "suggested_fix": "Keep this exclusion, but explicitly state in comments/config that the code implements the selected positive-reward mechanism M1, not the paper's full treatment comparison."
+    }
+  ],
+  "approval_for_next_step": {
+    "ready_for_code_implementation": true,
+    "reason": "The plan plausibly transfers the selected costly targeted reward mechanism into the existing 24-agent baseline while preserving baseline invariants for agent count, endowment, multiplier, rounds, repeat count, and single persistent group architecture. Remaining uncertainties are mechanism-parameter/documentation issues handled by configurable assumptions rather than blockers."
+  }
+}

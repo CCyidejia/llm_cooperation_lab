@@ -40,7 +40,7 @@ _ZGC_API_KEY_IN_FILE = ""
 # ---------------------------------------------------------------------------
 # 默认模型 id：与网关 GET /v1/models 返回的 data[].id 一致；环境变量 ZGC_DEFAULT_MODEL 可覆盖。
 # ---------------------------------------------------------------------------
-_ZGC_MODEL_IN_FILE = "claude-haiku-4-5-20251001-thinking"
+_ZGC_MODEL_IN_FILE = "glm-5.1"
 
 API_BASE_URL = os.getenv("ZGC_LLM_BASE_URL", "https://zgc.apihy.com/v1").rstrip("/")
 DEFAULT_MODEL = os.getenv("ZGC_DEFAULT_MODEL", _ZGC_MODEL_IN_FILE).strip()
@@ -99,7 +99,7 @@ class LLMAgent:
         }
 
         model_lower = (self.model or "").lower()
-        max_out = int(os.getenv("ZGC_MAX_TOKENS", "8192"))
+        max_out = int(os.getenv("ZGC_MAX_TOKENS", "512"))
 
         # 部分模型（如部分 Claude）不允许同时传 temperature 与 top_p，网关会返回 invalid_request_error
         payload = {

@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="900" viewBox="0 0 1500 900">
+  <defs>
+    <style>
+      .bg { fill: #ffffff; }
+      .title { font-family: "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif; font-size: 34px; font-weight: 700; fill: #1f2933; }
+      .subtitle { font-family: "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif; font-size: 18px; fill: #52606d; }
+      .panel { fill: #f7f9fc; stroke: #bcccdc; stroke-width: 1.4; rx: 10; }
+      .panel-title { font-family: "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif; font-size: 22px; font-weight: 700; fill: #243b53; }
+      .box { fill: #ffffff; stroke: #9fb3c8; stroke-width: 1.35; rx: 8; }
+      .input { fill: #f4f7fb; stroke: #8da2b8; stroke-width: 1.4; rx: 8; }
+      .skill { fill: #e6f0ff; stroke: #4c7edb; stroke-width: 1.7; rx: 8; }
+      .run { fill: #e6f6ef; stroke: #2f9e44; stroke-width: 1.7; rx: 8; }
+      .analysis { fill: #fff3e0; stroke: #d97706; stroke-width: 1.7; rx: 8; }
+      .output { fill: #f1e8ff; stroke: #7c3aed; stroke-width: 1.7; rx: 8; }
+      .text { font-family: "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif; font-size: 18px; font-weight: 600; fill: #243b53; }
+      .small { font-family: "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif; font-size: 15px; fill: #52606d; }
+      .tiny { font-family: "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif; font-size: 13px; fill: #627d98; }
+      .arrow { stroke: #486581; stroke-width: 2.2; fill: none; marker-end: url(#arrowhead); }
+      .thin-arrow { stroke: #627d98; stroke-width: 1.8; fill: none; marker-end: url(#arrowhead-light); }
+      .tag { fill: #ffffff; stroke: #bcccdc; stroke-width: 1; rx: 12; }
+      .tag-text { font-family: "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif; font-size: 13px; fill: #334e68; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#486581"/>
+    </marker>
+    <marker id="arrowhead-light" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#627d98"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1500" height="900"/>
+
+  <text class="title" x="750" y="56" text-anchor="middle">基于 LLM 多智能体的社会困境实验自动化工作流</text>
+  <text class="subtitle" x="750" y="88" text-anchor="middle">Agent Skills Pipeline 支持机制抽取、映射规划、一致性反馈、代码实现与实验分析</text>
+
+  <!-- Inputs -->
+  <rect class="panel" x="50" y="130" width="270" height="520"/>
+  <text class="panel-title" x="185" y="168" text-anchor="middle">研究输入</text>
+
+  <rect class="input" x="80" y="205" width="210" height="92"/>
+  <text class="text" x="185" y="238" text-anchor="middle">文献与理论</text>
+  <text class="small" x="185" y="265" text-anchor="middle">公共物品、囚徒困境</text>
+  <text class="small" x="185" y="287" text-anchor="middle">信任博弈</text>
+
+  <rect class="input" x="80" y="325" width="210" height="98"/>
+  <text class="text" x="185" y="359" text-anchor="middle">合作机制</text>
+  <text class="small" x="185" y="386" text-anchor="middle">惩罚、声誉、奖励</text>
+  <text class="small" x="185" y="410" text-anchor="middle">正向互动等处理</text>
+
+  <rect class="input" x="80" y="452" width="210" height="82"/>
+  <text class="text" x="185" y="486" text-anchor="middle">Baseline 代码</text>
+  <text class="small" x="185" y="513" text-anchor="middle">原始博弈环境与日志结构</text>
+
+  <rect class="input" x="80" y="568" width="210" height="48"/>
+  <text class="text" x="185" y="599" text-anchor="middle">LLM 与实验参数</text>
+
+  <!-- Agent skills pipeline -->
+  <rect class="panel" x="370" y="130" width="760" height="520"/>
+  <text class="panel-title" x="750" y="168" text-anchor="middle">Agent Skills Pipeline</text>
+
+  <rect class="skill" x="470" y="198" width="560" height="76"/>
+  <text class="text" x="605" y="229" text-anchor="middle">Skill 1：文献机制提取</text>
+  <text class="tiny" x="605" y="253" text-anchor="middle">literature_mechanism_extractor</text>
+  <text class="small" x="835" y="229" text-anchor="middle">生成 mechanism.json</text>
+
+  <rect class="skill" x="470" y="303" width="560" height="76"/>
+  <text class="text" x="605" y="334" text-anchor="middle">Skill 2：基线映射规划</text>
+  <text class="tiny" x="605" y="358" text-anchor="middle">baseline_mapper</text>
+  <text class="small" x="835" y="334" text-anchor="middle">生成 implementation_plan.json</text>
+
+  <rect class="skill" x="470" y="408" width="560" height="76"/>
+  <text class="text" x="605" y="439" text-anchor="middle">Skill 3：一致性审查</text>
+  <text class="tiny" x="605" y="463" text-anchor="middle">consistency_checker</text>
+  <text class="small" x="835" y="439" text-anchor="middle">检查论文、机制、计划与代码</text>
+
+  <rect class="skill" x="470" y="513" width="560" height="76"/>
+  <text class="text" x="605" y="544" text-anchor="middle">Skill 4：机制代码实现</text>
+  <text class="tiny" x="605" y="568" text-anchor="middle">code_implementation</text>
+  <text class="small" x="835" y="544" text-anchor="middle">生成机制版实验环境</text>
+
+  <!-- Skill flow -->
+  <path class="thin-arrow" d="M750 274 L750 303"/>
+  <path class="thin-arrow" d="M750 379 L750 408"/>
+  <path class="thin-arrow" d="M750 484 L750 513"/>
+
+  <rect class="tag" x="500" y="610" width="500" height="28"/>
+  <text class="tag-text" x="750" y="629" text-anchor="middle">产物：mechanism / plan / review / implemented env files</text>
+
+  <!-- Run -->
+  <rect class="panel" x="1180" y="130" width="270" height="520"/>
+  <text class="panel-title" x="1315" y="168" text-anchor="middle">仿真实验运行</text>
+
+  <rect class="run" x="1210" y="210" width="210" height="82"/>
+  <text class="text" x="1315" y="244" text-anchor="middle">LLM 智能体决策</text>
+  <text class="small" x="1315" y="270" text-anchor="middle">贡献、合作、背叛等动作</text>
+
+  <rect class="run" x="1210" y="326" width="210" height="98"/>
+  <text class="text" x="1315" y="360" text-anchor="middle">多轮博弈交互</text>
+  <text class="small" x="1315" y="387" text-anchor="middle">群体回合或两两配对</text>
+  <text class="small" x="1315" y="411" text-anchor="middle">收益结算与状态更新</text>
+
+  <rect class="run" x="1210" y="458" width="210" height="82"/>
+  <text class="text" x="1315" y="492" text-anchor="middle">机制干预执行</text>
+  <text class="small" x="1315" y="518" text-anchor="middle">惩罚、奖励、声誉等</text>
+
+  <rect class="run" x="1210" y="574" width="210" height="48"/>
+  <text class="text" x="1315" y="605" text-anchor="middle">保存实验日志</text>
+
+  <!-- Analysis and outputs -->
+  <rect class="panel" x="50" y="700" width="1400" height="145"/>
+  <rect class="analysis" x="270" y="725" width="250" height="82"/>
+  <text class="text" x="395" y="774" text-anchor="middle">结果分析</text>
+
+  <rect class="analysis" x="590" y="725" width="250" height="82"/>
+  <text class="text" x="715" y="758" text-anchor="middle">解释文本分析</text>
+  <text class="small" x="715" y="785" text-anchor="middle">explanation 中的策略推理</text>
+
+  <rect class="analysis" x="910" y="725" width="250" height="82"/>
+  <text class="text" x="1035" y="758" text-anchor="middle">条件对比分析</text>
+  <text class="small" x="1035" y="785" text-anchor="middle">baseline vs 机制版本</text>
+
+  <rect class="output" x="1220" y="725" width="190" height="82"/>
+  <text class="text" x="1315" y="758" text-anchor="middle">研究结论</text>
+  <text class="small" x="1315" y="785" text-anchor="middle">机制效应与行为解释</text>
+
+  <!-- Main arrows -->
+  <path class="arrow" d="M320 390 C340 390, 350 390, 370 390"/>
+  <path class="arrow" d="M1130 390 C1150 390, 1160 390, 1180 390"/>
+  <path class="arrow" d="M1315 650 L1315 725"/>
+  <path class="thin-arrow" d="M520 766 L590 766"/>
+  <path class="thin-arrow" d="M840 766 L910 766"/>
+  <path class="thin-arrow" d="M1160 766 L1220 766"/>
+</svg>
