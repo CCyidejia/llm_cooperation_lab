@@ -17,9 +17,8 @@ ZGC LLM 网关（OpenAI 兼容）
 - ``ZGC_LLM_BASE_URL`` — 默认 ``https://zgc.apihy.com/v1``
 - ``ZGC_LLM_API_KEY`` — 若设置则优先于文件内 ``_ZGC_API_KEY_IN_FILE``
 - ``ZGC_DEFAULT_MODEL`` — 模型 id；也可在本文件 ``_ZGC_MODEL_IN_FILE`` 填写默认值（环境变量优先）。可先 ``fetch_zgc_models()`` 或 ``python -m LLMAPI.zgc`` 核对 id
-- ``ZGC_VERBOSE_REASONING_FALLBACK`` — 设为 ``1`` 时，回退使用 ``reasoning_content`` 时在终端 **print**（默认不打印，仅 DEBUG 日志）
-
-**推理模型说明**：若网关返回 ``content`` 为空、仅 ``reasoning_content`` 有内容，本库会**用推理文本作为回复**（与 fiblab / 旧版 wuwen 行为一致）。
+**推理模型说明**：本适配器只返回 ``message.content``。即使网关还返回
+``reasoning_content``，该字段也不会进入下游实验决策解析。
 """
 from typing import Optional
 
@@ -45,7 +44,10 @@ _ZGC_MODEL_IN_FILE = "glm-5.1"
 API_BASE_URL = os.getenv("ZGC_LLM_BASE_URL", "https://zgc.apihy.com/v1").rstrip("/")
 DEFAULT_MODEL = os.getenv("ZGC_DEFAULT_MODEL", _ZGC_MODEL_IN_FILE).strip()
 API_KEY = os.getenv("ZGC_LLM_API_KEY", _ZGC_API_KEY_IN_FILE).strip()
-ZGC_VERBOSE_REASONING_FALLBACK = os.getenv("ZGC_VERBOSE_REASONING_FALLBACK", "").lower() in ("1", "true", "yes")
+
+# ZGC_MAX_TOKENS defaults to 16384. Set it to 0 to omit the client-side
+# max_tokens field; the gateway and model will still enforce their own limits.
+# ZGC_REQUEST_TIMEOUT defaults to 600 seconds. Set it to 0 for no client timeout.
 
 
 def fetch_zgc_models(api_key: Optional[str] = None) -> dict:
@@ -65,16 +67,49 @@ def fetch_zgc_models(api_key: Optional[str] = None) -> dict:
     return r.json()
 
 
+def _resolve_max_tokens(value: Optional[int] = None) -> int:
+    """Return the client output budget; zero means omit max_tokens from the request."""
+    raw = str(value if value is not None else os.getenv("ZGC_MAX_TOKENS", "16384")).strip()
+    try:
+        resolved = int(raw)
+    except ValueError as exc:
+        raise ValueError("ZGC_MAX_TOKENS must be a non-negative integer") from exc
+    if resolved < 0:
+        raise ValueError("ZGC_MAX_TOKENS must be a non-negative integer")
+    return resolved
+
+
+def _resolve_request_timeout(value: Optional[float] = None) -> Optional[float]:
+    """Return request timeout seconds; zero explicitly opts into no client timeout."""
+    raw = str(value if value is not None else os.getenv("ZGC_REQUEST_TIMEOUT", "600")).strip()
+    try:
+        resolved = float(raw)
+    except ValueError as exc:
+        raise ValueError("ZGC_REQUEST_TIMEOUT must be a non-negative number") from exc
+    if resolved < 0:
+        raise ValueError("ZGC_REQUEST_TIMEOUT must be a non-negative number")
+    return None if resolved == 0 else resolved
+
+
 class LLMAgent:
     """
     通用 LLM 封装：ZGC 网关，与 wuwen.LLMAgent / fiblab.LLMAgent 行为对齐。
     """
 
-    def __init__(self, name="ZGCAgent", api_key: Optional[str] = None, model: Optional[str] = None):
+    def __init__(
+        self,
+        name="ZGCAgent",
+        api_key: Optional[str] = None,
+        model: Optional[str] = None,
+        max_tokens: Optional[int] = None,
+        request_timeout: Optional[float] = None,
+    ):
         self.name = name
         self.token = (api_key if api_key is not None else API_KEY).strip()
         self.model = (model if model is not None else DEFAULT_MODEL).strip() or DEFAULT_MODEL
         self.url = f"{API_BASE_URL}/chat/completions"
+        self.max_tokens = _resolve_max_tokens(max_tokens)
+        self.request_timeout = _resolve_request_timeout(request_timeout)
 
         self.total_input_tokens = 0
         self.total_output_tokens = 0
@@ -98,20 +133,30 @@ class LLMAgent:
             "Authorization": f"Bearer {self.token}",
         }
 
-        model_lower = (self.model or "").lower()
-        max_out = int(os.getenv("ZGC_MAX_TOKENS", "512"))
-
         # 部分模型（如部分 Claude）不允许同时传 temperature 与 top_p，网关会返回 invalid_request_error
         payload = {
             "model": self.model,
             "messages": messages,
             "stream": False,
-            "max_tokens": max_out,
             "temperature": 0.7,
         }
+        # GLM-5.1 enables deep thinking by default. Explicitly disable it for
+        # these short, structured game decisions. The ZGC OpenAI-compatible
+        # gateway forwards this model-specific field to the upstream API.
+        if "glm-5.1" in self.model.lower():
+            payload["thinking"] = {"type": "disabled"}
+        if "deepseek-v4-pro" in self.model.lower():
+            payload["enable_thinking"] = False
+        if self.max_tokens > 0:
+            payload["max_tokens"] = self.max_tokens
 
         try:
-            response = requests.post(self.url, headers=headers, json=payload, timeout=300)
+            response = requests.post(
+                self.url,
+                headers=headers,
+                json=payload,
+                timeout=self.request_timeout,
+            )
             response.raise_for_status()
 
             if not response.text or not response.text.strip():
@@ -131,6 +176,17 @@ class LLMAgent:
 
             choice = response_json["choices"][0]
             msg = choice.get("message") or {}
+            finish_reason = choice.get("finish_reason", "unknown")
+
+            # A length-limited response may contain only partial reasoning and
+            # no usable final decision. Report it as a failed call so the
+            # experiment-level retry loop can request a fresh completion.
+            if finish_reason == "length":
+                return (
+                    "API Call Failed: Model output was truncated "
+                    "(finish_reason=length); retrying is required"
+                )
+
             raw_content = msg.get("content")
             if isinstance(raw_content, str):
                 reply = raw_content.strip()
@@ -151,20 +207,11 @@ class LLMAgent:
                 refusal = msg.get("refusal")
                 if isinstance(refusal, str) and refusal.strip():
                     return f"API Call Failed: Model refusal: {refusal.strip()}"
-                for key in ("reasoning_content", "reasoning", "thinking"):
-                    alt = msg.get(key)
-                    if isinstance(alt, str) and alt.strip():
-                        reply = alt.strip()
-                        msg_fb = f"[{self.name}] Using message['{key}'] (content was empty); downstream may parse long reasoning."
-                        _logger.debug(msg_fb)
-                        if ZGC_VERBOSE_REASONING_FALLBACK:
-                            print(msg_fb)
-                        break
-
-            if not reply:
-                finish_reason = choice.get("finish_reason", "unknown")
                 print(f"[{self.name}] Empty content in API response; finish_reason={finish_reason}; message keys: {list(msg.keys())}")
-                return f"API Call Failed: Empty content in API response; finish_reason={finish_reason}"
+                return (
+                    "API Call Failed: Empty message.content in API response; "
+                    f"finish_reason={finish_reason}"
+                )
 
             output_tokens = self.count_tokens([{"role": "assistant", "content": reply}])
             self.total_output_tokens += output_tokens

@@ -1,0 +1,41 @@
+{
+  "experiment_name": "TrustGame_Group_Committed_Punishment_Experiment",
+  "description": "Population Trust Game with a binding punishment schedule committed before the Trustee chooses a return",
+  "game_settings": {
+    "num_agents": 24,
+    "initial_funds": 10,
+    "multiplication_factor": 3,
+    "num_rounds": 10,
+    "total_population_rounds": 30,
+    "min_punishment_level": 0,
+    "max_punishment_level": 10,
+    "punisher_cost_per_level": 0.5,
+    "target_loss_per_level": 2.5,
+    "llm_model": null,
+    "num_games": 3,
+    "mechanism_name": "binding_precommitted_punishment",
+    "decision_timing": [
+      "Trustor chooses investment",
+      "Trustor commits punishment schedule",
+      "Schedule is shown to Trustee",
+      "Trustee chooses return",
+      "Environment automatically enforces committed punishment"
+    ],
+    "commitment_is_binding": true,
+    "schedule_shown_before_return": true
+  },
+  "agent_settings": {
+    "decision_timeout": 30.0,
+    "max_retries": 4,
+    "retry_delay": 0.5,
+    "amount_decision_format": "strict_xml",
+    "amount_decision_outer_attempts": 3,
+    "save_raw_amount_responses": true,
+    "amount_failure_fallback": "most_frequent_prior_valid_value_for_same_decision_type; most_recent_occurrence_breaks_ties; zero only when no feasible valid history exists"
+  },
+  "output_settings": {
+    "save_raw_logs": true,
+    "save_agent_histories": true,
+    "generate_summary_stats": true
+  }
+}

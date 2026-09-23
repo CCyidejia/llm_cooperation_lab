@@ -1,0 +1,82 @@
+{
+  "status": "completed",
+  "paths": {
+    "source": "papers\\On the Psychology and Economics of Antisocial Personality.pdf",
+    "baseline": "env_main_trust_game_group.py",
+    "mechanism": "mechanisms\\antisocial_personality_trust_mechanism.json",
+    "plan": "implementation_plans\\antisocial_personality_trust_plan.json",
+    "review": "review_reports\\antisocial_personality_trust_review.json",
+    "implemented_env": "generated\\env_main_trust_game_antisocial_personality.py",
+    "implementation_report": "implementation_logs\\antisocial_personality_trust_code_report.json",
+    "pipeline_report": "pipeline_logs\\antisocial_personality_trust_pipeline_report.json",
+    "reasoning_model": "",
+    "coding_model": "",
+    "game_type": "trust_game",
+    "transfer_mode": "preserve_baseline",
+    "allow_architecture_change": "False",
+    "max_output_tokens": "16384",
+    "request_timeout": "600.0"
+  },
+  "events": [
+    {
+      "time": "2026-07-22T21:09:25",
+      "step": "skill1",
+      "status": "completed",
+      "detail": "mechanisms\\antisocial_personality_trust_mechanism.json"
+    },
+    {
+      "time": "2026-07-22T21:10:29",
+      "step": "skill2",
+      "status": "completed",
+      "detail": "implementation_plans\\antisocial_personality_trust_plan.json"
+    },
+    {
+      "time": "2026-07-22T21:11:07",
+      "step": "skill3",
+      "status": "needs_revision",
+      "detail": "cycle=1"
+    },
+    {
+      "time": "2026-07-22T21:11:07",
+      "step": "gate",
+      "status": "rerun",
+      "detail": "skill2"
+    },
+    {
+      "time": "2026-07-22T21:11:52",
+      "step": "skill2",
+      "status": "rerun_completed",
+      "detail": "implementation_plans\\antisocial_personality_trust_plan.json"
+    },
+    {
+      "time": "2026-07-22T21:12:37",
+      "step": "skill3",
+      "status": "needs_revision",
+      "detail": "cycle=2"
+    },
+    {
+      "time": "2026-07-22T21:12:37",
+      "step": "gate",
+      "status": "rerun",
+      "detail": "skill2"
+    },
+    {
+      "time": "2026-07-22T21:13:24",
+      "step": "skill2",
+      "status": "rerun_completed",
+      "detail": "implementation_plans\\antisocial_personality_trust_plan.json"
+    },
+    {
+      "time": "2026-07-22T21:14:05",
+      "step": "skill3",
+      "status": "approved",
+      "detail": "cycle=3"
+    },
+    {
+      "time": "2026-07-22T21:15:39",
+      "step": "skill4",
+      "status": "completed",
+      "detail": "cycle=1; generated\\env_main_trust_game_antisocial_personality.py"
+    }
+  ]
+}

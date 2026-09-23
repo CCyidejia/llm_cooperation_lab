@@ -1,0 +1,779 @@
+{
+  "schema_version": "implementation-plan-v2",
+  "target_baseline": "env_main_trust_game_group.py",
+  "mechanism_source": "mechanisms\\antisocial_personality_trust_mechanism.json",
+  "game_adapter": {
+    "game_type": "trust_game",
+    "interaction_topology": "dyadic_random_matching",
+    "native_actions": [
+      "Trustor integer transfer",
+      "Trustee integer return"
+    ],
+    "decision_methods": [
+      "TrustGamePopulationAgent.act"
+    ],
+    "round_methods": [
+      "TrustGamePopulationEnvironment.run_interaction"
+    ],
+    "payoff_locations": [
+      "TrustGamePopulationEnvironment.run_interaction"
+    ],
+    "decision_stage_model": "sequential_dyadic",
+    "agent_profile_policy": "preserve_exact"
+  },
+  "transfer_policy": {
+    "mode": "preserve_baseline",
+    "architecture_change_authorized": false,
+    "paper_parameters_replace_baseline": false
+  },
+  "compatibility": {
+    "status": "compatible",
+    "code_implementation_allowed": true,
+    "requires_network": false,
+    "requires_architecture_change": false,
+    "reason": "The target baseline exposes all essential mechanism surfaces."
+  },
+  "baseline_summary": {
+    "game_family": "trust_game",
+    "interaction_topology": "dyadic_random_matching",
+    "decision_stage_model": "sequential_dyadic",
+    "agent_profile_policy": "preserve_exact",
+    "agent_profile_invariant_specs": [
+      {
+        "kind": "assignment",
+        "scope": "TrustGamePopulationAgent.act",
+        "name": "role_profile"
+      },
+      {
+        "kind": "assignment",
+        "scope": "_create_agents",
+        "name": "trustor_profile"
+      },
+      {
+        "kind": "assignment",
+        "scope": "_create_agents",
+        "name": "trustee_profile"
+      },
+      {
+        "kind": "assignment",
+        "scope": "_create_agents",
+        "name": "neutral_profile"
+      },
+      {
+        "kind": "call_keyword",
+        "scope": "_create_agents",
+        "call": "TrustGamePopulationAgent",
+        "keyword": "profile"
+      },
+      {
+        "kind": "attribute_assignment",
+        "scope": "<module>",
+        "attribute": "_profile"
+      }
+    ],
+    "role_hints": [
+      "Trustor",
+      "Trustee"
+    ],
+    "agent_class_hints": [
+      "TrustGamePopulationAgent"
+    ],
+    "environment_class_hints": [
+      "TrustGamePopulationEnvironment"
+    ],
+    "decision_method_hints": [
+      "act"
+    ],
+    "round_method_hints": [
+      "run_interaction"
+    ],
+    "payoff_function_hints": [],
+    "payoff_method_hints": [
+      "run_interaction"
+    ],
+    "native_actions": [
+      "Trustor integer transfer",
+      "Trustee integer return"
+    ],
+    "native_decision_stages": [
+      {
+        "stage_id": "trustor_transfer",
+        "role": "Trustor",
+        "stage_type": "primary_action",
+        "observes": []
+      },
+      {
+        "stage_id": "trustee_return",
+        "role": "Trustee",
+        "stage_type": "post_action_response",
+        "observes": [
+          "Trustor transfer",
+          "multiplied transfer"
+        ]
+      }
+    ],
+    "core_invariant_snippets": [
+      "\"num_agents\": 24",
+      "\"initial_funds\": 10",
+      "\"multiplication_factor\": 3",
+      "\"num_rounds\": 10",
+      "NUM_GAMES = 3",
+      "trustee_received = trustor_amount * self.multiplication_factor",
+      "trustor_payoff = self.initial_funds - trustor_amount + trustee_amount",
+      "trustee_payoff = trustee_received - trustee_amount"
+    ],
+    "allowed_mechanism_surfaces": [
+      "prompt_context",
+      "action_space",
+      "payoff_function",
+      "state_memory",
+      "matching_or_grouping",
+      "network_topology",
+      "logging_metrics",
+      "experiment_config"
+    ],
+    "baseline_file": "env_main_trust_game_group.py",
+    "classes": {
+      "TrustGamePopulationAgent": {
+        "line": 50,
+        "methods": {
+          "__init__": 53,
+          "name": 91,
+          "init": 95,
+          "dump": 112,
+          "load": 150,
+          "ask": 198,
+          "step": 222,
+          "act": 241,
+          "update_history": 322,
+          "_build_partner_history_string": 383,
+          "_build_trustor_prompt": 409,
+          "_build_trustee_prompt": 424,
+          "_parse_amount": 439,
+          "_extract_explanation": 462,
+          "_call_llm_with_retry": 473,
+          "set_environment": 508,
+          "get_partner_history": 513,
+          "get_all_partners": 523,
+          "get_role_statistics": 527
+        }
+      },
+      "TrustGamePopulationEnvironment": {
+        "line": 605,
+        "methods": {
+          "__init__": 608,
+          "reset": 630,
+          "set_agents": 653,
+          "_get_agent_by_id": 661,
+          "run_interaction": 665
+        }
+      }
+    },
+    "functions": {
+      "main": 797,
+      "_initialize_llm_system": 998,
+      "_setup_result_directory": 1018,
+      "_save_experiment_config": 1033,
+      "_create_agents": 1042,
+      "_update_experiment_statistics": 1088,
+      "_print_population_round_summary": 1117,
+      "_save_game_results": 1135
+    },
+    "module_assignments": {
+      "RANDOM_SEED": 46
+    },
+    "detected_agent_classes": [
+      "TrustGamePopulationAgent"
+    ],
+    "detected_environment_classes": [
+      "TrustGamePopulationEnvironment"
+    ],
+    "decision_method_candidates": [
+      "TrustGamePopulationAgent.act"
+    ],
+    "environment_round_method_candidates": [
+      "TrustGamePopulationEnvironment.run_interaction"
+    ],
+    "payoff_location_candidates": [
+      "TrustGamePopulationEnvironment.run_interaction"
+    ],
+    "state_update_candidates": [
+      "TrustGamePopulationAgent._build_partner_history_string",
+      "TrustGamePopulationAgent.get_partner_history",
+      "TrustGamePopulationAgent.update_history"
+    ],
+    "summary_or_logging_candidates": [],
+    "available_core_invariants": [
+      "\"num_agents\": 24",
+      "\"initial_funds\": 10",
+      "\"multiplication_factor\": 3",
+      "\"num_rounds\": 10",
+      "NUM_GAMES = 3",
+      "trustee_received = trustor_amount * self.multiplication_factor",
+      "trustor_payoff = self.initial_funds - trustor_amount + trustee_amount",
+      "trustee_payoff = trustee_received - trustee_amount"
+    ],
+    "agent_profile_invariants": [
+      {
+        "spec": {
+          "kind": "assignment",
+          "scope": "TrustGamePopulationAgent.act",
+          "name": "role_profile"
+        },
+        "matches": [
+          {
+            "value_ast": "IfExp(test=Compare(left=Name(id='role', ctx=Load()), ops=[Eq()], comparators=[Constant(value='Trustor')]), body=JoinedStr(values=[Constant(value='You are '), FormattedValue(value=Attribute(value=Name(id='self', ctx=Load()), attr='_name', ctx=Load()), conversion=-1), Constant(value=', Trustor in a game.\\nGoal: Maximize cumulative coins.\\nRules: Start with '), FormattedValue(value=Attribute(value=Name(id='self', ctx=Load()), attr='_initial_funds', ctx=Load()), conversion=-1), Constant(value=' coins/round.\\nSend 0-'), FormattedValue(value=Attribute(value=Name(id='self', ctx=Load()), attr='_initial_funds', ctx=Load()), conversion=-1), Constant(value=' coins (×'), FormattedValue(value=Attribute(value=Name(id='self', ctx=Load()), attr='_multiplication_factor', ctx=Load()), conversion=-1), Constant(value=' for Trustee).\\nTrustee returns some coins. Your payoff: '), FormattedValue(value=Attribute(value=Name(id='self', ctx=Load()), attr='_initial_funds', ctx=Load()), conversion=-1), Constant(value=' - sent + returned.\\nConsider past Trustee behavior.')]), orelse=JoinedStr(values=[Constant(value='You are '), FormattedValue(value=Attribute(value=Name(id='self', ctx=Load()), attr='_name', ctx=Load()), conversion=-1), Constant(value=', Trustee in a game.\\nGoal: Maximize cumulative coins.\\nRules: Receive (sent amount)×'), FormattedValue(value=Attribute(value=Name(id='self', ctx=Load()), attr='_multiplication_factor', ctx=Load()), conversion=-1), Constant(value=' coins from Trustor.\\nReturn 0-received coins. Your payoff: received - returned.\\nConsider past Trustor behavior.')]))"
+          }
+        ]
+      },
+      {
+        "spec": {
+          "kind": "assignment",
+          "scope": "_create_agents",
+          "name": "trustor_profile"
+        },
+        "matches": [
+          {
+            "value_ast": "JoinedStr(values=[Constant(value='You are {agent_name}, Trustor in a {num_rounds}-round Trust Game.\\nGoal: Maximize cumulative coins.\\nRules: Start with '), FormattedValue(value=Subscript(value=Subscript(value=Name(id='config', ctx=Load()), slice=Constant(value='game_settings'), ctx=Load()), slice=Constant(value='initial_funds'), ctx=Load()), conversion=-1), Constant(value=' coins/round.\\nSend 0-'), FormattedValue(value=Subscript(value=Subscript(value=Name(id='config', ctx=Load()), slice=Constant(value='game_settings'), ctx=Load()), slice=Constant(value='initial_funds'), ctx=Load()), conversion=-1), Constant(value=' coins (×'), FormattedValue(value=Subscript(value=Subscript(value=Name(id='config', ctx=Load()), slice=Constant(value='game_settings'), ctx=Load()), slice=Constant(value='multiplication_factor'), ctx=Load()), conversion=-1), Constant(value=' for Trustee).\\nTrustee returns some coins. Your payoff: '), FormattedValue(value=Subscript(value=Subscript(value=Name(id='config', ctx=Load()), slice=Constant(value='game_settings'), ctx=Load()), slice=Constant(value='initial_funds'), ctx=Load()), conversion=-1), Constant(value=' - sent + returned.\\nConsider past Trustee behavior.')])"
+          }
+        ]
+      },
+      {
+        "spec": {
+          "kind": "assignment",
+          "scope": "_create_agents",
+          "name": "trustee_profile"
+        },
+        "matches": [
+          {
+            "value_ast": "JoinedStr(values=[Constant(value='You are {agent_name}, Trustee in a {num_rounds}-round Trust Game.\\nGoal: Maximize cumulative coins.\\nRules: Receive (sent amount)×'), FormattedValue(value=Subscript(value=Subscript(value=Name(id='config', ctx=Load()), slice=Constant(value='game_settings'), ctx=Load()), slice=Constant(value='multiplication_factor'), ctx=Load()), conversion=-1), Constant(value=' coins from Trustor.\\nReturn 0-received coins. Your payoff: received - returned.\\nConsider past Trustor behavior.')])"
+          }
+        ]
+      },
+      {
+        "spec": {
+          "kind": "assignment",
+          "scope": "_create_agents",
+          "name": "neutral_profile"
+        },
+        "matches": [
+          {
+            "value_ast": "JoinedStr(values=[Constant(value='You are '), FormattedValue(value=Name(id='agent_name', ctx=Load()), conversion=-1), Constant(value=', a rational decision-maker participating in a Trust Game.\\nYou will interact with different partners in multiple rounds.\\nYour goal is to maximize your cumulative coins over all interactions.')])"
+          }
+        ]
+      },
+      {
+        "spec": {
+          "kind": "call_keyword",
+          "scope": "_create_agents",
+          "call": "TrustGamePopulationAgent",
+          "keyword": "profile"
+        },
+        "matches": [
+          {
+            "value_ast": "Name(id='neutral_profile', ctx=Load())"
+          }
+        ]
+      },
+      {
+        "spec": {
+          "kind": "attribute_assignment",
+          "scope": "<module>",
+          "attribute": "_profile"
+        },
+        "matches": [
+          {
+            "target_ast": "Attribute(value=Name(id='self', ctx=Load()), attr='_profile', ctx=Store())",
+            "value_ast": "Name(id='profile', ctx=Load())"
+          },
+          {
+            "target_ast": "Attribute(value=Name(id='self', ctx=Load()), attr='_profile', ctx=Store())",
+            "value_ast": "Call(func=Attribute(value=Name(id='dump_data', ctx=Load()), attr='get', ctx=Load()), args=[Constant(value='profile'), Attribute(value=Name(id='self', ctx=Load()), attr='_profile', ctx=Load())], keywords=[])"
+          }
+        ]
+      }
+    ]
+  },
+  "baseline_invariants": {
+    "preserve_game_parameters": true,
+    "preserve_experiment_parameters": true,
+    "preserve_existing_topology": true,
+    "preserve_agent_profiles": true,
+    "required_source_snippets": [
+      "\"num_agents\": 24",
+      "\"initial_funds\": 10",
+      "\"multiplication_factor\": 3",
+      "\"num_rounds\": 10",
+      "NUM_GAMES = 3",
+      "trustee_received = trustor_amount * self.multiplication_factor",
+      "trustor_payoff = self.initial_funds - trustor_amount + trustee_amount",
+      "trustee_payoff = trustee_received - trustee_amount"
+    ],
+    "agent_profile_invariants": [
+      {
+        "spec": {
+          "kind": "assignment",
+          "scope": "TrustGamePopulationAgent.act",
+          "name": "role_profile"
+        },
+        "matches": [
+          {
+            "value_ast": "IfExp(test=Compare(left=Name(id='role', ctx=Load()), ops=[Eq()], comparators=[Constant(value='Trustor')]), body=JoinedStr(values=[Constant(value='You are '), FormattedValue(value=Attribute(value=Name(id='self', ctx=Load()), attr='_name', ctx=Load()), conversion=-1), Constant(value=', Trustor in a game.\\nGoal: Maximize cumulative coins.\\nRules: Start with '), FormattedValue(value=Attribute(value=Name(id='self', ctx=Load()), attr='_initial_funds', ctx=Load()), conversion=-1), Constant(value=' coins/round.\\nSend 0-'), FormattedValue(value=Attribute(value=Name(id='self', ctx=Load()), attr='_initial_funds', ctx=Load()), conversion=-1), Constant(value=' coins (×'), FormattedValue(value=Attribute(value=Name(id='self', ctx=Load()), attr='_multiplication_factor', ctx=Load()), conversion=-1), Constant(value=' for Trustee).\\nTrustee returns some coins. Your payoff: '), FormattedValue(value=Attribute(value=Name(id='self', ctx=Load()), attr='_initial_funds', ctx=Load()), conversion=-1), Constant(value=' - sent + returned.\\nConsider past Trustee behavior.')]), orelse=JoinedStr(values=[Constant(value='You are '), FormattedValue(value=Attribute(value=Name(id='self', ctx=Load()), attr='_name', ctx=Load()), conversion=-1), Constant(value=', Trustee in a game.\\nGoal: Maximize cumulative coins.\\nRules: Receive (sent amount)×'), FormattedValue(value=Attribute(value=Name(id='self', ctx=Load()), attr='_multiplication_factor', ctx=Load()), conversion=-1), Constant(value=' coins from Trustor.\\nReturn 0-received coins. Your payoff: received - returned.\\nConsider past Trustor behavior.')]))"
+          }
+        ]
+      },
+      {
+        "spec": {
+          "kind": "assignment",
+          "scope": "_create_agents",
+          "name": "trustor_profile"
+        },
+        "matches": [
+          {
+            "value_ast": "JoinedStr(values=[Constant(value='You are {agent_name}, Trustor in a {num_rounds}-round Trust Game.\\nGoal: Maximize cumulative coins.\\nRules: Start with '), FormattedValue(value=Subscript(value=Subscript(value=Name(id='config', ctx=Load()), slice=Constant(value='game_settings'), ctx=Load()), slice=Constant(value='initial_funds'), ctx=Load()), conversion=-1), Constant(value=' coins/round.\\nSend 0-'), FormattedValue(value=Subscript(value=Subscript(value=Name(id='config', ctx=Load()), slice=Constant(value='game_settings'), ctx=Load()), slice=Constant(value='initial_funds'), ctx=Load()), conversion=-1), Constant(value=' coins (×'), FormattedValue(value=Subscript(value=Subscript(value=Name(id='config', ctx=Load()), slice=Constant(value='game_settings'), ctx=Load()), slice=Constant(value='multiplication_factor'), ctx=Load()), conversion=-1), Constant(value=' for Trustee).\\nTrustee returns some coins. Your payoff: '), FormattedValue(value=Subscript(value=Subscript(value=Name(id='config', ctx=Load()), slice=Constant(value='game_settings'), ctx=Load()), slice=Constant(value='initial_funds'), ctx=Load()), conversion=-1), Constant(value=' - sent + returned.\\nConsider past Trustee behavior.')])"
+          }
+        ]
+      },
+      {
+        "spec": {
+          "kind": "assignment",
+          "scope": "_create_agents",
+          "name": "trustee_profile"
+        },
+        "matches": [
+          {
+            "value_ast": "JoinedStr(values=[Constant(value='You are {agent_name}, Trustee in a {num_rounds}-round Trust Game.\\nGoal: Maximize cumulative coins.\\nRules: Receive (sent amount)×'), FormattedValue(value=Subscript(value=Subscript(value=Name(id='config', ctx=Load()), slice=Constant(value='game_settings'), ctx=Load()), slice=Constant(value='multiplication_factor'), ctx=Load()), conversion=-1), Constant(value=' coins from Trustor.\\nReturn 0-received coins. Your payoff: received - returned.\\nConsider past Trustor behavior.')])"
+          }
+        ]
+      },
+      {
+        "spec": {
+          "kind": "assignment",
+          "scope": "_create_agents",
+          "name": "neutral_profile"
+        },
+        "matches": [
+          {
+            "value_ast": "JoinedStr(values=[Constant(value='You are '), FormattedValue(value=Name(id='agent_name', ctx=Load()), conversion=-1), Constant(value=', a rational decision-maker participating in a Trust Game.\\nYou will interact with different partners in multiple rounds.\\nYour goal is to maximize your cumulative coins over all interactions.')])"
+          }
+        ]
+      },
+      {
+        "spec": {
+          "kind": "call_keyword",
+          "scope": "_create_agents",
+          "call": "TrustGamePopulationAgent",
+          "keyword": "profile"
+        },
+        "matches": [
+          {
+            "value_ast": "Name(id='neutral_profile', ctx=Load())"
+          }
+        ]
+      },
+      {
+        "spec": {
+          "kind": "attribute_assignment",
+          "scope": "<module>",
+          "attribute": "_profile"
+        },
+        "matches": [
+          {
+            "target_ast": "Attribute(value=Name(id='self', ctx=Load()), attr='_profile', ctx=Store())",
+            "value_ast": "Name(id='profile', ctx=Load())"
+          },
+          {
+            "target_ast": "Attribute(value=Name(id='self', ctx=Load()), attr='_profile', ctx=Store())",
+            "value_ast": "Call(func=Attribute(value=Name(id='dump_data', ctx=Load()), attr='get', ctx=Load()), args=[Constant(value='profile'), Attribute(value=Name(id='self', ctx=Load()), attr='_profile', ctx=Load())], keywords=[])"
+          }
+        ]
+      }
+    ],
+    "rule": "Keep baseline parameters and protected agent profiles unchanged; implement only the mechanism and explicitly authorized topology extensions."
+  },
+  "mechanism_summaries": [
+    {
+      "mechanism_id": "M1",
+      "name": "Investor costly punishment opportunity after trustee return",
+      "type": "punishment",
+      "timing_stage_type": "post_action_response",
+      "summary": "T1 adds a Trustor punishment action after Trustee return; each punishment coin costs the Trustor 1 and reduces Trustee payoff by 5."
+    }
+  ],
+  "required_code_changes": [
+    {
+      "change_id": "C1",
+      "surface": "experiment_config",
+      "target_location": "main",
+      "operation": "replace_function",
+      "description": "Add treatment configuration without replacing baseline game parameters.",
+      "details": {
+        "treatments": {
+          "B": {
+            "label": "NPT",
+            "punishment_enabled": false,
+            "executable": true
+          },
+          "T1": {
+            "label": "PT",
+            "punishment_enabled": true,
+            "punishment_impact_multiplier": 5,
+            "punishment_max_amount": "configurable; fallback max(0, base_trustor_payoff)",
+            "executable": true
+          },
+          "T2": {
+            "label": "NBT robustness",
+            "executable": false
+          },
+          "T3": {
+            "label": "unspecified robustness",
+            "executable": false
+          }
+        },
+        "preserve": [
+          "num_agents",
+          "initial_funds",
+          "multiplication_factor",
+          "num_rounds",
+          "NUM_GAMES",
+          "matching"
+        ]
+      },
+      "depends_on": [],
+      "acceptance_criteria": [
+        "B and T1 are selectable treatments.",
+        "T2 and T3 cannot alter actions or payoffs.",
+        "Baseline constants remain unchanged."
+      ]
+    },
+    {
+      "change_id": "C2",
+      "surface": "state_memory",
+      "target_location": "TrustGamePopulationEnvironment.__init__",
+      "operation": "replace_method",
+      "description": "Store treatment and punishment settings on the environment.",
+      "details": {
+        "new_fields": [
+          "treatment_id",
+          "punishment_enabled",
+          "punishment_impact_multiplier",
+          "punishment_max_amount"
+        ],
+        "default_treatment": "B",
+        "fallback_cap": "max(0, base_trustor_payoff)"
+      },
+      "depends_on": [
+        "C1"
+      ],
+      "acceptance_criteria": [
+        "Environment exposes current treatment state.",
+        "Fallback cap is documented as a transfer assumption."
+      ]
+    },
+    {
+      "change_id": "C3",
+      "surface": "prompt_context",
+      "target_location": "TrustGamePopulationAgent.act",
+      "operation": "replace_method",
+      "description": "Pass separate public treatment context into native Trustor and Trustee prompts.",
+      "details": {
+        "signature_addition": "decision_context: str = ''",
+        "protected_profile_rule": "Do not change role_profile text, profile constructor binding, or stored _profile."
+      },
+      "depends_on": [],
+      "acceptance_criteria": [
+        "Trustor and Trustee native decisions can receive T1 context.",
+        "Protected profile strings remain byte-for-byte unchanged."
+      ]
+    },
+    {
+      "change_id": "C4",
+      "surface": "prompt_context",
+      "target_location": "TrustGamePopulationAgent._build_trustor_prompt",
+      "operation": "replace_method",
+      "description": "Append non-profile T1 public punishment context to the Trustor transfer prompt.",
+      "details": {
+        "context_text": "In PT, after the Trustee return, the Trustor may spend punishment; each coin spent reduces Trustee payoff by 5; include configured cap rule.",
+        "only_when": "punishment_enabled"
+      },
+      "depends_on": [
+        "C3"
+      ],
+      "acceptance_criteria": [
+        "Trustor sees punishment availability before transfer in T1.",
+        "No punishment text appears in B."
+      ]
+    },
+    {
+      "change_id": "C5",
+      "surface": "prompt_context",
+      "target_location": "TrustGamePopulationAgent._build_trustee_prompt",
+      "operation": "replace_method",
+      "description": "Append non-profile T1 public punishment context to the Trustee return prompt.",
+      "details": {
+        "context_text": "In PT, after the Trustee return, the Trustor may spend punishment; each coin spent reduces Trustee payoff by 5; include configured cap rule.",
+        "only_when": "punishment_enabled"
+      },
+      "depends_on": [
+        "C3"
+      ],
+      "acceptance_criteria": [
+        "Trustee sees punishment availability before return in T1.",
+        "No protected Trustee profile text is edited."
+      ]
+    },
+    {
+      "change_id": "C6",
+      "surface": "action_space",
+      "target_location": "TrustGamePopulationAgent",
+      "operation": "insert_method_in_class",
+      "description": "Add a distinct post-return Trustor punishment decision method.",
+      "details": {
+        "method": "act_punishment",
+        "role": "Trustor",
+        "stage": "after Trustee return",
+        "action": "integer punishment amount",
+        "validation": "0 to configured cap or fallback cap",
+        "parse_reuse": "_parse_amount"
+      },
+      "depends_on": [
+        "C2"
+      ],
+      "acceptance_criteria": [
+        "Punishment is not merged with transfer or return.",
+        "Invalid punishment amounts are clipped or rejected consistently."
+      ]
+    },
+    {
+      "change_id": "C7",
+      "surface": "payoff_function",
+      "target_location": "TrustGamePopulationEnvironment.run_interaction",
+      "operation": "replace_method",
+      "description": "Insert the T1 punishment stage after Trustee return and after base payoff calculation.",
+      "details": {
+        "stage_order": [
+          "Trustor transfer",
+          "Trustee return",
+          "base payoff calculation",
+          "Trustor punishment if T1",
+          "final payoff adjustment"
+        ],
+        "base_formulas": [
+          "trustor_payoff = self.initial_funds - trustor_amount + trustee_amount",
+          "trustee_payoff = trustee_received - trustee_amount"
+        ],
+        "punishment_formula": "final_trustor_payoff = base_trustor_payoff - p; final_trustee_payoff = base_trustee_payoff - 5*p",
+        "context_path": "Pass T1 public context into both native act calls."
+      },
+      "depends_on": [
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6"
+      ],
+      "acceptance_criteria": [
+        "Trustor transfer occurs before Trustee return.",
+        "Punishment occurs only after Trustee return.",
+        "Base payoff formulas are preserved before adjustment."
+      ]
+    },
+    {
+      "change_id": "C8",
+      "surface": "state_memory",
+      "target_location": "TrustGamePopulationAgent._build_partner_history_string",
+      "operation": "replace_method",
+      "description": "Display prior punishment fields when present without changing topology.",
+      "details": {
+        "fields": [
+          "punishment_amount",
+          "punishment_impact",
+          "base_payoff",
+          "final_payoff"
+        ],
+        "only_if_present": true
+      },
+      "depends_on": [
+        "C7"
+      ],
+      "acceptance_criteria": [
+        "History remains valid for B records.",
+        "Punishment history is visible for T1 records."
+      ]
+    },
+    {
+      "change_id": "C9",
+      "surface": "logging_metrics",
+      "target_location": "_update_experiment_statistics",
+      "operation": "replace_function",
+      "description": "Add treatment-separated cooperation and punishment metrics.",
+      "details": {
+        "metrics": [
+          "sent_by_treatment",
+          "returned_by_treatment",
+          "return_rate_by_treatment",
+          "punishment_by_treatment",
+          "base_payoffs_by_treatment",
+          "final_payoffs_by_treatment",
+          "behavioral_trust_by_treatment"
+        ]
+      },
+      "depends_on": [
+        "C7"
+      ],
+      "acceptance_criteria": [
+        "Metrics separate B from T1.",
+        "Punishment use is logged independently of transfer and return."
+      ]
+    }
+  ],
+  "new_state_variables": [
+    {
+      "name": "treatment_id",
+      "type": "environment_state",
+      "initial_value": "B"
+    },
+    {
+      "name": "punishment_enabled",
+      "type": "environment_state",
+      "initial_value": false
+    },
+    {
+      "name": "punishment_impact_multiplier",
+      "type": "environment_state",
+      "initial_value": 5
+    },
+    {
+      "name": "punishment_max_amount",
+      "type": "environment_state",
+      "initial_value": "configurable_or_fallback"
+    },
+    {
+      "name": "base_trustor_payoff",
+      "type": "round_log",
+      "initial_value": 0
+    },
+    {
+      "name": "base_trustee_payoff",
+      "type": "round_log",
+      "initial_value": 0
+    },
+    {
+      "name": "punishment_amount",
+      "type": "round_log",
+      "initial_value": 0
+    },
+    {
+      "name": "punishment_impact",
+      "type": "round_log",
+      "initial_value": 0
+    },
+    {
+      "name": "final_trustor_payoff",
+      "type": "round_log",
+      "initial_value": 0
+    },
+    {
+      "name": "final_trustee_payoff",
+      "type": "round_log",
+      "initial_value": 0
+    }
+  ],
+  "new_logs": [
+    {
+      "name": "treatment_id",
+      "location": "interaction_detail"
+    },
+    {
+      "name": "punishment_enabled",
+      "location": "interaction_detail"
+    },
+    {
+      "name": "base_trustor_payoff",
+      "location": "interaction_detail"
+    },
+    {
+      "name": "base_trustee_payoff",
+      "location": "interaction_detail"
+    },
+    {
+      "name": "punishment_amount",
+      "location": "interaction_detail"
+    },
+    {
+      "name": "punishment_impact",
+      "location": "interaction_detail"
+    },
+    {
+      "name": "punishment_explanation",
+      "location": "interaction_detail"
+    },
+    {
+      "name": "final_trustor_payoff",
+      "location": "interaction_detail"
+    },
+    {
+      "name": "final_trustee_payoff",
+      "location": "interaction_detail"
+    }
+  ],
+  "new_metrics": [
+    {
+      "name": "behavioral_trust_by_treatment",
+      "definition": "Mean Trustor sent amount or positive-send rate by B versus T1."
+    },
+    {
+      "name": "actual_trustworthiness_by_treatment",
+      "definition": "Mean Trustee returned amount and return rate by B versus T1."
+    },
+    {
+      "name": "punishment_behavior_by_treatment",
+      "definition": "Mean and frequency of punishment amount in T1."
+    },
+    {
+      "name": "payoff_effects_by_treatment",
+      "definition": "Base and final payoffs separated by treatment."
+    }
+  ],
+  "implementation_order": [
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5",
+    "C6",
+    "C7",
+    "C8",
+    "C9"
+  ],
+  "validation_requirements": [
+    "Verify protected profile assignments and constructor profile binding are unchanged.",
+    "Verify baseline constants and NUM_GAMES are unchanged.",
+    "Verify dyadic random matching is unchanged.",
+    "Verify T1 context is shown to Trustor before transfer and Trustee before return.",
+    "Verify punishment is a post-return Trustor response stage.",
+    "Verify base payoff formulas are computed before punishment adjustment.",
+    "Verify only B and T1 are executable treatments."
+  ],
+  "tests_or_checks": [
+    "Run B with punishment disabled and compare native action/payoff fields to baseline.",
+    "Run T1 and confirm stage order transfer-return-punishment.",
+    "Test configured punishment cap and fallback cap.",
+    "Test punishment p reduces Trustor payoff by p and Trustee payoff by 5p.",
+    "Test logs contain treatment, actions, base payoffs, punishment, and final payoffs.",
+    "AST or text check protected profile snippets remain unchanged."
+  ],
+  "risks": [
+    "Punishment grid is not paper-specified and uses a documented configurable cap.",
+    "Replacing broad methods may accidentally alter baseline invariants.",
+    "Negative final payoffs may occur if not bounded by the chosen cap rule."
+  ],
+  "out_of_scope": [
+    "Do not implement paper rounds, endowments, sample size, fixed roles, or random-payoff selection.",
+    "Do not implement strategy-method conditional schedules.",
+    "Do not implement personality-factor profiles or belief elicitation.",
+    "Do not implement T2 or T3 robustness games without additional rules.",
+    "Do not add network topology or partner-specific network knowledge.",
+    "Replacing baseline population, rounds, payoff constants, repeat count, or unapproved topology with paper settings."
+  ]
+}

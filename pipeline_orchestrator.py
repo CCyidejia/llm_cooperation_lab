@@ -74,7 +74,7 @@ def build_default_paths(args: argparse.Namespace) -> None:
         args.pipeline_report = Path("pipeline_logs") / f"{source_slug}_{baseline_slug}_pipeline_report.json"
 
 
-def build_skill1_command(args: argparse.Namespace) -> list[str]:
+def build_skill1_command(args: argparse.Namespace, with_feedback: bool = False) -> list[str]:
     command = [sys.executable, "-m", SKILL1_MODULE]
     if args.pdf:
         command.extend(["--pdf", str(args.pdf)])
@@ -92,11 +92,13 @@ def build_skill1_command(args: argparse.Namespace) -> list[str]:
             str(args.max_source_chars),
         ]
     )
+    if with_feedback and args.review.exists():
+        command.extend(["--feedback-file", str(args.review)])
     return command
 
 
-def build_skill2_command(args: argparse.Namespace) -> list[str]:
-    return [
+def build_skill2_command(args: argparse.Namespace, with_feedback: bool = False) -> list[str]:
+    command = [
         sys.executable,
         "-m",
         SKILL2_MODULE,
@@ -110,9 +112,24 @@ def build_skill2_command(args: argparse.Namespace) -> list[str]:
         args.provider,
         "--repair-attempts",
         str(args.skill2_repair_attempts),
+        "--api-retries",
+        str(args.api_retries),
         "--max-baseline-chars",
         str(args.max_baseline_chars),
+        "--game-type",
+        args.game_type,
+        "--transfer-mode",
+        args.transfer_mode,
     ]
+    if args.allow_architecture_change:
+        command.append("--allow-architecture-change")
+    if args.max_output_tokens is not None:
+        command.extend(["--max-output-tokens", str(args.max_output_tokens)])
+    if args.request_timeout is not None:
+        command.extend(["--request-timeout", str(args.request_timeout)])
+    if with_feedback and args.review.exists():
+        command.extend(["--feedback-file", str(args.review)])
+    return command
 
 
 def build_skill3_command(args: argparse.Namespace) -> list[str]:
@@ -212,6 +229,20 @@ def run_pipeline(args: argparse.Namespace) -> dict[str, Any]:
     run_command(build_skill2_command(args), "Skill 2 baseline-mapper", args.reasoning_model)
     record("skill2", "completed", str(args.plan))
 
+    initial_plan = read_json(args.plan)
+    compatibility = initial_plan.get("compatibility", {})
+    if compatibility and not compatibility.get("code_implementation_allowed", False):
+        reason = compatibility.get("reason", "Compatibility gate blocked this transfer.")
+        record("compatibility_gate", compatibility.get("status", "blocked"), reason)
+        pipeline_report = {
+            "status": "blocked_by_compatibility_gate",
+            "reason": reason,
+            "paths": collect_paths(args),
+            "events": events,
+        }
+        write_json(args.pipeline_report, pipeline_report)
+        return pipeline_report
+
     approved = False
     review: dict[str, Any] = {}
     for attempt in range(1, args.max_review_cycles + 1):
@@ -229,12 +260,12 @@ def run_pipeline(args: argparse.Namespace) -> dict[str, Any]:
         rerun_target = choose_rerun_target(review)
         record("gate", "rerun", rerun_target)
         if rerun_target == "skill1":
-            run_command(build_skill1_command(args), f"Skill 1 rerun after review cycle {attempt}", args.reasoning_model)
+            run_command(build_skill1_command(args, with_feedback=True), f"Skill 1 rerun after review cycle {attempt}", args.reasoning_model)
             record("skill1", "rerun_completed", str(args.mechanism))
-            run_command(build_skill2_command(args), f"Skill 2 rerun after Skill 1 cycle {attempt}", args.reasoning_model)
+            run_command(build_skill2_command(args, with_feedback=True), f"Skill 2 rerun after Skill 1 cycle {attempt}", args.reasoning_model)
             record("skill2", "rerun_completed", str(args.plan))
         else:
-            run_command(build_skill2_command(args), f"Skill 2 rerun after review cycle {attempt}", args.reasoning_model)
+            run_command(build_skill2_command(args, with_feedback=True), f"Skill 2 rerun after review cycle {attempt}", args.reasoning_model)
             record("skill2", "rerun_completed", str(args.plan))
 
     if not approved:
@@ -298,6 +329,11 @@ def collect_paths(args: argparse.Namespace) -> dict[str, str]:
         "pipeline_report": str(args.pipeline_report),
         "reasoning_model": str(args.reasoning_model or ""),
         "coding_model": str(args.coding_model or ""),
+        "game_type": args.game_type,
+        "transfer_mode": args.transfer_mode,
+        "allow_architecture_change": str(args.allow_architecture_change),
+        "max_output_tokens": str(args.max_output_tokens if args.max_output_tokens is not None else ""),
+        "request_timeout": str(args.request_timeout if args.request_timeout is not None else ""),
     }
 
 
@@ -318,6 +354,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--pipeline-report", type=Path, help="Output pipeline report path.")
 
     parser.add_argument("--provider", default="zgc", choices=["zgc"])
+    parser.add_argument("--game-type", default="auto", choices=["auto", "public_goods", "prisoners_dilemma", "trust_game"])
+    parser.add_argument("--transfer-mode", default="preserve_baseline", choices=["preserve_baseline", "extend_topology"])
+    parser.add_argument("--allow-architecture-change", action="store_true")
     parser.add_argument(
         "--reasoning-model",
         default=None,
@@ -332,6 +371,18 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-source-chars", type=int, default=12000)
     parser.add_argument("--max-paper-chars", type=int, default=12000)
     parser.add_argument("--max-baseline-chars", type=int, default=0)
+    parser.add_argument(
+        "--max-output-tokens",
+        type=int,
+        default=None,
+        help="ZGC response budget for Skill 2. Defaults to ZGC_MAX_TOKENS or 16384; 0 omits the client cap.",
+    )
+    parser.add_argument(
+        "--request-timeout",
+        type=float,
+        default=None,
+        help="Seconds per Skill 2 ZGC request. Defaults to ZGC_REQUEST_TIMEOUT or 600; 0 disables the client timeout.",
+    )
     parser.add_argument("--skill1-repair-attempts", type=int, default=1)
     parser.add_argument("--skill2-repair-attempts", type=int, default=1)
     parser.add_argument("--skill3-repair-attempts", type=int, default=1)

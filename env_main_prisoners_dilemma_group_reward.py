@@ -668,7 +668,7 @@ async def main():
     os.makedirs(main_result_dir, exist_ok=True)
 
     try:
-        from LLMAPI.wuwen import LLMAgent
+        from LLMAPI.zgc import LLMAgent
 
         llm_agent = LLMAgent(name="PrisonerDilemmaSidePaymentAgent")
     except ImportError:
@@ -691,7 +691,7 @@ async def main():
 
     rational_profile = build_reward_rational_profile("Partner")
 
-    NUM_EXPERIMENT_REPEATS = 1
+    NUM_EXPERIMENT_REPEATS = 3
     for experiment_index in range(NUM_EXPERIMENT_REPEATS):
         experiment_num = experiment_index + 1
         experiment_suffix = f"第{experiment_num}次"

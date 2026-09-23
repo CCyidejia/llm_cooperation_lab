@@ -1,0 +1,41 @@
+{
+  "schema_version": "code-implementation-report-v1",
+  "source_baseline": "env_main_trust_game_group.py",
+  "implementation_plan": "implementation_plans\\antisocial_personality_trust_plan.json",
+  "review_report": "review_reports\\antisocial_personality_trust_review.json",
+  "output_file": "generated\\env_main_trust_game_antisocial_personality.py",
+  "output_written": true,
+  "baseline_sha256_before": "3f6eace6b2923d02071e60681426fccb5ad5883c34f3ca1fcb5f0e5ff5376e66",
+  "output_sha256": "7ac0c887f2f1821ebdbd37c8ae67de8d974a338ab586de9ad099f049355f206c",
+  "implemented_change_ids": [
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5",
+    "C6",
+    "C7",
+    "C8",
+    "C9"
+  ],
+  "applied_edits": [
+    "C3: replace TrustGamePopulationAgent.act",
+    "C6: insert TrustGamePopulationAgent.act_punishment",
+    "C8: replace TrustGamePopulationAgent._build_partner_history_string",
+    "C4: replace TrustGamePopulationAgent._build_trustor_prompt",
+    "C5: replace TrustGamePopulationAgent._build_trustee_prompt",
+    "C2: replace TrustGamePopulationEnvironment.__init__",
+    "C7: replace TrustGamePopulationEnvironment.run_interaction",
+    "C1: replace function main",
+    "C9: replace function _update_experiment_statistics"
+  ],
+  "preserved_baseline_file": true,
+  "syntax_check": "pass",
+  "validation_status": "pass",
+  "validation_issues": [],
+  "manual_review_needed": [
+    "Protected constructor profile binding and _create_agents profile definitions are not edited.",
+    "T2 and T3 are present as non-executable treatment metadata only.",
+    "Punishment cap defaults to max(0, base Trustor payoff) unless configured."
+  ]
+}

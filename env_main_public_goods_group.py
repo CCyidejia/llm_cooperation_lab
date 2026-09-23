@@ -43,6 +43,62 @@ logging.basicConfig(
 RANDOM_SEED = 42
 random.seed(RANDOM_SEED)
 
+
+def parse_contribution_response(content: str, min_contribution: int = 0, max_contribution: int = 20):
+    """
+    Parse the single authoritative action from the model's structured response.
+
+    The contribution is intentionally stored in a named JSON field rather than
+    inferred from the first number in free-form text. This prevents numbers in
+    the explanation, or a later self-correction, from being recorded as the
+    action.
+    """
+    if not isinstance(content, str) or not content.strip():
+        raise ValueError("LLM returned an empty decision response")
+
+    response_text = content.strip()
+
+    # Tolerate a single JSON Markdown fence, but no surrounding prose.
+    fenced_match = re.fullmatch(
+        r"```(?:json)?\s*(\{.*\})\s*```",
+        response_text,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    if fenced_match:
+        response_text = fenced_match.group(1).strip()
+
+    try:
+        response = json.loads(response_text)
+    except json.JSONDecodeError as exc:
+        raise ValueError(f"Decision response is not valid JSON: {exc.msg}") from exc
+
+    required_fields = {"explanation", "final_contribution"}
+    if not isinstance(response, dict) or set(response) != required_fields:
+        raise ValueError(
+            "Decision response must contain exactly 'explanation' and "
+            "'final_contribution'"
+        )
+
+    contribution = response["final_contribution"]
+    if isinstance(contribution, bool) or not isinstance(contribution, int):
+        raise ValueError("final_contribution must be an integer")
+    if not min_contribution <= contribution <= max_contribution:
+        raise ValueError(
+            f"final_contribution must be between {min_contribution} "
+            f"and {max_contribution}"
+        )
+
+    explanation = response["explanation"]
+    if not isinstance(explanation, str) or not explanation.strip():
+        raise ValueError("explanation must be a non-empty string")
+
+    return contribution, explanation.strip()
+
+
+class LLMRetryExhaustedError(RuntimeError):
+    """Raised after all API-level LLM call attempts have failed."""
+
+
 class PublicGoodsAgent(AgentBase):
     """
     Agent for Public Goods Game that manages its own state,
@@ -56,6 +112,10 @@ class PublicGoodsAgent(AgentBase):
         self._llm = None
         self._env = None
         self._previous_choices = []  # Track previous choices for stability
+        # Only successfully parsed LLM outputs are eligible for API-failure
+        # fallback. Reused fallback decisions are deliberately not added here,
+        # so one outage cannot reinforce itself in later rounds.
+        self._valid_decision_history = []
         
         # 自主状态管理：代理独立维护交互历史和状态
         self._my_history = []        # Own contribution history
@@ -144,99 +204,51 @@ class PublicGoodsAgent(AgentBase):
         # Current round information
         current_round_true = len(self.history) + 1
         
-        # 2. Construct the Query - exactly matching baseline format
+        # 2. Construct the query with one unambiguous, machine-readable action.
         final_prompt = (
             f"{self._profile}\n"
             f"Current Game State:\n"
-            f"This is round {current_round_true}.\n"
+            f"This is round {current_round_true} of {total_rounds}.\n"
             f"You have {initial_endowment} coins.\n"
             f"Public fund contributions are multiplied by {public_pool_multiplier} and divided equally among all {num_agents} players.\n\n"
+            f"Your payoff this round is: {initial_endowment} - your contribution "
+            f"+ ({public_pool_multiplier} / {num_agents}) * "
+            f"(the total contribution of all players).\n\n"
             f"{histories_text}\n\n"
-            "***CRITICAL INSTRUCTION***: Based ONLY on the rules and history, determine your contribution amount.\n"
-            f"Your decision must be an integer between {self.min_contribution} and {self.max_contribution} (inclusive).\n"
-            "State the integer amount first, followed by a brief 1-2 sentence explanation."
+            "***CRITICAL INSTRUCTION***: Based ONLY on the rules and history, "
+            "determine your contribution amount before producing the response.\n"
+            f"Your final contribution must be an integer between "
+            f"{self.min_contribution} and {self.max_contribution} (inclusive).\n"
+            "Return exactly one JSON object and no Markdown or surrounding text. "
+            "Use this field order:\n"
+            '{"explanation":"brief 1-2 sentence explanation",'
+            '"final_contribution":0}\n'
+            "Replace 0 with your final decision. The final_contribution field is "
+            "your sole authoritative action. It must agree with the explanation; "
+            "do not revise it or state an alternative decision in the explanation."
         )
 
         system_message = ""  # Follow baseline pattern for consistency
 
         try:
+            # A transport/API failure is retried with the identical prompt up
+            # to five times. A successful but malformed response is not sent
+            # back to the model for repair, because a second decision call
+            # could change the model's behavioral choice.
             content = await self._call_llm_with_retry(
                 system_message=system_message,
-                user_prompt=final_prompt
+                user_prompt=final_prompt,
+                max_retries=5,
             )
-            
-            # 5. Parse Response
-            contribution = 0  # Default contribution (free-riding strategy)
-            explanation = "LLM call or parsing failed"
-            
-            # Try to find the contribution amount anywhere in the response
-            # First try: look for number with optional explanation after it
-            match = re.search(r'(\d+)\s*[-–—]?\s*(.*)$', content, re.DOTALL)
-            
-            if match:
-                # 提取贡献值
-                parsed_contribution = int(match.group(1))
-                
-                # 验证范围
-                if self.min_contribution <= parsed_contribution <= self.max_contribution:
-                    contribution = parsed_contribution
-                else:
-                    logging.warning(f"[{self.name}] Contribution value out of range: {parsed_contribution}, using default 0")
-                    contribution = 0
-                
-                # 提取解释
-                if match.group(2):
-                    explanation = match.group(2).strip()
-                else:
-                    # If no explanation found after the number, try to get more context from the response
-                    # Look for the line containing the number
-                    lines = content.split('\n')
-                    for line in lines:
-                        if str(contribution) in line:
-                            # Get the rest of the line after the number
-                            num_idx = line.find(str(contribution))
-                            if num_idx != -1:
-                                line_explanation = line[num_idx + len(str(contribution)):].strip()
-                                if line_explanation and not line_explanation.startswith((':', '-', '—')):
-                                    explanation = line_explanation
-                                    break
-                    if explanation == "LLM call or parsing failed":
-                        explanation = "No explanation provided"
-            else:
-                # 尝试在整个响应中搜索数字，作为最后的兜底方案
-                keyword_match = re.search(r'\b(\d+)\b', content)
-                if keyword_match:
-                    parsed_contribution = int(keyword_match.group(1))
-                    if self.min_contribution <= parsed_contribution <= self.max_contribution:
-                        contribution = parsed_contribution
-                    else:
-                        logging.warning(f"[{self.name}] Keyword matched value out of range: {parsed_contribution}, using default 0")
-                        contribution = 0
-                    
-                    # Try to extract better explanation from context
-                    num_start = keyword_match.start()
-                    num_end = keyword_match.end()
-                    
-                    # Try to get explanation from the same line
-                    lines = content.split('\n')
-                    for line in lines:
-                        if keyword_match.group(1) in line:
-                            # Get the rest of the line after the number
-                            line_explanation = line[line.find(keyword_match.group(1)) + len(keyword_match.group(1)):].strip()
-                            if line_explanation:
-                                explanation = line_explanation
-                                break
-                    
-                    if explanation == "LLM call or parsing failed":
-                        explanation = f"Extracted contribution: {contribution}"
-                else:
-                    # 最终默认策略：选择最小贡献量0
-                    raise ValueError(f"Failed to parse valid contribution, content:\n{content[:200]}")
-            
+            contribution, explanation = parse_contribution_response(
+                content,
+                min_contribution=self.min_contribution,
+                max_contribution=self.max_contribution,
+            )
+            self._valid_decision_history.append((contribution, explanation))
         except Exception as e:
             logging.error(f"[{self.name}] LLM Interaction failed: {e}")
-            contribution = 0
-            explanation = f"[CRITICAL FAILURE] {type(e).__name__} - {str(e)}, using default selection: 0"
+            contribution, explanation = self._fallback_to_modal_previous_output(e)
         
         # Add current choice to history for stability
         self._previous_choices.append(contribution)
@@ -271,8 +283,59 @@ class PublicGoodsAgent(AgentBase):
         # 3. Finally use random choice as last resort
         logging.info(f"[{self.name}] Using random choice as fallback")
         return random.randint(self.min_contribution, self.max_contribution)
+
+    def _fallback_to_modal_previous_output(self, error: Exception):
+        """
+        Reuse the modal contribution from this agent's prior valid LLM outputs.
+
+        Explanations are normally unique free text, so after selecting the
+        modal contribution we reuse its most recent corresponding explanation.
+        Ties between contribution counts are also resolved by recency.
+        """
+        error_summary = f"{type(error).__name__}: {error}"
+
+        if not self._valid_decision_history:
+            logging.warning(
+                f"[{self.name}] No prior valid LLM output is available; "
+                "falling back to contribution 0"
+            )
+            return (
+                0,
+                "[FALLBACK_NO_VALID_HISTORY] No prior valid LLM output was "
+                f"available after decision failure ({error_summary}); using 0.",
+            )
+
+        contribution_counts = Counter(
+            contribution
+            for contribution, _ in self._valid_decision_history
+        )
+        highest_count = max(contribution_counts.values())
+        modal_contributions = {
+            contribution
+            for contribution, count in contribution_counts.items()
+            if count == highest_count
+        }
+
+        # The latest valid output wins count ties and supplies the explanation.
+        for contribution, previous_explanation in reversed(
+            self._valid_decision_history
+        ):
+            if contribution in modal_contributions:
+                logging.warning(
+                    f"[{self.name}] Reusing modal prior contribution "
+                    f"{contribution} after decision failure"
+                )
+                return (
+                    contribution,
+                    "[FALLBACK_MODAL_PREVIOUS_OUTPUT] "
+                    f"{previous_explanation} "
+                    f"(Reused after decision failure: {error_summary})",
+                )
+
+        raise RuntimeError("Unable to select a modal previous LLM output")
     
     async def _call_llm_with_retry(self, system_message: str, user_prompt: str, max_retries: int = 5, retry_delay: int = 2) -> str:
+        last_error = None
         for attempt in range(max_retries):
             try:
                 # Call LLM using asyncio.to_thread to handle synchronous LLM calls
@@ -281,16 +344,19 @@ class PublicGoodsAgent(AgentBase):
                     system_message,
                     user_prompt
                 )
-                if generated_text:
-                    return generated_text
-                else:
+                if not isinstance(generated_text, str) or not generated_text.strip():
                     raise ValueError("LLM returned empty string")
+                if generated_text.lstrip().startswith("API Call Failed"):
+                    raise RuntimeError(generated_text.strip())
+                return generated_text
             except Exception as e:
+                last_error = e
                 logging.error(f"[{self.name}] LLM Attempt {attempt + 1} failed: {str(e)}")
                 if attempt < max_retries - 1:
                     await asyncio.sleep(retry_delay)
-                else:
-                    raise
+        raise LLMRetryExhaustedError(
+            f"LLM API failed after {max_retries} attempts: {last_error}"
+        ) from last_error
 
 class PublicGoodsEnvironment:
     """

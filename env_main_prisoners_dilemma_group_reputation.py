@@ -794,7 +794,7 @@ async def main():
             )
     print(f"LLM concurrent cap: {llm_max_concurrent} (env REPUTATION_LLM_MAX_CONCURRENT)")
 
-    NUM_EXPERIMENT_REPEATS = 1
+    NUM_EXPERIMENT_REPEATS = 3
     for experiment_index in range(NUM_EXPERIMENT_REPEATS):
         experiment_num = experiment_index + 1
         experiment_suffix = f"第{experiment_num}次"

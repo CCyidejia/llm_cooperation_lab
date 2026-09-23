@@ -194,26 +194,25 @@ class PrisonersDilemmaAgent(AgentBase):
         Make decision using LLM based on history and game rules
         With Retry Mechanism and Error Handling
         """
-        # 构建历史记录字符串
-        history_str = "History:\n"
-        for i, (my_action, opponent_action) in enumerate(zip(self._my_history, self._partner_history)):
-            formatted_my_action = my_action.capitalize()
-            formatted_opponent_action = opponent_action.capitalize()
-            history_str += f"Round {i+1}: Your choice={formatted_my_action}, {partner_name}'s choice={formatted_opponent_action}\n"
-        
-        if partner_id in self._agent_memory:
+        # History visibility is partner-specific. Global histories cannot be labelled as
+        # if they belonged to the current partner; MEMORY_SIZE=0 means no history at all.
+        history_str = "History: No previous interactions with this partner are visible.\n"
+        if memory_size > 0 and partner_id in self._agent_memory:
             agent_memory = self._agent_memory[partner_id]
-            history_str += f"\nEnhanced Memory with {partner_name}:\n"
-            history_str += f"Interaction count: {agent_memory['interaction_count']}\n"
-            if agent_memory['interaction_count'] > 0:
-                history_str += "All interactions:\n"
-                for i in range(agent_memory['interaction_count']):
-                    round_num = i + 1
-                    my_choice = agent_memory['my_choices'][i].capitalize()
-                    their_choice = agent_memory['their_choices'][i].capitalize()
-                    my_payoff = agent_memory['my_payoffs'][i]
-                    their_payoff = agent_memory['their_payoffs'][i]
-                    history_str += f"  Memory Round {round_num}: Your choice={my_choice}, {partner_name}'s choice={their_choice}, Your payoff={my_payoff}, {partner_name}'s payoff={their_payoff}\n"
+            visible_count = min(memory_size, agent_memory["interaction_count"])
+            if visible_count > 0:
+                history_str = f"History with {partner_name} (last {visible_count} interactions):\n"
+                start = agent_memory["interaction_count"] - visible_count
+                for i in range(start, agent_memory["interaction_count"]):
+                    my_choice = agent_memory["my_choices"][i].capitalize()
+                    their_choice = agent_memory["their_choices"][i].capitalize()
+                    my_payoff = agent_memory["my_payoffs"][i]
+                    their_payoff = agent_memory["their_payoffs"][i]
+                    history_str += (
+                        f"  Interaction {i + 1}: Your choice={my_choice}, "
+                        f"{partner_name}'s choice={their_choice}, Your payoff={my_payoff}, "
+                        f"{partner_name}'s payoff={their_payoff}\n"
+                    )
         
         # --- 重试参数配置 ---
         max_retries = 5           # 最大重试次数

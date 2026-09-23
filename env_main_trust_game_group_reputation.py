@@ -27,7 +27,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspa
 # V2 framework core components import
 from llm_cooperation_lab.agent.base import AgentBase, AgentLLM
 from dotenv import load_dotenv
-from LLMAPI.wuwen import LLMAgent
+from LLMAPI.zgc import LLMAgent
 
 # 加载环境变量
 load_dotenv()
@@ -980,7 +980,7 @@ async def main():
             experiment_name = f"TrustGame_{datetime.now().strftime('%m%d%H%M')}"
         
         # 可配置的实验参数
-        NUM_GAMES = 1  # independent full runs per script execution (was 3)
+        NUM_GAMES = 3  # independent full runs per script execution (was 3)
         ROUNDS_PER_GAME = 30  # 每局游戏轮数
         
         # 更新配置

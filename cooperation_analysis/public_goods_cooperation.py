@@ -10,6 +10,7 @@
 - 合作率 = 贡献金额 / 最大贡献金额（20）
 - 每轮合作率 = 该轮所有玩家合作分数的平均值
 - 总体合作率 = (实验1合作率 + 实验2合作率 + 实验3合作率) / 3
+- 标准差 = 三次实验总体合作率的样本标准差（ddof=1）
 """
 
 import json
@@ -21,7 +22,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 
 # 定义数据目录路径
 # 这里使用指定的llama3-8b模型结果目录
-data_dir = r"D:\常用\agentsociety2\result_public_goods_group_altruistic_punishment\result_071001_deepseek-v4-pro-three"
+data_dir = r"D:\常用\agentsociety2\result_public_goods_group\result_090801_glm-5.1"
 
 # 定义实验配置
 NUM_ROUNDS_PER_GAME = 30  # 每个实验的轮数
@@ -146,10 +147,35 @@ if round_cooperation_rates:
 # 计算总体平均合作率（简单平均：各实验合作率相加再除以实验次数）
 if experiment_cooperation_rates:
     overall_cooperation_rate = np.mean(experiment_cooperation_rates)
-    print(f"\n{NUM_ROUNDS_PER_GAME}轮的平均合作率（{num_games}次实验平均）: {overall_cooperation_rate:.2%}")
-    print(f"各实验合作率:")
+    experiment_count = len(experiment_cooperation_rates)
+    print("\n各实验合作率:")
     for i, rate in enumerate(experiment_cooperation_rates, 1):
         print(f"  实验{i}: {rate:.2%}")
+    print(
+        f"{NUM_ROUNDS_PER_GAME}轮的平均合作率"
+        f"（{experiment_count}次实验平均）: "
+        f"{overall_cooperation_rate:.2%}"
+    )
+    if experiment_count >= 2:
+        cooperation_std = np.std(
+            experiment_cooperation_rates,
+            ddof=1,
+        )
+        print(
+            "三次实验合作率的样本标准差（ddof=1）: "
+            f"{cooperation_std:.2%}"
+        )
+        print(
+            "合作率（Mean ± SD）: "
+            f"{overall_cooperation_rate:.2%} ± {cooperation_std:.2%}"
+        )
+    else:
+        print("警告: 至少需要2次有效实验才能计算合作率的样本标准差。")
+    if experiment_count != 3:
+        print(
+            f"警告: 预期3次实验，实际得到{experiment_count}次；"
+            "当前均值和标准差基于实际有效实验计算。"
+        )
 else:
     print("\n警告: 无法计算总体平均合作率，因为没有数据。")
 

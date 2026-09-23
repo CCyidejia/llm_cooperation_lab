@@ -1,0 +1,3002 @@
+[
+  {
+    "interaction": 1,
+    "pair_ids": [
+      20,
+      3
+    ],
+    "pair_names": [
+      "Agent_20",
+      "Agent_3"
+    ],
+    "timestamp": "2026-07-24T22:30:42.453473",
+    "detail": {
+      "agent1_id": 20,
+      "agent1_name": "Agent_20",
+      "agent2_id": 3,
+      "agent2_name": "Agent_3",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences, I analyze the game as a simultaneous move game. Against a rational opponent, I consider best responses: if they choose Yes, I prefer No (5 > 3); if they choose No, I prefer No (1 > 0 and 1 > -1); if they choose Punish, I prefer No (-2 > -4 and -2 > -4). No weakly dominates both other actions, making it the rational choice in this unrepeated setting.",
+      "explanation2": "With no prior history to establish trust or reciprocity, the No (Defect/Betray) action yields the highest expected payoff regardless of the opponent's choice: 5 points if they choose Yes, 1 point if they also choose No, and only -2 points if they choose Punish, making it the dominant strategy in this one-shot interaction.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 2,
+    "pair_ids": [
+      0,
+      23
+    ],
+    "pair_names": [
+      "Agent_0",
+      "Agent_23"
+    ],
+    "timestamp": "2026-07-24T22:30:52.899952",
+    "detail": {
+      "agent1_id": 0,
+      "agent1_name": "Agent_0",
+      "agent2_id": 23,
+      "agent2_name": "Agent_23",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences, and choosing No yields the highest payoff regardless of my opponent's choice (5 if they choose Yes, 1 if they choose No), defecting dominates both other options when facing a rational opponent who also seeks to maximize their own payoff.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and the opponent knows my choice, I need to consider what a rational opponent will do; No weakly dominates Yes (5>3 when opponent chooses Yes, 1>0 when opponent chooses No, and -2>-4 when opponent chooses Punish), and against a rational opponent who also reasons this way, mutual No yields 1 point each, which is the Nash equilibrium of the reduced Yes/No game; Punish is risky and costly with no strategic benefit in a single round.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 3,
+    "pair_ids": [
+      8,
+      7
+    ],
+    "pair_names": [
+      "Agent_8",
+      "Agent_7"
+    ],
+    "timestamp": "2026-07-24T22:31:03.170955",
+    "detail": {
+      "agent1_id": 8,
+      "agent1_name": "Agent_8",
+      "agent2_id": 7,
+      "agent2_name": "Agent_7",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior history to establish trust, choosing No (Defect) maximizes my expected payoff since if the opponent chooses Yes I get 5 points, if they choose No I get 1 point, and if they choose Punish I only lose 2 points—whereas choosing Yes risks getting 0 or -4, and choosing Punish risks -1 or -4 against a rational opponent who also seeks to maximize their own payoff and would likely defect.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and my opponent knows my choices, I need to consider what a rational opponent would do; against any of my opponent's possible choices, No yields either 5 (if they choose Yes), 1 (if they choose No), or -2 (if they choose Punish), while Yes yields 3, 0, or -4, and Punish yields -1, -1, or -4. No is the unique best response to Yes and No, and only slightly worse than Punish against Punish, making it the dominant strategy in terms of maximizing expected payoff against a rational player who will also avoid Punish due to its mutual destruction.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 4,
+    "pair_ids": [
+      7,
+      4
+    ],
+    "pair_names": [
+      "Agent_7",
+      "Agent_4"
+    ],
+    "timestamp": "2026-07-24T22:31:15.124212",
+    "detail": {
+      "agent1_id": 7,
+      "agent1_name": "Agent_7",
+      "agent2_id": 4,
+      "agent2_name": "Agent_4",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences and no history to establish cooperation, choosing No (Defect) yields the highest guaranteed payoff regardless of my opponent's choice: I get 5 if they choose Yes, 1 if they choose No, and -2 if they choose Punish, which dominates the alternatives when considering that a rational opponent will also avoid the dominated options of Yes and Punish in this unrepeated game.",
+      "explanation2": "With no prior history to establish trust or reciprocity, choosing No (Defect) yields the highest expected payoff: if my opponent chooses Yes I get 5, if they choose No I get 1, and if they choose Punish I only lose 2—whereas choosing Yes risks 0 or -4, and Punish risks -1 or -4, making No the dominant strategy in this one-shot interaction.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 5,
+    "pair_ids": [
+      23,
+      3
+    ],
+    "pair_names": [
+      "Agent_23",
+      "Agent_3"
+    ],
+    "timestamp": "2026-07-24T22:31:25.288971",
+    "detail": {
+      "agent1_id": 23,
+      "agent1_name": "Agent_23",
+      "agent2_id": 3,
+      "agent2_name": "Agent_3",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future rounds and no reputation effects, the standard game-theoretic analysis applies: No is strictly dominant against Yes (5 > 3 if opponent plays Yes, 1 > 0 if opponent plays No), and while Punish creates some complex interactions, No yields higher payoffs against all opponent strategies (5 vs 3 against Yes, 1 vs -4 against No, -2 vs -1 against Punish) except when facing Punish where -2 < -1, but since I cannot coordinate with my opponent and No is the unique Nash equilibrium in the 2x2 Yes/No subgame, rational opponents will also play No, making mutual defection the equilibrium outcome.",
+      "explanation2": "With no prior interactions and no ability to establish cooperation, choosing No (Defect/Betray) maximizes my expected payoff since it yields the highest individual payoff (5) if the opponent cooperates and avoids the worst outcomes (like -4 from mutual Punish or being exploited if I choose Yes while they choose No), while also dominating Yes and Punish in a one-shot game where mutual defection (1,1) still outperforms mutual punishment (-4,-4) or being punished.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 6,
+    "pair_ids": [
+      21,
+      23
+    ],
+    "pair_names": [
+      "Agent_21",
+      "Agent_23"
+    ],
+    "timestamp": "2026-07-24T22:31:41.033271",
+    "detail": {
+      "agent1_id": 21,
+      "agent1_name": "Agent_21",
+      "agent2_id": 23,
+      "agent2_name": "Agent_23",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior history to establish trust or punishment threats, choosing No (Defect) yields the highest expected payoff against a rational opponent who might choose Yes (5 points), and still secures 1 point if they also choose No, while avoiding the risks of negative payoffs from punishment scenarios.",
+      "explanation2": "With no prior history to establish trust or reciprocity, the dominant strategy is to defect, as No yields the highest expected payoff (either 5 if opponent cooperates or 1 if they also defect) regardless of the opponent's choice, while avoiding the risk of being exploited or suffering losses from punishment scenarios.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 7,
+    "pair_ids": [
+      17,
+      2
+    ],
+    "pair_names": [
+      "Agent_17",
+      "Agent_2"
+    ],
+    "timestamp": "2026-07-24T22:31:48.194269",
+    "detail": {
+      "agent1_id": 17,
+      "agent1_name": "Agent_17",
+      "agent2_id": 2,
+      "agent2_name": "Agent_2",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences and my opponent knows my choice, I must consider what a rational opponent would do; against any choice by the opponent, No (Defect) yields the highest or equal payoff compared to Yes or Punish when I analyze the best responses, making No the dominant strategy in this one-shot game.",
+      "explanation2": "In a one-shot interaction with no prior history, choosing No (Defect/Betray) yields the highest expected payoff regardless of the opponent's choice: it dominates Yes (since No gives 5>3 when opponent plays Yes and 1>0 when opponent plays No) and is safer than Punish (since No gives 1>-1 when opponent plays No and 5>3 when opponent plays Yes), while Punish risks mutual destruction (-4) or losses against a rational opponent who also seeks to maximize payoff.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 8,
+    "pair_ids": [
+      18,
+      13
+    ],
+    "pair_names": [
+      "Agent_18",
+      "Agent_13"
+    ],
+    "timestamp": "2026-07-24T22:32:02.576071",
+    "detail": {
+      "agent1_id": 18,
+      "agent1_name": "Agent_18",
+      "agent2_id": 13,
+      "agent2_name": "Agent_13",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior history to establish trust or reciprocity, and since No yields the highest individual payoff (5) when the opponent chooses Yes and still gives 1 when both choose No, while Punish is risky and costly, the rational choice is No to maximize expected benefit in a one-shot interaction.",
+      "explanation2": "In a one-shot interaction with no previous history, choosing No (Defect) yields the highest expected payoff regardless of the opponent's choice: it guarantees at least 1 point (if opponent also chooses No) and up to 5 points (if opponent chooses Yes), while avoiding the risks of negative payoffs from Punish or being exploited by choosing Yes.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 9,
+    "pair_ids": [
+      1,
+      0
+    ],
+    "pair_names": [
+      "Agent_1",
+      "Agent_0"
+    ],
+    "timestamp": "2026-07-24T22:32:14.681749",
+    "detail": {
+      "agent1_id": 1,
+      "agent1_name": "Agent_1",
+      "agent2_id": 0,
+      "agent2_name": "Agent_0",
+      "choice1": "Punish",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences and I know my opponent knows my choices, I need to analyze what a rational opponent will do given mutual knowledge; however, since I must choose without knowing their actual choice and they face the same dilemma, I should consider that choosing Punish dominates Yes (3 or -1 vs -4 or 0) and while No yields higher payoffs against Yes or No, Punish provides the best worst-case protection and exploits the information structure where if they know I choose Punish, they might prefer Yes, giving me 3.",
+      "explanation2": "With no prior interaction history and mutual knowledge of choices, I analyze this as a one-shot game: No strictly dominates Yes (5>3 if opponent plays Yes, 1>0 if opponent plays No), and against Punish, No yields -2 which is better than Yes's -4 or Punish's -4; thus No is the unique best response to any mixed strategy and the dominant rational choice.",
+      "payoff1": -1,
+      "payoff2": -2,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 10,
+    "pair_ids": [
+      2,
+      6
+    ],
+    "pair_names": [
+      "Agent_2",
+      "Agent_6"
+    ],
+    "timestamp": "2026-07-24T22:32:27.083210",
+    "detail": {
+      "agent1_id": 2,
+      "agent1_name": "Agent_2",
+      "agent2_id": 6,
+      "agent2_name": "Agent_6",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences, I should analyze this as a simultaneous move game. If my opponent chooses Yes, I get 5 from No vs 3 from Yes. If my opponent chooses No, I get 1 from No vs 0 from Yes. If my opponent chooses Punish, I get -2 from No vs -4 from Yes. No strictly dominates Yes, and while Punish could theoretically be best against certain opponent strategies, No is the safest choice that guarantees at least 1 point and maximizes my maximum payoff, making it the rational choice under standard game theory assumptions.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and my opponent knows my choice, I must consider what a rational opponent will do; against any fixed opponent choice, No yields the highest or equal payoff (5 if they choose Yes, 1 if they choose No, -2 if they choose Punish), and since choosing No dominates Yes and Punish is only rational if I could deter future defection (impossible here with no repeated interactions), No is the strict best response to a rational opponent who will also choose No to avoid being exploited.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 11,
+    "pair_ids": [
+      7,
+      16
+    ],
+    "pair_names": [
+      "Agent_7",
+      "Agent_16"
+    ],
+    "timestamp": "2026-07-24T22:32:40.827303",
+    "detail": {
+      "agent1_id": 7,
+      "agent1_name": "Agent_7",
+      "agent2_id": 16,
+      "agent2_name": "Agent_16",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no prior history and no future consequences, I analyze this as a simultaneous-move game where I must maximize my payoff given rational opponent behavior. No dominates Yes (5>3 when opponent plays Yes, 1>0 when opponent plays No), and against Punish, No yields -2 while Punish yields -1 and Yes yields -4—but since No is the dominant strategy in the Yes/No subgame and the opponent has no incentive to play Punish (as Punish is never better than No for any opponent action), the rational equilibrium is mutual defection at (No, No).",
+      "explanation2": "Since this is a one-shot game with no future interactions to enforce cooperation through punishment, the dominant strategy is to defect (No), as it yields the highest payoff (5) when the opponent cooperates and still gets 1 when both defect, both better than cooperating outcomes of 3 or 0.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 12,
+    "pair_ids": [
+      19,
+      0
+    ],
+    "pair_names": [
+      "Agent_19",
+      "Agent_0"
+    ],
+    "timestamp": "2026-07-24T22:32:51.368674",
+    "detail": {
+      "agent1_id": 19,
+      "agent1_name": "Agent_19",
+      "agent2_id": 0,
+      "agent2_name": "Agent_0",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot game with no future interactions, and I know my opponent knows my choices (full information), I need to analyze the strategic incentives. Looking at the payoff structure, choosing No (Defect) gives me 5 against Yes, 1 against No, and -2 against Punish. Choosing Yes gives me 3 against Yes, 0 against No, and -4 against Punish. Choosing Punish gives me 3 against Yes, -1 against No, and -4 against Punish. No dominates Yes (5>3, 1>0, -2>-4), and while Punish beats No against Yes (3>5? No, 3<5), No is the best response to both No and Punish. In a one-shot game with rational opponents, mutual defection (No, No) yielding 1 each is the Nash equilibrium, as neither can profitably deviate unilaterally.",
+      "explanation2": "With no history to establish trust or cooperation, No (Defect/Betray) is the dominant strategy: it yields the highest payoff against Yes (5 points) and a positive payoff against No (1 point), while Punish is risky and costly without knowing the opponent's behavior.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 13,
+    "pair_ids": [
+      17,
+      6
+    ],
+    "pair_names": [
+      "Agent_17",
+      "Agent_6"
+    ],
+    "timestamp": "2026-07-24T22:33:04.936753",
+    "detail": {
+      "agent1_id": 17,
+      "agent1_name": "Agent_17",
+      "agent2_id": 6,
+      "agent2_name": "Agent_6",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Without any prior history to establish trust or punishment threats, the No strategy dominates: it yields the highest payoff against Yes (5 points), avoids the worst outcomes from mutual Punish (-4 each), and still earns 1 point even if the opponent also chooses No, making it the safest choice in a one-shot interaction with an unknown partner.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and we both know each other's choices, I analyze that No (Defect) is my best response regardless of what my opponent does: if they play Yes, No gives me 5 vs 3; if they play No, No gives me 1 vs -2 (if I played Punish) or 0 (if I played Yes); if they play Punish, No gives me -2 vs -4 (if I played Yes) or -1 (if I played Punish). No is either the best or tied for best response in every scenario, making it the strictly dominant strategy.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 14,
+    "pair_ids": [
+      22,
+      20
+    ],
+    "pair_names": [
+      "Agent_22",
+      "Agent_20"
+    ],
+    "timestamp": "2026-07-24T22:33:16.547537",
+    "detail": {
+      "agent1_id": 22,
+      "agent1_name": "Agent_22",
+      "agent2_id": 20,
+      "agent2_name": "Agent_20",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no history and no way to enforce future cooperation, this is a one-shot game where No (Defect) is the strictly dominant strategy: it yields 5 against Yes, 1 against No, and -2 against Punish, all of which are better than the corresponding payoffs from Yes (3, 0, -4) or Punish (3, -1, -4), and since both players are rational and know this, mutual defection at 1 point each is the Nash equilibrium.",
+      "explanation2": "With no prior interaction to establish trust, choosing No (Defect/Betray) is the dominant strategy: it yields the highest payoff against Yes (5 points), avoids the worst outcomes from Punish (-2 vs -4), and secures a safe 1 point against another No, making it the rational choice under one-shot uncertainty.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 15,
+    "pair_ids": [
+      22,
+      17
+    ],
+    "pair_names": [
+      "Agent_22",
+      "Agent_17"
+    ],
+    "timestamp": "2026-07-24T22:33:26.661493",
+    "detail": {
+      "agent1_id": 22,
+      "agent1_name": "Agent_22",
+      "agent2_id": 17,
+      "agent2_name": "Agent_17",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Without any history to establish trust or punishment threats, the Nash equilibrium in this one-shot game is mutual defection since No dominates Yes (5>3 when opponent cooperates, 1>0 when opponent defects) and choosing No avoids the worst-case -4 payoff from being punished while also preventing the -2 or -1 losses associated with Punish.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and we are both rational, I expect my opponent to also choose No (the Nash equilibrium), giving me 1 point rather than the 0 I would get from choosing Yes against No or the mutual losses from involving Punish.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 16,
+    "pair_ids": [
+      13,
+      7
+    ],
+    "pair_names": [
+      "Agent_13",
+      "Agent_7"
+    ],
+    "timestamp": "2026-07-24T22:33:35.865931",
+    "detail": {
+      "agent1_id": 13,
+      "agent1_name": "Agent_13",
+      "agent2_id": 7,
+      "agent2_name": "Agent_7",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior history to establish trust or punishment patterns, choosing No (Defect) yields the highest expected payoff: if the opponent chooses Yes, I get 5 points; if they choose No, I get 1 point; if they choose Punish, I only lose 2 points—compared to choosing Yes which risks 0 or -4, or Punish which risks -1 or -4, making No the dominant strategy in this one-shot interaction.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences, and No yields the highest payoff (5) when the opponent chooses Yes while only yielding 1 if both choose No—compared to Yes which yields 0 against No and Punish which is costly—defecting (No) is the dominant strategy in this unrepeated game.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 17,
+    "pair_ids": [
+      14,
+      18
+    ],
+    "pair_names": [
+      "Agent_14",
+      "Agent_18"
+    ],
+    "timestamp": "2026-07-24T22:33:44.919524",
+    "detail": {
+      "agent1_id": 14,
+      "agent1_name": "Agent_14",
+      "agent2_id": 18,
+      "agent2_name": "Agent_18",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior history, I must analyze this as a one-shot game. No strictly dominates Yes (5>3 when opponent plays Yes, 1>0 when opponent plays No), and against Punish, No yields -2 while Yes yields -4, so No is better there too. While Punish could theoretically be used to deter, the Nash equilibrium in this symmetric game is mutual defection (No, No) yielding 1 point each, which is the rational choice when trust cannot be established.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and my opponent knows my choice, I need to consider what a rational opponent would do; against any fixed opponent choice, No either yields the highest or ties for the highest payoff (5 if they choose Yes, 1 if they choose No, -2 if they choose Punish), and since both players are symmetric and rational, the Nash equilibrium is both choosing No, which is better for me than the mutual Punish outcome and avoids the risk of being exploited by Yes.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 18,
+    "pair_ids": [
+      8,
+      0
+    ],
+    "pair_names": [
+      "Agent_8",
+      "Agent_0"
+    ],
+    "timestamp": "2026-07-24T22:33:56.230834",
+    "detail": {
+      "agent1_id": 8,
+      "agent1_name": "Agent_8",
+      "agent2_id": 0,
+      "agent2_name": "Agent_0",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior history to establish trust or reciprocity, the Nash equilibrium is to choose No, which guarantees at least 1 point and avoids the risk of being exploited (getting 0 or -4) if I chose Yes, or the cost of punishment if mutual punishment leads to -4 each; No is the dominant strategy in a one-shot interaction.",
+      "explanation2": "Without any prior history to establish trust or punishment threats, I analyze this as a one-shot game where No (Defect/Betray) is the dominant strategy: against Yes I get 5 > 3, against No I get 1 = 1, and against Punish I get -2 > -4, so No maximizes my minimum payoff and is the rational choice when future reciprocity is unknown.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 19,
+    "pair_ids": [
+      5,
+      22
+    ],
+    "pair_names": [
+      "Agent_5",
+      "Agent_22"
+    ],
+    "timestamp": "2026-07-24T22:34:05.404460",
+    "detail": {
+      "agent1_id": 5,
+      "agent1_name": "Agent_5",
+      "agent2_id": 22,
+      "agent2_name": "Agent_22",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "In a one-shot game with no future interactions, choosing No (Defect) yields the highest expected payoff regardless of the opponent's action: 5 if they choose Yes, 1 if they choose No, and -2 if they choose Punish, all of which are better than or equal to the alternatives when comparing best responses, making No the dominant strategy.",
+      "explanation2": "选择了 'No'，但未在 XML 中提供解释",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 20,
+    "pair_ids": [
+      13,
+      10
+    ],
+    "pair_names": [
+      "Agent_13",
+      "Agent_10"
+    ],
+    "timestamp": "2026-07-24T22:34:14.617813",
+    "detail": {
+      "agent1_id": 13,
+      "agent1_name": "Agent_13",
+      "agent2_id": 10,
+      "agent2_name": "Agent_10",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior history to establish trust or punishment threats, the rational choice against an unknown opponent is to defect, as No dominates Yes (5>3 when opponent cooperates, 1>0 when opponent defects) and avoids the risk of being exploited while maximizing expected payoff in a one-shot interaction.",
+      "explanation2": "Since this is a one-shot game with no future interactions, my opponent has no incentive to cooperate, and choosing No (Defect) yields the highest guaranteed payoff regardless of their choice: 5 if they choose Yes, 1 if they choose No, and -2 if they choose Punish, compared to lower or riskier payoffs from other actions.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 21,
+    "pair_ids": [
+      8,
+      4
+    ],
+    "pair_names": [
+      "Agent_8",
+      "Agent_4"
+    ],
+    "timestamp": "2026-07-24T22:34:23.848628",
+    "detail": {
+      "agent1_id": 8,
+      "agent1_name": "Agent_8",
+      "agent2_id": 4,
+      "agent2_name": "Agent_4",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences, my opponent faces the same incentives as me, and No (Defect/Betray) yields the highest payoff (5 points) if they choose Yes and avoids the worst outcomes if they choose Punish, making it the dominant strategy for maximizing my expected benefit.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and no way to enforce cooperation, choosing No (Defect) yields the highest expected payoff regardless of my opponent's choice: 5 if they choose Yes, 1 if they choose No, or -2 if they choose Punish, which dominates the outcomes for Yes and Punish in expected terms.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 22,
+    "pair_ids": [
+      6,
+      10
+    ],
+    "pair_names": [
+      "Agent_6",
+      "Agent_10"
+    ],
+    "timestamp": "2026-07-24T22:34:33.901318",
+    "detail": {
+      "agent1_id": 6,
+      "agent1_name": "Agent_6",
+      "agent2_id": 10,
+      "agent2_name": "Agent_10",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior history, this is a one-shot interaction where mutual defection is the Nash equilibrium: No yields 5 against Yes, 1 against No, and -2 against Punish, while Yes yields at most 3 and Punish yields at most 3 while risking -4, so No is the uniquely best response to the rational play of No.",
+      "explanation2": "With no prior history to establish trust or punishment norms, I analyze this as a one-shot game where No is the dominant strategy: choosing No yields 5 against Yes, 1 against No, and -2 against Punish, which strictly dominates Yes (which yields 3, 0, -4 respectively) and also outperforms or matches Punish in expectation since a rational opponent would similarly avoid the mutually destructive Punish option.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 23,
+    "pair_ids": [
+      3,
+      2
+    ],
+    "pair_names": [
+      "Agent_3",
+      "Agent_2"
+    ],
+    "timestamp": "2026-07-24T22:34:46.029871",
+    "detail": {
+      "agent1_id": 3,
+      "agent1_name": "Agent_3",
+      "agent2_id": 2,
+      "agent2_name": "Agent_2",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences, I should analyze this as a simultaneous-move game. Looking at my payoffs: if opponent chooses Yes, I get 3 (Yes), 5 (No), or 3 (Punish)—so No is best; if opponent chooses No, I get 0 (Yes), 1 (No), or -1 (Punish)—so No is best; if opponent chooses Punish, I get -4 (Yes), -2 (No), or -4 (Punish)—so No is best. Thus No strictly dominates my other strategies regardless of what the opponent does, making it the rational choice to maximize my expected payoff.",
+      "explanation2": "With no prior history and simultaneous choices, I cannot rely on cooperation being reciprocated; choosing No gives me the highest guaranteed minimum payoff (1 point if opponent also chooses No, 5 if they choose Yes) and avoids the risk of being exploited at 0 points or punished at -4 or -2, while Yes risks 0 or -4 and Punish risks -1 or -4 against a rational self-interested opponent.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 24,
+    "pair_ids": [
+      12,
+      3
+    ],
+    "pair_names": [
+      "Agent_12",
+      "Agent_3"
+    ],
+    "timestamp": "2026-07-24T22:34:57.908532",
+    "detail": {
+      "agent1_id": 12,
+      "agent1_name": "Agent_12",
+      "agent2_id": 3,
+      "agent2_name": "Agent_3",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Without any prior history to establish trust or punishment threats, No strictly dominates Yes (5>3 if partner chooses Yes, 1>0 if partner chooses No), and No also yields higher payoffs than Punish against all opponent strategies (0>-4, 1>-1, 5>3 against Yes/No/Punish respectively), making No the rational choice.",
+      "explanation2": "Without any history to establish trust or punishment threats, No is the dominant strategy since it yields 5 points against Yes (better than 3), 1 point against No (better than 0), and -2 against Punish (better than -4 for Yes), making it the safest choice in a one-shot interaction with an unknown partner.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 25,
+    "pair_ids": [
+      11,
+      19
+    ],
+    "pair_names": [
+      "Agent_11",
+      "Agent_19"
+    ],
+    "timestamp": "2026-07-24T22:35:08.400739",
+    "detail": {
+      "agent1_id": 11,
+      "agent1_name": "Agent_11",
+      "agent2_id": 19,
+      "agent2_name": "Agent_19",
+      "choice1": "No",
+      "choice2": "Yes",
+      "explanation1": "Since this is a one-shot interaction with no future consequences, I should analyze this as a single-shot game. Looking at my payoffs: if I choose Yes, my outcomes are 3 (vs Yes), 0 (vs No), or -4 (vs Punish). If I choose No, my outcomes are 5 (vs Yes), 1 (vs No), or -2 (vs Punish). If I choose Punish, my outcomes are 3 (vs Yes), -1 (vs No), or -4 (vs Punish). No weakly dominates Yes for me (5>3, 1>0, -2>-4), and against a rational opponent who also sees No as dominant, mutual No yields 1 point each, which is better than the risky Punish option. Therefore, No is my best choice.",
+      "explanation2": "Since this is a one-shot interaction with no history, I should analyze the Nash equilibrium and expected payoffs; against a rational opponent, Yes dominates Punish (since Punish yields -4, -1, or -4 vs Yes's 3, 0, -4), and while No could yield 5, it risks mutual defection at 1 each or being punished to -2; given the symmetry and that mutual Yes (3,3) Pareto dominates mutual No (1,1), starting with Yes maximizes expected payoff if the opponent is similarly rational.",
+      "payoff1": 5,
+      "payoff2": 0,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 26,
+    "pair_ids": [
+      8,
+      1
+    ],
+    "pair_names": [
+      "Agent_8",
+      "Agent_1"
+    ],
+    "timestamp": "2026-07-24T22:35:24.527399",
+    "detail": {
+      "agent1_id": 8,
+      "agent1_name": "Agent_8",
+      "agent2_id": 1,
+      "agent2_name": "Agent_1",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no history to establish trust or cooperation, No is the dominant strategy: it yields 5 against Yes (better than 3), 1 against No (better than -4), and -2 against Punish (better than -4), making it the safest choice in a one-shot interaction with an unknown partner.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and I cannot know my opponent's choice, I analyze the game: against Yes, No yields 5 > 3; against No, No yields 1 = 1; against Punish, No yields -2 > -4. No weakly dominates Yes, and while No vs Punish is risky, there's no credible reason to expect Punish since it costs the punisher and we're rational players in a single interaction.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 27,
+    "pair_ids": [
+      23,
+      14
+    ],
+    "pair_names": [
+      "Agent_23",
+      "Agent_14"
+    ],
+    "timestamp": "2026-07-24T22:35:35.754619",
+    "detail": {
+      "agent1_id": 23,
+      "agent1_name": "Agent_23",
+      "agent2_id": 14,
+      "agent2_name": "Agent_14",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no previous interactions and no way to establish trust, choosing No (Defect) yields the highest guaranteed payoff of 5 points if the opponent cooperates or 1 point if they also defect, while avoiding the risk of being exploited for 0 or negative payoffs.",
+      "explanation2": "With no prior history and mutual knowledge of choices, this is a one-shot simultaneous game where No strictly dominates Yes (5>3 vs No, 1>0 vs Yes), and against Punish, No yields -2 versus -4 for Yes and -4 for Punish, making No the maximin strategy with the highest expected payoff regardless of opponent's choice.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 28,
+    "pair_ids": [
+      17,
+      3
+    ],
+    "pair_names": [
+      "Agent_17",
+      "Agent_3"
+    ],
+    "timestamp": "2026-07-24T22:35:48.806324",
+    "detail": {
+      "agent1_id": 17,
+      "agent1_name": "Agent_17",
+      "agent2_id": 3,
+      "agent2_name": "Agent_3",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "In a one-shot game with no previous interactions, choosing No (Defect) is the dominant strategy because it yields the highest expected payoff regardless of the opponent's choice: 5 points if they choose Yes, 1 point if they choose No, and -2 points if they choose Punish, all of which are better than or comparable to the alternatives for other actions.",
+      "explanation2": "With no history to establish trust or cooperation, No is the dominant strategy: it yields 5 against Yes, 1 against No, and -2 against Punish, all of which are better than the corresponding payoffs for Yes (3, 0, -4) and better or comparable to Punish outcomes, while also avoiding the risk of costly punishment when the opponent might choose to defect.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 29,
+    "pair_ids": [
+      12,
+      2
+    ],
+    "pair_names": [
+      "Agent_12",
+      "Agent_2"
+    ],
+    "timestamp": "2026-07-24T22:35:57.353642",
+    "detail": {
+      "agent1_id": 12,
+      "agent1_name": "Agent_12",
+      "agent2_id": 2,
+      "agent2_name": "Agent_2",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Without knowing anything about my partner's likely behavior, I should analyze this as a one-shot game where I need to choose my best response to a rational opponent. Looking at the payoff matrix: if my partner chooses Yes, I get 5 from No vs 3 from Yes vs 3 from Punish; if my partner chooses No, I get 1 from No vs 0 from Yes vs -1 from Punish; if my partner chooses Punish, I get -2 from No vs -4 from Yes vs -4 from Punish. In all cases, No gives me the highest or equal highest payoff, and against a rational opponent who also reasons this way, both choosing No yields (1,1) which is better than the (-4,-4) mutual punishment outcome. No is my dominant strategy.",
+      "explanation2": "Since this is a one-shot game with no future interactions, and mutual defection yields 1 point while cooperation risks getting exploited for 0 points, the rational choice is to defect (No), which maximizes my expected payoff regardless of the opponent's action.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 30,
+    "pair_ids": [
+      17,
+      9
+    ],
+    "pair_names": [
+      "Agent_17",
+      "Agent_9"
+    ],
+    "timestamp": "2026-07-24T22:36:08.314984",
+    "detail": {
+      "agent1_id": 17,
+      "agent1_name": "Agent_17",
+      "agent2_id": 9,
+      "agent2_name": "Agent_9",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior history to establish trust or punishment threats, choosing No (Defect/Betray) yields the highest expected payoff: it guarantees at least 1 point (if opponent also defects) or 5 points (if opponent cooperates), dominating the risk of -4 from being punished or the uncertainty of mutual cooperation at 3 points.",
+      "explanation2": "Since this is a one-shot game with no future interactions, my opponent has no incentive to cooperate, and No (Defect/Betray) yields the highest payoff (5 points) if they choose Yes and avoids the worst outcome if they also choose No (1 point each), dominating both Yes and Punish in strategic reasoning.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 31,
+    "pair_ids": [
+      20,
+      19
+    ],
+    "pair_names": [
+      "Agent_20",
+      "Agent_19"
+    ],
+    "timestamp": "2026-07-24T22:36:18.479183",
+    "detail": {
+      "agent1_id": 20,
+      "agent1_name": "Agent_20",
+      "agent2_id": 19,
+      "agent2_name": "Agent_19",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior history and simultaneous moves, choosing No (Defect) yields the highest expected payoff of 5 if the opponent cooperates and 1 if they also defect, dominating the outcomes of Yes (3 or 0) and Punish (3 or -1 or -4) in this one-shot interaction.",
+      "explanation2": "With no prior history to establish cooperation or punishment threats, choosing No (Defect/Betray) yields the highest expected payoff regardless of the opponent's choice: if they choose Yes I get 5, if they choose No I get 1, and if they choose Punish I only lose 2—which is better than the outcomes from choosing Yes or Punish against any of their possible actions.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 32,
+    "pair_ids": [
+      11,
+      18
+    ],
+    "pair_names": [
+      "Agent_11",
+      "Agent_18"
+    ],
+    "timestamp": "2026-07-24T22:36:27.237704",
+    "detail": {
+      "agent1_id": 11,
+      "agent1_name": "Agent_11",
+      "agent2_id": 18,
+      "agent2_name": "Agent_18",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences and my opponent will choose simultaneously without knowing my choice, the rational choice is to defect (No), as it dominates Yes (5>3 if they cooperate, 1>0 if they defect) and avoids the worst-case losses from Punish; against a rational opponent who also reasons this way, No yields 1 point each rather than risking exploitation.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and we have common knowledge of each other's rationality, choosing No (Defect/Betray) is the dominant strategy that maximizes my expected payoff regardless of the opponent's choice, yielding 5 if they cooperate and 1 if they also defect, both of which are at least as good as the alternatives.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 33,
+    "pair_ids": [
+      6,
+      22
+    ],
+    "pair_names": [
+      "Agent_6",
+      "Agent_22"
+    ],
+    "timestamp": "2026-07-24T22:36:38.641392",
+    "detail": {
+      "agent1_id": 6,
+      "agent1_name": "Agent_6",
+      "agent2_id": 22,
+      "agent2_name": "Agent_22",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences and my opponent knows my choice, I need to analyze the game strategically. If I choose Yes, my opponent can exploit me for 5 points by choosing No, leaving me with 0. If I choose Punish, my opponent can choose No and I get -1 while they get -2, or they choose Yes and I get 3 while they get -4, but this is risky. If I choose No, I guarantee at least 1 point (if they also choose No) or 5 points (if they choose Yes), and even if they punish I only lose 2 points compared to worse outcomes from other choices. No is my best response given the incentive structure: when both are rational and know each other's choices, the equilibrium where both choose No yields 1 point each, which is stable since neither can improve by unilaterally changing.",
+      "explanation2": "With no prior history to establish cooperation or punishment threats, I analyze this one-shot interaction: choosing No guarantees me at least 1 point (vs. 0 if I choose Yes and they choose No), and gives me the maximum 5 points if they choose Yes, making No the strictly dominant strategy that maximizes my expected payoff regardless of the opponent's choice.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 34,
+    "pair_ids": [
+      2,
+      1
+    ],
+    "pair_names": [
+      "Agent_2",
+      "Agent_1"
+    ],
+    "timestamp": "2026-07-24T22:36:52.868011",
+    "detail": {
+      "agent1_id": 2,
+      "agent1_name": "Agent_2",
+      "agent2_id": 1,
+      "agent2_name": "Agent_1",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior interaction history, I analyze this as a one-shot game. Choosing No (Defect) yields me 5 points if they choose Yes, 1 point if they choose No, and -2 points if they choose Punish. Choosing Yes yields at most 3 points. Choosing Punish yields at most 3 points but risks -4. Against a rational opponent, No weakly dominates: it gives higher payoffs against Yes (5>3) and No (1> -4 or 0), and against Punish, No (-2) is only slightly worse than Punish (-4). The Nash equilibrium in pure strategies is (No, No), making No the safest choice to maximize expected payoff.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and mutual knowledge of rationality, my opponent will also reason that No (Defect) is the dominant strategy—yielding 5 against Yes, 1 against No, and -2 against Punish—which beats the expected outcomes of Yes (0 or 3, but vulnerable to exploitation) and Punish (-1, -4, or -4); thus No maximizes my minimum guaranteed payoff at 1 point and avoids the risk of -4 from mutual Punish or -2 from being punished while defecting.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 35,
+    "pair_ids": [
+      21,
+      7
+    ],
+    "pair_names": [
+      "Agent_21",
+      "Agent_7"
+    ],
+    "timestamp": "2026-07-24T22:37:05.143771",
+    "detail": {
+      "agent1_id": 21,
+      "agent1_name": "Agent_21",
+      "agent2_id": 7,
+      "agent2_name": "Agent_7",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior history to establish trust or reciprocity, choosing No (Defect/Betray) dominates because it yields the highest individual payoff when the opponent chooses Yes (5 points) and avoids the worst-case -4 from being punished while cooperating; even if both defect, the mutual 1 point is safer than risking exploitation or costly punishment in an anonymous one-shot interaction.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and I cannot know what my opponent will choose, I should analyze the best response: if they choose Yes, No gives me 5 (better than 3 from Yes or 3 from Punish); if they choose No, No gives me 1 (better than 0 from Yes or -1 from Punish); if they choose Punish, No gives me -2 (better than -4 from Yes or -4 from Punish). Thus No is the dominant strategy that maximizes my minimum payoff regardless of opponent's action.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 36,
+    "pair_ids": [
+      9,
+      2
+    ],
+    "pair_names": [
+      "Agent_9",
+      "Agent_2"
+    ],
+    "timestamp": "2026-07-24T22:37:18.368859",
+    "detail": {
+      "agent1_id": 9,
+      "agent1_name": "Agent_9",
+      "agent2_id": 2,
+      "agent2_name": "Agent_2",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no history between us, I must analyze this as a one-shot game; choosing No (Defect) yields 5 if my partner plays Yes, 1 if they also play No, and only -2 if they Punish—making No the best response against both Yes and No strategies, and only slightly risky against Punish, while Yes is exploited by No and Punish is costly and mutually destructive.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and mutual knowledge of choices, my opponent and I face a prisoner's dilemma where No (Defect/Betray) strictly dominates Yes (Cooperate)—if they choose Yes I get 5 vs 3, if they choose No I get 1 vs -2 from their punishment or 1 vs 0 if they also chose Yes, and against Punish I lose less (-2) than with Yes (-4)—so rational self-interest leads both to choose No as the Nash equilibrium.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 37,
+    "pair_ids": [
+      7,
+      3
+    ],
+    "pair_names": [
+      "Agent_7",
+      "Agent_3"
+    ],
+    "timestamp": "2026-07-24T22:37:30.609735",
+    "detail": {
+      "agent1_id": 7,
+      "agent1_name": "Agent_7",
+      "agent2_id": 3,
+      "agent2_name": "Agent_3",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no previous interactions to establish trust or punishment patterns, No is the strictly dominant strategy: it yields 5 against Yes, 1 against No, and -2 against Punish, all of which are better than Yes's corresponding payoffs (3, 0, -4) and Punish's payoffs (3, -1, -4) in those same scenarios.",
+      "explanation2": "Without any prior history to establish trust or punishment threats, I analyze this as a one-shot game where No dominates Yes (if partner says Yes, No gives 5 > 3; if partner says No, No gives 1 > 0; if partner Punishes, No gives -2 > -4), and while Punish could theoretically deter, the standard rational prediction in this symmetric one-shot setting with a risk-neutral opponent is mutual defection at No/No yielding 1 point each.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 38,
+    "pair_ids": [
+      12,
+      8
+    ],
+    "pair_names": [
+      "Agent_12",
+      "Agent_8"
+    ],
+    "timestamp": "2026-07-24T22:37:48.394812",
+    "detail": {
+      "agent1_id": 12,
+      "agent1_name": "Agent_12",
+      "agent2_id": 8,
+      "agent2_name": "Agent_8",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no prior history to establish cooperation or punishment threats, the dominant strategy is to defect: choosing No yields 5 if the opponent cooperates or 1 if they also defect, both of which are better than the 3 from mutual cooperation and avoids the risks of being exploited or suffering from punishment.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences, the rational choice is to defect (No), as it yields the highest payoff regardless of the opponent's choice—dominating with 5 points against Yes, 1 point against No, and -2 points against Punish, all of which are better than or equal to the alternatives.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 39,
+    "pair_ids": [
+      14,
+      20
+    ],
+    "pair_names": [
+      "Agent_14",
+      "Agent_20"
+    ],
+    "timestamp": "2026-07-24T22:37:57.190779",
+    "detail": {
+      "agent1_id": 14,
+      "agent1_name": "Agent_14",
+      "agent2_id": 20,
+      "agent2_name": "Agent_20",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior history to establish trust or punishment norms, I analyze this as a one-shot game where choosing No (Defect) yields the highest expected payoff: 5 if opponent cooperates, 1 if both defect, and -2 if opponent punishes; whereas Yes gives at most 3 and risks -4, and Punish gives at most 3 and risks -4, making No the dominant strategy under rational self-interest.",
+      "explanation2": "Without any prior interaction history, I cannot trust my opponent to cooperate, and No is the dominant strategy in a one-shot game: it yields higher payoffs regardless of what the opponent chooses (5 vs 3 if they play Yes, 1 vs -4 if they play No, and -2 vs -4 if they play Punish).",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 40,
+    "pair_ids": [
+      11,
+      5
+    ],
+    "pair_names": [
+      "Agent_11",
+      "Agent_5"
+    ],
+    "timestamp": "2026-07-24T22:38:06.462953",
+    "detail": {
+      "agent1_id": 11,
+      "agent1_name": "Agent_11",
+      "agent2_id": 5,
+      "agent2_name": "Agent_5",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior history to establish trust or reciprocity, choosing No (Defect/Betray) yields the highest expected payoff: it guarantees at least 1 point if the opponent also chooses No, and 5 points if they choose Yes, while avoiding the risk of being exploited at 0 points or suffering negative payoffs from Punish outcomes.",
+      "explanation2": "With no prior history to establish trust or punishment threats, choosing No (Defect/Betray) yields the highest expected payoff against a rational opponent, as it dominates Yes (guaranteeing at least 1 point versus 0) and avoids the mutual destruction of Punish while capitalizing on the temptation payoff of 5 if the opponent cooperates.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 41,
+    "pair_ids": [
+      11,
+      6
+    ],
+    "pair_names": [
+      "Agent_11",
+      "Agent_6"
+    ],
+    "timestamp": "2026-07-24T22:38:17.090981",
+    "detail": {
+      "agent1_id": 11,
+      "agent1_name": "Agent_11",
+      "agent2_id": 6,
+      "agent2_name": "Agent_6",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot game with no future interactions, the opponent has no incentive to cooperate or punish, and No (Defect/Betray) is my best response regardless of what they choose: against Yes I get 5 > 3 or 0, against No I get 1 > 0 or -1, and against Punish I get -2 > -4 or -4.",
+      "explanation2": "In a one-shot game with no prior interaction, a rational opponent will choose No to maximize their payoff, so choosing No gives me 1 point instead of the 0 I would get from Yes or the -1 I would get from Punish.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 42,
+    "pair_ids": [
+      21,
+      8
+    ],
+    "pair_names": [
+      "Agent_21",
+      "Agent_8"
+    ],
+    "timestamp": "2026-07-24T22:38:28.001719",
+    "detail": {
+      "agent1_id": 21,
+      "agent1_name": "Agent_21",
+      "agent2_id": 8,
+      "agent2_name": "Agent_8",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences and the opponent knows my choice, I need to analyze what a rational opponent would do against each of my options; No weakly dominates Yes (5>3 if opponent cooperates, 1>0 if opponent defects) and while Punish can yield 3 against Yes, it risks -1 or -4 against No or Punish, making No the safest best-response against a rational opponent who would never choose Yes when they could get 5 by choosing No against it.",
+      "explanation2": "With no prior interaction to establish trust, choosing No (Defect) yields the highest expected payoff against a rational opponent who may choose Yes (5 points) or No (1 point), while avoiding the risk of being exploited at 0 points; this is the dominant strategy in a one-shot game.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 43,
+    "pair_ids": [
+      22,
+      21
+    ],
+    "pair_names": [
+      "Agent_22",
+      "Agent_21"
+    ],
+    "timestamp": "2026-07-24T22:38:44.691522",
+    "detail": {
+      "agent1_id": 22,
+      "agent1_name": "Agent_22",
+      "agent2_id": 21,
+      "agent2_name": "Agent_21",
+      "choice1": "No",
+      "choice2": "Yes",
+      "explanation1": "With no prior history to establish trust or punishment patterns, No (Defect/Betray) is the dominant strategy: it yields the highest payoff against Yes (5 points) and a reasonable payoff against No (1 point), while avoiding the risk of being exploited by Yes or suffering the mutual destruction of Punish.",
+      "explanation2": "Since there are no previous interactions, I treat this as a one-shot game; choosing Yes maximizes expected payoff if the opponent is likely to also choose Yes (yielding 3 points), and avoids the mutual destruction of Punish or the low payoff of mutual defection, while being the socially optimal equilibrium.",
+      "payoff1": 5,
+      "payoff2": 0,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 44,
+    "pair_ids": [
+      20,
+      2
+    ],
+    "pair_names": [
+      "Agent_20",
+      "Agent_2"
+    ],
+    "timestamp": "2026-07-24T22:38:53.339561",
+    "detail": {
+      "agent1_id": 20,
+      "agent1_name": "Agent_20",
+      "agent2_id": 2,
+      "agent2_name": "Agent_2",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior history to establish trust or punishment threats, the dominant strategy in a one-shot interaction is to defect, as No yields 5 against a Yes-playing opponent and 1 against another No player, both exceeding the payoffs from Yes or Punish in an unstructured first encounter.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and no prior history to establish trust, choosing No (Defect/Betray) yields the highest expected payoff regardless of the opponent's choice: 5 if they choose Yes, 1 if they choose No, or -2 if they choose Punish, compared to Yes which gives at most 3 and risks 0 or -4, and Punish which risks -1 or -4 and only gains 3 in the best case.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 45,
+    "pair_ids": [
+      19,
+      20
+    ],
+    "pair_names": [
+      "Agent_19",
+      "Agent_20"
+    ],
+    "timestamp": "2026-07-24T22:39:04.568881",
+    "detail": {
+      "agent1_id": 19,
+      "agent1_name": "Agent_19",
+      "agent2_id": 20,
+      "agent2_name": "Agent_20",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no previous interactions and no knowledge of my partner's strategy, No is the dominant strategy in the base Yes/No game (5 > 3 when partner chooses Yes, 1 > 0 when partner chooses No), and the threat of mutual negative payoffs from Punish makes No the safest rational choice to maximize expected benefit.",
+      "explanation2": "With no prior history to establish trust, this is a one-shot interaction where mutual rationality leads to a Nash equilibrium: No dominates Yes (since No yields 5>3 when partner plays Yes, and 1>0 when partner plays No), and while Punish can be used to deter, against a rational opponent who may play No, No yields 1 point versus Punish's -1 or -2 points, making No the best response to maximize expected payoff.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 46,
+    "pair_ids": [
+      5,
+      17
+    ],
+    "pair_names": [
+      "Agent_5",
+      "Agent_17"
+    ],
+    "timestamp": "2026-07-24T22:39:16.671439",
+    "detail": {
+      "agent1_id": 5,
+      "agent1_name": "Agent_5",
+      "agent2_id": 17,
+      "agent2_name": "Agent_17",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Without knowing my opponent's choice and in a one-shot interaction, No (Defect/Betray) dominates Yes (if opponent chooses Yes, I get 5 instead of 3; if opponent chooses No, I get 1 instead of 0) and avoids the risk of being exploited while also being safer than Punish which could result in -4 or -1.",
+      "explanation2": "With no history to establish trust or reciprocity, the rational choice is to defect since No yields the highest possible payoff (5) if the opponent cooperates, and even if both defect, I still get 1 point—better than the risk of being exploited by choosing Yes (which gives 0 if opponent defects) or the guaranteed cost of Punish.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 47,
+    "pair_ids": [
+      23,
+      7
+    ],
+    "pair_names": [
+      "Agent_23",
+      "Agent_7"
+    ],
+    "timestamp": "2026-07-24T22:39:26.962834",
+    "detail": {
+      "agent1_id": 23,
+      "agent1_name": "Agent_23",
+      "agent2_id": 7,
+      "agent2_name": "Agent_7",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot game with no future interactions, the rational choice is to defect because choosing No yields the highest expected payoff regardless of the opponent's action: No dominates Yes (1>0 when opponent plays No, 5>3 when opponent plays Yes) and No is better than Punish against all opponent choices (1>-4, 5>3, -2>-4), making No the strictly dominant strategy in this strategic setting.",
+      "explanation2": "With no prior history to establish cooperation, the dominant strategy is to choose No (Defect), which guarantees me at least 1 point and potentially 5 points, while avoiding the risk of being exploited or suffering the -4 from being punished while cooperating.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 48,
+    "pair_ids": [
+      5,
+      14
+    ],
+    "pair_names": [
+      "Agent_5",
+      "Agent_14"
+    ],
+    "timestamp": "2026-07-24T22:39:39.970247",
+    "detail": {
+      "agent1_id": 5,
+      "agent1_name": "Agent_5",
+      "agent2_id": 14,
+      "agent2_name": "Agent_14",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future rounds and no history with this partner, there is no incentive to cooperate or punish; choosing No (Defect) yields the highest possible payoff of 5 points if the partner chooses Yes, and still guarantees 1 point even if they also choose No, dominating both Yes and Punish in expected value against a rational opponent who faces the same incentives.",
+      "explanation2": "Without knowing my opponent's choice, No dominates Yes (5>3 if opponent plays Yes, 1>0 if opponent plays No) and avoids the worst-case -4 from Punish while yielding higher expected payoffs than the risky Punish strategy.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 49,
+    "pair_ids": [
+      12,
+      8
+    ],
+    "pair_names": [
+      "Agent_12",
+      "Agent_8"
+    ],
+    "timestamp": "2026-07-24T22:39:50.284159",
+    "detail": {
+      "agent1_id": 12,
+      "agent1_name": "Agent_12",
+      "agent2_id": 8,
+      "agent2_name": "Agent_8",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior history to establish trust or punishment threats, the Nash equilibrium in this one-shot game is to defect, as No yields the highest expected payoff regardless of the opponent's choice (dominating Yes and avoiding the risks of Punish).",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and both players know each other's choices, I must consider what my opponent will do; No is the best response to all possible opponent actions (yielding 5 against Yes, 1 against No, and -2 against Punish, which are respectively the best or tied-best payoffs I can get in each case), and since my opponent is also rational and faces the same incentives, they will likely choose No as well, leading to the mutual defection equilibrium of 1 point each.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 50,
+    "pair_ids": [
+      20,
+      22
+    ],
+    "pair_names": [
+      "Agent_20",
+      "Agent_22"
+    ],
+    "timestamp": "2026-07-24T22:40:00.872621",
+    "detail": {
+      "agent1_id": 20,
+      "agent1_name": "Agent_20",
+      "agent2_id": 22,
+      "agent2_name": "Agent_22",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no reputation effects, and No yields 5 points if the partner plays Yes, 1 point if they also play No, and only -2 if they punish, while Yes risks 0 or -4 against a rational opponent who can exploit cooperation, No dominates as the risk-averse payoff-maximizing choice against an unknown partner.",
+      "explanation2": "Since this is a one-shot interaction with no future rounds to establish reputation or reciprocity, and my opponent knows my choice while I know theirs, I analyze that No dominates Yes (5>3 if they choose Yes, 1>0 if they choose No) and against Punish, No yields -2 while Punish yields -4 or -1, but since rational opponents also prefer 5 or 1 over 3 or -4, mutual No (1,1) is the Nash equilibrium as neither can unilaterally improve, making No the optimal choice.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 51,
+    "pair_ids": [
+      17,
+      7
+    ],
+    "pair_names": [
+      "Agent_17",
+      "Agent_7"
+    ],
+    "timestamp": "2026-07-24T22:40:18.548398",
+    "detail": {
+      "agent1_id": 17,
+      "agent1_name": "Agent_17",
+      "agent2_id": 7,
+      "agent2_name": "Agent_7",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Without any history to establish trust or reciprocity, I must analyze this as a one-shot game. Choosing No (Defect) yields the highest expected payoff against a rational opponent: if they choose Yes, I get 5; if they choose No, I get 1; if they choose Punish, I get -2. In contrast, choosing Yes gives at most 3 and risks 0 or -4, while Punish gives at most 3 and risks -1 or -4. No is the unique Nash equilibrium strategy in the reduced game between Yes and No, and it dominates Punish in best-case scenarios while being safer against Punish.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and I cannot coordinate with my opponent, No is the dominant strategy: it yields 5 points if they play Yes (better than 3 from Yes or -1 from Punish), and 1 point if they play No (better than 0 from Yes or -4 from Punish), and -2 if they play Punish (better than -4 from Yes or Punish).",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 52,
+    "pair_ids": [
+      21,
+      10
+    ],
+    "pair_names": [
+      "Agent_21",
+      "Agent_10"
+    ],
+    "timestamp": "2026-07-24T22:40:29.430779",
+    "detail": {
+      "agent1_id": 21,
+      "agent1_name": "Agent_21",
+      "agent2_id": 10,
+      "agent2_name": "Agent_10",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Without any history to establish trust or reciprocity, and given that No dominates Yes (5>3 when partner cooperates, 1>0 when partner defects), No is the risk-dominant and payoff-dominant choice against an unknown opponent, while Punish is too costly unless the opponent's action is predictable.",
+      "explanation2": "With no history and mutual knowledge of choices, I analyze this as a one-shot game where No is my best response to any rational opponent: against Yes I get 5, against No I get 1, and against Punish I get -2 (better than Yes's -4 or Punish's -1), making No the dominant strategy in terms of maximizing my minimum guaranteed payoff while also exploiting cooperative opponents.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 53,
+    "pair_ids": [
+      1,
+      7
+    ],
+    "pair_names": [
+      "Agent_1",
+      "Agent_7"
+    ],
+    "timestamp": "2026-07-24T22:40:39.346712",
+    "detail": {
+      "agent1_id": 1,
+      "agent1_name": "Agent_1",
+      "agent2_id": 7,
+      "agent2_name": "Agent_7",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior interactions to establish trust, choosing No (Defect) is the safest strategy as it guarantees at least 1 point (if opponent also defects) or 5 points (if opponent cooperates), while avoiding the risk of being punished or exploited by a defector.",
+      "explanation2": "Without knowing my partner's choice, No is my best response because it yields a higher minimum payoff (1 point if they also choose No, 5 if they choose Yes) compared to Yes (0 if they choose No, 3 if they choose Yes) or Punish (potentially -4), and no dominated strategy clearly favors cooperation or punishment in a one-shot game with no reputational consequences.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 54,
+    "pair_ids": [
+      1,
+      10
+    ],
+    "pair_names": [
+      "Agent_1",
+      "Agent_10"
+    ],
+    "timestamp": "2026-07-24T22:40:51.647612",
+    "detail": {
+      "agent1_id": 1,
+      "agent1_name": "Agent_1",
+      "agent2_id": 10,
+      "agent2_name": "Agent_10",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no history, I must analyze the Nash equilibrium: if my opponent chooses Yes, No gives me 5 vs 3 for Yes; if my opponent chooses No, No gives me 1 vs 0 for Yes and -1 for Punish; if my opponent chooses Punish, No gives me -2 vs -4 for Yes and -4 for Punish. No is my best response to every possible opponent action, making it the strictly dominant strategy.",
+      "explanation2": "Since this is a one-shot interaction with no history and no future consequences, my opponent has no incentive to cooperate; No strictly dominates Yes (5>3 if they play Yes, 1>0 if they play No) and also yields higher payoffs than Punish against their most likely choices, making defection the rational choice.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 55,
+    "pair_ids": [
+      12,
+      8
+    ],
+    "pair_names": [
+      "Agent_12",
+      "Agent_8"
+    ],
+    "timestamp": "2026-07-24T22:41:00.332825",
+    "detail": {
+      "agent1_id": 12,
+      "agent1_name": "Agent_12",
+      "agent2_id": 8,
+      "agent2_name": "Agent_8",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior history to establish trust or reciprocity, and given that No yields the highest individual payoff (5) against Yes and a safe 1 against No while avoiding the risk of being exploited for 0 or punished for -4, choosing No is the strictly dominant strategy in this one-shot interaction.",
+      "explanation2": "Since there is no history with this partner and we are making simultaneous choices without knowing the other's move, I analyze this as a one-shot game: No (Defect) yields a higher expected payoff against rational play, as it dominates Yes (3 or 1 vs. 0 or 3) and avoids the worst-case -4 from mutual Punishment while securing 5 against Yes, 1 against No, and -2 against Punish.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 56,
+    "pair_ids": [
+      2,
+      6
+    ],
+    "pair_names": [
+      "Agent_2",
+      "Agent_6"
+    ],
+    "timestamp": "2026-07-24T22:41:11.607118",
+    "detail": {
+      "agent1_id": 2,
+      "agent1_name": "Agent_2",
+      "agent2_id": 6,
+      "agent2_name": "Agent_6",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences and no prior history to establish trust, the rational choice is to defect (No), which yields the highest expected payoff regardless of the opponent's choice among non-punishment strategies, and avoids the risk of being exploited while not being the worst outcome if both punish.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and I cannot coordinate with my opponent, choosing No (Defect/Betray) is the dominant strategy: it yields 5 if they choose Yes, 1 if they choose No, and avoids the worst-case -4 from being punished while choosing Yes; against a rational opponent who also seeks to maximize their payoff, mutual defection at 1 point each is the Nash equilibrium, while Yes opens me to exploitation at 0 and Punish risks mutual destruction at -4.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 57,
+    "pair_ids": [
+      18,
+      22
+    ],
+    "pair_names": [
+      "Agent_18",
+      "Agent_22"
+    ],
+    "timestamp": "2026-07-24T22:41:22.294088",
+    "detail": {
+      "agent1_id": 18,
+      "agent1_name": "Agent_18",
+      "agent2_id": 22,
+      "agent2_name": "Agent_22",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Without any prior interaction history to establish trust or punishment norms, I analyze this as a one-shot game where choosing No (Defect) yields the highest expected payoff regardless of the opponent's choice: 5 if they play Yes, 1 if they play No, -2 if they play Punish, compared to Yes which gives at most 3 and Punish which gives at most 3.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences, and the opponent knows my choice while I know theirs, I should analyze the Nash equilibrium: if the opponent chooses Yes, No gives me 5 vs 3; if they choose No, No gives me 1 vs -1 (Punish) or -2 (Punish); if they choose Punish, No gives me -2 vs -4 (Yes) or -4 (Punish). No is the best response to Yes and weakly dominates other choices against Punish, making it the rational choice in this simultaneous-move game with complete information.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 58,
+    "pair_ids": [
+      10,
+      6
+    ],
+    "pair_names": [
+      "Agent_10",
+      "Agent_6"
+    ],
+    "timestamp": "2026-07-24T22:41:32.522089",
+    "detail": {
+      "agent1_id": 10,
+      "agent1_name": "Agent_10",
+      "agent2_id": 6,
+      "agent2_name": "Agent_6",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior history to establish trust or reciprocity, I must analyze this as a one-shot game; choosing No (Defect) yields a higher expected payoff regardless of my opponent's choice—if they choose Yes I get 5 (vs. 3 for Yes or 3 for Punish), if they choose No I get 1 (vs. 0 for Yes or -1 for Punish), and if they choose Punish I get -2 (vs. -4 for Yes or -4 for Punish)—making No the strictly dominant strategy.",
+      "explanation2": "Since this is a one-shot interaction with no history, my opponent has no incentive to cooperate with me, and choosing No (1 point if they also choose No) dominates Yes (which yields 0 if they choose No) and Punish (which yields -1 if they choose No).",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 59,
+    "pair_ids": [
+      20,
+      15
+    ],
+    "pair_names": [
+      "Agent_20",
+      "Agent_15"
+    ],
+    "timestamp": "2026-07-24T22:41:42.437934",
+    "detail": {
+      "agent1_id": 20,
+      "agent1_name": "Agent_20",
+      "agent2_id": 15,
+      "agent2_name": "Agent_15",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior history to establish trust or punishment patterns, choosing No (Defect) maximizes my expected payoff against a rational opponent, as No yields 5 points if they cooperate and 1 point if they also defect, both of which dominate the outcomes of Yes or Punish when considering standard game-theoretic reasoning where both players seek to maximize their own benefit.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and the opponent knows my choice, I must consider what a rational opponent will do: if I choose Yes, they can exploit me for 5 by choosing No; if I choose Punish, they get -2 (if they choose No) or -4 (if they choose Yes), making them prefer No; if I choose No, the best response for them is also No, yielding 1 point each—and since No weakly dominates Yes and Punish against a rational player, No is the unique Nash equilibrium and maximizes my guaranteed payoff.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 60,
+    "pair_ids": [
+      12,
+      20
+    ],
+    "pair_names": [
+      "Agent_12",
+      "Agent_20"
+    ],
+    "timestamp": "2026-07-24T22:41:57.891061",
+    "detail": {
+      "agent1_id": 12,
+      "agent1_name": "Agent_12",
+      "agent2_id": 20,
+      "agent2_name": "Agent_20",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no history to establish trust or punishment threats, the dominant strategy is to defect since No yields the highest payoff (5 points) if the opponent cooperates and avoids the worst outcomes of mutual punishment, while Yes risks exploitation and Punish risks mutual losses.",
+      "explanation2": "With no prior history to establish trust or punishment threats, No (Defect/Betray) is the dominant strategy: it yields 5 if the opponent cooperates and 1 if they also defect, both of which are better than the 3 and 1 respectively from cooperating, and avoids the risk of being exploited while maximizing expected payoff in a one-shot interaction.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 61,
+    "pair_ids": [
+      14,
+      4
+    ],
+    "pair_names": [
+      "Agent_14",
+      "Agent_4"
+    ],
+    "timestamp": "2026-07-24T22:42:07.026235",
+    "detail": {
+      "agent1_id": 14,
+      "agent1_name": "Agent_14",
+      "agent2_id": 4,
+      "agent2_name": "Agent_4",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior history to establish trust, the dominant strategy in a one-shot interaction is to defect, as choosing No yields the highest expected payoff regardless of the opponent's choice: 5 if they cooperate, 1 if they also defect, both of which are better than the outcomes from Yes or Punish.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and my opponent is rational and self-interested, they will also choose No to maximize their own payoff, making No my best response with 1 point rather than risking 0 or negative payoffs from Yes or Punish.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 62,
+    "pair_ids": [
+      8,
+      4
+    ],
+    "pair_names": [
+      "Agent_8",
+      "Agent_4"
+    ],
+    "timestamp": "2026-07-24T22:42:19.952713",
+    "detail": {
+      "agent1_id": 8,
+      "agent1_name": "Agent_8",
+      "agent2_id": 4,
+      "agent2_name": "Agent_4",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Without any history to establish trust or punishment credibility, choosing No (Defect) is the strictly dominant strategy: it yields the highest payoff against Yes (5), is safer against Punish (-2 vs -4 for Yes), and still gives 1 against another No, making it the rational choice under one-shot interaction with no reputation effects.",
+      "explanation2": "With no prior interaction history and simultaneous choices, I must analyze this as a one-shot game. Looking at my payoffs: if the opponent plays Yes, I get 5 from No vs 3 from Yes vs 3 from Punish; if the opponent plays No, I get 1 from No vs 0 from Yes vs -1 from Punish; if the opponent plays Punish, I get -2 from No vs -4 from Yes vs -4 from Punish. No strictly dominates Yes and weakly dominates Punish, making it the rational choice to maximize expected payoff regardless of the opponent's strategy.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 63,
+    "pair_ids": [
+      7,
+      23
+    ],
+    "pair_names": [
+      "Agent_7",
+      "Agent_23"
+    ],
+    "timestamp": "2026-07-24T22:42:34.575941",
+    "detail": {
+      "agent1_id": 7,
+      "agent1_name": "Agent_7",
+      "agent2_id": 23,
+      "agent2_name": "Agent_23",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior history to establish trust, choosing No (Defect) is the dominant strategy in a one-shot interaction because it yields the highest payoff regardless of the opponent's choice: 5 points if they cooperate, 1 point if they also defect, and avoids the -2 outcome from being punished while also protecting against the risk of cooperating and receiving 0 or -4.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences, the rational choice is to defect because choosing No yields a higher payoff regardless of the opponent's action: if they choose Yes I get 5 instead of 3, if they choose No I get 1 instead of -4 or -2, and if they choose Punish I get -2 instead of -4, making No the dominant strategy.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 64,
+    "pair_ids": [
+      17,
+      8
+    ],
+    "pair_names": [
+      "Agent_17",
+      "Agent_8"
+    ],
+    "timestamp": "2026-07-24T22:42:55.888418",
+    "detail": {
+      "agent1_id": 17,
+      "agent1_name": "Agent_17",
+      "agent2_id": 8,
+      "agent2_name": "Agent_8",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot game with no future interactions to incentivize cooperation, and No yields 5 points when the opponent plays Yes (their best response to cooperation), No strictly dominates Yes and is safer than Punish which risks mutual -4 or -1 payoffs; the Nash equilibrium in the reduced Yes/No game is mutual No at (1,1), making No the rational choice.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences, I analyze this as a simultaneous-move game. Against a rational opponent, No weakly dominates Yes (5>3 if they play Yes, 1>0 if they play No). Against Punish, No yields -2 while Yes yields -4, so No is also better. While mutual Yes would be better than mutual No, the risk of being exploited (getting 0 while they get 5) makes No the safer, rational choice when trust cannot be established.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 65,
+    "pair_ids": [
+      23,
+      18
+    ],
+    "pair_names": [
+      "Agent_23",
+      "Agent_18"
+    ],
+    "timestamp": "2026-07-24T22:43:09.503495",
+    "detail": {
+      "agent1_id": 23,
+      "agent1_name": "Agent_23",
+      "agent2_id": 18,
+      "agent2_name": "Agent_18",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no history and simultaneous moves, I cannot guarantee cooperation from my opponent; No is my best response as it yields 5 points if they choose Yes, 1 point if they choose No, and only -2 if they choose Punish, whereas Yes risks 0 or -4 and Punish risks -1 or -4 against a rational self-interested player who likely also favors No.",
+      "explanation2": "Since this is a one-shot interaction with no future rounds to establish cooperation, and I cannot know my opponent's choice, the dominant strategy is to defect because choosing No yields a higher expected payoff regardless of the opponent's action: against Yes I get 5 > 3, against No I get 1 > -4 or -2, and against Punish I get -2 > -4.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 66,
+    "pair_ids": [
+      13,
+      18
+    ],
+    "pair_names": [
+      "Agent_13",
+      "Agent_18"
+    ],
+    "timestamp": "2026-07-24T22:43:19.527766",
+    "detail": {
+      "agent1_id": 13,
+      "agent1_name": "Agent_13",
+      "agent2_id": 18,
+      "agent2_name": "Agent_18",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior history to establish cooperation, choosing No (Defect) maximizes my expected payoff against a rational opponent who also seeks to maximize their own benefit, as No dominates Yes regardless of the opponent's choice (No yields 5 vs 0 if they choose Yes, and 1 vs 3 if they choose No; but against a rational player in a one-shot game, the Nash equilibrium is mutual defection), and Punish is too risky with uncertain opponent behavior.",
+      "explanation2": "Since this is a one-shot game with no future interactions, my opponent has no incentive to cooperate or punish, and choosing No (Defect/Betray) yields the highest payoff of 5 points if they choose Yes, or 1 point if they also choose No, which dominates the outcomes from choosing Yes or Punish regardless of their action.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 67,
+    "pair_ids": [
+      12,
+      11
+    ],
+    "pair_names": [
+      "Agent_12",
+      "Agent_11"
+    ],
+    "timestamp": "2026-07-24T22:43:30.051416",
+    "detail": {
+      "agent1_id": 12,
+      "agent1_name": "Agent_12",
+      "agent2_id": 11,
+      "agent2_name": "Agent_11",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Without any prior interaction to establish trust or punishment patterns, No (Defect/Betray) is the dominant strategy as it yields the highest individual payoff (5 points) if the opponent cooperates and still secures 1 point if both defect, while avoiding the risk of being exploited or bearing punishment costs.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and the opponent is rational and knows my choice, I must consider what a rational opponent will do. Against any fixed opponent choice, No yields the highest or equal payoff: vs Yes (5 > 3), vs No (1 > -4), vs Punish (-2 > -4). Since the opponent faces symmetric incentives and will also reason that No dominates, mutual defection (No, No) yielding 1 point each is the unique Nash equilibrium, making No my best response.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 68,
+    "pair_ids": [
+      7,
+      4
+    ],
+    "pair_names": [
+      "Agent_7",
+      "Agent_4"
+    ],
+    "timestamp": "2026-07-24T22:43:39.306958",
+    "detail": {
+      "agent1_id": 7,
+      "agent1_name": "Agent_7",
+      "agent2_id": 4,
+      "agent2_name": "Agent_4",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences, and my opponent knows my choice, I need to analyze the game strategically; No is a dominant strategy against Yes (5>3) and against Punish (-2>-4), while against No we get 1 each—making No the safest choice regardless of opponent's move, as choosing Yes risks exploitation and Punish is costly with no guarantee of deterrence in a single round.",
+      "explanation2": "With no prior history to establish trust, choosing No (Defect/Betray) yields the highest guaranteed payoff when considering the opponent's likely rational behavior, as it dominates Yes when the opponent might choose No (1 > 0) and dominates Punish in avoiding mutual destruction, while also securing 5 points if the opponent cooperates.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 69,
+    "pair_ids": [
+      16,
+      15
+    ],
+    "pair_names": [
+      "Agent_16",
+      "Agent_15"
+    ],
+    "timestamp": "2026-07-24T22:43:49.731478",
+    "detail": {
+      "agent1_id": 16,
+      "agent1_name": "Agent_16",
+      "agent2_id": 15,
+      "agent2_name": "Agent_15",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences, my opponent has no incentive to cooperate, and No strictly dominates Yes (5>3 against Yes, 1>0 against No), the rational choice is to defect, as mutual defection (1,1) is the only Nash equilibrium when punishment is also costly and unilateral.",
+      "explanation2": "Since this is a one-shot interaction with no future rounds to establish cooperation, the dominant strategy is to defect, as choosing No yields the highest expected payoff regardless of the opponent's action: 5 if they choose Yes, 1 if they choose No, or -2 if they choose Punish, which is better than the alternatives in most cases and avoids the worst outcomes.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 70,
+    "pair_ids": [
+      2,
+      1
+    ],
+    "pair_names": [
+      "Agent_2",
+      "Agent_1"
+    ],
+    "timestamp": "2026-07-24T22:43:59.522430",
+    "detail": {
+      "agent1_id": 2,
+      "agent1_name": "Agent_2",
+      "agent2_id": 1,
+      "agent2_name": "Agent_1",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences, and choosing No yields the highest payoff (5 points) when the opponent chooses Yes while protecting against the worst outcomes, the rational choice is to defect.",
+      "explanation2": "With no prior history to establish cooperation or trust, choosing No (Defect/Betray) is the strictly dominant strategy in a one-shot interaction, as it yields the highest payoff regardless of the opponent's choice: 5 points if they choose Yes, 1 point if they choose No, and -2 points if they choose Punish, compared to lower or equal payoffs from Yes or Punish.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 71,
+    "pair_ids": [
+      3,
+      4
+    ],
+    "pair_names": [
+      "Agent_3",
+      "Agent_4"
+    ],
+    "timestamp": "2026-07-24T22:44:07.774770",
+    "detail": {
+      "agent1_id": 3,
+      "agent1_name": "Agent_3",
+      "agent2_id": 4,
+      "agent2_name": "Agent_4",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences, I should analyze this as a simultaneous-move game where rational players maximize their own payoff; choosing No dominates Yes (5>3 if opponent chooses Yes, 1>0 if opponent chooses No) and while Punish can yield 3 against Yes, it risks -1 against No and -4 against Punish, making No the safest best-response strategy with the highest minimum payoff and strong incentives for both players.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences, I should analyze this as a single-shot game where rational players maximize their immediate payoff. Looking at my payoffs: if opponent chooses Yes, I get 5 from No vs 3 from Yes vs 3 from Punish; if opponent chooses No, I get 1 from No vs 0 from Yes vs -1 from Punish; if opponent chooses Punish, I get -2 from No vs -4 from Yes vs -4 from Punish. No weakly dominates Yes and Punish in all cases, and is strictly better when the opponent plays Yes or No, making it the unique best response to rational play.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 72,
+    "pair_ids": [
+      20,
+      5
+    ],
+    "pair_names": [
+      "Agent_20",
+      "Agent_5"
+    ],
+    "timestamp": "2026-07-24T22:44:24.974283",
+    "detail": {
+      "agent1_id": 20,
+      "agent1_name": "Agent_20",
+      "agent2_id": 5,
+      "agent2_name": "Agent_5",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since there is no history with this partner and no mechanism for future punishment to affect them, this is a one-shot game where the dominant strategy is to defect, as choosing No yields the highest expected payoff regardless of the opponent's choice (5 if they choose Yes, 1 if they choose No), compared to Yes (3 or 0) or Punish (3 or -1 or -4).",
+      "explanation2": "Since this is a one-shot interaction with no future consequences, I analyze the game as a simultaneous move with no repeated interaction. Against Yes, No gives me 5 (better than 3 from Yes or 3 from Punish). Against No, No gives me 1 (better than 0 from Yes or -1 from Punish). Against Punish, No gives me -2 (better than -4 from Yes or -4 from Punish). No strictly dominates Yes and weakly dominates Punish in all cases, making it the unique rational choice for maximizing my payoff regardless of what the opponent does.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 73,
+    "pair_ids": [
+      21,
+      13
+    ],
+    "pair_names": [
+      "Agent_21",
+      "Agent_13"
+    ],
+    "timestamp": "2026-07-24T22:44:35.999190",
+    "detail": {
+      "agent1_id": 21,
+      "agent1_name": "Agent_21",
+      "agent2_id": 13,
+      "agent2_name": "Agent_13",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior history to establish trust or punishment credibility, and since No dominates Yes (5>3 if opponent cooperates, 1>0 if opponent defects) and avoids the risk of being exploited while yielding higher payoffs than Punish against any opponent action, choosing No maximizes expected payoff in this one-shot interaction.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and my opponent is rational and self-interested, they will likely choose No to maximize their payoff; given they choose No, my best response is No (earning 1 point), as choosing Yes would give me 0 points and choosing Punish would give me -1 point.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 74,
+    "pair_ids": [
+      19,
+      2
+    ],
+    "pair_names": [
+      "Agent_19",
+      "Agent_2"
+    ],
+    "timestamp": "2026-07-24T22:44:44.520986",
+    "detail": {
+      "agent1_id": 19,
+      "agent1_name": "Agent_19",
+      "agent2_id": 2,
+      "agent2_name": "Agent_2",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since there are no previous interactions to build trust and we are rational players with full information, the dominant strategy in a one-shot game is to defect (No), as it yields the highest payoff (5 points) against a cooperating opponent and avoids the risk of being exploited; even with punishment available, the standard prisoner's dilemma logic applies where mutual defection (1 point each) beats being the sucker, and the threat of costly punishment is not credible without repeated interaction.",
+      "explanation2": "In a one-shot game with no history, No is strictly dominant: it yields higher payoffs than Yes regardless of opponent's choice (5>3 if opponent chooses Yes, 1>0 if opponent chooses No), and against Punish, No (-2) is better than Yes (-4) or Punish (-4).",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 75,
+    "pair_ids": [
+      12,
+      19
+    ],
+    "pair_names": [
+      "Agent_12",
+      "Agent_19"
+    ],
+    "timestamp": "2026-07-24T22:44:56.539576",
+    "detail": {
+      "agent1_id": 12,
+      "agent1_name": "Agent_12",
+      "agent2_id": 19,
+      "agent2_name": "Agent_19",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences and the opponent knows my choice, I analyze that against any rational opponent, No dominates Yes (5>3 if they choose Yes, 1>0 if they choose No) and No yields higher payoffs than Punish against Yes or No choices, while Punish only becomes superior if I believe they will choose Punish (-4<-1), making No the strictly dominant strategy in a symmetric rational choice scenario.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and both players are rational, my opponent has no incentive to cooperate or punish (which are both costly), making No the dominant strategy that maximizes my expected payoff at 1 point rather than risking 0 or worse with Yes.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 76,
+    "pair_ids": [
+      14,
+      16
+    ],
+    "pair_names": [
+      "Agent_14",
+      "Agent_16"
+    ],
+    "timestamp": "2026-07-24T22:45:06.955398",
+    "detail": {
+      "agent1_id": 14,
+      "agent1_name": "Agent_14",
+      "agent2_id": 16,
+      "agent2_name": "Agent_16",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot game with no future interactions, my opponent has no incentive to cooperate, and choosing No (Defect) yields the highest expected payoff regardless of their choice: 5 if they choose Yes, 1 if they choose No, or -2 if they choose Punish, compared to Yes which gives at most 3 and risks 0 or -4, and Punish which risks -1 or -4.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences, and the opponent knows my choice, I analyze that against any fixed opponent action, No yields the highest or equal payoff: vs Yes (5 > 3), vs No (1 = 1), vs Punish (-2 > -4), making No the dominant strategy in a one-shot game.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 77,
+    "pair_ids": [
+      8,
+      17
+    ],
+    "pair_names": [
+      "Agent_8",
+      "Agent_17"
+    ],
+    "timestamp": "2026-07-24T22:45:16.219808",
+    "detail": {
+      "agent1_id": 8,
+      "agent1_name": "Agent_8",
+      "agent2_id": 17,
+      "agent2_name": "Agent_17",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Without any history to establish trust or punishment threats, No is the dominant strategy: it yields 5 against Yes (better than 3), 1 against No (better than 0), and -2 against Punish (better than -4 for Yes or -1 for Punish), maximizing my minimum guaranteed payoff in this one-shot interaction.",
+      "explanation2": "With no prior history to establish cooperation, choosing No (Defect) yields the highest guaranteed payoff against a rational opponent who might choose Yes (giving me 5 points) or No (giving me 1 point), and avoids the risk of being exploited while also being robust against Punish (-2 is better than -4 from mutual Punish or being punished while cooperating).",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 78,
+    "pair_ids": [
+      0,
+      21
+    ],
+    "pair_names": [
+      "Agent_0",
+      "Agent_21"
+    ],
+    "timestamp": "2026-07-24T22:45:25.163333",
+    "detail": {
+      "agent1_id": 0,
+      "agent1_name": "Agent_0",
+      "agent2_id": 21,
+      "agent2_name": "Agent_21",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences and both players choose simultaneously, the dominant strategy is to defect (No), as choosing No yields a higher payoff regardless of the opponent's choice: 5 > 3 if they cooperate, and 1 > 0 or -4 if they defect or punish respectively.",
+      "explanation2": "Without any history to establish trust or punishment threats, the rational choice is to defect since No yields the highest expected payoff regardless of the opponent's action: if they choose Yes I get 5, if they choose No I get 1, if they choose Punish I get -2 (better than -4 for Yes or -1 for Punish).",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 79,
+    "pair_ids": [
+      23,
+      3
+    ],
+    "pair_names": [
+      "Agent_23",
+      "Agent_3"
+    ],
+    "timestamp": "2026-07-24T22:45:33.577393",
+    "detail": {
+      "agent1_id": 23,
+      "agent1_name": "Agent_23",
+      "agent2_id": 3,
+      "agent2_name": "Agent_3",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior history and simultaneous moves, I must analyze this as a one-shot game. Against a rational opponent, No is a dominant strategy: if they play Yes, No gives me 5 vs 3; if they play No, No gives me 1 vs -2 from Punish; if they play Punish, No gives me -2 vs -4 from Punish or -4 from Yes. No weakly dominates both other choices regardless of opponent's action.",
+      "explanation2": "Since this is a one-shot game with no future interactions, the opponent has no incentive to cooperate or punish, making No the dominant strategy that maximizes my expected payoff regardless of their choice.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 80,
+    "pair_ids": [
+      21,
+      17
+    ],
+    "pair_names": [
+      "Agent_21",
+      "Agent_17"
+    ],
+    "timestamp": "2026-07-24T22:45:42.247456",
+    "detail": {
+      "agent1_id": 21,
+      "agent1_name": "Agent_21",
+      "agent2_id": 17,
+      "agent2_name": "Agent_17",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences and the opponent knows my choice, I need to analyze dominant strategies. If the opponent chooses Yes, I get 5 from No vs 3 from Yes. If the opponent chooses No, I get 1 from No vs 0 from Yes. If the opponent chooses Punish, I get -2 from No vs -4 from Yes. No strictly dominates Yes in all cases. Comparing No vs Punish: if opponent chooses Yes, I get 5 vs 3; if No, I get 1 vs -1; if Punish, I get -2 vs -4. No also dominates Punish. Therefore No is the strictly dominant strategy.",
+      "explanation2": "Without any history to establish trust or punishment threats, No (Defect/Betray) is the dominant strategy: it yields the highest payoff (5) if the opponent cooperates, and even if both defect, I still get 1 point, which is better than risking -4 from being punished while cooperating.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 81,
+    "pair_ids": [
+      8,
+      20
+    ],
+    "pair_names": [
+      "Agent_8",
+      "Agent_20"
+    ],
+    "timestamp": "2026-07-24T22:46:01.095641",
+    "detail": {
+      "agent1_id": 8,
+      "agent1_name": "Agent_8",
+      "agent2_id": 20,
+      "agent2_name": "Agent_20",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior history to establish trust or punishment patterns, No is the dominant strategy: it yields 5 if the opponent plays Yes, 1 if they play No, and -2 if they play Punish, all of which are better than or equal to the Yes outcomes (3, 0, -4 respectively) and superior to the Punish outcomes against an unknown opponent.",
+      "explanation2": "With no prior history and simultaneous moves, my opponent faces the same incentives as me; No is the dominant strategy since it yields 5 against Yes (better than 3), 1 against No (better than 0 or -4), and avoids the worst outcomes against Punish, while Punish is strictly worse than No in all cases.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 82,
+    "pair_ids": [
+      10,
+      3
+    ],
+    "pair_names": [
+      "Agent_10",
+      "Agent_3"
+    ],
+    "timestamp": "2026-07-24T22:46:11.894098",
+    "detail": {
+      "agent1_id": 10,
+      "agent1_name": "Agent_10",
+      "agent2_id": 3,
+      "agent2_name": "Agent_3",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences and my opponent is rational, they will likely defect to avoid being exploited; choosing No gives me 1 point if they also defect (the Nash equilibrium), whereas choosing Yes risks getting 0 if they defect.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and both players know each other's choices, I need to analyze this as a simultaneous move game. No weakly dominates Yes (5>3 when opponent plays Yes, 1>0 when opponent plays No, and -2>-4 when opponent plays Punish). Against a rational opponent, No yields the best guaranteed outcome, and even if the opponent plays No, I get 1 which beats the -4 from mutual Punish or 0 from playing Yes against No.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 83,
+    "pair_ids": [
+      9,
+      13
+    ],
+    "pair_names": [
+      "Agent_9",
+      "Agent_13"
+    ],
+    "timestamp": "2026-07-24T22:46:22.220921",
+    "detail": {
+      "agent1_id": 9,
+      "agent1_name": "Agent_9",
+      "agent2_id": 13,
+      "agent2_name": "Agent_13",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior history and simultaneous moves, this is a one-shot game where No is the Nash equilibrium: against any of the opponent's possible choices, No yields a higher or equal payoff than Yes, and Punish is strictly worse than No when the opponent chooses No (the rational opponent's best response).",
+      "explanation2": "With no prior history and mutual knowledge of choices, this is a one-shot simultaneous game; No strictly dominates Yes (5>3 if opponent plays Yes, 1>0 if opponent plays No) and while Punish creates a complex cycle, No yields a higher guaranteed minimum and is the unique Nash equilibrium when eliminating weakly dominated strategies.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 84,
+    "pair_ids": [
+      5,
+      14
+    ],
+    "pair_names": [
+      "Agent_5",
+      "Agent_14"
+    ],
+    "timestamp": "2026-07-24T22:46:32.299055",
+    "detail": {
+      "agent1_id": 5,
+      "agent1_name": "Agent_5",
+      "agent2_id": 14,
+      "agent2_name": "Agent_14",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences, the rational choice is to defect (No), as it yields the highest payoff (5) if the opponent cooperates and avoids the worst outcome of being exploited; against a rational opponent who also analyzes the game, mutual defection (1,1) is the Nash equilibrium, but No still dominates Yes and Punish is too costly for an uncertain single interaction.",
+      "explanation2": "With no prior interactions to establish trust or retaliation patterns, the rational choice is to defect since No yields the highest individual payoff (5 points) when the opponent might cooperate, and even in the worst case of mutual defection I still get 1 point—while avoiding the risk of being exploited at 0 points or punished at -2 or -4 points.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 85,
+    "pair_ids": [
+      0,
+      23
+    ],
+    "pair_names": [
+      "Agent_0",
+      "Agent_23"
+    ],
+    "timestamp": "2026-07-24T22:46:43.051059",
+    "detail": {
+      "agent1_id": 0,
+      "agent1_name": "Agent_0",
+      "agent2_id": 23,
+      "agent2_name": "Agent_23",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior history to establish trust or punishment norms, the dominant strategy is to defect since No yields the highest expected payoff (5 if opponent cooperates, 1 if both defect) compared to Yes (3 if both cooperate, 0 if exploited) or Punish (risking mutual losses), and there is no repeated interaction to sustain cooperation through reciprocity.",
+      "explanation2": "With no history and simultaneous moves, I must analyze this as a one-shot game; No is strictly dominant over Yes (No yields higher payoff regardless of opponent's action: 5>3 if opponent plays Yes, 1>0 if opponent plays No, -2>-4 if opponent plays Punish), and while No vs Punish is not strictly dominant (-2 < -1 when opponent Punishes), the risk of mutual Punish (-4,-4) and the fact that No still outperforms or matches Punish in two of three cases makes No the safest rational choice to maximize expected payoff against an unknown opponent.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 86,
+    "pair_ids": [
+      23,
+      8
+    ],
+    "pair_names": [
+      "Agent_23",
+      "Agent_8"
+    ],
+    "timestamp": "2026-07-24T22:46:54.300128",
+    "detail": {
+      "agent1_id": 23,
+      "agent1_name": "Agent_23",
+      "agent2_id": 8,
+      "agent2_name": "Agent_8",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior interaction to establish trust, my opponent faces the same strategic dilemma as me: choosing Yes risks getting exploited for 0 points while choosing No guarantees at least 1 point and potentially yields 5; since mutual No (1,1) Pareto-dominates mutual Punish (-4,-4) and No is the unique best response to both Yes and No from the opponent, No is the dominant strategy in this one-shot game.",
+      "explanation2": "With no prior history to establish trust or punishment patterns, No (Defect/Betray) is the dominant strategy: it yields the highest payoff (5) if my partner chooses Yes, and avoids the worst-case scenario of being exploited while still securing 1 point if both defect, making it the safest choice to maximize expected benefits in a one-shot interaction with an unknown opponent.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 87,
+    "pair_ids": [
+      16,
+      5
+    ],
+    "pair_names": [
+      "Agent_16",
+      "Agent_5"
+    ],
+    "timestamp": "2026-07-24T22:47:06.455008",
+    "detail": {
+      "agent1_id": 16,
+      "agent1_name": "Agent_16",
+      "agent2_id": 5,
+      "agent2_name": "Agent_5",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior history and simultaneous moves, I must consider what a rational opponent would do; No is a dominant strategy against Yes (5>3) and against No (1>0), and while Punish creates risk, No still yields better expected payoffs since mutual Punish (-4,-4) and No-Punish (-2,-1) are both worse for me than mutual No (1,1), making No the safest best-response to uncertainty.",
+      "explanation2": "With no prior history to establish trust or reciprocity, choosing No (Defect) yields the highest expected payoff against a rational opponent, as it guarantees at least 1 point and potentially 5 points while avoiding the risk of being exploited for 0 points or punished for -4 points.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 88,
+    "pair_ids": [
+      16,
+      3
+    ],
+    "pair_names": [
+      "Agent_16",
+      "Agent_3"
+    ],
+    "timestamp": "2026-07-24T22:47:15.657130",
+    "detail": {
+      "agent1_id": 16,
+      "agent1_name": "Agent_16",
+      "agent2_id": 3,
+      "agent2_name": "Agent_3",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences and I cannot influence my opponent's choice, I should analyze this as a simultaneous-move game where I want to maximize my expected payoff regardless of what they do; against any possible opponent action, No yields the best or tied-best guaranteed outcome (5 if they play Yes, 1 if they play No, -2 if they play Punish), making it the dominant strategy in terms of security level, while Yes risks 0 or -4 and Punish risks -1 or -4.",
+      "explanation2": "With no prior history to establish trust or punishment threats, the dominant strategy is to defect since No yields the highest expected payoff regardless of the opponent's choice: 5 if they play Yes, 1 if they play No, and -2 if they play Punish, all of which are at least as good as the alternatives against each opponent action.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 89,
+    "pair_ids": [
+      20,
+      9
+    ],
+    "pair_names": [
+      "Agent_20",
+      "Agent_9"
+    ],
+    "timestamp": "2026-07-24T22:47:25.082278",
+    "detail": {
+      "agent1_id": 20,
+      "agent1_name": "Agent_20",
+      "agent2_id": 9,
+      "agent2_name": "Agent_9",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior history to establish trust, choosing No (Defect/Betray) yields the highest expected payoff against a rational opponent who might choose Yes (5 points), a reasonable outcome if they also choose No (1 point), and avoids the worst outcomes from mutual punishment; this is the dominant strategy in a one-shot interaction.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and both players know each other's choices, I must consider what my opponent will do; No is a dominant strategy in the Yes/No subgame (5>3 and 1>0), and while Punish could be used to deter, my opponent faces the same incentives and would need to simultaneously choose Punish to avoid being exploited, making mutual defection at No the stable rational outcome.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 90,
+    "pair_ids": [
+      20,
+      16
+    ],
+    "pair_names": [
+      "Agent_20",
+      "Agent_16"
+    ],
+    "timestamp": "2026-07-24T22:47:36.484034",
+    "detail": {
+      "agent1_id": 20,
+      "agent1_name": "Agent_20",
+      "agent2_id": 16,
+      "agent2_name": "Agent_16",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior history to establish trust or punishment threats, choosing No yields the highest expected payoff (5 if opponent cooperates, 1 if they also defect) compared to Yes (3 if they cooperate, 0 if they defect) or Punish (which risks mutual losses), making defection the dominant strategy in this one-shot interaction.",
+      "explanation2": "With no prior history to establish trust or punishment patterns, No (Defect) is the dominant strategy against an unknown opponent: it yields the highest payoff (5) if they cooperate, and still provides a safe minimum (1) if they also defect, whereas Yes risks exploitation (0) and Punish risks mutual harm (-4) or costly retaliation without guaranteed benefit.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 91,
+    "pair_ids": [
+      19,
+      6
+    ],
+    "pair_names": [
+      "Agent_19",
+      "Agent_6"
+    ],
+    "timestamp": "2026-07-24T22:47:45.567146",
+    "detail": {
+      "agent1_id": 19,
+      "agent1_name": "Agent_19",
+      "agent2_id": 6,
+      "agent2_name": "Agent_6",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences, my opponent has no incentive to cooperate, and No strictly dominates Yes (5>3 against Yes, 1>0 against No), while Punish is risky and can be exploited; choosing No maximizes my expected payoff against a rational opponent who will also choose No, yielding 1 point rather than risking worse outcomes.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences, my opponent has no incentive to cooperate, and No (defecting) yields the highest individual payoff regardless of what they do—5 points if they choose Yes, 1 point if they choose No, and -2 points if they choose Punish—while avoiding the risk of being exploited for 0 or -4 points by choosing Yes.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 92,
+    "pair_ids": [
+      4,
+      11
+    ],
+    "pair_names": [
+      "Agent_4",
+      "Agent_11"
+    ],
+    "timestamp": "2026-07-24T22:47:53.691915",
+    "detail": {
+      "agent1_id": 4,
+      "agent1_name": "Agent_4",
+      "agent2_id": 11,
+      "agent2_name": "Agent_11",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences and my opponent knows my choice, I need to consider what a rational opponent would do. Against a rational player, No weakly dominates Yes (5>3 when opponent plays No, 1>0 when opponent plays Yes). While Punish creates a complex dynamic, the No vs No equilibrium at (1,1) is the safest Nash equilibrium when mutual cooperation cannot be enforced, and choosing No avoids the worst-case -4 payoff from being punished while Yes.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and both players know each other's choices, I need to analyze the strategic dominance. Looking at the payoffs, if my opponent chooses Yes, I get 5 from No vs 3 from Yes vs 3 from Punish. If my opponent chooses No, I get 1 from No vs 0 from Yes vs -1 from Punish. If my opponent chooses Punish, I get -2 from No vs -4 from Yes vs -4 from Punish. No weakly dominates the other strategies in most cases, and since we both know each other's choices, the Nash equilibrium where neither can benefit from deviating is both choosing No (mutual defection at 1,1), which is Pareto inferior to mutual Yes but stable given the payoff structure and mutual knowledge.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 93,
+    "pair_ids": [
+      5,
+      17
+    ],
+    "pair_names": [
+      "Agent_5",
+      "Agent_17"
+    ],
+    "timestamp": "2026-07-24T22:48:05.562949",
+    "detail": {
+      "agent1_id": 5,
+      "agent1_name": "Agent_5",
+      "agent2_id": 17,
+      "agent2_name": "Agent_17",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences, I analyze the game as a simultaneous move with no repeated-game incentives for cooperation. Looking at my payoffs: against Yes, No gives me 5 (better than 3 from Yes, 3 from Punish); against No, No gives me 1 (better than 0 from Yes, -1 from Punish); against Punish, No gives me -2 (better than -4 from Yes, -4 from Punish). No strictly dominates both Yes and Punish for me regardless of what my opponent does, making it the unique rational choice under dominance reasoning.",
+      "explanation2": "Without knowing the opponent's choice, No is my best response because it guarantees at least 1 point (if they also choose No) or 5 points (if they choose Yes), and it avoids the risk of being exploited for 0 points or punished for -4 points that comes with choosing Yes, while also avoiding the certain cost of choosing Punish.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 94,
+    "pair_ids": [
+      16,
+      0
+    ],
+    "pair_names": [
+      "Agent_16",
+      "Agent_0"
+    ],
+    "timestamp": "2026-07-24T22:48:18.728180",
+    "detail": {
+      "agent1_id": 16,
+      "agent1_name": "Agent_16",
+      "agent2_id": 0,
+      "agent2_name": "Agent_0",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future rounds, I analyze this as a simultaneous-move game where I must predict my opponent's choice; No is my best response against any rational opponent because if they choose Yes I get 5 (better than 3 or 3), if they choose No I get 1 (better than 0 or -1), and if they choose Punish I get -2 (better than -4 or -4), making No weakly dominant.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and my opponent knows my choice, I need to analyze the strategic incentives. If my opponent chooses Yes, I get 5 from No vs 3 from Yes vs 3 from Punish. If my opponent chooses No, I get 1 from No vs 0 from Yes vs -1 from Punish. If my opponent chooses Punish, I get -2 from No vs -4 from Yes vs -4 from Punish. No dominates Yes in two of three cases and ties in the third, and No dominates Punish in all cases, making No my best response regardless of the opponent's choice.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 95,
+    "pair_ids": [
+      19,
+      10
+    ],
+    "pair_names": [
+      "Agent_19",
+      "Agent_10"
+    ],
+    "timestamp": "2026-07-24T22:48:31.355640",
+    "detail": {
+      "agent1_id": 19,
+      "agent1_name": "Agent_19",
+      "agent2_id": 10,
+      "agent2_name": "Agent_10",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences, the rational choice is to defect (No) because it yields the highest individual payoff regardless of the opponent's choice: 5 points if they cooperate, 1 point if they also defect, both of which are at least as good as any outcome from choosing Yes or Punish.",
+      "explanation2": "With no history to establish cooperation, this is a one-shot game where choosing No (Defect) yields the highest expected payoff regardless of the opponent's choice: No dominates Yes (getting 1 vs 3 if opponent plays No, 5 vs 0 if opponent plays Yes) and No is safer than Punish which risks mutual losses or negative outcomes against any opponent action.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 96,
+    "pair_ids": [
+      15,
+      0
+    ],
+    "pair_names": [
+      "Agent_15",
+      "Agent_0"
+    ],
+    "timestamp": "2026-07-24T22:48:39.828753",
+    "detail": {
+      "agent1_id": 15,
+      "agent1_name": "Agent_15",
+      "agent2_id": 0,
+      "agent2_name": "Agent_0",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences, my opponent has no incentive to cooperate, and choosing No (Defect/Betray) yields the highest expected payoff regardless of their choice: 5 if they choose Yes, 1 if they choose No, and -2 if they choose Punish, all of which are better or equal to the alternatives in a non-repeated game where mutual defection is the Nash equilibrium.",
+      "explanation2": "Without any prior interaction to establish trust or punishment threats, choosing No (Defect) yields the highest expected payoff since it dominates Yes (3 or 1 vs 3 or 0) and avoids the mutual destruction risk of Punish, while also being the safest response to an unknown opponent who might exploit cooperation.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 97,
+    "pair_ids": [
+      3,
+      11
+    ],
+    "pair_names": [
+      "Agent_3",
+      "Agent_11"
+    ],
+    "timestamp": "2026-07-24T22:48:50.357321",
+    "detail": {
+      "agent1_id": 3,
+      "agent1_name": "Agent_3",
+      "agent2_id": 11,
+      "agent2_name": "Agent_11",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "In a one-shot interaction with no future consequences, choosing No (Defect) is the dominant strategy since it yields the highest payoff regardless of the opponent's choice: 5 if they play Yes, 1 if they play No, and -2 if they play Punish, all of which are better than the alternatives when considering rational opponents who also seek to maximize their own payoff.",
+      "explanation2": "With no history to establish trust or cooperation, No is the dominant strategy: it yields 5 against Yes (better than 3 from mutual Yes), 1 against No (better than -4 from mutual Punish or 0 from being exploited), and -2 against Punish (better than -4 from Punish or Yes against Punish).",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 98,
+    "pair_ids": [
+      9,
+      7
+    ],
+    "pair_names": [
+      "Agent_9",
+      "Agent_7"
+    ],
+    "timestamp": "2026-07-24T22:48:58.874144",
+    "detail": {
+      "agent1_id": 9,
+      "agent1_name": "Agent_9",
+      "agent2_id": 7,
+      "agent2_name": "Agent_7",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no history to establish trust or cooperation, No is the dominant strategy: it yields 5 if the opponent plays Yes, 1 if they play No, and -2 if they play Punish, all of which are better or equal to Yes's payoffs (3, 0, -4) and Punish's payoffs (3, -1, -4) in those respective scenarios, making No the safest choice to maximize expected payoff against an unknown opponent.",
+      "explanation2": "With no history to establish trust or reciprocity, the dominant strategy is to defect since No yields the highest individual payoff (5 points) when the opponent cooperates, and even the mutual defection payoff (1 point) exceeds the losses from being punished or the costly punishment outcome.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 99,
+    "pair_ids": [
+      1,
+      7
+    ],
+    "pair_names": [
+      "Agent_1",
+      "Agent_7"
+    ],
+    "timestamp": "2026-07-24T22:49:07.751513",
+    "detail": {
+      "agent1_id": 1,
+      "agent1_name": "Agent_1",
+      "agent2_id": 7,
+      "agent2_name": "Agent_7",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no prior interaction history, I analyze this as a one-shot game where I need to consider what a rational opponent would do; No is a Nash equilibrium strategy since if both players choose No, neither can improve by unilaterally switching (Yes gives 0 < 1, Punish gives -1 < 1), and No dominates Yes and is safer than Punish against an unpredictable opponent.",
+      "explanation2": "Without any history to establish trust or reciprocity, the rational choice is to defect since No (1 point) dominates Yes (which yields 3 if opponent cooperates but 0 if they defect) when considering the opponent might also act rationally and defect, making mutual defection (1,1) preferable to being exploited (0,5).",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 100,
+    "pair_ids": [
+      18,
+      2
+    ],
+    "pair_names": [
+      "Agent_18",
+      "Agent_2"
+    ],
+    "timestamp": "2026-07-24T22:49:17.965721",
+    "detail": {
+      "agent1_id": 18,
+      "agent1_name": "Agent_18",
+      "agent2_id": 2,
+      "agent2_name": "Agent_2",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no history and simultaneous moves, I must analyze this as a one-shot game. Choosing No is my best response to any possible action my opponent might take: against Yes I get 5 (better than 3 or 3), against No I get 1 (better than 0 or -1), and against Punish I get -2 (better than -4 or -4). No weakly dominates both other strategies, making it the rational choice.",
+      "explanation2": "With no prior history to establish trust or reciprocity, choosing No (Defect/Betray) is the dominant strategy that maximizes my expected payoff regardless of the opponent's choice, yielding 5 points if they cooperate and 1 point if they also defect, both of which are at least as good as the alternatives.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 101,
+    "pair_ids": [
+      2,
+      23
+    ],
+    "pair_names": [
+      "Agent_2",
+      "Agent_23"
+    ],
+    "timestamp": "2026-07-24T22:49:28.591054",
+    "detail": {
+      "agent1_id": 2,
+      "agent1_name": "Agent_2",
+      "agent2_id": 23,
+      "agent2_name": "Agent_23",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences and my opponent knows my choice, I need to analyze what a rational opponent would do; against any choice my opponent makes, No yields higher payoffs than Yes (5>0 if they play No, 1> -4 if they play Punish, and 5>3 if they play Yes), and while Punish could yield 3 against Yes or -1 against No, the risk of mutual defection at 1 point each with No is safer than the potential -4 from mutual punishment or -2/-1 outcomes, making No the dominant strategy.",
+      "explanation2": "Since this is a one-shot game with no future interactions, my opponent has no incentive to cooperate, and No yields 5 if they choose Yes, 1 if they choose No, or -2 if they choose Punish—dominating Yes (which gives at most 3) and avoiding the risk of mutual punishment.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 102,
+    "pair_ids": [
+      15,
+      2
+    ],
+    "pair_names": [
+      "Agent_15",
+      "Agent_2"
+    ],
+    "timestamp": "2026-07-24T22:49:38.465219",
+    "detail": {
+      "agent1_id": 15,
+      "agent1_name": "Agent_15",
+      "agent2_id": 2,
+      "agent2_name": "Agent_2",
+      "choice1": "Yes",
+      "choice2": "No",
+      "explanation1": "Without knowing the partner's choice, Yes maximizes my expected payoff against a rational opponent who might also choose Yes for mutual benefit, as mutual cooperation (3,3) Pareto dominates mutual defection (1,1) and avoids the severe losses from punishment scenarios.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and both players know each other's choices, my opponent will reason similarly; No strictly dominates Yes (5>3 when they choose Yes, 1>0 when they choose No), and while Punish could be used to deter, with no repeated interaction to enforce cooperation, the Nash equilibrium is mutual defection at (No, No) yielding 1 point each, which is better than the risk of being exploited at 0 or being punished at -2.",
+      "payoff1": 0,
+      "payoff2": 5,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 103,
+    "pair_ids": [
+      17,
+      4
+    ],
+    "pair_names": [
+      "Agent_17",
+      "Agent_4"
+    ],
+    "timestamp": "2026-07-24T22:49:49.635606",
+    "detail": {
+      "agent1_id": 17,
+      "agent1_name": "Agent_17",
+      "agent2_id": 4,
+      "agent2_name": "Agent_4",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences and I must maximize my own payoff, No (Defect/Betray) is the dominant strategy: it yields 5 if they play Yes, 1 if they play No, and avoids the worst outcomes from Punish scenarios, while Yes risks 0 or -4 and Punish risks -1 or -4.",
+      "explanation2": "With no prior history to establish cooperation or punishment credibility, No is the strictly dominant strategy: it yields 5 against Yes, 1 against No, and -2 against Punish, all of which are better than the corresponding payoffs for Yes (3, 0, -4) and Punish (3, -1, -4), making No the optimal choice regardless of what my opponent does.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 104,
+    "pair_ids": [
+      4,
+      21
+    ],
+    "pair_names": [
+      "Agent_4",
+      "Agent_21"
+    ],
+    "timestamp": "2026-07-24T22:50:02.819247",
+    "detail": {
+      "agent1_id": 4,
+      "agent1_name": "Agent_4",
+      "agent2_id": 21,
+      "agent2_name": "Agent_21",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences and my opponent knows my choice while I know theirs, I analyze that No dominates Yes (5>3 if they choose Yes, 1>0 if they choose No) and comparing No vs Punish: if they choose Yes, No gives 5 vs Punish gives 3; if they choose No, No gives 1 vs Punish gives -1; if they choose Punish, No gives -2 vs Punish gives -4. Thus No is the strictly dominant strategy maximizing my payoff regardless of opponent's action.",
+      "explanation2": "With no prior history and simultaneous moves, I must analyze this as a one-shot game; No is strictly dominant against Yes (5>3, 1>0) and superior to Punish when the opponent chooses Yes (5>3) or No (1>-1), making it the safest choice to maximize expected payoff.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 105,
+    "pair_ids": [
+      15,
+      17
+    ],
+    "pair_names": [
+      "Agent_15",
+      "Agent_17"
+    ],
+    "timestamp": "2026-07-24T22:50:14.124650",
+    "detail": {
+      "agent1_id": 15,
+      "agent1_name": "Agent_15",
+      "agent2_id": 17,
+      "agent2_name": "Agent_17",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences and my opponent is rational, they will also choose No to avoid being exploited; against No, my best response is No (1 point), which dominates Yes (0 points) and Punish (-1 point).",
+      "explanation2": "Since this is a one-shot interaction with no future consequences, and No dominates Yes (5>3 when opponent plays Yes, 1>0 when opponent plays No), while Punish is risky and can lead to negative payoffs, the rational choice is No to maximize expected payoff against a potentially rational opponent.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 106,
+    "pair_ids": [
+      5,
+      8
+    ],
+    "pair_names": [
+      "Agent_5",
+      "Agent_8"
+    ],
+    "timestamp": "2026-07-24T22:50:21.633555",
+    "detail": {
+      "agent1_id": 5,
+      "agent1_name": "Agent_5",
+      "agent2_id": 8,
+      "agent2_name": "Agent_8",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences and my opponent knows my choice, I analyze that choosing No (Defect) yields the highest guaranteed payoff regardless of opponent's action: 5 if they choose Yes, 1 if they choose No, or -2 if they choose Punish, which dominates Yes (which gives 0, 3, or -4 respectively) and is safer than Punish (which risks -4 against Punish).",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and no prior history to establish cooperation, the dominant strategy is to defect (No), as it yields the highest individual payoff (5 points) when the opponent cooperates and avoids the worst-case scenario of being exploited while also avoiding the costs of punishment.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 107,
+    "pair_ids": [
+      16,
+      19
+    ],
+    "pair_names": [
+      "Agent_16",
+      "Agent_19"
+    ],
+    "timestamp": "2026-07-24T22:50:33.641334",
+    "detail": {
+      "agent1_id": 16,
+      "agent1_name": "Agent_16",
+      "agent2_id": 19,
+      "agent2_name": "Agent_19",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no history, I must analyze the game from a game-theoretic perspective. Looking at the payoff matrix, when I choose No, my payoffs are: 5 (vs Yes), 1 (vs No), or -2 (vs Punish). When I choose Yes, my payoffs are: 3 (vs Yes), 0 (vs No), or -4 (vs Punish). When I choose Punish, my payoffs are: 3 (vs Yes), -1 (vs No), or -4 (vs Punish). No weakly dominates Yes (5≥3, 1≥0, -2≥-4), and against a rational opponent who also sees this, No is the unique Nash equilibrium since if both play No, neither can improve by switching. Punish is strictly worse than No when the opponent plays No or Punish, and only equals No's payoff against Yes when compared to Yes itself. Therefore, No is my best response to maximize expected payoff.",
+      "explanation2": "With no prior history to establish trust or punishment credibility, choosing No (Defect/Betray) maximizes my expected payoff since it yields 5 points if the opponent cooperates and 1 point if they also defect, both of which are better than or equal to the payoffs from Yes, while Punish carries risk of mutual losses without coordination.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 108,
+    "pair_ids": [
+      13,
+      6
+    ],
+    "pair_names": [
+      "Agent_13",
+      "Agent_6"
+    ],
+    "timestamp": "2026-07-24T22:50:47.908748",
+    "detail": {
+      "agent1_id": 13,
+      "agent1_name": "Agent_13",
+      "agent2_id": 6,
+      "agent2_name": "Agent_6",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences and no reputation effects, I analyze this as a standard game theory problem. Comparing my payoffs: against Yes, No gives me 5 vs 3; against No, No gives me 1 vs 0 (if I played Yes) or -4 (if I played Punish); against Punish, No gives me -2 vs -4 (Yes) or -1 (Punish). No strictly dominates Yes and weakly dominates Punish in terms of maximizing my minimum payoff, and No is the unique Nash equilibrium strategy since regardless of what my opponent does, I am always at least as well off choosing No compared to Yes, and choosing No avoids the worst-case -4 outcomes that Yes and Punish can suffer.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences, I apply standard game theory: against a rational opponent, choosing No (Defect) yields the highest payoff regardless of their choice—5 if they choose Yes, 1 if they choose No, and -2 if they choose Punish—compared to Yes which gives at most 3 and as low as -4, or Punish which gives at most 3 and as low as -4.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 109,
+    "pair_ids": [
+      17,
+      23
+    ],
+    "pair_names": [
+      "Agent_17",
+      "Agent_23"
+    ],
+    "timestamp": "2026-07-24T22:51:02.552769",
+    "detail": {
+      "agent1_id": 17,
+      "agent1_name": "Agent_17",
+      "agent2_id": 23,
+      "agent2_name": "Agent_23",
+      "choice1": "No",
+      "choice2": "Yes",
+      "explanation1": "Without knowing my opponent's choice in advance and with no history to establish trust, No (Defect/Betray) is my best response because it yields the highest payoff (5 points) if they choose Yes and avoids the worst-case -4 from mutual Yes while securing 1 point if they also choose No, making it the dominant strategy in a one-shot game.",
+      "explanation2": "Since this is a one-shot game with no future interactions, my opponent has no incentive to punish me (punishment is costly and yields no future benefit), and I face a classic prisoner's dilemma where mutual cooperation (Yes, Yes) yields 3 points each, which is better than mutual defection (No, No) at 1 point each; since my opponent is rational and knows I know this, we can coordinate on the mutually beneficial cooperative equilibrium.",
+      "payoff1": 5,
+      "payoff2": 0,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 110,
+    "pair_ids": [
+      22,
+      6
+    ],
+    "pair_names": [
+      "Agent_22",
+      "Agent_6"
+    ],
+    "timestamp": "2026-07-24T22:51:11.296817",
+    "detail": {
+      "agent1_id": 22,
+      "agent1_name": "Agent_22",
+      "agent2_id": 6,
+      "agent2_name": "Agent_6",
+      "choice1": "No",
+      "choice2": "Yes",
+      "explanation1": "With no prior history to establish trust or reciprocity, choosing No (Defect/Betray) maximizes my expected payoff: if my opponent chooses Yes I get 5 points, if they choose No I still get 1 point, and if they choose Punish I only lose 2 points rather than the -4 from choosing Yes or the -1 from choosing Punish.",
+      "explanation2": "In a one-shot game with no repeated interactions, I analyze what a rational opponent would do: if they think I'll choose Yes, they prefer No (5 > 3); if they think I'll choose No, they prefer No (1 > -2); if they think I'll choose Punish, they prefer No (-2 > -4). Thus No strictly dominates for them, and if I choose Yes I get 0 while if I choose No I get 1. However, if I choose Punish and they play No, I get -1 which is worse than Yes's 0. But wait—actually No gives me 1 if they also play No, which is the Nash equilibrium. Yet I choose Yes because the problem structure suggests exploring cooperation, and against a potentially cooperative or reciprocal player, Yes yields mutual benefit; moreover, with symmetric reasoning about dominance chains, No leads to mutual defection at (1,1), but the question of whether Punish can sustain cooperation arises. Since this is a one-shot without reputation, standard game theory predicts mutual defection, but given the payoff asymmetry and potential for higher mutual gains, I select Yes as an initial cooperative signal.",
+      "payoff1": 5,
+      "payoff2": 0,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 111,
+    "pair_ids": [
+      22,
+      9
+    ],
+    "pair_names": [
+      "Agent_22",
+      "Agent_9"
+    ],
+    "timestamp": "2026-07-24T22:51:24.653101",
+    "detail": {
+      "agent1_id": 22,
+      "agent1_name": "Agent_22",
+      "agent2_id": 9,
+      "agent2_name": "Agent_9",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Without any history to establish trust or cooperation, No is the strictly dominant strategy: it yields higher payoffs than Yes regardless of the opponent's choice (5>3 if they play Yes, 1>0 if they play No), and Punish is risky since mutual Punish gives -4 while No guarantees at least 1 point.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and no prior history to establish trust, my opponent has no incentive to cooperate; choosing No (Defect) yields the highest expected payoff because it dominates Yes (5>3 against Yes, 1>0 against No) and avoids the risk of being exploited while also being safer than Punish which risks mutual losses or negative outcomes if the opponent also chooses Punish or No.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 112,
+    "pair_ids": [
+      12,
+      21
+    ],
+    "pair_names": [
+      "Agent_12",
+      "Agent_21"
+    ],
+    "timestamp": "2026-07-24T22:51:34.879024",
+    "detail": {
+      "agent1_id": 12,
+      "agent1_name": "Agent_12",
+      "agent2_id": 21,
+      "agent2_name": "Agent_21",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences, I should analyze this as a simultaneous-move game where rational opponents will maximize their own payoff; against a rational player, No weakly dominates Yes (5>3 if they play Yes, 1>0 if they play No) and while Punish creates deterrence, it is only rational if I believe they will play Yes and I want to exploit that—but since they face the same incentives, they will likely play No, making my best response No (yielding 1 each) rather than risking -2 or -4 with Punish, or 0 with Yes.",
+      "explanation2": "With no prior history to establish trust or cooperation, No is the dominant strategy since it yields 5 points against Yes (better than 3), 1 point against No (better than 0 or -4), and -2 against Punish (better than -4 for Yes or -1 for Punish), making it the safest choice against an unknown rational opponent who might similarly reason.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 113,
+    "pair_ids": [
+      20,
+      11
+    ],
+    "pair_names": [
+      "Agent_20",
+      "Agent_11"
+    ],
+    "timestamp": "2026-07-24T22:51:47.701503",
+    "detail": {
+      "agent1_id": 20,
+      "agent1_name": "Agent_20",
+      "agent2_id": 11,
+      "agent2_name": "Agent_11",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences and no way to influence future behavior, the rational choice is No, which dominates Yes (5>3 if opponent plays No, 1>0 if opponent plays Yes) and avoids the risk of being exploited; against a rational opponent who also reasons this way, No yields 1 point each, the Nash equilibrium of the underlying Prisoner's Dilemma.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and no prior history to establish cooperation, the rational choice is to defect (No), which yields the highest individual payoff regardless of the opponent's action: 5 if they cooperate, 1 if they also defect, both dominating the outcomes from Yes or Punish strategies.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 114,
+    "pair_ids": [
+      14,
+      16
+    ],
+    "pair_names": [
+      "Agent_14",
+      "Agent_16"
+    ],
+    "timestamp": "2026-07-24T22:51:56.984713",
+    "detail": {
+      "agent1_id": 14,
+      "agent1_name": "Agent_14",
+      "agent2_id": 16,
+      "agent2_name": "Agent_16",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no history and simultaneous moves, this is a one-shot game where No (Defect) is the dominant strategy: against Yes I get 5 > 3, against No I get 1 > 0, and against Punish I get -2 > -4, so No maximizes my payoff regardless of what my opponent chooses.",
+      "explanation2": "Without any history to establish trust or punishment threats, No dominates Yes (5>3 if opponent cooperates, 1>0 if opponent defects), and No is safer than Punish since mutual Punish yields -4 while mutual No yields 1, and No avoids the risk of being punished at -2 while Punish risks -1.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 115,
+    "pair_ids": [
+      14,
+      3
+    ],
+    "pair_names": [
+      "Agent_14",
+      "Agent_3"
+    ],
+    "timestamp": "2026-07-24T22:52:07.853208",
+    "detail": {
+      "agent1_id": 14,
+      "agent1_name": "Agent_14",
+      "agent2_id": 3,
+      "agent2_name": "Agent_3",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With no history to establish trust or reciprocity, and since No dominates Yes regardless of the opponent's choice (No yields 5 vs 0 if opponent chooses Yes, and 1 vs -4 if opponent chooses Punish), No is the strictly dominant strategy that maximizes my expected payoff in a one-shot interaction.",
+      "explanation2": "Since this is a one-shot interaction with no history for reputation building, I need to analyze this as a simultaneous-move game. Looking at my payoffs: if opponent chooses Yes, my best response is No (5 > 3 > 2); if opponent chooses No, my best response is No (1 > 0 > -1); if opponent chooses Punish, my best response is No (-2 > -4 > -4). No strictly dominates both Yes and Punish for me, and by symmetry it likely dominates for my opponent too, making (No, No) the unique Nash equilibrium yielding 1 point each.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 116,
+    "pair_ids": [
+      7,
+      2
+    ],
+    "pair_names": [
+      "Agent_7",
+      "Agent_2"
+    ],
+    "timestamp": "2026-07-24T22:52:20.632115",
+    "detail": {
+      "agent1_id": 7,
+      "agent1_name": "Agent_7",
+      "agent2_id": 2,
+      "agent2_name": "Agent_2",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since this is a one-shot interaction with no future consequences, and No yields 5 points against Yes, 1 point against No, and only -2 against Punish (compared to -4 for Yes against Punish), No strictly dominates Yes and has the best worst-case outcome among all options.",
+      "explanation2": "Since this is a one-shot game with no future interactions, my opponent has no incentive to cooperate, and choosing No yields the highest expected payoff regardless of their rational choice: if they choose Yes I get 5, if they choose No I get 1, if they choose Punish I get -2 (better than -4 or -1 from other options).",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 117,
+    "pair_ids": [
+      10,
+      0
+    ],
+    "pair_names": [
+      "Agent_10",
+      "Agent_0"
+    ],
+    "timestamp": "2026-07-24T22:52:30.116715",
+    "detail": {
+      "agent1_id": 10,
+      "agent1_name": "Agent_10",
+      "agent2_id": 0,
+      "agent2_name": "Agent_0",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Without knowing the partner's choice, No is a dominant strategy: if they choose Yes, I get 5 (better than 3 from Yes or 3 from Punish); if they choose No, I get 1 (better than 0 from Yes or -4 from Punish); if they choose Punish, I get -2 (better than -4 from Yes or -1 from Punish). No yields the highest or equal payoff against every possible opponent action, making it the rational choice.",
+      "explanation2": "Since this is a one-shot interaction with no future rounds to establish cooperation, and the opponent knows my choice simultaneously, I cannot influence their behavior; No is my best response because if they choose Yes I get 5 (better than 3 from mutual Yes or 3 from Punish), if they choose No I get 1 (better than -4 from Punish and equal to mutual Yes), and if they choose Punish I get -2 (better than -4 from Punish or Yes).",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 118,
+    "pair_ids": [
+      18,
+      17
+    ],
+    "pair_names": [
+      "Agent_18",
+      "Agent_17"
+    ],
+    "timestamp": "2026-07-24T22:52:40.473173",
+    "detail": {
+      "agent1_id": 18,
+      "agent1_name": "Agent_18",
+      "agent2_id": 17,
+      "agent2_name": "Agent_17",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "No is my strictly dominant strategy, yielding higher payoffs than Yes or Punish regardless of my opponent's choice.",
+      "explanation2": "With no prior history to establish trust or punishment threats, choosing No (Defect) is the dominant strategy since it yields the highest payoff regardless of the opponent's choice: 5 points if they choose Yes, 1 point if they choose No, and -2 points if they choose Punish, which is better than the outcomes from choosing Yes or Punish against the same opponent choices.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 119,
+    "pair_ids": [
+      7,
+      18
+    ],
+    "pair_names": [
+      "Agent_7",
+      "Agent_18"
+    ],
+    "timestamp": "2026-07-24T22:52:59.502208",
+    "detail": {
+      "agent1_id": 7,
+      "agent1_name": "Agent_7",
+      "agent2_id": 18,
+      "agent2_name": "Agent_18",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Without any prior interaction to establish trust or punishment norms, choosing No (Defect/Betray) is the dominant strategy as it yields the highest individual payoff regardless of the opponent's choice: 5 points if they choose Yes, 1 point if they choose No, and only -2 points if they choose Punish, which is better than the outcomes from choosing Yes or Punish against a rational opponent who might also seek to maximize their own benefit.",
+      "explanation2": "Since this is a one-shot interaction with no future consequences and both players are rational, the dominant strategy is to defect (No), as it yields the highest payoff regardless of the opponent's choice: 5 > 3 if they cooperate, and 1 = 1 if they also defect (with lower risk of -2 or -4 from punishment scenarios).",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 120,
+    "pair_ids": [
+      7,
+      0
+    ],
+    "pair_names": [
+      "Agent_7",
+      "Agent_0"
+    ],
+    "timestamp": "2026-07-24T22:53:08.385041",
+    "detail": {
+      "agent1_id": 7,
+      "agent1_name": "Agent_7",
+      "agent2_id": 0,
+      "agent2_name": "Agent_0",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Without any prior history to establish trust or punishment threats, I analyze this as a one-shot game where No is the dominant strategy: against Yes I get 5 vs 3, against No I get 1 vs 1, and against Punish I get -2 vs -4, making No the best response to every possible opponent action.",
+      "explanation2": "With no prior history, this is effectively a one-shot game where mutual defection (No, No) yields 1 point each, which is better than the risk of being exploited (Yes vs No gives 0 vs 5) or engaging in costly punishment that leaves both worse off; No strictly dominates Yes and is safer than Punish against an unknown opponent.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  }
+]

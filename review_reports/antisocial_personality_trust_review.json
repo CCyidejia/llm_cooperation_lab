@@ -1,0 +1,105 @@
+{
+  "schema_version": "consistency-review-v1",
+  "overall_status": "pass",
+  "confidence": 0.82,
+  "paper_mechanism_alignment": {
+    "status": "pass",
+    "findings": [
+      "Mechanism JSON captures the correct game family as a sequential dyadic trust game.",
+      "The central transferable mechanism is correctly identified as a costly Trustor/Investor punishment opportunity after the Trustee/Agent return decision.",
+      "Timing is correctly represented as post-return rather than simultaneous with the primary transfer decision.",
+      "The 1:5 punishment cost-impact ratio is captured and tied to payoff adjustment.",
+      "Strategy-method elicitation, fixed laboratory roles, random payoff selection, personality factors, and belief elicitation are mostly distinguished from the core transferable mechanism.",
+      "Evidence direction and main reported effects are captured."
+    ],
+    "missing_or_uncertain": [
+      "Exact punishment action grid and upper bound are not available in the provided excerpt.",
+      "Details of the two robustness trust-game versions remain incomplete.",
+      "Full bibliographic details and role-count discrepancy are uncertain."
+    ],
+    "quality_notes": [
+      "The paper's human-experiment parameters are recorded but are not required to replace the baseline under mechanism-transfer rules.",
+      "The paper includes initial endowments for both players, but the implementation should preserve the baseline's native payoff formulas before adding punishment."
+    ]
+  },
+  "mechanism_completeness": {
+    "status": "pass",
+    "findings": [
+      "Mechanism JSON is sufficient to implement the transferable punishment opportunity in the provided trust-game baseline.",
+      "It specifies required sequential trust-game features, public information, action-space addition, payoff effect, state/logging needs, and optional heterogeneity/belief metrics.",
+      "It correctly states that network structure is not required and that a new post-return decision stage is required."
+    ],
+    "missing_or_uncertain": [
+      "Punishment cap/grid must be chosen as an implementation assumption or configurable parameter because the paper excerpt does not provide it."
+    ],
+    "quality_notes": [
+      "Belief elicitation and personality factors are optional metrics/heterogeneity variables, not required mechanism components.",
+      "Conditional strategy-method schedules are not necessary for a direct-response baseline unless full protocol replication is explicitly authorized."
+    ]
+  },
+  "plan_alignment": {
+    "status": "pass",
+    "covered_surfaces": [
+      "experiment_config treatment flags for B and T1 while preserving baseline constants",
+      "environment state fields for treatment and punishment settings",
+      "separate non-profile prompt context for public punishment information",
+      "distinct Trustor post-return punishment action method",
+      "run_interaction stage insertion after Trustee return with base payoff formulas preserved before adjustment",
+      "round logs for treatment, base payoffs, punishment, and final payoffs",
+      "treatment-separated cooperation and punishment metrics",
+      "protected profile preservation checks"
+    ],
+    "missing_surfaces": [],
+    "inconsistent_items": []
+  },
+  "baseline_feasibility": {
+    "status": "pass",
+    "valid_targets": [
+      "TrustGamePopulationAgent.act for passing separate decision context while preserving role_profile text",
+      "TrustGamePopulationAgent._build_trustor_prompt for appending non-profile public T1 context",
+      "TrustGamePopulationAgent._build_trustee_prompt for appending non-profile public T1 context",
+      "TrustGamePopulationAgent insert_method_in_class for act_punishment",
+      "TrustGamePopulationEnvironment.__init__ for treatment and punishment fields",
+      "TrustGamePopulationEnvironment.run_interaction for post-return punishment and payoff adjustment",
+      "TrustGamePopulationAgent._build_partner_history_string for optional punishment history display",
+      "_update_experiment_statistics for treatment-separated metrics",
+      "main for treatment configuration if baseline constants remain unchanged"
+    ],
+    "risky_targets": [
+      "Several changes are specified as broad replace_method or replace_function operations; implementation must avoid accidental edits to protected profiles, constructor profile binding, baseline constants, NUM_GAMES, matching, and native payoff formulas.",
+      "Baseline excerpt is truncated, so exact internals of main, run_interaction, and statistics/logging surfaces are partly inferred from the plan's baseline analysis."
+    ],
+    "missing_targets": []
+  },
+  "required_fixes": [],
+  "recommended_fixes": [
+    {
+      "priority": "medium",
+      "target": "plan",
+      "issue": "Punishment maximum amount is not evidence-specified and fallback max(0, base_trustor_payoff) is an implementation assumption.",
+      "suggested_fix": "Expose punishment_max_amount as an explicit mechanism-specific configurable parameter, document the fallback, and test clipping/validation behavior."
+    },
+    {
+      "priority": "medium",
+      "target": "plan",
+      "issue": "Broad method/function replacement creates risk of violating protected profile and baseline-invariant requirements.",
+      "suggested_fix": "Prefer minimal localized edits or wrapper/helper insertion, and include automated checks that protected profile snippets, constructor profile binding, baseline constants, NUM_GAMES, matching, and native base payoff formulas are unchanged."
+    },
+    {
+      "priority": "low",
+      "target": "mechanism",
+      "issue": "Paper robustness treatments T2 and T3 are incomplete and not needed for the mechanism transfer.",
+      "suggested_fix": "Keep T2 and T3 marked non-executable unless full rules are extracted from the SI Appendix."
+    },
+    {
+      "priority": "low",
+      "target": "plan",
+      "issue": "Final payoff lower-bound policy is not specified; depending on cap choice, Trustee final payoff could become negative.",
+      "suggested_fix": "Document whether negative final payoffs are allowed in the transferred baseline or add an explicit configurable lower-bound policy without changing base payoff formulas."
+    }
+  ],
+  "approval_for_next_step": {
+    "ready_for_code_implementation": true,
+    "reason": "The plan transfers the paper's cooperation-promoting mechanism as a distinct post-return Trustor punishment stage, preserves the trust baseline's native transfer-return order and base payoff formulas, protects role and neutral profiles, and does not force unrelated paper experiment parameters onto the baseline."
+  }
+}

@@ -1,0 +1,3482 @@
+[
+  {
+    "interaction": 1,
+    "pair_ids": [
+      20,
+      1
+    ],
+    "pair_names": [
+      "Agent_20",
+      "Agent_1"
+    ],
+    "timestamp": "2026-08-26T22:47:51.797921",
+    "detail": {
+      "agent1_id": 20,
+      "agent1_name": "Agent_20",
+      "agent2_id": 1,
+      "agent2_name": "Agent_1",
+      "side_payment_1_to_2": 2,
+      "side_payment_2_to_1": 2,
+      "commit_explanation1": "Announcing S=2 makes us equally indifferent between Yes and No if the opponent also chooses S=2, perfectly aligning our incentives to mutually cooperate without overpaying.",
+      "commit_explanation2": "Announcing S=2 makes me indifferent between Yes and No if the opponent chooses Yes (yielding 3-2=1 point either way), while strictly preferring Yes if they choose No, which symmetrically encourages mutual cooperation without allowing exploitation.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields a higher payoff than Yes regardless of the opponent's action (5-2=3 vs 0+2=2 if they choose Yes; 1 vs 2 if they choose No), making Defect the strictly dominant strategy.",
+      "explanation2": "After side payments, choosing No yields a higher payoff than Yes regardless of the opponent's action (5 > 4 if they choose Yes; 1 > 2 if they choose No), making No the strictly dominant strategy.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 2,
+    "pair_ids": [
+      7,
+      2
+    ],
+    "pair_names": [
+      "Agent_7",
+      "Agent_2"
+    ],
+    "timestamp": "2026-08-26T22:48:28.829402",
+    "detail": {
+      "agent1_id": 7,
+      "agent1_name": "Agent_7",
+      "agent2_id": 2,
+      "agent2_name": "Agent_2",
+      "side_payment_1_to_2": 3,
+      "side_payment_2_to_1": 3,
+      "commit_explanation1": "Announcing S=3 aligns our incentives by making my payoff for No (1) equal to my payoff for Yes (3+S_opponent-3), strongly encouraging mutual cooperation, while S=4 or 5 would make me prefer to defect regardless of the opponent's choice.",
+      "commit_explanation2": "Announcing S=3 makes the effective payoff for (Yes, Yes) equal to 3-3=0 for me and 3-3=0 for the opponent, while (No, No) remains 1, which fails to incentivize cooperation. However, announcing S=3 makes (Yes, No) yield 0-3=-3 for me, effectively committing me not to defect, and makes (No, Yes) yield 5-0=5 for me, incentivizing the opponent to choose No. To successfully incentivize mutual cooperation, I need S=2: this changes my payoff for (Yes, Yes) to 3-2=1 and (No, Yes) to 5-2=3, making Yes my best response if the opponent chooses Yes; similarly, if the opponent announces S=2, their payoffs mirror mine, making (Yes, Yes) a stable equilibrium that yields 1 point, which is better than the 1 point from mutual defection.",
+      "choice1": "Yes",
+      "choice2": "Yes",
+      "explanation1": "Choosing Yes yields 3 points if the opponent chooses Yes and 3 points if the opponent chooses No, while choosing No yields 2 points if the opponent chooses Yes and 1 point if the opponent chooses No; therefore, Yes strictly dominates No and maximizes my payoff.",
+      "explanation2": "Choosing Yes yields 3 points if the opponent chooses Yes or 3 points if they choose No, while choosing No yields 2 points if they choose Yes or 1 point if they choose No, making Yes the strictly dominant strategy.",
+      "payoff1": 3,
+      "payoff2": 3,
+      "cooperation": true
+    }
+  },
+  {
+    "interaction": 3,
+    "pair_ids": [
+      1,
+      10
+    ],
+    "pair_names": [
+      "Agent_1",
+      "Agent_10"
+    ],
+    "timestamp": "2026-08-26T22:49:11.307782",
+    "detail": {
+      "agent1_id": 1,
+      "agent1_name": "Agent_1",
+      "agent2_id": 10,
+      "agent2_name": "Agent_10",
+      "side_payment_1_to_2": 2,
+      "side_payment_2_to_1": 2,
+      "commit_explanation1": "Announcing S=2 makes me indifferent to my opponent's action (I get 3 points regardless if I choose Yes), while strongly incentivizing them to choose Yes (they get 5 points if they do), which maximizes my expected payoff by encouraging mutual cooperation.",
+      "commit_explanation2": "Announcing S=2 makes my opponent's payoff for choosing Yes (3+2=5) equal to their payoff for choosing No (5-2=3), incentivizing them to cooperate while minimizing my cost if they do.",
+      "choice1": "No",
+      "choice2": "Yes",
+      "explanation1": "Given the side payments, choosing Yes yields 3 if the opponent chooses Yes (3-2+2) or 2 if they choose No (0+2), while choosing No yields 3 if they choose Yes (5-2) or 1 if they choose No; since No provides a strictly higher payoff than Yes regardless of the opponent's action, No is the strictly dominant strategy.",
+      "explanation2": "Choosing Yes yields 3 points if the opponent chooses Yes and 2 points if they choose No, while choosing No yields 3 points if they choose Yes and 1 point if they choose No, making Yes the strictly dominant strategy.",
+      "payoff1": 3,
+      "payoff2": 2,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 4,
+    "pair_ids": [
+      2,
+      16
+    ],
+    "pair_names": [
+      "Agent_2",
+      "Agent_16"
+    ],
+    "timestamp": "2026-08-26T22:49:42.721906",
+    "detail": {
+      "agent1_id": 2,
+      "agent1_name": "Agent_2",
+      "agent2_id": 16,
+      "agent2_name": "Agent_16",
+      "side_payment_1_to_2": 2,
+      "side_payment_2_to_1": 2,
+      "commit_explanation1": "Announcing S=2 aligns my incentive with mutual cooperation by making my payoff for choosing No (5-2=3) equal to my payoff for choosing Yes (3+2=5) if the opponent cooperates, encouraging a cooperative equilibrium without overpaying.",
+      "commit_explanation2": "Announcing S=2 makes me indifferent to my opponent's action (I receive 3 points regardless of their choice if I cooperate), which credibly signals my commitment to choosing Yes and encourages mutual cooperation without overpaying.",
+      "choice1": "Yes",
+      "choice2": "No",
+      "explanation1": "Choosing Yes yields 3 points if the opponent chooses Yes and 2 points if they choose No, whereas choosing No yields 3 points if they choose Yes and 1 point if they choose No, making Yes the strictly dominant strategy.",
+      "explanation2": "Choosing No yields 5-2=3 points if the opponent chooses Yes, and 1 point if the opponent chooses No, whereas choosing Yes yields only 3 points if they choose Yes and 0+2=2 points if they choose No; thus, No is the strictly dominant strategy.",
+      "payoff1": 2,
+      "payoff2": 3,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 5,
+    "pair_ids": [
+      7,
+      8
+    ],
+    "pair_names": [
+      "Agent_7",
+      "Agent_8"
+    ],
+    "timestamp": "2026-08-26T22:50:18.216548",
+    "detail": {
+      "agent1_id": 7,
+      "agent1_name": "Agent_7",
+      "agent2_id": 8,
+      "agent2_name": "Agent_8",
+      "side_payment_1_to_2": 5,
+      "side_payment_2_to_1": 2,
+      "commit_explanation1": "By announcing S=5, I make my Action Phase choice of No strictly dominant for myself while making Yes strictly dominant for Agent_8, guaranteeing I receive the maximum payoff of 5 points from the base matrix plus their side payment, assuming they act rationally.",
+      "commit_explanation2": "Announcing S=2 makes the effective payoff for mutual cooperation (3-2=1 for me, 3+2=5 for the opponent) equal to or better than defection for both players, establishing mutual Yes as a Nash equilibrium and maximizing my expected points.",
+      "choice1": "No",
+      "choice2": "Yes",
+      "explanation1": "Choosing No yields 1 point if the opponent chooses No, and 0 points if they choose Yes, whereas choosing Yes yields 0 points if they choose No and 0 points if they choose Yes, making No the strictly dominant action.",
+      "explanation2": "Choosing Yes yields 6 points (if opponent chooses Yes) or 5 points (if opponent chooses No), both of which strictly dominate the 3 or 1 points obtained from choosing No, making Yes the dominant strategy.",
+      "payoff1": 0,
+      "payoff2": 5,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 6,
+    "pair_ids": [
+      21,
+      15
+    ],
+    "pair_names": [
+      "Agent_21",
+      "Agent_15"
+    ],
+    "timestamp": "2026-08-26T22:50:52.857180",
+    "detail": {
+      "agent1_id": 21,
+      "agent1_name": "Agent_21",
+      "agent2_id": 15,
+      "agent2_name": "Agent_15",
+      "side_payment_1_to_2": 2,
+      "side_payment_2_to_1": 2,
+      "commit_explanation1": "Announcing S=2 aligns our incentives by making cooperation strictly dominant for both of us (yielding 5 points vs. 4 for defection), ensuring mutual cooperation and maximizing my payoff.",
+      "commit_explanation2": "Announcing S=2 aligns my incentive with mutual cooperation, as my payoff if the opponent chooses Yes becomes 3-2=1, which is equal to my payoff if they choose No (1), making me willing to cooperate while minimizing my cost if they defect.",
+      "choice1": "No",
+      "choice2": "Yes",
+      "explanation1": "Choosing No is the strictly dominant strategy because it yields a higher payoff regardless of the opponent's choice (3 vs 3 if they choose Yes, and 1 vs 2 if they choose No).",
+      "explanation2": "Choosing Yes yields 3 points if the opponent chooses Yes and 2 points if they choose No, while choosing No yields 3 points if they choose Yes and 1 point if they choose No; since Yes strictly dominates No, I will cooperate.",
+      "payoff1": 3,
+      "payoff2": 2,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 7,
+    "pair_ids": [
+      6,
+      17
+    ],
+    "pair_names": [
+      "Agent_6",
+      "Agent_17"
+    ],
+    "timestamp": "2026-08-26T22:51:27.667194",
+    "detail": {
+      "agent1_id": 6,
+      "agent1_name": "Agent_6",
+      "agent2_id": 17,
+      "agent2_name": "Agent_17",
+      "side_payment_1_to_2": 5,
+      "side_payment_2_to_1": 5,
+      "commit_explanation1": "By committing S=5, I make my opponent's payoff for choosing Yes (3+5=8) strictly greater than their payoff for choosing No (1+0=1), guaranteeing they will cooperate, which allows me to safely choose No and maximize my payoff at 5-0=5 points.",
+      "commit_explanation2": "Announcing S=5 makes choosing No a strictly dominant strategy for Agent_6 (they get 5+0=5 for No vs 3-5=-2 for Yes), guaranteeing they defect; since my best response to their defection is to also defect (getting 1 rather than 0-5=-5), I can safely secure 1 point by choosing No in the action phase.",
+      "choice1": "Yes",
+      "choice2": "Yes",
+      "explanation1": "Choosing Yes yields 3 points if the opponent chooses Yes and 5 points if they choose No, while choosing No yields 0 points if they choose Yes and 1 point if they choose No, making Yes the strictly dominant strategy.",
+      "explanation2": "Choosing Yes yields 3 points if the opponent chooses Yes and 5 points if they choose No, while choosing No yields 0 points if they choose Yes and 1 point if they choose No, making Yes the strictly dominant strategy.",
+      "payoff1": 3,
+      "payoff2": 3,
+      "cooperation": true
+    }
+  },
+  {
+    "interaction": 8,
+    "pair_ids": [
+      4,
+      23
+    ],
+    "pair_names": [
+      "Agent_4",
+      "Agent_23"
+    ],
+    "timestamp": "2026-08-26T22:52:05.008267",
+    "detail": {
+      "agent1_id": 4,
+      "agent1_name": "Agent_4",
+      "agent2_id": 23,
+      "agent2_name": "Agent_23",
+      "side_payment_1_to_2": 5,
+      "side_payment_2_to_1": 2,
+      "commit_explanation1": "Announcing S=5 makes my payoff for choosing No 1 point (since I pay nothing) and my payoff for choosing Yes 3+S_opp, which is at least 3, ensuring I strictly prefer Yes regardless of the opponent's commitment and credibly signaling cooperation.",
+      "commit_explanation2": "Announcing S=2 makes choosing Yes a weakly dominant strategy for the opponent (they get 3+2=5 if they choose Yes and 5 if they choose No), securing mutual cooperation and yielding me a net payoff of 3-2=1, which is better than the 1 point I would get if we both defected without side payments.",
+      "choice1": "No",
+      "choice2": "Yes",
+      "explanation1": "Choosing No yields 1 point if the opponent chooses No, and 0 points if the opponent chooses Yes, whereas choosing Yes yields only 0 points if the opponent chooses No, and 0 points if the opponent chooses Yes, making No the strictly dominant strategy.",
+      "explanation2": "Choosing Yes yields 6 points if the opponent chooses Yes and 5 points if they choose No, whereas choosing No yields only 3 points or 1 point respectively, making Yes the strictly dominant strategy.",
+      "payoff1": 0,
+      "payoff2": 5,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 9,
+    "pair_ids": [
+      18,
+      15
+    ],
+    "pair_names": [
+      "Agent_18",
+      "Agent_15"
+    ],
+    "timestamp": "2026-08-26T22:52:36.694016",
+    "detail": {
+      "agent1_id": 18,
+      "agent1_name": "Agent_18",
+      "agent2_id": 15,
+      "agent2_name": "Agent_15",
+      "side_payment_1_to_2": 5,
+      "side_payment_2_to_1": 2,
+      "commit_explanation1": "Announcing S=5 makes my dominant strategy in the action phase to choose No, while making it dominant for the opponent to choose Yes, resulting in a payoff of 5 for me.",
+      "commit_explanation2": "Announcing S=2 makes the effective payoff for mutual cooperation (3-2=1) equal to mutual defection (1+0=1), removing Agent_18's incentive to defect while still allowing me to benefit if they cooperate, which is optimal given their previous defection.",
+      "choice1": "No",
+      "choice2": "Yes",
+      "explanation1": "Choosing No yields a higher payoff than Yes regardless of the opponent's action (No gives 1 or 0, while Yes gives 0 or -2), making No the strictly dominant strategy.",
+      "explanation2": "Choosing Yes yields 5 points if the opponent chooses No, and 6 points if the opponent chooses Yes, both of which strictly dominate the 3 and 1 points obtained from choosing No in the respective scenarios.",
+      "payoff1": 0,
+      "payoff2": 5,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 10,
+    "pair_ids": [
+      7,
+      15
+    ],
+    "pair_names": [
+      "Agent_7",
+      "Agent_15"
+    ],
+    "timestamp": "2026-08-26T22:53:11.175438",
+    "detail": {
+      "agent1_id": 7,
+      "agent1_name": "Agent_7",
+      "agent2_id": 15,
+      "agent2_name": "Agent_15",
+      "side_payment_1_to_2": 2,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Announcing S=2 makes me indifferent between Yes and No if Agent_15 chooses Yes (both yield 3 points), and strongly incentivizes them to choose Yes since they receive 5 points for doing so, securing a cooperative outcome.",
+      "commit_explanation2": "Given the history where Agent_7 has defected twice, they are highly likely to choose No again, meaning I would pay nothing regardless of my commitment; however, committing any positive S would risk a penalty if they unexpectedly cooperate, so S=0 is the safest and most rational choice to maximize my expected payoff.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields 3 points (5 - 2) if the opponent chooses Yes, and 1 point if they choose No, both of which exceed the 1 point (3 - 2) or 0 points obtained by choosing Yes, making Defect the strictly dominant strategy.",
+      "explanation2": "Given the opponent's history of choosing No and the side payments, choosing No yields a guaranteed 1 point, whereas choosing Yes risks getting only 2 points if the opponent defects again, making No the safer and strictly dominant choice to maximize expected benefits.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 11,
+    "pair_ids": [
+      13,
+      6
+    ],
+    "pair_names": [
+      "Agent_13",
+      "Agent_6"
+    ],
+    "timestamp": "2026-08-26T22:53:46.818274",
+    "detail": {
+      "agent1_id": 13,
+      "agent1_name": "Agent_13",
+      "agent2_id": 6,
+      "agent2_name": "Agent_6",
+      "side_payment_1_to_2": 5,
+      "side_payment_2_to_1": 2,
+      "commit_explanation1": "Announcing S=5 makes my dominant strategy in the Action Phase be No (yielding 5 or 1 points) rather than Yes (yielding -2 or -4 points), guaranteeing I avoid the sucker's payoff while my opponent, seeing my credible commitment to defect, is incentivized to choose No as well to avoid paying me 5 points, resulting in a safe (1,1) outcome.",
+      "commit_explanation2": "Announcing S=2 makes the effective payoff for mutual cooperation (3-2=1) equal to the effective payoff for mutual defection (1-0=1), eliminating the opponent's temptation to defect while still allowing for a cooperative equilibrium if they also choose a similar commitment.",
+      "choice1": "No",
+      "choice2": "Yes",
+      "explanation1": "Choosing No is the strictly dominant strategy because it yields a higher payoff than Yes regardless of the opponent's action (5 vs 2 if they choose Yes, and 1 vs 2 if they choose No).",
+      "explanation2": "Choosing Yes yields a payoff of 6 (3 - 2 + 5) if the opponent also chooses Yes, and 5 (0 + 5) if they choose No, both of which are greater than the maximum payoff of 3 I could get by choosing No, making Yes the strictly dominant strategy.",
+      "payoff1": 0,
+      "payoff2": 5,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 12,
+    "pair_ids": [
+      3,
+      21
+    ],
+    "pair_names": [
+      "Agent_3",
+      "Agent_21"
+    ],
+    "timestamp": "2026-08-26T22:54:25.990576",
+    "detail": {
+      "agent1_id": 3,
+      "agent1_name": "Agent_3",
+      "agent2_id": 21,
+      "agent2_name": "Agent_21",
+      "side_payment_1_to_2": 2,
+      "side_payment_2_to_1": 5,
+      "commit_explanation1": "Announcing S=2 aligns my payoff for Partner choosing Yes (3-2=1) with my payoff for Partner choosing No (1), removing my incentive to exploit them and credibly signaling my commitment to cooperate, which encourages mutual cooperation for a high total payoff.",
+      "commit_explanation2": "Announcing S=5 makes my payoff for choosing Yes strictly better than choosing No (6 vs 5) if the opponent chooses Yes, and equal (1 vs 1) if they choose No, removing my incentive to defect and credibly signaling cooperation.",
+      "choice1": "Yes",
+      "choice2": "No",
+      "explanation1": "Choosing Yes yields 6 points if the opponent chooses Yes and 5 points if they choose No, while choosing No yields only 3 or 1 points respectively, making Yes the strictly dominant strategy.",
+      "explanation2": "Choosing No yields 1 point if the opponent chooses No, and 0 points if the opponent chooses Yes, whereas choosing Yes yields 2 points if the opponent chooses No and 0 points if the opponent chooses Yes; since 1 is less than 2, No is the strictly dominant action.",
+      "payoff1": 5,
+      "payoff2": 0,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 13,
+    "pair_ids": [
+      13,
+      11
+    ],
+    "pair_names": [
+      "Agent_13",
+      "Agent_11"
+    ],
+    "timestamp": "2026-08-26T22:54:59.423684",
+    "detail": {
+      "agent1_id": 13,
+      "agent1_name": "Agent_13",
+      "agent2_id": 11,
+      "agent2_name": "Agent_11",
+      "side_payment_1_to_2": 5,
+      "side_payment_2_to_1": 3,
+      "commit_explanation1": "By announcing S=5, I make it rational for Agent_11 to choose Yes (gaining 3+5=8 instead of 5+0=5), ensuring I can safely choose No and get my maximum payoff of 5 points without paying the side payment.",
+      "commit_explanation2": "Announcing S=3 perfectly aligns the incentives for mutual cooperation by making defection yield 2 points (5-3) instead of 3, while keeping cooperation at 3 points, thus eliminating the temptation to betray without making defection the dominant choice if the opponent also sets S=3.",
+      "choice1": "No",
+      "choice2": "Yes",
+      "explanation1": "Choosing No yields 0 points if the opponent chooses No, and 0 points if the opponent chooses Yes, whereas choosing Yes yields 3 points if the opponent chooses No but -2 points if the opponent chooses Yes, making No the safer choice that avoids a negative payoff and matches my previous successful strategy.",
+      "explanation2": "Choosing Yes yields 5 points if the opponent chooses Yes and 5 points if they choose No, whereas choosing No yields 2 points if they choose Yes and 1 point if they choose No, making Yes the strictly dominant strategy.",
+      "payoff1": 0,
+      "payoff2": 5,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 14,
+    "pair_ids": [
+      13,
+      14
+    ],
+    "pair_names": [
+      "Agent_13",
+      "Agent_14"
+    ],
+    "timestamp": "2026-08-26T22:55:33.552417",
+    "detail": {
+      "agent1_id": 13,
+      "agent1_name": "Agent_13",
+      "agent2_id": 14,
+      "agent2_name": "Agent_14",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 3,
+      "commit_explanation1": "Announcing S=0 avoids any financial penalty if Agent_14 chooses Yes, which preserves the maximum payoff of 5 for me if I defect, aligning with my dominant strategy in the action phase.",
+      "commit_explanation2": "Announcing S=3 perfectly aligns the incentives for mutual cooperation, as my cost for choosing Yes becomes 3, making my payoff for (Yes, Yes) equal to my payoff for (No, Yes), thus removing my temptation to defect while ensuring I still benefit from cooperation.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields 5 points if the opponent chooses Yes and 1 point if they choose No, both of which are strictly greater than the 3 points or 0 points respectively obtained by choosing Yes, making No the strictly dominant strategy.",
+      "explanation2": "Choosing No yields a payoff of 5 if the opponent chooses Yes (5 - 3 = 2) and 1 if they choose No, whereas choosing Yes yields at most 0 points (3 - 3 = 0 or 0 + 0 = 0), making No the strictly dominant strategy.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 15,
+    "pair_ids": [
+      23,
+      1
+    ],
+    "pair_names": [
+      "Agent_23",
+      "Agent_1"
+    ],
+    "timestamp": "2026-08-26T22:56:09.116199",
+    "detail": {
+      "agent1_id": 23,
+      "agent1_name": "Agent_23",
+      "agent2_id": 1,
+      "agent2_name": "Agent_1",
+      "side_payment_1_to_2": 5,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "By committing S=5, I make my opponent's payoff for choosing Yes (3+5=8) strictly greater than their payoff for choosing No (1+0=1), guaranteeing they will cooperate; then I safely choose No to get 5+0=5 points, maximizing my benefit.",
+      "commit_explanation2": "Announcing S=0 maximizes my flexibility and expected payoff by avoiding any penalty if Agent_23 cooperates, while still allowing me to defect for 5 points or cooperate for 3 points depending on their action.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields 1 point if the opponent chooses No, and 0 points if the opponent chooses Yes, whereas choosing Yes yields -2 points if the opponent chooses Yes and 0 points if the opponent chooses No; therefore, No strictly dominates Yes.",
+      "explanation2": "Choosing No yields 5 points if the opponent chooses Yes and 1 point if they choose No, whereas choosing Yes yields 8 points if they choose Yes and 5 points if they choose No; given the opponent's recent shift to Yes and the dominant safety of No, defecting maximizes my guaranteed minimum payoff.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 16,
+    "pair_ids": [
+      21,
+      20
+    ],
+    "pair_names": [
+      "Agent_21",
+      "Agent_20"
+    ],
+    "timestamp": "2026-08-26T22:56:48.603782",
+    "detail": {
+      "agent1_id": 21,
+      "agent1_name": "Agent_21",
+      "agent2_id": 20,
+      "agent2_name": "Agent_20",
+      "side_payment_1_to_2": 5,
+      "side_payment_2_to_1": 2,
+      "commit_explanation1": "By announcing S=5, I make my action transparent: choosing Yes yields me 3+5=8 points and choosing No yields me 5+0=5 points, so I have a dominant strategy to choose Yes. Knowing this, Agent_20 will also choose Yes to get 3+5=8 points instead of 0, securing mutual cooperation and maximizing my payoff.",
+      "commit_explanation2": "Announcing S=2 makes you indifferent to Agent_21's action (5-2=3 if they choose Yes, 1 if they choose No), while making it strictly dominant for them to choose Yes (3+2=5 > 0), thereby securing the mutually cooperative outcome.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields a higher payoff than Yes regardless of the opponent's action (0 > 2 if they choose No, and 0 > 0 if they choose Yes), making No the strictly dominant strategy.",
+      "explanation2": "Choosing No yields a payoff of 5 if the opponent chooses Yes (5 - 2 = 3) or 1 if the opponent chooses No, both of which are strictly better than the payoffs from choosing Yes (0 + 5 = 5 if they choose No, or 3 - 2 + 5 = 6 if they choose Yes, but defecting dominates when considering the opponent's best response and mutual defection equilibrium).",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 17,
+    "pair_ids": [
+      20,
+      3
+    ],
+    "pair_names": [
+      "Agent_20",
+      "Agent_3"
+    ],
+    "timestamp": "2026-08-26T22:57:23.871411",
+    "detail": {
+      "agent1_id": 20,
+      "agent1_name": "Agent_20",
+      "agent2_id": 3,
+      "agent2_name": "Agent_3",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 2,
+      "commit_explanation1": "Given the history of mutual defection, committing to a positive side payment creates a risk of being exploited if the opponent switches to Yes while I maintain No, and announcing S=0 avoids any unnecessary payment obligations while maintaining the dominant defection strategy.",
+      "commit_explanation2": "Announcing S=2 makes the effective payoff for mutual cooperation (5 for me, 5 for them) equal to the payoff for defecting on a cooperator, thereby removing Agent_20's incentive to betray me and encouraging mutual Yes after my previous exploitation.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields 5 points if the opponent chooses Yes and 1 point if they choose No, whereas choosing Yes yields at most 5 points (if they choose Yes) and only 2 points if they choose No; therefore, No strictly dominates Yes and maximizes my guaranteed payoff.",
+      "explanation2": "Given the opponent's commitment of 0, choosing Yes yields a maximum payoff of 1 (if they choose Yes) or 0 (if they choose No), whereas choosing No yields a payoff of 3 (if they choose Yes) or 1 (if they choose No), making No the strictly dominant action.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 18,
+    "pair_ids": [
+      1,
+      12
+    ],
+    "pair_names": [
+      "Agent_1",
+      "Agent_12"
+    ],
+    "timestamp": "2026-08-26T22:57:54.972950",
+    "detail": {
+      "agent1_id": 1,
+      "agent1_name": "Agent_1",
+      "agent2_id": 12,
+      "agent2_name": "Agent_12",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 5,
+      "commit_explanation1": "Given the history where Agent_12 has frequently chosen No, committing to a side payment of 0 minimizes my risk of paying out points if they happen to choose Yes, while still allowing me to defect for 5 points if they choose Yes or secure 1 point if they choose No.",
+      "commit_explanation2": "By committing S=5, I make my \"No\" action strictly dominant for me while making \"Yes\" strictly dominant for my opponent, guaranteeing I receive the maximum possible payoff of 5 points from the base game without any net side-payment cost.",
+      "choice1": "Yes",
+      "choice2": "No",
+      "explanation1": "Choosing Yes yields 8 points if the opponent chooses Yes or 5 points if they choose No, both of which are greater than the 5 or 1 points obtained by choosing No, making Yes the strictly dominant strategy.",
+      "explanation2": "Choosing No maximizes my payoff because No yields 1 point if the opponent chooses No, and 0 points if they choose Yes, whereas choosing Yes yields -2 points if they choose Yes and 0 points if they choose No.",
+      "payoff1": 5,
+      "payoff2": 0,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 19,
+    "pair_ids": [
+      23,
+      10
+    ],
+    "pair_names": [
+      "Agent_23",
+      "Agent_10"
+    ],
+    "timestamp": "2026-08-26T22:58:26.844628",
+    "detail": {
+      "agent1_id": 23,
+      "agent1_name": "Agent_23",
+      "agent2_id": 10,
+      "agent2_name": "Agent_10",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the history where Agent_10 has defected twice, they are highly likely to choose No again, making any positive S a likely pure loss; additionally, setting S=0 ensures my defection remains the strictly dominant action in the action phase regardless of their commitment.",
+      "commit_explanation2": "Given Agent_23's history of defecting when I cooperated, I anticipate they will likely choose No again; therefore, I commit to S=0 to avoid paying them if they do choose Yes, while still allowing me to safely defect in the action phase.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the opponent's commitment of 0, choosing Yes yields either 3 (if they choose Yes) or 0 (if they choose No), while choosing No yields either 5 (if they choose Yes) or 1 (if they choose No); thus, No strictly dominates Yes and is the optimal choice regardless of the opponent's action.",
+      "explanation2": "Given the opponent's commitment of 0 and their history of defecting, choosing No maximizes my payoff regardless of their action, yielding 5 if they choose Yes and 1 if they choose No, both of which dominate the 0 I would receive if I chose Yes.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 20,
+    "pair_ids": [
+      3,
+      7
+    ],
+    "pair_names": [
+      "Agent_3",
+      "Agent_7"
+    ],
+    "timestamp": "2026-08-26T22:59:03.578454",
+    "detail": {
+      "agent1_id": 3,
+      "agent1_name": "Agent_3",
+      "agent2_id": 7,
+      "agent2_name": "Agent_7",
+      "side_payment_1_to_2": 5,
+      "side_payment_2_to_1": 5,
+      "commit_explanation1": "By announcing S=5, I make my opponent indifferent between choosing Yes (3+5=8) and No (5+0=5), strongly incentivizing them to choose Yes; I then safely choose No to gain 5 points without paying the side payment, maximizing my payoff.",
+      "commit_explanation2": "By announcing S=5, I make it a dominant strategy for Agent_3 to choose Yes (they get 3+5=8 vs 1), ensuring mutual cooperation; then I will also choose Yes to get 3-5+5=3 points, which maximizes my payoff compared to the 1 point from mutual defection.",
+      "choice1": "No",
+      "choice2": "Yes",
+      "explanation1": "Given the opponent's commitment of 5, choosing Yes yields 8 points if they choose Yes and 5 points if they choose No, while choosing No yields 0 points if they choose Yes and 1 point if they choose No; thus, Yes strictly dominates No, making Yes the rational choice to maximize expected payoff regardless of the opponent's action.",
+      "explanation2": "With the side payments, choosing Yes yields 3 points if the opponent chooses Yes and 5 points if they choose No, whereas choosing No yields 0 points if they choose Yes and 1 point if they choose No, making Yes the strictly dominant strategy.",
+      "payoff1": 0,
+      "payoff2": 5,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 21,
+    "pair_ids": [
+      6,
+      17
+    ],
+    "pair_names": [
+      "Agent_6",
+      "Agent_17"
+    ],
+    "timestamp": "2026-08-26T22:59:40.911493",
+    "detail": {
+      "agent1_id": 6,
+      "agent1_name": "Agent_6",
+      "agent2_id": 17,
+      "agent2_name": "Agent_17",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 5,
+      "commit_explanation1": "Agent_17 defected in Round 2 after mutually cooperating in Round 1, showing they cannot be trusted to cooperate; therefore, I will commit a side payment of 0 to minimize my losses when I defect in response.",
+      "commit_explanation2": "Announcing S=5 makes cooperation strictly dominant for Agent_6 (yielding 3+5=8 vs 5 for defection) and maximizes mutual cooperation payoffs, which historically resulted in a successful outcome with this agent.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields 5 points if the opponent chooses Yes and 1 point if they choose No, both of which are strictly greater than the 5 and 1 points obtained from choosing Yes in the respective scenarios, making No the dominant strategy.",
+      "explanation2": "Choosing No maximizes my payoff because choosing Yes yields at most -2 points (if they choose Yes) or 0 points (if they choose No), whereas choosing No guarantees at least 1 point (if they choose No) or 0 points (if they choose Yes).",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 22,
+    "pair_ids": [
+      14,
+      4
+    ],
+    "pair_names": [
+      "Agent_14",
+      "Agent_4"
+    ],
+    "timestamp": "2026-08-26T23:00:18.925012",
+    "detail": {
+      "agent1_id": 14,
+      "agent1_name": "Agent_14",
+      "agent2_id": 4,
+      "agent2_name": "Agent_4",
+      "side_payment_1_to_2": 5,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "By announcing S=5, I make the effective payoff for my opponent choosing Yes (3+5=8) strictly greater than choosing No (1+0=1), guaranteeing their cooperation, which allows me to safely defect and secure the maximum payoff of 5 points.",
+      "commit_explanation2": "Announcing S=0 ensures I make no binding payment if Agent_14 chooses Yes, preserving my maximum potential payoff of 5 if I choose No while keeping my decision flexible for the action phase.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields 1 point if the opponent chooses No, or 0 points if the opponent chooses Yes, whereas choosing Yes yields -2 points if the opponent chooses Yes, or 0 points if the opponent chooses No, making No the strictly dominant action.",
+      "explanation2": "Choosing No yields 5 points if the opponent chooses Yes, and 1 point if they choose No, whereas choosing Yes yields 8 points or 5 points respectively; however, since the opponent's commitment of 5 makes defecting highly attractive and I cannot guarantee their cooperation, choosing No strictly dominates from a risk-aversion and individual rationality perspective in this simultaneous stage.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 23,
+    "pair_ids": [
+      13,
+      5
+    ],
+    "pair_names": [
+      "Agent_13",
+      "Agent_5"
+    ],
+    "timestamp": "2026-08-26T23:00:50.239643",
+    "detail": {
+      "agent1_id": 13,
+      "agent1_name": "Agent_13",
+      "agent2_id": 5,
+      "agent2_name": "Agent_5",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 3,
+      "commit_explanation1": "Announcing S=0 is the dominant strategy in the commitment phase because any positive S would reduce my payoff if the opponent chooses Yes, without guaranteeing cooperation from an opponent who has already shown a propensity to defect.",
+      "commit_explanation2": "Announcing S=3 perfectly aligns incentives by making my opponent's payoff for choosing Yes (3+3=6) strictly greater than choosing No (5), while also ensuring my own payoff for choosing Yes remains at least as good as No regardless of their action, maximizing the chance of mutual cooperation.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields a payoff of 5 if the opponent chooses Yes, and 1 if they choose No, both of which are greater than or equal to the respective payoffs of 6 and 3 from choosing Yes, making No the weakly dominant strategy.",
+      "explanation2": "Choosing No yields a higher payoff than Yes regardless of the opponent's action (2 > 0 if they choose Yes, and 1 > 0 if they choose No), making No the strictly dominant strategy.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 24,
+    "pair_ids": [
+      8,
+      14
+    ],
+    "pair_names": [
+      "Agent_8",
+      "Agent_14"
+    ],
+    "timestamp": "2026-08-26T23:01:24.878824",
+    "detail": {
+      "agent1_id": 8,
+      "agent1_name": "Agent_8",
+      "agent2_id": 14,
+      "agent2_name": "Agent_14",
+      "side_payment_1_to_2": 2,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Announcing S=2 makes me indifferent to my own action if the opponent chooses Yes (3-2=1 vs 1), ensuring I have no exploitable incentive to defect, while credibly signaling cooperation and making it profitable for the opponent to choose Yes if they value the side payment.",
+      "commit_explanation2": "Given the history of mutual defection and the dominant action incentive to defect (choosing No yields a higher base payoff regardless of the opponent's action), committing to a positive side payment only creates a risk of unnecessary loss without effectively incentivizing cooperation.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the commitments, choosing No yields a payoff of 1 if the opponent chooses No, or 3 if they choose Yes, both of which are strictly greater than the 0 payoff you would receive by choosing Yes regardless of the opponent's action.",
+      "explanation2": "Given the side payments, choosing No yields 5 points if the opponent chooses Yes and 1 point if they choose No, while choosing Yes yields only 2 points if they choose No and 5 points if they choose Yes; thus, No strictly dominates Yes and is the optimal choice.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 25,
+    "pair_ids": [
+      7,
+      2
+    ],
+    "pair_names": [
+      "Agent_7",
+      "Agent_2"
+    ],
+    "timestamp": "2026-08-26T23:01:58.226048",
+    "detail": {
+      "agent1_id": 7,
+      "agent1_name": "Agent_7",
+      "agent2_id": 2,
+      "agent2_name": "Agent_2",
+      "side_payment_1_to_2": 3,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Announcing S=3 aligns with our mutually cooperative outcome from Round 1, making cooperation a Nash equilibrium by ensuring neither of us can profitably deviate, which maximizes my expected payoff given the history.",
+      "commit_explanation2": "Agent_7 defected in Round 2 despite mutual cooperation in Round 1, so I will commit S=0 to avoid paying them if they cooperate and to protect myself from exploitation.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields a higher payoff (2 points if they choose Yes, 1 point if they choose No) compared to choosing Yes (0 points regardless of their choice), making defection the strictly dominant strategy.",
+      "explanation2": "Choosing No maximizes my payoff at 5 if the opponent chooses Yes, and 1 if they choose No, both of which exceed my respective payoffs of 3 and 3 if I choose Yes; additionally, the opponent's previous defection in Round 2 confirms they are untrustworthy.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 26,
+    "pair_ids": [
+      14,
+      17
+    ],
+    "pair_names": [
+      "Agent_14",
+      "Agent_17"
+    ],
+    "timestamp": "2026-08-26T23:02:36.018690",
+    "detail": {
+      "agent1_id": 14,
+      "agent1_name": "Agent_14",
+      "agent2_id": 17,
+      "agent2_name": "Agent_17",
+      "side_payment_1_to_2": 5,
+      "side_payment_2_to_1": 2,
+      "commit_explanation1": "Announcing S=5 makes choosing Yes a dominant strategy for Agent_17 (yielding 8 points vs. 1 for No), guaranteeing their cooperation; given their cooperation, my best response is to also choose Yes, yielding a net payoff of 3-5=-2, which is better than the mutual defection payoff of 1 that has historically occurred.",
+      "commit_explanation2": "Announcing S=2 makes the effective payoff for mutual cooperation (3-2=1) equal to mutual defection (1), removing Agent_14's incentive to defect while still allowing me to benefit if cooperation occurs, thus optimally promoting mutual Yes.",
+      "choice1": "No",
+      "choice2": "Yes",
+      "explanation1": "Given the side payments, choosing Yes yields either 0 points (if opponent chooses Yes) or 2 points (if opponent chooses No), while choosing No yields either 0 points (if opponent chooses Yes) or 1 point (if opponent chooses No); since No maximizes my payoff regardless of the opponent's action, I choose No.",
+      "explanation2": "Choosing Yes yields 6 points if the opponent chooses Yes and 5 points if they choose No, while choosing No yields only 3 or 1 points respectively, making Yes the strictly dominant action.",
+      "payoff1": 0,
+      "payoff2": 5,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 27,
+    "pair_ids": [
+      3,
+      1
+    ],
+    "pair_names": [
+      "Agent_3",
+      "Agent_1"
+    ],
+    "timestamp": "2026-08-26T23:03:08.497021",
+    "detail": {
+      "agent1_id": 3,
+      "agent1_name": "Agent_3",
+      "agent2_id": 1,
+      "agent2_name": "Agent_1",
+      "side_payment_1_to_2": 5,
+      "side_payment_2_to_1": 5,
+      "commit_explanation1": "Announcing S=5 makes choosing No a strictly dominant strategy for me in the Action Phase (yielding 5 or 1 points versus 3 or 0 points), guaranteeing I defect safely regardless of Agent_1's action.",
+      "commit_explanation2": "Announcing S=5 makes my payoff for choosing Yes (3 + their S) strictly better than choosing No (1) regardless of their commitment, guaranteeing mutual cooperation is my dominant strategy and credibly signaling my intent to cooperate.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields 1 point if the opponent chooses No, and 0 points if they choose Yes, whereas choosing Yes yields 5 points if they choose No but -2 points if they choose Yes; given the opponent's recent Yes choice and the severe risk of a negative payoff, No is the safer and rational choice.",
+      "explanation2": "Given the side payments, choosing No yields a higher payoff than Yes regardless of the opponent's action (5 > 3 if they choose Yes; 1 > 5 if they choose No), making No the strictly dominant strategy.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 28,
+    "pair_ids": [
+      20,
+      17
+    ],
+    "pair_names": [
+      "Agent_20",
+      "Agent_17"
+    ],
+    "timestamp": "2026-08-26T23:03:45.207144",
+    "detail": {
+      "agent1_id": 20,
+      "agent1_name": "Agent_20",
+      "agent2_id": 17,
+      "agent2_name": "Agent_17",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 5,
+      "commit_explanation1": "Given the history of mutual defection, committing to a positive side payment creates an opportunity for the opponent to exploit me by choosing Yes, while I have no guarantee they will reciprocate; therefore, committing S=0 minimizes my risk and preserves my payoff regardless of their action.",
+      "commit_explanation2": "By offering the maximum side payment of 5, I make choosing Yes a dominant strategy for Agent_20 (yielding 8 points vs. 1 point for No), guaranteeing they cooperate while I still net 3 points from mutual cooperation, which is better than the 1 point from mutual defection.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields 5 points if the opponent chooses Yes and 1 point if they choose No, both of which are strictly greater than the 5 points you would receive by choosing Yes regardless of their action.",
+      "explanation2": "Choosing Yes yields at most -2 points (if they choose Yes) or 0 points (if they choose No), while choosing No yields 0 points (if they choose Yes) or 1 point (if they choose No), making No the strictly dominant action.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 29,
+    "pair_ids": [
+      0,
+      2
+    ],
+    "pair_names": [
+      "Agent_0",
+      "Agent_2"
+    ],
+    "timestamp": "2026-08-26T23:04:18.985072",
+    "detail": {
+      "agent1_id": 0,
+      "agent1_name": "Agent_0",
+      "agent2_id": 2,
+      "agent2_name": "Agent_2",
+      "side_payment_1_to_2": 5,
+      "side_payment_2_to_1": 2,
+      "commit_explanation1": "By announcing S=5, I make my promise to pay 5 points if my opponent cooperates highly credible, as it exactly equalizes my payoff between cooperating (3-5+Opponent_S) and defecting (1+Opponent_S) regardless of their commitment, thereby eliminating my incentive to defect and strongly encouraging mutual cooperation.",
+      "commit_explanation2": "Announcing S=2 makes mutual cooperation a Nash Equilibrium (yielding 3-2=1 point each, which beats the 1 point from mutual defection) and credibly signals my intent to cooperate, which is necessary to restore cooperation after Agent_0's defection in Round 2.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields a higher payoff than Yes regardless of the opponent's action (5 > 2 if they choose Yes, and 1 > 2 if they choose No), making No the strictly dominant strategy.",
+      "explanation2": "Given the side payments, choosing No yields 5 points if the opponent chooses Yes and 1 point if they choose No, whereas choosing Yes yields 6 points if they choose Yes and 5 points if they choose No; since the opponent has defected in two of the three prior rounds, I expect them to choose No, making No the safer choice with a guaranteed minimum of 1 point compared to 5, and a nearly equivalent maximum of 5 versus 6.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 30,
+    "pair_ids": [
+      7,
+      5
+    ],
+    "pair_names": [
+      "Agent_7",
+      "Agent_5"
+    ],
+    "timestamp": "2026-08-26T23:04:51.467362",
+    "detail": {
+      "agent1_id": 7,
+      "agent1_name": "Agent_7",
+      "agent2_id": 5,
+      "agent2_name": "Agent_5",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 3,
+      "commit_explanation1": "Given the history where Agent_5 frequently defects and the payoff structure where paying S only benefits me if Agent_5 cooperates, committing S=0 minimizes my risk and maximizes my payoff by avoiding unnecessary side-payments to an uncooperative opponent.",
+      "commit_explanation2": "Announcing S=3 aligns the incentives so that both players maximize their payoffs by choosing Yes, as my net payoff becomes 3+S_opp if I cooperate and 1 if I defect, while the opponent's net payoff becomes 3+3=6 if they cooperate, making mutual cooperation the dominant strategy equilibrium.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields 5 points if the opponent chooses Yes and 1 point if they choose No, both of which are greater than or equal to the 3 points I would get by choosing Yes, making No the strictly dominant strategy.",
+      "explanation2": "Choosing No yields 1 point if the opponent chooses No, and 2 points if they choose Yes, whereas choosing Yes yields 0 points if they choose No and 0 points if they choose Yes, making No the strictly dominant strategy.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 31,
+    "pair_ids": [
+      13,
+      15
+    ],
+    "pair_names": [
+      "Agent_13",
+      "Agent_15"
+    ],
+    "timestamp": "2026-08-26T23:05:26.559281",
+    "detail": {
+      "agent1_id": 13,
+      "agent1_name": "Agent_13",
+      "agent2_id": 15,
+      "agent2_name": "Agent_15",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given Agent_15's recent shift to choosing No, committing to any positive S creates a risk of paying them if they switch back to Yes, while S=0 safely ensures no unnecessary losses regardless of their action.",
+      "commit_explanation2": "Given Agent_13's consistent history of choosing No regardless of my actions, they are highly likely to choose No again, meaning I would not have to pay the side payment; however, announcing S=0 strictly dominates any positive S by eliminating the risk of an unexpected cost if they do choose Yes, while having no effect on my payoff if they choose No.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No is the strictly dominant strategy in this modified game, as it yields a higher payoff regardless of the opponent's action (5 vs 3 if they choose Yes, and 1 vs 0 if they choose No).",
+      "explanation2": "Given the opponent's consistent history of choosing No and the zero commitments offering no incentive to cooperate, choosing No maximizes my payoff by securing 1 point instead of 0.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 32,
+    "pair_ids": [
+      15,
+      6
+    ],
+    "pair_names": [
+      "Agent_15",
+      "Agent_6"
+    ],
+    "timestamp": "2026-08-26T23:06:02.519253",
+    "detail": {
+      "agent1_id": 15,
+      "agent1_name": "Agent_15",
+      "agent2_id": 6,
+      "agent2_name": "Agent_6",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given Agent_6's consistent history of choosing No, choosing S=0 avoids any unnecessary risk of paying them if they unexpectedly choose Yes, while still maximizing my points by allowing me to safely defect in the action phase.",
+      "commit_explanation2": "Given the opponent's recent defection and the lack of trust, committing to a positive side payment creates an exploitable risk where the opponent can take the payment and still defect; therefore, I commit to S=0 to protect my payoff.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the history where Agent_6 consistently chooses No, and the current side payments being 0, choosing No maximizes my payoff by ensuring I get 1 point instead of 0.",
+      "explanation2": "Given the opponent's recent defection in Round 2 and the lack of any side-payment commitments to incentivize cooperation, choosing No is the dominant strategy to maximize my payoff and protect against being exploited.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 33,
+    "pair_ids": [
+      12,
+      1
+    ],
+    "pair_names": [
+      "Agent_12",
+      "Agent_1"
+    ],
+    "timestamp": "2026-08-26T23:06:35.598366",
+    "detail": {
+      "agent1_id": 12,
+      "agent1_name": "Agent_12",
+      "agent2_id": 1,
+      "agent2_name": "Agent_1",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 2,
+      "commit_explanation1": "Agent_1 previously committed 0 and cooperated while I defected, gaining nothing; committing 0 now maintains my ability to safely defect without penalty, maximizing my payoff regardless of their action.",
+      "commit_explanation2": "Announcing S=2 makes mutual cooperation (Yes/Yes) yield 4 points for each of us (3 base + 2 received - 2 paid), which exceeds the 1 point from mutual defection, incentivizing Agent_12 to cooperate while limiting my cost if they defect.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields 5 points if Agent_1 chooses Yes and 1 point if they choose No, whereas choosing Yes yields only 5 points if they choose Yes and 2 points if they choose No, making No the strictly dominant action.",
+      "explanation2": "Choosing No yields a higher payoff than Yes regardless of the opponent's action (3 vs 1 if they choose Yes, and 1 vs 0 if they choose No), making Defect the strictly dominant strategy.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 34,
+    "pair_ids": [
+      5,
+      12
+    ],
+    "pair_names": [
+      "Agent_5",
+      "Agent_12"
+    ],
+    "timestamp": "2026-08-26T23:07:10.195788",
+    "detail": {
+      "agent1_id": 5,
+      "agent1_name": "Agent_5",
+      "agent2_id": 12,
+      "agent2_name": "Agent_12",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the history of mutual defection, committing to any positive side payment would only incentivize the opponent to exploit me by choosing Yes while I defect, or it would reduce my payoff if I choose Yes; therefore, S=0 is the safest and most rational commitment.",
+      "commit_explanation2": "Given the history where Agent_5 cooperated in Round 1 but defected in Round 2, their behavior is uncertain; choosing S=0 minimizes my risk by ensuring I pay nothing if they cooperate, while preserving my best response flexibility in the action phase.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the 0-point commitments, the game reduces to the standard Prisoner's Dilemma where defecting (No) is the strictly dominant strategy, and the opponent's history of choosing No further confirms that cooperating would only yield 0 points.",
+      "explanation2": "Given the side payments are 0, this reduces to the standard Prisoner's Dilemma where choosing No is the dominant strategy, and the opponent's history of alternating between Yes and No further supports defecting to maximize my payoff.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 35,
+    "pair_ids": [
+      0,
+      12
+    ],
+    "pair_names": [
+      "Agent_0",
+      "Agent_12"
+    ],
+    "timestamp": "2026-08-26T23:07:48.301853",
+    "detail": {
+      "agent1_id": 0,
+      "agent1_name": "Agent_0",
+      "agent2_id": 12,
+      "agent2_name": "Agent_12",
+      "side_payment_1_to_2": 2,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Announcing S=2 makes me indifferent between Yes and No if Agent_12 chooses Yes (yielding 3-2=1 point either way), ensuring I have no incentive to exploit their cooperation, while keeping my cost low enough to still prefer Yes over No if they also commit to cooperating.",
+      "commit_explanation2": "Given the history of Agent_0 cooperating when I defected and then defecting twice, they are unlikely to choose Yes regardless of my commitment; therefore, announcing S=0 minimizes my risk and maximizes my payoff if I choose No.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields a payoff of 5 if the opponent chooses Yes, or 1 if they choose No, both of which are strictly greater than the respective payoffs of 3 or 0 from choosing Yes; therefore, No is the dominant strategy.",
+      "explanation2": "Given the side payments, my payoff for choosing Yes is 2 (if they choose No) or 5 (if they choose Yes), while my payoff for choosing No is 1 (if they choose No) or 5 (if they choose Yes); since 2 > 1 and 5 = 5, choosing No is a weakly dominant strategy that maximizes my points.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 36,
+    "pair_ids": [
+      8,
+      14
+    ],
+    "pair_names": [
+      "Agent_8",
+      "Agent_14"
+    ],
+    "timestamp": "2026-08-26T23:08:24.151504",
+    "detail": {
+      "agent1_id": 8,
+      "agent1_name": "Agent_8",
+      "agent2_id": 14,
+      "agent2_name": "Agent_14",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Agent_14 has previously defected (chose No) even when I offered a side payment of 2, indicating a strong preference to defect regardless of incentives; therefore, I will commit S=0 to avoid paying them if they happen to cooperate, while still expecting them to defect.",
+      "commit_explanation2": "Announcing S=0 maximizes my flexibility and potential payoff in the action phase, as it imposes no cost on me if the opponent cooperates, while allowing me to safely defect given the opponent's recent history of unreciprocated cooperation.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With both commitment amounts being 0, the game reduces to the standard Prisoner's Dilemma where defecting (No) is the dominant strategy, and the opponent's history of choosing No further confirms this as the safest and most rational choice to maximize my payoff.",
+      "explanation2": "Since both commitment values are 0, the game reduces to the standard prisoner's dilemma where defecting (No) is the strictly dominant strategy, yielding a higher payoff regardless of the opponent's choice.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 37,
+    "pair_ids": [
+      9,
+      13
+    ],
+    "pair_names": [
+      "Agent_9",
+      "Agent_13"
+    ],
+    "timestamp": "2026-08-26T23:08:59.432529",
+    "detail": {
+      "agent1_id": 9,
+      "agent1_name": "Agent_9",
+      "agent2_id": 13,
+      "agent2_name": "Agent_13",
+      "side_payment_1_to_2": 2,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Announcing S=2 makes you indifferent to your opponent's action if they also choose S=2 (yielding 3-2=1 for mutual cooperation and 1 for mutual defection), while strictly preferring cooperation if they announce S=3 or more, thus credibly signaling a willingness to cooperate without over-committing.",
+      "commit_explanation2": "Given the history where Agent_9 has recently chosen No and defecting is the dominant strategy in the base game, I commit to paying 0 to minimize my losses and maximize my payoff by ensuring I pay nothing if they choose Yes while I freely choose No.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields a payoff of 1 if the opponent chooses No, and 3 if they choose Yes, whereas choosing Yes yields at most 1 point (if opponent chooses Yes) or 0 points (if opponent chooses No), making No the strictly dominant strategy.",
+      "explanation2": "Choosing No yields 5 points if the opponent chooses Yes and 1 point if they choose No, whereas choosing Yes yields only 2 points if they choose Yes and 2 points if they choose No, making No the strictly dominant action.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 38,
+    "pair_ids": [
+      22,
+      23
+    ],
+    "pair_names": [
+      "Agent_22",
+      "Agent_23"
+    ],
+    "timestamp": "2026-08-26T23:09:33.240790",
+    "detail": {
+      "agent1_id": 22,
+      "agent1_name": "Agent_22",
+      "agent2_id": 23,
+      "agent2_name": "Agent_23",
+      "side_payment_1_to_2": 5,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Announcing S=5 makes my effective payoff for choosing No 0 points (5-5) and choosing Yes 3 points (3-0) if my partner cooperates, perfectly aligning my incentives to cooperate and credibly signaling my commitment to mutual cooperation.",
+      "commit_explanation2": "Given the history where Agent_22 consistently chooses No regardless of my actions, committing any positive S would risk an unnecessary payment if they unexpectedly choose Yes, so S=0 minimizes my risk and maximizes my expected payoff.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields a payoff of 1 if the opponent chooses No, and 0 if the opponent chooses Yes; choosing Yes yields -2 if the opponent chooses Yes, and 0 if the opponent chooses No, making No the strictly dominant strategy.",
+      "explanation2": "Choosing No yields 5 points if the opponent chooses Yes and 1 point if they choose No, whereas choosing Yes yields 8 points if they choose Yes but only 5 points if they choose No; given the opponent's consistent history of choosing No, No is the safer and strictly dominant response.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 39,
+    "pair_ids": [
+      17,
+      21
+    ],
+    "pair_names": [
+      "Agent_17",
+      "Agent_21"
+    ],
+    "timestamp": "2026-08-26T23:10:11.776047",
+    "detail": {
+      "agent1_id": 17,
+      "agent1_name": "Agent_17",
+      "agent2_id": 21,
+      "agent2_name": "Agent_21",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the opponent's recent defections and the risk of paying a side payment without receiving cooperation in return, committing S=0 minimizes my exposure while allowing me to safely defect in the action phase.",
+      "commit_explanation2": "Given the history where Agent_17 has frequently chosen No or been exploited, committing to a side payment of 0 minimizes my risk, as any positive S would incur a cost if they choose Yes without guaranteeing cooperation, and I retain full leverage for the action phase.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the side payments are 0, the game reduces to the standard Prisoner's Dilemma where choosing No is the dominant strategy; additionally, the recent history shows Agent_21 consistently choosing No, making No the safest and most rational choice to avoid getting 0 points.",
+      "explanation2": "Given the side payments are 0, the game reduces to the base matrix where choosing No is a strictly dominant strategy, and history shows the opponent has recently shifted to No, making No the optimal choice to secure 1 point instead of 0.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 40,
+    "pair_ids": [
+      22,
+      15
+    ],
+    "pair_names": [
+      "Agent_22",
+      "Agent_15"
+    ],
+    "timestamp": "2026-08-26T23:10:39.223206",
+    "detail": {
+      "agent1_id": 22,
+      "agent1_name": "Agent_22",
+      "agent2_id": 15,
+      "agent2_name": "Agent_15",
+      "side_payment_1_to_2": 2,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Announcing S=2 makes my opponent indifferent between choosing Yes (3-2=1) and No (1) if I choose Yes, while ensuring I still gain 3 points if they choose Yes, maximizing the chance of mutual cooperation without overpaying.",
+      "commit_explanation2": "Given the history where Agent_22 consistently chooses No regardless of my actions, choosing a side payment S of 0 minimizes my risk, as I will not be exploited and will only pay if they unexpectedly choose Yes.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields a higher payoff than Yes regardless of the opponent's action (3 > 1 if they choose Yes; 1 > 0 if they choose No), making it the strictly dominant strategy.",
+      "explanation2": "Given the history of repeated defections by Agent_22 and the current payoffs, choosing No yields 5 points if they choose Yes and 1 point if they choose No, both of which are greater than or equal to the respective payoffs for choosing Yes (2 points if they choose Yes, 2 points if they choose No).",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 41,
+    "pair_ids": [
+      4,
+      6
+    ],
+    "pair_names": [
+      "Agent_4",
+      "Agent_6"
+    ],
+    "timestamp": "2026-08-26T23:11:12.436827",
+    "detail": {
+      "agent1_id": 4,
+      "agent1_name": "Agent_4",
+      "agent2_id": 6,
+      "agent2_name": "Agent_6",
+      "side_payment_1_to_2": 2,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Announcing S=2 makes the payoff for choosing No (3 points) equal to choosing Yes (3 points) if the opponent chooses Yes, removing their incentive to defect while still guaranteeing a good payoff for me if they cooperate.",
+      "commit_explanation2": "Given Agent_4's history of defecting when I cooperate and defecting when I defect, committing to any positive side payment would likely result in a loss without incentivizing cooperation, so I commit 0 to minimize my risk.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields 3 points if the opponent chooses Yes (5 - 2) or 1 point if they choose No, both of which are strictly greater than the 1 point or 0 points respectively obtained by choosing Yes (3 - 2 + 0 or 0 + 0).",
+      "explanation2": "Choosing No yields 5 points if the opponent chooses Yes and 1 point if they choose No, whereas choosing Yes yields only 5 points if they choose Yes and 2 points if they choose No, making No the strictly dominant action.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 42,
+    "pair_ids": [
+      9,
+      6
+    ],
+    "pair_names": [
+      "Agent_9",
+      "Agent_6"
+    ],
+    "timestamp": "2026-08-26T23:11:41.287592",
+    "detail": {
+      "agent1_id": 9,
+      "agent1_name": "Agent_9",
+      "agent2_id": 6,
+      "agent2_name": "Agent_6",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Announcing S=0 avoids any financial penalty if Agent_6 chooses Yes, allowing me to maximize my base payoff of 5 by choosing No in the action phase, which is the dominant strategy in this Prisoner's Dilemma structure.",
+      "commit_explanation2": "Given the history showing Agent_9 has defected in the last four rounds, they are highly likely to choose No again, making any positive side-payment S a wasted cost; therefore, I commit S=0 to minimize my losses.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since both commitment values are 0, the game reduces to the standard Prisoner's Dilemma where choosing No is the strictly dominant strategy, yielding a higher payoff regardless of the opponent's action.",
+      "explanation2": "Given the opponent's recent history of consistently choosing No and the zero side-payments making this a standard Prisoner's Dilemma, choosing No maximizes my payoff regardless of the opponent's action.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 43,
+    "pair_ids": [
+      1,
+      18
+    ],
+    "pair_names": [
+      "Agent_1",
+      "Agent_18"
+    ],
+    "timestamp": "2026-08-26T23:12:12.853193",
+    "detail": {
+      "agent1_id": 1,
+      "agent1_name": "Agent_1",
+      "agent2_id": 18,
+      "agent2_name": "Agent_18",
+      "side_payment_1_to_2": 2,
+      "side_payment_2_to_1": 2,
+      "commit_explanation1": "Announcing S=2 makes mutual cooperation yield a net payoff of 3-2=1 for me and 3+2=5 for the opponent, which deters my defection and incentivizes the opponent to cooperate, thereby maximizing my expected payoff against an unpredictable opponent.",
+      "commit_explanation2": "Announcing S=2 makes you indifferent to your opponent's action (you get 3 points either way if you choose Yes), which eliminates the temptation to defect and credibly signals your intention to cooperate, encouraging the opponent to also choose Yes.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the side payments, choosing No yields a higher payoff than Yes regardless of the opponent's action (5 - 2 = 3 > 0 + 2 = 2 if they choose Yes; 1 > 2 if they choose No), making No the strictly dominant strategy.",
+      "explanation2": "Choosing No yields 3 points if the opponent chooses Yes (5-2) and 1 point if they choose No, whereas choosing Yes yields only 3 points if they choose Yes (3-2+2) and 2 points if they choose No (0+2); since No strictly dominates Yes in this modified payoff matrix, I rationally defect.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 44,
+    "pair_ids": [
+      23,
+      17
+    ],
+    "pair_names": [
+      "Agent_23",
+      "Agent_17"
+    ],
+    "timestamp": "2026-08-26T23:12:43.689121",
+    "detail": {
+      "agent1_id": 23,
+      "agent1_name": "Agent_23",
+      "agent2_id": 17,
+      "agent2_name": "Agent_17",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 2,
+      "commit_explanation1": "Given Agent_17's consistent history of choosing No, announcing S=0 avoids any unnecessary financial risk while maintaining the dominant defection strategy in the action phase.",
+      "commit_explanation2": "Announcing S=2 aligns the incentives for mutual cooperation by making my defection yield 3 points instead of 5, while keeping the cost affordable if they cooperate, thereby credibly signaling my intent to choose Yes in Stage 2.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the history of Agent_17 consistently choosing No, and my payoff for choosing No being at least 1 regardless of their action (compared to a maximum of 2 if I choose Yes and they defect), choosing No is the safest and most rational decision to maximize my expected points.",
+      "explanation2": "Choosing Yes yields at most 1 point (if they choose Yes) or 0 points (if they choose No), whereas choosing No yields 3 points (if they choose Yes) or 1 point (if they choose No), making No the strictly dominant strategy.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 45,
+    "pair_ids": [
+      1,
+      23
+    ],
+    "pair_names": [
+      "Agent_1",
+      "Agent_23"
+    ],
+    "timestamp": "2026-08-26T23:13:16.049454",
+    "detail": {
+      "agent1_id": 1,
+      "agent1_name": "Agent_1",
+      "agent2_id": 23,
+      "agent2_name": "Agent_23",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Announcing S=0 maximizes my flexibility and expected payoff by avoiding any financial liability if Agent_23 cooperates, while still allowing me to optimally respond to their commitment in the action phase.",
+      "commit_explanation2": "Given Agent_1's history of consistently choosing No regardless of commitments, offering a side payment is pointless and only risks losing points if they unexpectedly choose Yes, so I commit 0 to minimize my potential losses.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the opponent's commitment of 0, choosing Yes yields a maximum of 3 points while choosing No yields either 5 or 1 points, making No the strictly dominant strategy to maximize my payoff.",
+      "explanation2": "Given the opponent's commitment of 0, choosing Yes yields at most 3 points while choosing No yields at least 5 points if they cooperate or 1 point if they defect; since the opponent has consistently chosen No in recent rounds, No is the dominant and safest strategy to maximize my payoff.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 46,
+    "pair_ids": [
+      10,
+      1
+    ],
+    "pair_names": [
+      "Agent_10",
+      "Agent_1"
+    ],
+    "timestamp": "2026-08-26T23:13:50.371505",
+    "detail": {
+      "agent1_id": 10,
+      "agent1_name": "Agent_10",
+      "agent2_id": 1,
+      "agent2_name": "Agent_1",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Since Agent_1 defected in the previous round despite my cooperative commitment, I will commit to S=0 to avoid any risk of paying them if they choose Yes, while still retaining the ability to defect in the action phase to maximize my payoff.",
+      "commit_explanation2": "Announcing S=0 avoids any financial liability if Agent_10 cooperates, and since Agent_10 has a strong history of defecting (choosing No), committing to a side payment would likely yield no reciprocal cooperation while risking unnecessary point loss.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With both commitment values at 0, the game reduces to the standard payoff matrix where choosing No is the strictly dominant strategy, and the opponent's history of defection further supports this choice to avoid receiving 0 points.",
+      "explanation2": "With both side-payment commitments at 0, the game reduces to the standard payoff matrix where defecting (No) is the strictly dominant strategy, yielding a higher payoff regardless of the opponent's choice.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 47,
+    "pair_ids": [
+      1,
+      18
+    ],
+    "pair_names": [
+      "Agent_1",
+      "Agent_18"
+    ],
+    "timestamp": "2026-08-26T23:14:23.718035",
+    "detail": {
+      "agent1_id": 1,
+      "agent1_name": "Agent_1",
+      "agent2_id": 18,
+      "agent2_name": "Agent_18",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the opponent's strong tendency to defect and the risk of paying a side payment without receiving cooperation in return, committing S=0 minimizes exposure and avoids unnecessary losses.",
+      "commit_explanation2": "Announcing S=0 minimizes my financial liability if Agent_1 chooses Yes, while still allowing me to defect for the maximum payoff of 5, which is my dominant strategy given Agent_1's past tendency to cooperate.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since both commitment values are 0, the game reduces to the standard Prisoner's Dilemma where defecting (No) is the strictly dominant strategy, and the opponent's history shows a strong tendency to defect as well.",
+      "explanation2": "Since both commitment values are 0, the side payments are irrelevant and the game reduces to the standard Prisoner's Dilemma where defecting (No) is the strictly dominant strategy, yielding a higher payoff regardless of the opponent's choice.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 48,
+    "pair_ids": [
+      15,
+      16
+    ],
+    "pair_names": [
+      "Agent_15",
+      "Agent_16"
+    ],
+    "timestamp": "2026-08-26T23:14:58.161853",
+    "detail": {
+      "agent1_id": 15,
+      "agent1_name": "Agent_15",
+      "agent2_id": 16,
+      "agent2_name": "Agent_16",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the opponent's consistent history of choosing No, committing a positive S creates an unnecessary financial risk with no strategic benefit, so I commit 0 to minimize my potential losses.",
+      "commit_explanation2": "Given the history where Agent_15 cooperated while I defected, they are likely to defect now, making any positive commitment S a likely net loss for me; therefore, I commit to 0 to minimize my risk and preserve the dominant defection payoff.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the opponent's consistent history of choosing No and the absence of any side-payment incentives to cooperate, choosing No maximizes my payoff by securing 1 point instead of 0.",
+      "explanation2": "Choosing No yields 5 points if the opponent chooses Yes and 1 point if they choose No, both of which are strictly greater than the 0 points you would receive if you chose Yes while they chose No, making defection the dominant strategy.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 49,
+    "pair_ids": [
+      16,
+      5
+    ],
+    "pair_names": [
+      "Agent_16",
+      "Agent_5"
+    ],
+    "timestamp": "2026-08-26T23:15:29.877655",
+    "detail": {
+      "agent1_id": 16,
+      "agent1_name": "Agent_16",
+      "agent2_id": 5,
+      "agent2_name": "Agent_5",
+      "side_payment_1_to_2": 2,
+      "side_payment_2_to_1": 5,
+      "commit_explanation1": "Announcing S=2 makes your payoff for choosing No (5 points) equal to your payoff for choosing Yes (3 + 2 = 5 points) if the opponent chooses Yes, ensuring mutual cooperation is a weak equilibrium without overpaying.",
+      "commit_explanation2": "Announcing S=5 makes choosing Yes a dominant strategy for Agent_16 (yielding 8 points vs. 1 for No), guaranteeing their cooperation; I will then choose No in the action phase to earn 5 points from the base payoff without paying the side payment, maximizing my total score.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields 3 points if the opponent chooses Yes and 1 point if they choose No, whereas choosing Yes yields 6 points if they choose Yes and 5 points if they choose No; given the opponent's recent history of defection, No is the safer choice that avoids the risk of a low payoff while still providing a competitive outcome.",
+      "explanation2": "Choosing No yields a higher payoff than Yes regardless of the opponent's action (1 > 2 if they choose No, and 0 > 0 if they choose Yes), making No the strictly dominant strategy.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 50,
+    "pair_ids": [
+      1,
+      16
+    ],
+    "pair_names": [
+      "Agent_1",
+      "Agent_16"
+    ],
+    "timestamp": "2026-08-26T23:16:05.537957",
+    "detail": {
+      "agent1_id": 1,
+      "agent1_name": "Agent_1",
+      "agent2_id": 16,
+      "agent2_name": "Agent_16",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given Agent_16's overwhelming tendency to choose No regardless of history, committing any positive S risks an unnecessary payment if they unexpectedly choose Yes, so S=0 minimizes my risk and maximizes my expected payoff.",
+      "commit_explanation2": "Given the history of Agent_1 making cooperative overtures that were met with defection, announcing S=0 preserves my option to exploit any remaining cooperation or safely defect without incurring mandatory side-payments, maximizing my expected payoff.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the opponent's commitment of 0, choosing Yes yields at most 3 points while choosing No yields at least 1 point and up to 5 points, making No the strictly dominant strategy; additionally, the opponent's history of frequent defections further supports this choice.",
+      "explanation2": "Given the 0-point commitments, the game reduces to the standard Prisoner's Dilemma where defecting (No) is the dominant strategy, and the opponent's history of recent defections makes mutual cooperation highly unlikely.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 51,
+    "pair_ids": [
+      2,
+      5
+    ],
+    "pair_names": [
+      "Agent_2",
+      "Agent_5"
+    ],
+    "timestamp": "2026-08-26T23:16:42.982962",
+    "detail": {
+      "agent1_id": 2,
+      "agent1_name": "Agent_2",
+      "agent2_id": 5,
+      "agent2_name": "Agent_5",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the history where Agent_5 defected after early cooperation and has continued to defect, there is no incentive to offer a side payment; choosing S=0 minimizes risk while leaving the option to defect in the action phase.",
+      "commit_explanation2": "Given the history of mutual defection and the incentive to defect in the base game, committing to a positive side payment only increases my loss if the opponent cooperates while I defect, and does not credibly encourage cooperation from a consistently defecting opponent.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the opponent's recent history of defecting and the zero side-payments, defecting is the strictly dominant strategy to maximize my payoff regardless of the opponent's choice.",
+      "explanation2": "Given the 0-point commitments, the game reduces to the standard Prisoner's Dilemma where defecting (No) is the dominant strategy, and the opponent's consistent history of choosing No makes choosing No the optimal response to maximize my payoff.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 52,
+    "pair_ids": [
+      2,
+      19
+    ],
+    "pair_names": [
+      "Agent_2",
+      "Agent_19"
+    ],
+    "timestamp": "2026-08-26T23:17:17.678321",
+    "detail": {
+      "agent1_id": 2,
+      "agent1_name": "Agent_2",
+      "agent2_id": 19,
+      "agent2_name": "Agent_19",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 5,
+      "commit_explanation1": "Given Agent_19's history of defecting in the last four rounds, I will defect in the action phase regardless of their commitment, so announcing S=0 minimizes my potential penalty if they unexpectedly choose Yes.",
+      "commit_explanation2": "By announcing S=5, I make my opponent's payoff for choosing Yes (3+5=8) strictly greater than their payoff for choosing No (1+0=1), guaranteeing they will cooperate, which allows me to safely defect and secure the maximum payoff of 5 points.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields 5 points if the opponent chooses Yes and 1 point if they choose No, both of which are strictly better than the 8 or 5 points respectively from choosing Yes, making No the dominant strategy.",
+      "explanation2": "Choosing No yields a higher payoff than Yes regardless of the opponent's action (1 > -2 if opponent chooses Yes, and 1 > 0 if opponent chooses No), making No the strictly dominant strategy.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 53,
+    "pair_ids": [
+      2,
+      21
+    ],
+    "pair_names": [
+      "Agent_2",
+      "Agent_21"
+    ],
+    "timestamp": "2026-08-26T23:17:54.380048",
+    "detail": {
+      "agent1_id": 2,
+      "agent1_name": "Agent_2",
+      "agent2_id": 21,
+      "agent2_name": "Agent_21",
+      "side_payment_1_to_2": 5,
+      "side_payment_2_to_1": 5,
+      "commit_explanation1": "Announcing S=5 makes choosing Yes a strictly dominant strategy for Agent_21 (yielding them 8 points vs. 1 for No), guaranteeing mutual cooperation and maximizing my payoff at 3 points, which is superior to the 1 point I repeatedly receive from mutual defection in recent rounds.",
+      "commit_explanation2": "By committing S=5, I make my opponent's payoff for choosing Yes (3+5=8) strictly greater than their payoff for choosing No (1), guaranteeing they will choose Yes; I can then optimally respond with No to get 5 points without paying anything, maximizing my benefit.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the opponent's history of frequently defecting, choosing Yes risks receiving 0 points if they defect again, while choosing No guarantees at least 1 point and avoids a net loss of 5 points if they unexpectedly cooperate.",
+      "explanation2": "Choosing No yields a higher payoff than Yes regardless of the opponent's action (No gives 1 vs 5 if they choose No; No gives 0 vs 5 if they choose Yes), making No the strictly dominant strategy.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 54,
+    "pair_ids": [
+      7,
+      12
+    ],
+    "pair_names": [
+      "Agent_7",
+      "Agent_12"
+    ],
+    "timestamp": "2026-08-26T23:18:29.480687",
+    "detail": {
+      "agent1_id": 7,
+      "agent1_name": "Agent_7",
+      "agent2_id": 12,
+      "agent2_name": "Agent_12",
+      "side_payment_1_to_2": 2,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Announcing S=2 makes my payoff for choosing Yes (3 + their_S - 2 = 1 + their_S) equal to my payoff for choosing No (5 - their_S) when their_S equals 2, ensuring mutual cooperation is a Nash equilibrium if the opponent also chooses S=2, while minimizing my risk if the opponent defects.",
+      "commit_explanation2": "Given the history where Agent_7 has repeatedly chosen No (Defect) and I have also chosen No, announcing a positive S would only risk losing points if they unexpectedly choose Yes, with no benefit since I will rationally choose No regardless of their commitment.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields a higher payoff than Yes regardless of the opponent's action (3 > 1 if they choose Yes, and 1 > 0 if they choose No), making No the strictly dominant strategy.",
+      "explanation2": "Choosing No yields 5 points if the opponent chooses Yes and 1 point if they choose No, which strictly dominates choosing Yes (which yields 5 or 2 points respectively).",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 55,
+    "pair_ids": [
+      3,
+      18
+    ],
+    "pair_names": [
+      "Agent_3",
+      "Agent_18"
+    ],
+    "timestamp": "2026-08-26T23:19:06.583088",
+    "detail": {
+      "agent1_id": 3,
+      "agent1_name": "Agent_3",
+      "agent2_id": 18,
+      "agent2_name": "Agent_18",
+      "side_payment_1_to_2": 5,
+      "side_payment_2_to_1": 5,
+      "commit_explanation1": "Announcing S=5 makes the effective payoff for my opponent choosing Yes (3+5=8) strictly greater than choosing No (5+0=5), which heavily incentivizes them to cooperate while guaranteeing I still profit from mutual cooperation (3-5+5=3).",
+      "commit_explanation2": "By committing S=5, I make the effective payoff for my opponent choosing Yes (3+5=8) strictly greater than choosing No (1+0=1), guaranteeing they will choose Yes; then I choose No to maximize my own payoff at 5-0=5 points.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the side payments, choosing No yields a guaranteed 1 point if the opponent chooses No, and 0 points if they choose Yes, whereas choosing Yes yields 5 points if they choose No but only 3 points if they choose Yes; based on the opponent's history of predominantly defecting, No is the safer choice to avoid a 0-point outcome.",
+      "explanation2": "Given the side payments, choosing No strictly dominates Yes (yielding 5 vs 0 if the opponent chooses Yes, and 1 vs 5 if the opponent chooses No), making it the rational choice to maximize my payoff.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 56,
+    "pair_ids": [
+      7,
+      18
+    ],
+    "pair_names": [
+      "Agent_7",
+      "Agent_18"
+    ],
+    "timestamp": "2026-08-26T23:19:40.268635",
+    "detail": {
+      "agent1_id": 7,
+      "agent1_name": "Agent_7",
+      "agent2_id": 18,
+      "agent2_name": "Agent_18",
+      "side_payment_1_to_2": 5,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Announcing S=5 makes it a dominant strategy for Agent_18 to choose Yes (since their payoff for Yes becomes 3+5=8, which is greater than 1 for No), and given their history of recent defections, this commitment is necessary to guarantee their cooperation and secure a high payoff for myself.",
+      "commit_explanation2": "Given the history of Agent_7 choosing Yes only once followed by three No's, they are unlikely to choose Yes again, so committing S=0 avoids an unnecessary penalty while maintaining my best response to their anticipated defection.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields either 0 or 1 point, whereas choosing Yes yields either -2 or 0 points, making No the strictly dominant action in this stage.",
+      "explanation2": "Choosing No yields 5 points if the opponent chooses Yes (5-0) and 1 point if they choose No, whereas choosing Yes yields 8 points if they choose Yes (3-0+5) but 0 points if they choose No (0+5-5); given the opponent's consistent history of choosing No, No is the safer choice that maximizes expected payoff.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 57,
+    "pair_ids": [
+      19,
+      1
+    ],
+    "pair_names": [
+      "Agent_19",
+      "Agent_1"
+    ],
+    "timestamp": "2026-08-26T23:20:16.134474",
+    "detail": {
+      "agent1_id": 19,
+      "agent1_name": "Agent_19",
+      "agent2_id": 1,
+      "agent2_name": "Agent_1",
+      "side_payment_1_to_2": 5,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Announcing S=5 makes choosing Yes a strictly dominant strategy for Agent_1 (they get 3+5=8 vs 1 if they choose No), guaranteeing their cooperation, while my best response is to defect (getting 5 vs 3+5-5=3 if I cooperate), maximizing my payoff at 5 points.",
+      "commit_explanation2": "Given the history where Agent_19 frequently chooses No, committing to a side payment of 0 minimizes my risk of paying out points if they happen to choose Yes, while still leaving me the option to defect for the maximum payoff of 5 if they choose Yes, or 1 if they choose No.",
+      "choice1": "No",
+      "choice2": "Yes",
+      "explanation1": "Choosing No yields 1 point if the opponent chooses No, and 0 points if they choose Yes, whereas choosing Yes yields -2 points if they choose Yes and 0 points if they choose No; thus, No is the strictly dominant action.",
+      "explanation2": "Choosing Yes yields 8 points if the opponent chooses Yes and 5 points if they choose No, both of which are greater than the 1 point earned by choosing No, making Yes the strictly dominant action.",
+      "payoff1": 0,
+      "payoff2": 5,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 58,
+    "pair_ids": [
+      19,
+      2
+    ],
+    "pair_names": [
+      "Agent_19",
+      "Agent_2"
+    ],
+    "timestamp": "2026-08-26T23:20:50.620386",
+    "detail": {
+      "agent1_id": 19,
+      "agent1_name": "Agent_19",
+      "agent2_id": 2,
+      "agent2_name": "Agent_2",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Announcing S=0 maximizes my flexibility and payoff in the action phase, as it imposes no cost on me if the opponent cooperates, while still allowing me to optimally respond to their commitment and action in Stage 2.",
+      "commit_explanation2": "Given the opponent's consistent history of defecting (choosing No) in recent rounds and the lack of benefit in paying them to cooperate when they are unlikely to do so, I commit to S=0 to minimize my potential losses.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since both side-payment commitments are 0, the game reduces to the standard Prisoner's Dilemma where defecting (No) is the strictly dominant strategy, yielding a higher payoff regardless of the opponent's choice.",
+      "explanation2": "Given the opponent's recent history of consistently defecting and the current commitments being 0 (which reduces the game to the standard Prisoner's Dilemma), defecting is the strictly dominant strategy to maximize my payoff.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 59,
+    "pair_ids": [
+      13,
+      21
+    ],
+    "pair_names": [
+      "Agent_13",
+      "Agent_21"
+    ],
+    "timestamp": "2026-08-26T23:21:20.148458",
+    "detail": {
+      "agent1_id": 13,
+      "agent1_name": "Agent_13",
+      "agent2_id": 21,
+      "agent2_name": "Agent_21",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the history where the opponent has recently chosen No for the last four rounds, committing any positive S would likely result in a net loss if I choose Yes, so I commit 0 to minimize risk and maintain the option to safely defect.",
+      "commit_explanation2": "Given the opponent's history of predominantly choosing Yes when I choose No, committing to a side payment of 0 allows me to maximize my payoff by continuing to defect without incurring any cost, since I only pay S if they choose Yes.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the opponent's history of consistently choosing No in recent rounds and the current commitment of 0 points, choosing No is the best response to maximize my payoff, as it yields 1 point if they choose No and 5 points if they choose Yes, compared to 0 or 3 points if I choose Yes.",
+      "explanation2": "Given the history of mutual defection and the lack of any side payments to incentivize cooperation, choosing No is the strictly dominant strategy to maximize my payoff.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 60,
+    "pair_ids": [
+      18,
+      16
+    ],
+    "pair_names": [
+      "Agent_18",
+      "Agent_16"
+    ],
+    "timestamp": "2026-08-26T23:21:54.419081",
+    "detail": {
+      "agent1_id": 18,
+      "agent1_name": "Agent_18",
+      "agent2_id": 16,
+      "agent2_name": "Agent_16",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the history where Agent_16 has consistently chosen No in recent rounds, announcing S=0 minimizes my potential losses since they are unlikely to choose Yes, and it avoids paying them if they unexpectedly do.",
+      "commit_explanation2": "Given the history where Agent_18 has consistently chosen No (defecting) in recent rounds, committing to a positive side payment S creates a risk of paying them if they switch to Yes, while announcing S=0 minimizes my risk and ensures I do not lose points from a commitment.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the side payments are 0, the game reduces to the standard prisoner's dilemma where choosing No is the strictly dominant strategy; additionally, the history shows the opponent has recently been choosing No, making No the optimal choice to avoid receiving 0 points.",
+      "explanation2": "Given the history where Agent_18 has consistently chosen No or only cooperated once without reciprocation, choosing No is the dominant strategy to maximize my payoff, especially since the side payments are 0 and do not incentivize cooperation.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 61,
+    "pair_ids": [
+      10,
+      8
+    ],
+    "pair_names": [
+      "Agent_10",
+      "Agent_8"
+    ],
+    "timestamp": "2026-08-26T23:22:40.821608",
+    "detail": {
+      "agent1_id": 10,
+      "agent1_name": "Agent_10",
+      "agent2_id": 8,
+      "agent2_name": "Agent_8",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the opponent's consistent history of choosing No, committing to a positive side payment creates an unnecessary risk of losing points if they switch to Yes, so S=0 minimizes my downside while maintaining my best response.",
+      "commit_explanation2": "Given the opponent's consistent history of choosing No, committing to a side payment of 0 minimizes my risk of paying them if they unexpectedly choose Yes, while still allowing me to defect safely in the action phase.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the opponent's consistent history of choosing No, choosing No is the best response to avoid receiving 0 points, securing 1 point instead, and the lack of side payments provides no incentive to cooperate.",
+      "explanation2": "Given the history of Agent_10 consistently choosing No, and the current side-payment commitments being 0, choosing No secures a guaranteed payoff of 1 point compared to the 0 points I would receive if I chose Yes while they choose No.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 62,
+    "pair_ids": [
+      6,
+      21
+    ],
+    "pair_names": [
+      "Agent_6",
+      "Agent_21"
+    ],
+    "timestamp": "2026-08-26T23:23:13.817551",
+    "detail": {
+      "agent1_id": 6,
+      "agent1_name": "Agent_6",
+      "agent2_id": 21,
+      "agent2_name": "Agent_21",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the opponent's consistent defection in recent rounds, committing any positive S would only risk a costly penalty if they unexpectedly cooperate, so I commit S=0 to minimize my risk and potential loss.",
+      "commit_explanation2": "Given the history where Agent_6 has recently consistently chosen No, announcing S=0 avoids unnecessary financial risk while maintaining the ability to defect in the action phase for a higher payoff.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the opponent's recent history of consistently choosing No and the zero commitments making this a standard Prisoner's Dilemma, choosing No maximizes my payoff by protecting against getting 0 points if they defect, while still yielding 1 point if they continue to defect.",
+      "explanation2": "Choosing No is the strictly dominant strategy in this effective payoff matrix, yielding 5 points if the opponent chooses Yes and 1 point if they choose No, compared to only 3 or 0 points respectively for choosing Yes.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 63,
+    "pair_ids": [
+      22,
+      10
+    ],
+    "pair_names": [
+      "Agent_22",
+      "Agent_10"
+    ],
+    "timestamp": "2026-08-26T23:23:46.739189",
+    "detail": {
+      "agent1_id": 22,
+      "agent1_name": "Agent_22",
+      "agent2_id": 10,
+      "agent2_name": "Agent_10",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the mutual defection history and the payoff structure where defecting is dominant without sufficient side payments, committing S=0 minimizes my risk and cost while maintaining the defection equilibrium, as any positive S would just be a penalty if the opponent unexpectedly cooperates.",
+      "commit_explanation2": "Given the history where Agent_22 has consistently chosen No (defected) in all previous rounds, there is no incentive to offer a side payment; choosing S=0 minimizes my losses when I inevitably defect in response to their uncooperative behavior.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since the side payments are 0, the game reduces to the standard Prisoner's Dilemma where choosing No is the strictly dominant strategy, and the history of mutual defection confirms the opponent's likely choice.",
+      "explanation2": "Given the history of the opponent consistently choosing No and the current commitment phase resulting in zero side payments, choosing No is the dominant strategy that maximizes my payoff by protecting me from getting 0 points if the opponent defects again.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 64,
+    "pair_ids": [
+      7,
+      8
+    ],
+    "pair_names": [
+      "Agent_7",
+      "Agent_8"
+    ],
+    "timestamp": "2026-08-26T23:24:32.475863",
+    "detail": {
+      "agent1_id": 7,
+      "agent1_name": "Agent_7",
+      "agent2_id": 8,
+      "agent2_name": "Agent_8",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Agent_8 has consistently chosen No in recent rounds, and offering a side payment provides no benefit if they are unlikely to choose Yes, so I commit to 0 to minimize my potential loss.",
+      "commit_explanation2": "Agent_7 has consistently defected in all previous rounds despite committing to a high side-payment, so committing any positive S would only risk a loss if they unexpectedly cooperate, while S=0 safely minimizes my liability against an uncooperative opponent.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the side payments are 0, choosing No strictly dominates Yes (yielding 5 vs 3 if the opponent chooses Yes, and 1 vs 0 if they choose No), and the opponent's recent history of repeatedly choosing No further confirms that defecting maximizes my payoff.",
+      "explanation2": "Given the opponent's commitment of 0, choosing Yes yields at most 3 points while choosing No yields at least 5 points if they cooperate or 1 point if they defect, making No the strictly dominant and safer strategy.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 65,
+    "pair_ids": [
+      12,
+      4
+    ],
+    "pair_names": [
+      "Agent_12",
+      "Agent_4"
+    ],
+    "timestamp": "2026-08-26T23:25:04.032924",
+    "detail": {
+      "agent1_id": 12,
+      "agent1_name": "Agent_12",
+      "agent2_id": 4,
+      "agent2_name": "Agent_4",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 5,
+      "commit_explanation1": "Given the history where Agent_4 has consistently chosen No, committing to a side payment of 0 minimizes my potential loss while I continue to defect to maximize my payoff.",
+      "commit_explanation2": "By committing S=5, I guarantee that Agent_12 receives a net payoff of 3+5=8 if they choose Yes and 1 if they choose No, strongly incentivizing them to cooperate; if they do, I still net 3-5=-2, but this is better than the mutual defection payoff of 1 if it successfully induces cooperation given my opponent's knowledge of my choice.",
+      "choice1": "Yes",
+      "choice2": "No",
+      "explanation1": "Choosing Yes yields 8 points if the opponent chooses Yes and 5 points if they choose No, both of which are strictly better than the 5 and 1 points respectively obtained by choosing No, making Yes the dominant strategy.",
+      "explanation2": "Choosing Yes yields at best -2 points (if they choose Yes) or 0 points (if they choose No), while choosing No yields at least 0 points (if they choose Yes) or 1 point (if they choose No), making No the strictly dominant strategy.",
+      "payoff1": 5,
+      "payoff2": 0,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 66,
+    "pair_ids": [
+      21,
+      20
+    ],
+    "pair_names": [
+      "Agent_21",
+      "Agent_20"
+    ],
+    "timestamp": "2026-08-26T23:25:38.957830",
+    "detail": {
+      "agent1_id": 21,
+      "agent1_name": "Agent_21",
+      "agent2_id": 20,
+      "agent2_name": "Agent_20",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Since Agent_20 has consistently chosen No in recent rounds regardless of commitments, offering a side payment is unlikely to induce their cooperation and would only risk unnecessary costs; therefore, I commit 0 to minimize my potential losses.",
+      "commit_explanation2": "Given the history of persistent mutual defection and the opponent's unreciprocated high commitment in Round 1, committing 0 minimizes my risk and ensures I do not pay the opponent if they unexpectedly choose Yes, while still leaving mutual defection as the safest equilibrium.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the opponent's commitment of 0 points to me if I choose Yes, defecting is strictly dominant as it yields 5 points if they cooperate and 1 point if they defect, both of which are greater than the 3 or 0 points I would receive by cooperating.",
+      "explanation2": "With both commitment payments at 0, the game reduces to the standard Prisoner's Dilemma where defecting (No) is the strictly dominant strategy, and the history of mutual defection confirms this equilibrium.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 67,
+    "pair_ids": [
+      9,
+      14
+    ],
+    "pair_names": [
+      "Agent_9",
+      "Agent_14"
+    ],
+    "timestamp": "2026-08-26T23:26:12.924349",
+    "detail": {
+      "agent1_id": 9,
+      "agent1_name": "Agent_9",
+      "agent2_id": 14,
+      "agent2_name": "Agent_14",
+      "side_payment_1_to_2": 2,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Announcing S=2 makes the effective payoff for (Yes, Yes) 1 point for me and 5 for the opponent, and (No, Yes) 5 for me and -2 for the opponent, incentivizing mutual cooperation while protecting me if the opponent defects.",
+      "commit_explanation2": "Given Agent_9's strong tendency to choose No, announcing S=0 avoids any risk of paying them if they unexpectedly choose Yes, while still leaving you free to optimally defect in the action phase.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields 1 point if the opponent chooses No, and 3 points if they choose Yes, whereas choosing Yes yields only 0 points if they choose No and 1 point if they choose Yes; thus, No strictly dominates Yes given the side payments.",
+      "explanation2": "Choosing No yields 5 points if the opponent chooses Yes and 1 point if they choose No, both of which are strictly greater than the 2 points or 1 point respectively obtained by choosing Yes.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 68,
+    "pair_ids": [
+      10,
+      2
+    ],
+    "pair_names": [
+      "Agent_10",
+      "Agent_2"
+    ],
+    "timestamp": "2026-08-26T23:26:46.930330",
+    "detail": {
+      "agent1_id": 10,
+      "agent1_name": "Agent_10",
+      "agent2_id": 2,
+      "agent2_name": "Agent_2",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the history where Agent_2 consistently chooses No regardless of my actions, committing any positive S would risk an unnecessary payment with no benefit, so I choose 0 to minimize my potential loss.",
+      "commit_explanation2": "Given the history where Agent_10 has repeatedly chosen No, announcing S=0 minimizes my risk by ensuring I pay nothing if they unexpectedly choose Yes, while still allowing me to defect safely in the action phase.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the opponent's consistent history of choosing No, choosing No is the best response as it yields 1 point instead of 0, and the zero commitments provide no incentive to cooperate.",
+      "explanation2": "Given the opponent's history of predominantly defecting and the current lack of side payments to incentivize cooperation, choosing No is the safest strategy to avoid a payoff of 0 and secure a guaranteed point.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 69,
+    "pair_ids": [
+      0,
+      14
+    ],
+    "pair_names": [
+      "Agent_0",
+      "Agent_14"
+    ],
+    "timestamp": "2026-08-26T23:27:28.180476",
+    "detail": {
+      "agent1_id": 0,
+      "agent1_name": "Agent_0",
+      "agent2_id": 14,
+      "agent2_name": "Agent_14",
+      "side_payment_1_to_2": 5,
+      "side_payment_2_to_1": 2,
+      "commit_explanation1": "Announcing S=5 makes choosing Yes a strictly dominant strategy for Agent_14 (they get 3+5=8 vs 1 for No), guaranteeing their cooperation, and my best response to their Yes is to defect for 5 points, maximizing my payoff.",
+      "commit_explanation2": "Announcing S=2 makes mutual cooperation a Nash equilibrium (yielding me 3-2=1 point, which ties the defect-defect payoff of 1) and disincentivizes my defection (yielding 5-2=3, less than the 5 I'd get from defecting with S=0), thereby credibly signaling a willingness to cooperate without allowing Agent_0 to exploit me for a higher payoff.",
+      "choice1": "No",
+      "choice2": "Yes",
+      "explanation1": "Choosing Yes yields at most 0 points (if opponent chooses Yes) or 2 points (if opponent chooses No), while choosing No yields at least 1 point (if opponent chooses No) or 0 points (if opponent chooses Yes), making No the strictly safer choice and dominant given the opponent's consistent history of choosing No.",
+      "explanation2": "Choosing Yes maximizes my payoff at 6 points (compared to 3 or 1 for No), and since the opponent's payoff for choosing Yes (0) is better than their payoff for choosing No (-0), it is rational to expect them to choose Yes as well.",
+      "payoff1": 0,
+      "payoff2": 5,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 70,
+    "pair_ids": [
+      19,
+      18
+    ],
+    "pair_names": [
+      "Agent_19",
+      "Agent_18"
+    ],
+    "timestamp": "2026-08-26T23:28:09.864143",
+    "detail": {
+      "agent1_id": 19,
+      "agent1_name": "Agent_19",
+      "agent2_id": 18,
+      "agent2_name": "Agent_18",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given Agent_18's history of frequently choosing No, committing to a positive side payment risks paying them if they choose Yes while yielding no benefit if they choose No, so I commit S=0 to maximize my expected payoff.",
+      "commit_explanation2": "Given the opponent's consistent history of choosing No, committing to a side payment of 0 minimizes my potential losses while I continue to defect to secure the guaranteed 1-point payoff.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the side payments are 0, this reduces to the standard Prisoner's Dilemma where defecting (No) is the dominant strategy, and the opponent's history of inconsistent choices further discourages risking cooperation.",
+      "explanation2": "Given the opponent's history of consistently choosing No, choosing Yes would yield 0 points while choosing No guarantees 1 point; therefore, No is the rational choice to maximize my payoff.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 71,
+    "pair_ids": [
+      3,
+      2
+    ],
+    "pair_names": [
+      "Agent_3",
+      "Agent_2"
+    ],
+    "timestamp": "2026-08-26T23:28:47.763670",
+    "detail": {
+      "agent1_id": 3,
+      "agent1_name": "Agent_3",
+      "agent2_id": 2,
+      "agent2_name": "Agent_2",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given Agent_2's history of frequently choosing No, committing to a side payment of 0 minimizes my risk of paying points unnecessarily while preserving my ability to defect if they choose Yes or No.",
+      "commit_explanation2": "Given the opponent's consistent defection in recent rounds, committing any positive S would likely result in a net loss if they defect again, so S=0 minimizes risk and maximizes my expected payoff.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Since the side payments are 0, this is a standard Prisoner's Dilemma where choosing No is the dominant strategy; additionally, the history shows the opponent frequently defects, making No the optimal choice to maximize my payoff.",
+      "explanation2": "Given the opponent's history of consistently choosing No and the zero commitments making this a standard Prisoner's Dilemma, choosing No maximizes my payoff by ensuring I get 1 point instead of 0 if the opponent continues to defect, while also protecting against exploitation.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 72,
+    "pair_ids": [
+      17,
+      6
+    ],
+    "pair_names": [
+      "Agent_17",
+      "Agent_6"
+    ],
+    "timestamp": "2026-08-26T23:29:24.912982",
+    "detail": {
+      "agent1_id": 17,
+      "agent1_name": "Agent_17",
+      "agent2_id": 6,
+      "agent2_name": "Agent_6",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given Agent_6's history of defecting or offering no side payment, committing any positive S risks paying them if they cooperate while gaining nothing if they defect, so offering S=0 safely maximizes my expected payoff.",
+      "commit_explanation2": "Given Agent_17's consistent defection in recent rounds and the risk of paying a side payment without receiving cooperation in return, committing S=0 minimizes my exposure and maximizes my expected payoff.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With both commitment payments at 0, the game reduces to the base matrix where defecting (No) is the dominant strategy, and the opponent's history shows a strong tendency to defect as well.",
+      "explanation2": "Given the opponent's commitment of 0, choosing Yes yields at most 3 points (if they choose Yes) or 0 points (if they choose No), whereas choosing No guarantees at least 1 point and avoids the risk of being exploited, which is consistent with the opponent's recent history of defecting.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 73,
+    "pair_ids": [
+      16,
+      8
+    ],
+    "pair_names": [
+      "Agent_16",
+      "Agent_8"
+    ],
+    "timestamp": "2026-08-26T23:29:57.648444",
+    "detail": {
+      "agent1_id": 16,
+      "agent1_name": "Agent_16",
+      "agent2_id": 8,
+      "agent2_name": "Agent_8",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the history where Agent_8 has mostly defected, committing any positive S would risk a loss if they unexpectedly cooperate, and S=0 maximizes my flexibility and safety regardless of my subsequent action.",
+      "commit_explanation2": "Given the opponent's consistent history of choosing No, announcing S=0 minimizes my potential losses while retaining the optimal defection strategy in the action phase.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the zero side-payments, this is a standard Prisoner's Dilemma where defecting (No) is the strictly dominant strategy, and the opponent's history of predominantly defecting further confirms that choosing No maximizes my expected payoff.",
+      "explanation2": "Given the history of Agent_16 consistently choosing No and the zero commitments making this a standard Prisoner's Dilemma, choosing No maximizes my payoff regardless of the opponent's action.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 74,
+    "pair_ids": [
+      4,
+      11
+    ],
+    "pair_names": [
+      "Agent_4",
+      "Agent_11"
+    ],
+    "timestamp": "2026-08-26T23:30:37.169276",
+    "detail": {
+      "agent1_id": 4,
+      "agent1_name": "Agent_4",
+      "agent2_id": 11,
+      "agent2_name": "Agent_11",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 5,
+      "commit_explanation1": "Announcing S=0 imposes no cost on me if Agent_11 chooses Yes, while still allowing me to optimally defect in the Action Phase, which is my dominant strategy given the base payoff matrix and Agent_11's historical tendency to occasionally cooperate despite my consistent defection.",
+      "commit_explanation2": "By offering S=5, I make Agent_4's payoff for choosing Yes (3+5=8) strictly greater than their payoff for choosing No (1+0=1), incentivizing them to cooperate while still leaving me with a positive payoff of 3-5+5=3 if I also choose Yes.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields 5 points if the opponent chooses Yes and 1 point if they choose No, which strictly dominates choosing Yes (which yields 8 or 5 points respectively) given the opponent's past behavior of frequently choosing Yes despite my defections.",
+      "explanation2": "Choosing No yields 1 point if the opponent chooses No, and 0 points if the opponent chooses Yes, whereas choosing Yes yields -2 points if the opponent chooses Yes and 0 points if the opponent chooses No; therefore, No strictly dominates Yes.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 75,
+    "pair_ids": [
+      2,
+      7
+    ],
+    "pair_names": [
+      "Agent_2",
+      "Agent_7"
+    ],
+    "timestamp": "2026-08-26T23:31:07.737572",
+    "detail": {
+      "agent1_id": 2,
+      "agent1_name": "Agent_2",
+      "agent2_id": 7,
+      "agent2_name": "Agent_7",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the opponent's consistent defection in recent rounds, committing to a positive side payment would only risk a loss if they unexpectedly cooperate while I defect, and offers no strategic benefit in incentivizing mutual cooperation against an uncooperative partner.",
+      "commit_explanation2": "Agent_2 previously committed to 0 and chose No when I committed to 3, demonstrating uncooperative behavior, so committing 0 minimizes my risk and maximizes my payoff if I choose to defect while providing no incentive for them to exploit me.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the opponent's commitment of 0, choosing Yes yields at most 3 points (if they choose Yes) or 0 points (if they choose No), while choosing No guarantees at least 1 point and up to 5 points; combined with the opponent's recent history of repeatedly choosing No, defecting is the safest and most rational choice to maximize payoff.",
+      "explanation2": "With both commitment payments being 0, the effective payoff matrix reduces to the standard Prisoner's Dilemma where defecting (No) is the strictly dominant strategy, and the opponent's history shows a strong tendency to defect as well.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 76,
+    "pair_ids": [
+      11,
+      9
+    ],
+    "pair_names": [
+      "Agent_11",
+      "Agent_9"
+    ],
+    "timestamp": "2026-08-26T23:31:50.866632",
+    "detail": {
+      "agent1_id": 11,
+      "agent1_name": "Agent_11",
+      "agent2_id": 9,
+      "agent2_name": "Agent_9",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 5,
+      "commit_explanation1": "Given Agent_9's history of choosing No regardless of my actions, they are highly likely to defect again, meaning I would pay nothing regardless of my S; however, committing S=0 strictly dominates any positive S by protecting me in the unlikely event they cooperate, while still allowing me to safely choose No in the action phase.",
+      "commit_explanation2": "Announcing S=5 makes the effective payoff for choosing Yes against a cooperating opponent 8 points (3 base + 5 from opponent), which is higher than the 5 points for defecting, thereby strongly incentivizing mutual cooperation.",
+      "choice1": "Yes",
+      "choice2": "No",
+      "explanation1": "Choosing Yes yields 5 points regardless of the opponent's action, whereas choosing No yields at most 5 points, making Yes a weakly dominant strategy that maximizes my guaranteed payoff.",
+      "explanation2": "Choosing No yields a higher payoff than Yes regardless of the opponent's action (1 > -2 if they choose Yes; 1 > 0 if they choose No), making it the strictly dominant strategy.",
+      "payoff1": 5,
+      "payoff2": 0,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 77,
+    "pair_ids": [
+      5,
+      14
+    ],
+    "pair_names": [
+      "Agent_5",
+      "Agent_14"
+    ],
+    "timestamp": "2026-08-26T23:32:32.432053",
+    "detail": {
+      "agent1_id": 5,
+      "agent1_name": "Agent_5",
+      "agent2_id": 14,
+      "agent2_name": "Agent_14",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 5,
+      "commit_explanation1": "Given the consistent history of mutual defection, announcing S=0 avoids any risk of paying the opponent while maintaining the dominant strategy incentive to defect in the action phase.",
+      "commit_explanation2": "Announcing S=5 makes the mutually cooperative outcome (Yes, Yes) highly attractive to Agent_5 by giving them a net payoff of 8, while I still gain a net of -2, but this maximizes my chance of escaping the defect-defect equilibrium given their past attempts to cooperate.",
+      "choice1": "Yes",
+      "choice2": "No",
+      "explanation1": "Choosing Yes yields 8 points if the opponent chooses Yes and 5 points if they choose No, both of which are strictly better than the 1 point gained from choosing No regardless of the opponent's action.",
+      "explanation2": "Choosing No yields 1 point if the opponent chooses No or 0 points if they choose Yes, whereas choosing Yes yields -2 or 0 points, making No the strictly dominant and optimal action.",
+      "payoff1": 5,
+      "payoff2": 0,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 78,
+    "pair_ids": [
+      17,
+      22
+    ],
+    "pair_names": [
+      "Agent_17",
+      "Agent_22"
+    ],
+    "timestamp": "2026-08-26T23:33:03.090174",
+    "detail": {
+      "agent1_id": 17,
+      "agent1_name": "Agent_17",
+      "agent2_id": 22,
+      "agent2_name": "Agent_22",
+      "side_payment_1_to_2": 2,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Announcing S=2 makes mutual cooperation strictly dominant for both players (yielding 4 points each versus 1 for mutual defection), incentivizing Agent_22 to choose Yes despite their recent history of defecting.",
+      "commit_explanation2": "Given the history of mutual defection, committing to any positive side payment would only reduce my payoff if the opponent cooperates, while a commitment of 0 maximizes my outcome regardless of the opponent's action.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields a higher payoff regardless of the opponent's action (3 vs 1 if they choose Yes, and 1 vs 0 if they choose No), and the history shows the opponent consistently defects.",
+      "explanation2": "Given the side payments, choosing No yields 5 points if the opponent chooses Yes and 1 point if they choose No, whereas choosing Yes yields only 2 points if they choose No and 5 points if they choose Yes; thus, No strictly dominates Yes for me.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 79,
+    "pair_ids": [
+      9,
+      19
+    ],
+    "pair_names": [
+      "Agent_9",
+      "Agent_19"
+    ],
+    "timestamp": "2026-08-26T23:33:39.123912",
+    "detail": {
+      "agent1_id": 9,
+      "agent1_name": "Agent_9",
+      "agent2_id": 19,
+      "agent2_name": "Agent_19",
+      "side_payment_1_to_2": 3,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "By announcing S=3, I make the outcome where we both choose Yes yield 3 points for each of us after the side payment, matching the mutual cooperation payoff and removing the incentive to defect, while any lower S leaves the temptation to defect intact and any higher S makes me worse off if they cooperate.",
+      "commit_explanation2": "Given the opponent's history of frequently choosing No, committing to a side payment of 0 minimizes my risk of paying out points while maintaining the dominant strategy incentive to defect in the action phase.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields 2 points if the opponent chooses Yes (5-3) and 1 point if they choose No, whereas choosing Yes yields 0 points if they choose No and 0 points if they choose Yes (3-3+0), making No the strictly dominant strategy.",
+      "explanation2": "Choosing No yields 5 points if the opponent chooses Yes and 1 point if they choose No, both of which are strictly greater than the 3 points you would receive for choosing Yes regardless of their action.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 80,
+    "pair_ids": [
+      20,
+      16
+    ],
+    "pair_names": [
+      "Agent_20",
+      "Agent_16"
+    ],
+    "timestamp": "2026-08-26T23:34:15.292714",
+    "detail": {
+      "agent1_id": 20,
+      "agent1_name": "Agent_20",
+      "agent2_id": 16,
+      "agent2_name": "Agent_16",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the history of mutual defection, committing to a side payment of 0 minimizes risk and avoids paying a cooperating opponent, while the dominant strategy in the action phase remains No regardless of the opponent's commitment.",
+      "commit_explanation2": "Given the history of the opponent consistently choosing No, announcing S=0 minimizes my potential loss while I continue to defect, as any positive S would be wasted since they will likely choose No again.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the zero side-payments, the game reduces to the standard Prisoner's Dilemma where defecting (No) is the dominant strategy; additionally, the history shows mutual defection, so choosing No maximizes my payoff regardless of the opponent's action.",
+      "explanation2": "Given the opponent's commitment of 0 points, choosing Yes yields at most 3 points while choosing No yields at least 5 points if they cooperate or 1 point if they defect; combined with the opponent's consistent history of choosing No, defecting is the strictly dominant and safest strategy to maximize my payoff.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 81,
+    "pair_ids": [
+      0,
+      21
+    ],
+    "pair_names": [
+      "Agent_0",
+      "Agent_21"
+    ],
+    "timestamp": "2026-08-26T23:34:52.456993",
+    "detail": {
+      "agent1_id": 0,
+      "agent1_name": "Agent_0",
+      "agent2_id": 21,
+      "agent2_name": "Agent_21",
+      "side_payment_1_to_2": 5,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "By announcing S=5, I make my Action Phase payoff for choosing Yes exactly equal to choosing No regardless of Agent_21's action (5-5=0 vs 0, or 3-5=-2 vs 1), which credibly removes my incentive to defect and encourages mutual cooperation.",
+      "commit_explanation2": "Given the history where the opponent has chosen No for the past 6 consecutive rounds, they are highly likely to choose No again; therefore, committing S=0 minimizes my potential loss since a side payment is only required if the opponent chooses Yes, which I expect they will not.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields 1 point if the opponent chooses No, and 0 points if they choose Yes, whereas choosing Yes yields -2 points if they choose Yes and 0 points if they choose No; therefore, No strictly dominates Yes.",
+      "explanation2": "Choosing No yields 5 points if the opponent chooses Yes and 1 point if they choose No, both of which are greater than or equal to the respective payoffs for choosing Yes (5 and 1), making No the weakly dominant strategy.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 82,
+    "pair_ids": [
+      17,
+      9
+    ],
+    "pair_names": [
+      "Agent_17",
+      "Agent_9"
+    ],
+    "timestamp": "2026-08-26T23:35:27.573428",
+    "detail": {
+      "agent1_id": 17,
+      "agent1_name": "Agent_17",
+      "agent2_id": 9,
+      "agent2_name": "Agent_9",
+      "side_payment_1_to_2": 5,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Announcing S=5 makes your dominant strategy in the Action Phase to choose Yes (yielding 3+S_opp or 0+S_opp) rather than No (yielding 5 or 1), guaranteeing mutual cooperation and maximizing your payoff regardless of Agent_9's commitment.",
+      "commit_explanation2": "Announcing S=0 imposes no cost on me if the opponent cooperates, and given the opponent's frequent defections, committing to a side payment would likely yield no benefit while risking a loss if they unexpectedly choose Yes.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields 1 point if the opponent chooses No, or 0 points if they choose Yes, whereas choosing Yes yields -2 points if they choose Yes or 0 points if they choose No, making No the strictly dominant action.",
+      "explanation2": "Choosing No yields 5 points if the opponent chooses Yes (paying 0) and 1 point if the opponent chooses No, which strictly dominates choosing Yes (yielding 8 or 5 points respectively), making No the optimal decision.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 83,
+    "pair_ids": [
+      21,
+      3
+    ],
+    "pair_names": [
+      "Agent_21",
+      "Agent_3"
+    ],
+    "timestamp": "2026-08-26T23:36:03.793882",
+    "detail": {
+      "agent1_id": 21,
+      "agent1_name": "Agent_21",
+      "agent2_id": 3,
+      "agent2_name": "Agent_3",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the history where Agent_3 consistently chooses No and I also choose No, committing to a side payment S>0 risks unnecessary loss if Agent_3 unexpectedly cooperates, while S=0 ensures I pay nothing regardless of their action.",
+      "commit_explanation2": "Agent_21 has a history of defecting regardless of commitments, so committing any positive S risks paying them for nothing in return; setting S=0 minimizes my exposure to their untrustworthy behavior.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the opponent's history of consistently choosing No and the current zero commitments making defection strictly dominant (5 > 3 and 1 > 0), choosing No maximizes my expected payoff.",
+      "explanation2": "Given the opponent's commitment of 0, choosing Yes yields at most 3 points (if they choose Yes) or 0 points (if they choose No), whereas choosing No yields 5 points if they choose Yes or 1 point if they choose No, making No the strictly dominant action.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 84,
+    "pair_ids": [
+      4,
+      8
+    ],
+    "pair_names": [
+      "Agent_4",
+      "Agent_8"
+    ],
+    "timestamp": "2026-08-26T23:36:56.650185",
+    "detail": {
+      "agent1_id": 4,
+      "agent1_name": "Agent_4",
+      "agent2_id": 8,
+      "agent2_name": "Agent_8",
+      "side_payment_1_to_2": 2,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Announcing S=2 makes the mutually cooperative outcome (Yes, Yes) yield me a net payoff of 3-2=1, which matches the mutual defection payoff of 1, thereby removing my incentive to defect while making cooperation appealing for my opponent if they commit similarly.",
+      "commit_explanation2": "Given the opponent's consistent history of choosing No, committing to any positive side payment creates an unnecessary risk of loss with no expected benefit, so I commit S=0 to maximize my safety.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields 3 points if the opponent chooses Yes (5-2) or 1 point if they choose No, both of which are strictly greater than the payoffs for choosing Yes (1 point if they choose Yes, or 0 points if they choose No), making No the dominant strategy.",
+      "explanation2": "Choosing No yields 5 points if the opponent chooses Yes and 1 point if they choose No, whereas choosing Yes yields only 2 points if they choose No and 5 points if they choose Yes, making No the strictly dominant action.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 85,
+    "pair_ids": [
+      3,
+      23
+    ],
+    "pair_names": [
+      "Agent_3",
+      "Agent_23"
+    ],
+    "timestamp": "2026-08-26T23:37:30.712133",
+    "detail": {
+      "agent1_id": 3,
+      "agent1_name": "Agent_3",
+      "agent2_id": 23,
+      "agent2_name": "Agent_23",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given Agent_23's history of predominantly defecting, committing to a side payment of 0 minimizes my risk of paying them if they unexpectedly cooperate, while still allowing me to defect in the action phase to maximize my payoff.",
+      "commit_explanation2": "Given Agent_3's consistent history of choosing No (Defect), they are highly likely to choose No again regardless of any commitment, so offering a side payment would yield no benefit and only risk unnecessary costs if they unexpectedly choose Yes.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the 0-point commitments, the effective payoff matrix is the standard Prisoner's Dilemma where defecting (No) is the strictly dominant strategy, and the opponent's history of frequent defection further justifies choosing No to maximize my payoff.",
+      "explanation2": "Given the opponent's consistent history of choosing No and the absence of any side payments to incentivize cooperation, choosing No is the strictly dominant strategy to maximize my payoff.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 86,
+    "pair_ids": [
+      17,
+      4
+    ],
+    "pair_names": [
+      "Agent_17",
+      "Agent_4"
+    ],
+    "timestamp": "2026-08-26T23:38:00.682094",
+    "detail": {
+      "agent1_id": 17,
+      "agent1_name": "Agent_17",
+      "agent2_id": 4,
+      "agent2_name": "Agent_4",
+      "side_payment_1_to_2": 2,
+      "side_payment_2_to_1": 5,
+      "commit_explanation1": "Announcing S=2 makes choosing Yes a dominant strategy for Agent_4 (yielding 5 points vs 1 point if I choose No, and 3 points vs 1 point if I choose Yes), which encourages mutual cooperation and maximizes my expected payoff.",
+      "commit_explanation2": "By committing S=5, I make Agent_17's payoff for choosing Yes (3+5=8) strictly greater than their payoff for choosing No (1), guaranteeing their cooperation; I then optimally defect in the Action Phase, yielding my maximum possible payoff of 5 points.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No is the strictly dominant strategy because it yields a higher payoff than Yes regardless of the opponent's choice (5 vs 3 if they choose Yes, and 1 vs 0 if they choose No).",
+      "explanation2": "Choosing No yields a higher payoff than Yes regardless of the opponent's action (1 > 2 if they choose No, and 0 > -0 if they choose Yes), making No the strictly dominant strategy.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 87,
+    "pair_ids": [
+      8,
+      9
+    ],
+    "pair_names": [
+      "Agent_8",
+      "Agent_9"
+    ],
+    "timestamp": "2026-08-26T23:38:32.124246",
+    "detail": {
+      "agent1_id": 8,
+      "agent1_name": "Agent_8",
+      "agent2_id": 9,
+      "agent2_name": "Agent_9",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 2,
+      "commit_explanation1": "Given the history where Agent_9 consistently chooses No regardless of my actions, there is no incentive to offer a side payment since they are highly likely to defect again, making the payment conditional on their cooperation effectively useless.",
+      "commit_explanation2": "Announcing S=2 makes mutual cooperation a Nash equilibrium by ensuring the net payoff for cooperating (5 points) exceeds the temptation to defect (4 points), incentivizing Agent_8 to choose Yes while limiting my liability if they defect.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the opponent's history of consistently choosing No, choosing Yes risks a payoff of only 2 points (if they choose No again) compared to a guaranteed 1 point if I choose No, and defecting also maximizes my payoff in case they unilaterally cooperate.",
+      "explanation2": "Choosing No yields a higher payoff than Yes regardless of the opponent's action (3 > 1 if they choose Yes, and 1 > 0 if they choose No), making defection the strictly dominant strategy.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 88,
+    "pair_ids": [
+      19,
+      6
+    ],
+    "pair_names": [
+      "Agent_19",
+      "Agent_6"
+    ],
+    "timestamp": "2026-08-26T23:39:01.518801",
+    "detail": {
+      "agent1_id": 19,
+      "agent1_name": "Agent_19",
+      "agent2_id": 6,
+      "agent2_name": "Agent_6",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the history where Agent_6 has mostly chosen No, committing S=0 avoids any risk of paying them if they switch to Yes, while still allowing me to safely choose No in the action phase to maximize my payoff.",
+      "commit_explanation2": "Given Agent_19's consistent defection in recent rounds, they are highly likely to choose No again, making any positive side payment a sunk cost that would only reduce my payoff without securing cooperation.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the opponent's history of mostly defecting and the zero side-payments, defecting strictly dominates cooperating (yielding 5 vs 3 if they cooperate, and 1 vs 0 if they defect), so choosing No maximizes my payoff.",
+      "explanation2": "Given the opponent's history of repeatedly defecting and the current lack of side-payments to incentivize cooperation, choosing No is the dominant strategy to avoid receiving 0 points and to secure a higher payoff regardless of the opponent's action.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 89,
+    "pair_ids": [
+      22,
+      10
+    ],
+    "pair_names": [
+      "Agent_22",
+      "Agent_10"
+    ],
+    "timestamp": "2026-08-26T23:39:36.003226",
+    "detail": {
+      "agent1_id": 22,
+      "agent1_name": "Agent_22",
+      "agent2_id": 10,
+      "agent2_name": "Agent_10",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the history of mutual defection and the lack of trust, committing to a positive side payment creates an opportunity for the opponent to exploit me, so I commit to 0 to minimize risk.",
+      "commit_explanation2": "Agent_22 has consistently chosen No regardless of my actions, making any positive commitment a guaranteed loss with no benefit; therefore, I commit 0 to minimize my risk.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the zero commitments making this a standard Prisoner's Dilemma and the opponent's consistent history of choosing No, defecting is the dominant strategy to maximize my payoff.",
+      "explanation2": "Given the opponent's consistent history of choosing No and the zero commitments ensuring no side payments, choosing No is the dominant strategy to maximize my payoff by avoiding the zero payoff of unilateral cooperation.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 90,
+    "pair_ids": [
+      6,
+      21
+    ],
+    "pair_names": [
+      "Agent_6",
+      "Agent_21"
+    ],
+    "timestamp": "2026-08-26T23:40:07.705598",
+    "detail": {
+      "agent1_id": 6,
+      "agent1_name": "Agent_6",
+      "agent2_id": 21,
+      "agent2_name": "Agent_21",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the opponent's consistent history of choosing No, committing any positive S would only risk a pointless payment if they unexpectedly choose Yes, so I commit 0 to minimize risk and maximize my payoff.",
+      "commit_explanation2": "Given Agent_6's consistent choice of No in recent rounds, committing any positive S would be wasted and only penalize me if they unexpectedly choose Yes, so I commit 0 to minimize risk.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the opponent's consistent history of choosing No and the lack of any side-payment commitments to incentivize cooperation, choosing No maximizes my payoff by securing 1 point instead of 0.",
+      "explanation2": "Given the commitment of 0 from both sides, the effective payoff matrix is the standard Prisoner's Dilemma where defecting (No) is the strictly dominant strategy, and the opponent's history shows a strong tendency to defect as well.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 91,
+    "pair_ids": [
+      20,
+      8
+    ],
+    "pair_names": [
+      "Agent_20",
+      "Agent_8"
+    ],
+    "timestamp": "2026-08-26T23:40:40.381087",
+    "detail": {
+      "agent1_id": 20,
+      "agent1_name": "Agent_20",
+      "agent2_id": 8,
+      "agent2_name": "Agent_8",
+      "side_payment_1_to_2": 5,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the consistent mutual defection, I announce S=5 to guarantee that if Agent_8 cooperates, I receive the maximum side-payment from them, while my own commitment makes me indifferent to their action and ensures mutual defection remains my optimal choice regardless of their move.",
+      "commit_explanation2": "Given the opponent's consistent history of choosing No, committing a positive side payment offers no benefit and risks unnecessary loss, so I commit 0 to minimize risk while maintaining the option to defect.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields 1 point if the opponent chooses No, and 0 points if they choose Yes, whereas choosing Yes yields -2 or 0 points, making No the strictly dominant strategy.",
+      "explanation2": "Given the side payments, choosing Yes yields 8 points if the opponent chooses Yes and 5 points if they choose No, while choosing No yields 5 points if they choose Yes and 1 point if they choose No; since the opponent has defected in the last seven consecutive rounds, it is highly probable they will choose No again, making No the safer choice to avoid a worse outcome and respond to their established behavior.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 92,
+    "pair_ids": [
+      16,
+      15
+    ],
+    "pair_names": [
+      "Agent_16",
+      "Agent_15"
+    ],
+    "timestamp": "2026-08-26T23:41:14.299825",
+    "detail": {
+      "agent1_id": 16,
+      "agent1_name": "Agent_16",
+      "agent2_id": 15,
+      "agent2_name": "Agent_15",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Agent_15 has consistently chosen No in all previous rounds, so making a side payment commitment would only risk losing points if they unexpectedly choose Yes, with no benefit in incentivizing their cooperation.",
+      "commit_explanation2": "Given the history where Agent_16 consistently chooses No regardless of my actions, there is no incentive to offer a side payment since they will not choose Yes and trigger the payment, making S=0 the optimal commitment to minimize potential losses.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the zero side-payments and the history of the opponent consistently choosing No, choosing No is the strictly dominant strategy to maximize my payoff by avoiding the risk of getting 0 points if I cooperate.",
+      "explanation2": "Given the opponent's consistent history of choosing No and the zero commitments making cooperation unviable, choosing No secures a guaranteed payoff of 1 point versus 0 points for choosing Yes.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 93,
+    "pair_ids": [
+      8,
+      1
+    ],
+    "pair_names": [
+      "Agent_8",
+      "Agent_1"
+    ],
+    "timestamp": "2026-08-26T23:41:46.822315",
+    "detail": {
+      "agent1_id": 8,
+      "agent1_name": "Agent_8",
+      "agent2_id": 1,
+      "agent2_name": "Agent_1",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the history where Agent_1 consistently chooses No regardless of my actions, choosing S=0 minimizes my risk of making unnecessary payments while having no effect on the uncooperative outcome.",
+      "commit_explanation2": "Given the opponent's strong tendency to defect (choosing No 11 out of 12 times) and the fact that a side payment only costs me if they cooperate, committing S=0 minimizes my risk while leaving my action phase strategy unaffected.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the opponent's consistent history of choosing No and the zero commitments making No the strictly dominant action, choosing No maximizes my payoff by securing 1 point instead of 0.",
+      "explanation2": "Since side payments are 0, defecting (No) strictly dominates cooperating (Yes) regardless of the opponent's choice, and the history shows the opponent frequently defects, making No the optimal choice to maximize my payoff.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 94,
+    "pair_ids": [
+      2,
+      20
+    ],
+    "pair_names": [
+      "Agent_2",
+      "Agent_20"
+    ],
+    "timestamp": "2026-08-26T23:42:19.402597",
+    "detail": {
+      "agent1_id": 2,
+      "agent1_name": "Agent_2",
+      "agent2_id": 20,
+      "agent2_name": "Agent_20",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the opponent's consistent history of choosing No, committing to a side payment of 0 avoids an unnecessary penalty if they unexpectedly choose Yes, while having no effect on the likely outcome where they choose No.",
+      "commit_explanation2": "Given the consistent history of mutual defection, committing to a side payment of 0 avoids unnecessary costs while maintaining the equilibrium, as any positive S would be wasted if the opponent continues to choose No.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the opponent's consistent defection in the last 10 rounds and the zero side-payments making this a standard Prisoner's Dilemma, choosing No maximizes my payoff by protecting against getting 0 points if they defect, while still yielding 5 if they unexpectedly cooperate.",
+      "explanation2": "Given the opponent's consistent history of choosing No and the zero side-payments making this a standard Prisoner's Dilemma, choosing No is the dominant strategy that maximizes my payoff regardless of the opponent's action.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 95,
+    "pair_ids": [
+      13,
+      8
+    ],
+    "pair_names": [
+      "Agent_13",
+      "Agent_8"
+    ],
+    "timestamp": "2026-08-26T23:42:54.757613",
+    "detail": {
+      "agent1_id": 13,
+      "agent1_name": "Agent_13",
+      "agent2_id": 8,
+      "agent2_name": "Agent_8",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the history where Agent_8 has recently chosen No and I always choose No, committing any positive S creates an unnecessary risk of paying points if Agent_8 switches to Yes, so S=0 strictly maximizes my expected payoff.",
+      "commit_explanation2": "Given the opponent's consistent history of choosing No, committing to a side payment of 0 minimizes potential losses since they are highly likely to defect again regardless of any incentive offered.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the opponent's commitment of 0, choosing Yes yields at most 3 points while choosing No yields at least 5 points if they cooperate or 1 point if they defect, making No the strictly dominant strategy.",
+      "explanation2": "Given the opponent's consistent history of choosing No and the zero commitments offering no incentive to cooperate, choosing No maximizes my payoff by securing 1 point instead of 0.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 96,
+    "pair_ids": [
+      1,
+      0
+    ],
+    "pair_names": [
+      "Agent_1",
+      "Agent_0"
+    ],
+    "timestamp": "2026-08-26T23:43:29.479994",
+    "detail": {
+      "agent1_id": 1,
+      "agent1_name": "Agent_1",
+      "agent2_id": 0,
+      "agent2_name": "Agent_0",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 5,
+      "commit_explanation1": "Given the opponent's history of predominantly defecting (choosing No), committing to any positive side payment S creates a risk of paying them if they unexpectedly cooperate, while offering little benefit in incentivizing mutual cooperation; therefore, I commit S=0 to minimize my risk and maximize my expected payoff.",
+      "commit_explanation2": "By committing S=5, I make my opponent's payoff for choosing Yes (3+5=8) strictly greater than their payoff for choosing No (1), guaranteeing they choose Yes; I then optimally choose No to get 5-0=5 points, which is the maximum possible payoff I can secure.",
+      "choice1": "Yes",
+      "choice2": "No",
+      "explanation1": "Choosing Yes yields a guaranteed 5 points (0 base + 5 side payment), which is strictly better than the 1 point from choosing No, regardless of the opponent's action.",
+      "explanation2": "Choosing No yields 1 point if the opponent chooses No, and 0 points if the opponent chooses Yes, whereas choosing Yes yields -2 points if the opponent chooses Yes and 0 points if the opponent chooses No, making No the strictly dominant action.",
+      "payoff1": 5,
+      "payoff2": 0,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 97,
+    "pair_ids": [
+      10,
+      4
+    ],
+    "pair_names": [
+      "Agent_10",
+      "Agent_4"
+    ],
+    "timestamp": "2026-08-26T23:44:01.050240",
+    "detail": {
+      "agent1_id": 10,
+      "agent1_name": "Agent_10",
+      "agent2_id": 4,
+      "agent2_name": "Agent_4",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the history where Agent_4 consistently chooses No, committing to a positive side payment S creates an unnecessary risk of paying them if they unexpectedly choose Yes, while offering no benefit since they are unlikely to be influenced to cooperate.",
+      "commit_explanation2": "Announcing S=0 avoids any financial penalty if the opponent cooperates, which maximizes my payoff since defecting (No) is my strictly dominant strategy in the base game regardless of the opponent's action.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the history of Agent_4 consistently choosing No, and the current commitment phase offering no side payments to incentivize cooperation, choosing No is the dominant strategy to avoid receiving 0 points and instead secure at least 1 point.",
+      "explanation2": "Given the side payments are 0, the game reduces to the standard payoff matrix where choosing No is a strictly dominant strategy, and the opponent's history shows a strong tendency to choose No regardless of my actions.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 98,
+    "pair_ids": [
+      20,
+      8
+    ],
+    "pair_names": [
+      "Agent_20",
+      "Agent_8"
+    ],
+    "timestamp": "2026-08-26T23:44:41.376418",
+    "detail": {
+      "agent1_id": 20,
+      "agent1_name": "Agent_20",
+      "agent2_id": 8,
+      "agent2_name": "Agent_8",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Agent_8 has consistently chosen No regardless of past commitments, so offering a side payment is unlikely to induce cooperation and would only result in a loss if they surprisingly choose Yes.",
+      "commit_explanation2": "Agent_20 has consistently chosen No regardless of commitments, so committing any positive S creates an unnecessary financial risk with no benefit; therefore, I commit 0 to minimize potential losses.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the opponent's commitment of 0, choosing Yes yields at most 3 points while choosing No yields at least 5 points if they choose Yes or 1 point if they choose No, making No the strictly dominant action.",
+      "explanation2": "Given the opponent's commitment of 0, choosing Yes yields a maximum of 3 points while choosing No yields a minimum of 1 point, making No the strictly dominant strategy; additionally, the history shows the opponent consistently chooses No regardless of my actions.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 99,
+    "pair_ids": [
+      5,
+      23
+    ],
+    "pair_names": [
+      "Agent_5",
+      "Agent_23"
+    ],
+    "timestamp": "2026-08-26T23:45:16.810473",
+    "detail": {
+      "agent1_id": 5,
+      "agent1_name": "Agent_5",
+      "agent2_id": 23,
+      "agent2_name": "Agent_23",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the history of mutual defection and Agent_23's defection on my only cooperation attempt, I expect them to choose No; thus, committing S=0 minimizes my risk without affecting the outcome since I will optimally choose No as well.",
+      "commit_explanation2": "Given the history where Agent_5 consistently chooses No regardless of my actions, committing to any positive S would result in an unnecessary expected loss since they are highly likely to choose No again and I want to minimize my costs while defecting.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the opponent's commitment of 0, choosing Yes yields a maximum of 3 points (if they choose Yes) or 0 points (if they choose No), while choosing No guarantees at least 1 point and up to 5 points, making No the strictly safer and dominant choice against an uncommitted opponent who has recently defected.",
+      "explanation2": "Given the opponent's consistent history of choosing No and the zero commitments making the base game unchanged, choosing No maximizes my payoff by ensuring I get 1 point instead of 0 if the opponent continues to defect.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 100,
+    "pair_ids": [
+      14,
+      17
+    ],
+    "pair_names": [
+      "Agent_14",
+      "Agent_17"
+    ],
+    "timestamp": "2026-08-26T23:45:47.713074",
+    "detail": {
+      "agent1_id": 14,
+      "agent1_name": "Agent_14",
+      "agent2_id": 17,
+      "agent2_name": "Agent_17",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Announcing S=0 minimizes my risk since I only pay if Agent_17 chooses Yes, and given Agent_17's frequent No choices, offering a side payment is unlikely to induce cooperation while risking a loss if they do.",
+      "commit_explanation2": "Given Agent_14's consistent defection in recent rounds and their defection in the only prior interaction despite their high commitment, announcing S=0 minimizes my liability and aligns with my intention to defect.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the zero commitments, the game reduces to the standard Prisoner's Dilemma where defecting (No) strictly dominates cooperating (Yes), and the opponent's history shows a strong tendency to defect.",
+      "explanation2": "Given the opponent's commitment of 0, choosing Yes yields at most 3 points while choosing No yields at least 5 or 1 points, making No the strictly dominant action; additionally, the history shows the opponent consistently chooses No.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 101,
+    "pair_ids": [
+      22,
+      13
+    ],
+    "pair_names": [
+      "Agent_22",
+      "Agent_13"
+    ],
+    "timestamp": "2026-08-26T23:46:18.700598",
+    "detail": {
+      "agent1_id": 22,
+      "agent1_name": "Agent_22",
+      "agent2_id": 13,
+      "agent2_name": "Agent_13",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the consistent history of mutual defection, committing to a positive side payment creates an unnecessary risk of paying the opponent if they unexpectedly cooperate, while offering no benefit since I intend to defect regardless of their action.",
+      "commit_explanation2": "Given the history where Agent_22 has recently consistently chosen No, committing to a positive S creates a risk of paying them if they switch to Yes, while offering no benefit since I will choose No to maximize my payoff regardless of their commitment.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the mutual defect history and zero side-payments, choosing No is the strictly dominant strategy in this Prisoner's Dilemma, guaranteeing a higher payoff regardless of the opponent's choice.",
+      "explanation2": "Given the 0-point commitments, the game reduces to the standard Prisoner's Dilemma where No strictly dominates Yes, and the opponent's history of choosing Yes only twice before consistently switching to No makes mutual defection the rational outcome.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 102,
+    "pair_ids": [
+      17,
+      0
+    ],
+    "pair_names": [
+      "Agent_17",
+      "Agent_0"
+    ],
+    "timestamp": "2026-08-26T23:46:48.855654",
+    "detail": {
+      "agent1_id": 17,
+      "agent1_name": "Agent_17",
+      "agent2_id": 0,
+      "agent2_name": "Agent_0",
+      "side_payment_1_to_2": 5,
+      "side_payment_2_to_1": 2,
+      "commit_explanation1": "By committing S=5, I make my opponent's payoff for choosing Yes equal to 3+5=8, which strictly dominates their No payoff of 1, guaranteeing their cooperation; then I safely choose No to get 5 points from them without paying the side payment.",
+      "commit_explanation2": "Announcing S=2 makes my net payoff for mutual cooperation (3+their_S-2) competitive with defection (5), encouraging Agent_17 to cooperate without overpaying if they defect, given their recent mixed history of cooperation.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields 1 point if the opponent chooses No, and 0 points if the opponent chooses Yes, whereas choosing Yes yields 2 points if the opponent chooses No and 0 points if the opponent chooses Yes; since the opponent has consistently chosen No in recent rounds, choosing No is the safer choice that avoids the guaranteed loss of paying 5 while only receiving 2.",
+      "explanation2": "Choosing No yields 5-2=3 points if the opponent chooses Yes, and 1 point if they choose No, whereas choosing Yes yields 3-2+5=6 points only if they choose Yes but a mere 0+5=5 points if they choose No; given the opponent's frequent No choices in history, No is the safer dominant strategy ensuring at least 1 point without risking exploitation.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 103,
+    "pair_ids": [
+      3,
+      2
+    ],
+    "pair_names": [
+      "Agent_3",
+      "Agent_2"
+    ],
+    "timestamp": "2026-08-26T23:47:25.289172",
+    "detail": {
+      "agent1_id": 3,
+      "agent1_name": "Agent_3",
+      "agent2_id": 2,
+      "agent2_name": "Agent_2",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given Agent_2's strong tendency to defect (choosing No in 7 out of 8 rounds) and the previous interaction where both committed 0 and defected, committing any positive S risks paying them if they unexpectedly cooperate while gaining nothing, so committing 0 is the safest and most rational choice.",
+      "commit_explanation2": "Given Agent_3's consistent history of choosing No (Defect), announcing S=0 minimizes my potential losses since any positive commitment would only be paid if they unilaterally cooperate, which is highly unlikely.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With both commitments at 0, the game reduces to the standard Prisoner's Dilemma where defecting (No) yields a higher payoff regardless of the opponent's action, and the history shows a strong pattern of mutual defection.",
+      "explanation2": "Given the zero commitments, the game reduces to the standard Prisoner's Dilemma where defecting is the dominant strategy; furthermore, the opponent has consistently defected in all recent rounds, making cooperation unprofitably risky.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 104,
+    "pair_ids": [
+      22,
+      4
+    ],
+    "pair_names": [
+      "Agent_22",
+      "Agent_4"
+    ],
+    "timestamp": "2026-08-26T23:48:00.493121",
+    "detail": {
+      "agent1_id": 22,
+      "agent1_name": "Agent_22",
+      "agent2_id": 4,
+      "agent2_name": "Agent_4",
+      "side_payment_1_to_2": 2,
+      "side_payment_2_to_1": 2,
+      "commit_explanation1": "Announcing S=2 makes the effective payoff for mutual cooperation (5 points for me, 5 for the opponent) strictly better than defecting against cooperation (3 points for me), thereby creating a dominant incentive for both of us to finally choose Yes and break the cycle of mutual defection.",
+      "commit_explanation2": "Announcing S=2 makes mutual cooperation (Yes/Yes) yield 3-2=1 point for me and 3+2=5 points for Agent_22, incentivizing them to choose Yes while still leaving me better off than mutual defection (No/No), which yields 1 point.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the transformed payoffs, choosing No is a strictly dominant strategy because it yields 3 points if the opponent chooses Yes (compared to 3 for Yes) and 1 point if the opponent chooses No (compared to 2 for Yes), guaranteeing at least as good an outcome and strictly better when the opponent defects.",
+      "explanation2": "Given the modified payoffs, choosing No is a strictly dominant strategy yielding 3 points if the opponent chooses Yes and 1 point if they choose No, which is superior to the 3 and 2 points respectively obtained by choosing Yes.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 105,
+    "pair_ids": [
+      17,
+      1
+    ],
+    "pair_names": [
+      "Agent_17",
+      "Agent_1"
+    ],
+    "timestamp": "2026-08-26T23:48:32.801311",
+    "detail": {
+      "agent1_id": 17,
+      "agent1_name": "Agent_17",
+      "agent2_id": 1,
+      "agent2_name": "Agent_1",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the opponent's consistent defection in recent rounds, announcing S=0 minimizes my potential losses by ensuring I owe nothing if they unexpectedly choose Yes, while still allowing me to optimally respond to their likely defection in the action phase.",
+      "commit_explanation2": "Given the history where Agent_17 almost always chooses No regardless of my actions, committing any positive S would likely yield no benefit in incentivizing their cooperation and would only risk a penalty if they unexpectedly chose Yes, so S=0 minimizes my risk.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the opponent's consistent defection in recent rounds and the zero side-payments, defecting is the dominant strategy that maximizes my expected payoff by avoiding the risk of getting 0 points if I cooperate.",
+      "explanation2": "The opponent has consistently chosen No, especially in recent rounds, making No my dominant strategy to secure 1 point instead of 0.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 106,
+    "pair_ids": [
+      11,
+      18
+    ],
+    "pair_names": [
+      "Agent_11",
+      "Agent_18"
+    ],
+    "timestamp": "2026-08-26T23:49:01.188697",
+    "detail": {
+      "agent1_id": 11,
+      "agent1_name": "Agent_11",
+      "agent2_id": 18,
+      "agent2_name": "Agent_18",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given Agent_18's consistent history of choosing No, they are highly unlikely to choose Yes, making my commitment costless regardless of its value; however, announcing S=0 maximizes my safety and flexibility while incurring no risk of an unnecessary payment if they surprisingly cooperate.",
+      "commit_explanation2": "Given the opponent's consistent history of choosing No, announcing S=0 avoids any unnecessary financial liability while I continue to defect to maximize my payoff.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the opponent's consistent choice of No in all three previous rounds and the absence of any side payments to incentivize cooperation, choosing No is the best response to maximize my payoff and avoid receiving 0 points.",
+      "explanation2": "Since the side payments are 0, the game reduces to the standard Prisoner's Dilemma where choosing No is the dominant strategy, and the opponent's history of mostly choosing No further confirms that defecting maximizes my payoff.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 107,
+    "pair_ids": [
+      17,
+      4
+    ],
+    "pair_names": [
+      "Agent_17",
+      "Agent_4"
+    ],
+    "timestamp": "2026-08-26T23:49:34.345101",
+    "detail": {
+      "agent1_id": 17,
+      "agent1_name": "Agent_17",
+      "agent2_id": 4,
+      "agent2_name": "Agent_4",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given Agent_4's consistent history of choosing No, committing any positive S creates an unnecessary financial risk with no expected benefit, so I commit 0 to minimize potential losses.",
+      "commit_explanation2": "Given the history where Agent_17 rarely cooperates and I consistently defect, committing any positive S only risks paying them if they unexpectedly cooperate, while S=0 ensures I make no payments and maintain my dominant defection strategy.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the opponent's commitment of 0 and the history of repeated defections, choosing No is the dominant strategy to avoid receiving 0 points and to secure a guaranteed payoff of 1 point.",
+      "explanation2": "Given the opponent's history of predominantly choosing No and the current commitment phase yielding zero side payments, choosing No is the strictly dominant strategy to maximize my payoff.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 108,
+    "pair_ids": [
+      13,
+      4
+    ],
+    "pair_names": [
+      "Agent_13",
+      "Agent_4"
+    ],
+    "timestamp": "2026-08-26T23:50:05.580289",
+    "detail": {
+      "agent1_id": 13,
+      "agent1_name": "Agent_13",
+      "agent2_id": 4,
+      "agent2_name": "Agent_4",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the history where Agent_4 has consistently chosen No in recent rounds, offering a side payment is unlikely to induce cooperation and would only serve as an unnecessary cost if they happen to choose Yes, so I commit 0 to minimize my risk.",
+      "commit_explanation2": "Given the opponent's history of frequently choosing No and my dominant strategy to choose No regardless of commitments, offering any positive side payment would risk unnecessary losses if the opponent happens to choose Yes, so I commit to 0 to maximize my payoff.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the side payments are 0, this reduces to the standard Prisoner's Dilemma where defecting is the strictly dominant strategy; additionally, the history shows a consistent pattern of mutual defection, making No the optimal choice to maximize my payoff.",
+      "explanation2": "Given the zero side-payments, the game reduces to the standard prisoner's dilemma where defecting (No) strictly dominates cooperating (Yes), and the opponent's history of frequently choosing No further supports choosing No to maximize my payoff.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 109,
+    "pair_ids": [
+      1,
+      9
+    ],
+    "pair_names": [
+      "Agent_1",
+      "Agent_9"
+    ],
+    "timestamp": "2026-08-26T23:50:38.466287",
+    "detail": {
+      "agent1_id": 1,
+      "agent1_name": "Agent_1",
+      "agent2_id": 9,
+      "agent2_name": "Agent_9",
+      "side_payment_1_to_2": 2,
+      "side_payment_2_to_1": 3,
+      "commit_explanation1": "Announcing S=2 makes the effective payoff for mutual cooperation 3 for the opponent (3 + 2 - 2 = 3) while leaving their defection payoff at 1, thereby incentivizing them to choose Yes without overpaying if they defect.",
+      "commit_explanation2": "Announcing S=3 makes us indifferent to Agent_1's action (we get 3 points regardless of their choice if we choose Yes), which eliminates the temptation to defect and credibly signals our willingness to cooperate, encouraging them to do the same.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the side payments, choosing Yes yields 4 points if the opponent chooses Yes and 3 points if they choose No, whereas choosing No yields 3 points if they choose Yes and 1 point if they choose No; since Yes strictly dominates No for me, I choose Yes to maximize my expected payoff regardless of the opponent's historically uncooperative behavior.",
+      "explanation2": "Given the side payments, my payoff for choosing No is either 2 (if they choose Yes) or 1 (if they choose No), whereas choosing Yes yields only 2 (if they choose Yes) or 2 (if they choose No), making No the weakly dominant action that avoids the risk of a lower payoff.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 110,
+    "pair_ids": [
+      11,
+      1
+    ],
+    "pair_names": [
+      "Agent_11",
+      "Agent_1"
+    ],
+    "timestamp": "2026-08-26T23:51:14.459975",
+    "detail": {
+      "agent1_id": 11,
+      "agent1_name": "Agent_11",
+      "agent2_id": 1,
+      "agent2_name": "Agent_1",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 2,
+      "commit_explanation1": "Given Agent_1's history of consistently choosing No, announcing S=0 minimizes my potential loss since they are highly likely to choose No again, rendering the side payment irrelevant while avoiding any unnecessary commitment.",
+      "commit_explanation2": "Announcing S=2 makes mutual cooperation a Nash equilibrium in the action phase (yielding 3+2=5 for me and 3+2=5 for them), which is strictly better than mutual defection (1 point each), thereby incentivizing Agent_11 to cooperate despite their history of defection.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the side payments, choosing Yes yields 2 points if the opponent chooses No and 5 points if they choose Yes, while choosing No yields 1 point if they choose No and 5 points if they choose Yes; since the opponent has consistently chosen No in all prior rounds, No is the safer choice that avoids the worst-case scenario of getting only 2 points.",
+      "explanation2": "Choosing No yields a higher payoff than Yes regardless of the opponent's action (3 > 1 if they choose Yes, and 1 > 0 if they choose No), making it the strictly dominant strategy.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 111,
+    "pair_ids": [
+      11,
+      6
+    ],
+    "pair_names": [
+      "Agent_11",
+      "Agent_6"
+    ],
+    "timestamp": "2026-08-26T23:51:51.261044",
+    "detail": {
+      "agent1_id": 11,
+      "agent1_name": "Agent_11",
+      "agent2_id": 6,
+      "agent2_name": "Agent_6",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the opponent's consistent history of choosing No (Defect), committing to any positive side payment S would risk a net loss if I choose Yes, so I commit to S=0 to minimize risk and maximize my payoff.",
+      "commit_explanation2": "Given the opponent's consistent history of choosing No, announcing S=0 avoids any unnecessary penalty while maintaining the best response to their anticipated defection.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the opponent's consistent history of choosing No, choosing Yes would yield 0 points while choosing No guarantees 1 point, making No the rational choice to maximize my payoff.",
+      "explanation2": "The history shows Agent_11 has defected for the past 8 consecutive rounds, and with 0 side-payments committed, choosing No is the dominant strategy to avoid being exploited and to secure a guaranteed 1 point.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 112,
+    "pair_ids": [
+      21,
+      7
+    ],
+    "pair_names": [
+      "Agent_21",
+      "Agent_7"
+    ],
+    "timestamp": "2026-08-26T23:52:23.251533",
+    "detail": {
+      "agent1_id": 21,
+      "agent1_name": "Agent_21",
+      "agent2_id": 7,
+      "agent2_name": "Agent_7",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the history where the opponent has consistently chosen No for the last 8 rounds, choosing Yes would likely result in me receiving 0 points from the base matrix and paying a costly side payment, so I commit S=0 to avoid unnecessary payments and will defect.",
+      "commit_explanation2": "Given the opponent's consistent history of choosing No, I anticipate they will choose No again regardless of my commitment, so setting S=0 avoids any risk of paying them while having no effect on the outcome.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the side payments are 0, this is a standard Prisoner's Dilemma where choosing No is the strictly dominant strategy, and the opponent has consistently chosen No in recent rounds, making No the optimal choice to maximize my payoff.",
+      "explanation2": "Since both commitment values are 0, this reduces to the standard Prisoner's Dilemma where defecting (No) is the dominant strategy; additionally, the recent history shows the opponent consistently choosing No, making No the safest and most rational choice to maximize my payoff.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 113,
+    "pair_ids": [
+      21,
+      3
+    ],
+    "pair_names": [
+      "Agent_21",
+      "Agent_3"
+    ],
+    "timestamp": "2026-08-26T23:52:56.088802",
+    "detail": {
+      "agent1_id": 21,
+      "agent1_name": "Agent_21",
+      "agent2_id": 3,
+      "agent2_name": "Agent_3",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Agent_3 has consistently chosen No in recent rounds regardless of commitments, so committing any positive S would risk an unnecessary payment if they switch to Yes, while S=0 safely maximizes my payoff by avoiding any cost.",
+      "commit_explanation2": "Given Agent_21's consistent history of choosing No (defecting) in recent rounds regardless of commitments, committing a positive S risks an unnecessary payment if they unexpectedly choose Yes, so S=0 minimizes my risk.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the 0 side-payments, the effective payoff matrix is the standard Prisoner's Dilemma where defecting (No) is the strictly dominant strategy, and the opponent's history shows a strong tendency to defect as well, making No the rational choice to maximize my payoff.",
+      "explanation2": "Given that both side payments are 0, the game reduces to the standard Prisoner's Dilemma where defecting (No) is the strictly dominant strategy; additionally, the opponent has heavily favored defecting in recent rounds.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 114,
+    "pair_ids": [
+      11,
+      17
+    ],
+    "pair_names": [
+      "Agent_11",
+      "Agent_17"
+    ],
+    "timestamp": "2026-08-26T23:53:28.779742",
+    "detail": {
+      "agent1_id": 11,
+      "agent1_name": "Agent_11",
+      "agent2_id": 17,
+      "agent2_name": "Agent_17",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 2,
+      "commit_explanation1": "Given the history where Agent_17 consistently chooses No regardless of my actions, they will almost certainly choose No again, meaning I will not receive any side payment from them and I want to avoid paying them anything if they surprisingly choose Yes.",
+      "commit_explanation2": "Announcing S=2 makes mutual cooperation a Nash Equilibrium (yielding 3-2=1 point each, which beats the 1 point from mutual defection) while minimizing my cost if the opponent cooperates, though given the opponent's long history of defection, I primarily aim to structurally enforce cooperation if they are rational.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the opponent's consistent history of choosing No, choosing Yes yields a payoff of 2 while choosing No yields a payoff of 1, but No is the safer choice against an uncooperative opponent and avoids the risk of a 0-point outcome if they deviate from their past pattern.",
+      "explanation2": "Given the side payments, choosing Yes yields at most 1 point (if they choose Yes) or 0 points (if they choose No), while choosing No yields 3 points (if they choose Yes) or 1 point (if they choose No), making No the strictly dominant strategy.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 115,
+    "pair_ids": [
+      13,
+      19
+    ],
+    "pair_names": [
+      "Agent_13",
+      "Agent_19"
+    ],
+    "timestamp": "2026-08-26T23:54:01.496813",
+    "detail": {
+      "agent1_id": 13,
+      "agent1_name": "Agent_13",
+      "agent2_id": 19,
+      "agent2_name": "Agent_19",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the opponent's history of predominantly choosing No, announcing S=0 avoids any risk of paying them if they unexpectedly choose Yes, while a non-zero S would only reduce my payoff without reliably inducing their cooperation.",
+      "commit_explanation2": "Given the opponent's history of predominantly choosing No, committing to a side payment of 0 avoids unnecessary financial risk while maintaining the highest possible payoff if I choose to defect.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the history of the opponent choosing No in recent rounds and the current side payments being 0, choosing No is the dominant strategy to maximize my payoff regardless of the opponent's action.",
+      "explanation2": "Given the 0-point commitments, the game reverts to the standard payoff matrix where choosing No is a strictly dominant strategy yielding a higher payoff regardless of the opponent's choice (5 > 3 if they choose Yes, and 1 > 0 if they choose No).",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 116,
+    "pair_ids": [
+      23,
+      4
+    ],
+    "pair_names": [
+      "Agent_23",
+      "Agent_4"
+    ],
+    "timestamp": "2026-08-26T23:54:32.336192",
+    "detail": {
+      "agent1_id": 23,
+      "agent1_name": "Agent_23",
+      "agent2_id": 4,
+      "agent2_name": "Agent_4",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given Agent_4's consistent history of choosing No regardless of commitments, offering a side payment provides no benefit and only risks a loss if they unexpectedly choose Yes, so I commit to 0 to minimize my risk.",
+      "commit_explanation2": "Given Agent_23's consistent choice of No in recent rounds and the lack of benefit in offering a side payment to an uncooperative opponent, I commit to S=0 to minimize my potential losses.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the zero commitments, choosing No strictly dominates Yes (yielding 5 vs 3 if they choose Yes, and 1 vs 0 if they choose No), and the opponent's history of predominantly choosing No further confirms this is the safest and most rational choice to maximize my payoff.",
+      "explanation2": "Since both commitment values are 0, the game reduces to the base payoff matrix where choosing No is a strictly dominant strategy, and the opponent's history confirms they predominantly choose No as well.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 117,
+    "pair_ids": [
+      7,
+      5
+    ],
+    "pair_names": [
+      "Agent_7",
+      "Agent_5"
+    ],
+    "timestamp": "2026-08-26T23:55:05.038603",
+    "detail": {
+      "agent1_id": 7,
+      "agent1_name": "Agent_7",
+      "agent2_id": 5,
+      "agent2_name": "Agent_5",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given Agent_5's history of predominantly choosing No, announcing S=0 minimizes my risk of having to pay them if they unexpectedly choose Yes, while any positive S would only reduce my payoff without reliably incentivizing their cooperation.",
+      "commit_explanation2": "Given Agent_7's consistent history of choosing No regardless of commitments, offering a side payment is irrational as it yields no benefit and only risks a loss if they unexpectedly choose Yes.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the mutual commitments of 0, the effective payoff matrix is the standard Prisoner's Dilemma where defecting (No) is the strictly dominant strategy, and the opponent's history shows a strong tendency to defect as well.",
+      "explanation2": "Given the opponent's commitment of 0, choosing Yes yields a maximum of 3 points (if they choose Yes) or 0 points (if they choose No), while choosing No guarantees 5 points if they choose Yes or 1 point if they choose No, making No the strictly dominant and safer strategy.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 118,
+    "pair_ids": [
+      5,
+      13
+    ],
+    "pair_names": [
+      "Agent_5",
+      "Agent_13"
+    ],
+    "timestamp": "2026-08-26T23:55:37.353215",
+    "detail": {
+      "agent1_id": 5,
+      "agent1_name": "Agent_5",
+      "agent2_id": 13,
+      "agent2_name": "Agent_13",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Agent_13 has consistently chosen No throughout our history and offered a commitment of 0 in our only enhanced memory interaction, so committing anything positive would only cost me points if they unexpectedly choose Yes, with no leverage to incentivize their cooperation.",
+      "commit_explanation2": "Given the history where Agent_5 consistently chooses No regardless of commitments, committing any positive S would risk an unnecessary payment if they unexpectedly choose Yes, while S=0 safely maximizes my payoff by avoiding any side-payment obligation.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the opponent's commitment of 0, choosing Yes yields a maximum of 3 points (if they choose Yes) or 0 points (if they choose No), whereas choosing No guarantees at least 1 point and up to 5 points; combined with the opponent's consistent history of choosing No, defecting is the optimal choice to maximize my payoff.",
+      "explanation2": "Given the opponent's commitment of 0, choosing Yes yields at most 3 points while choosing No yields at least 5 points if they choose Yes or 1 point if they choose No, making No the strictly dominant action; additionally, the history shows consistent mutual defection, confirming the opponent will likely choose No.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 119,
+    "pair_ids": [
+      0,
+      5
+    ],
+    "pair_names": [
+      "Agent_0",
+      "Agent_5"
+    ],
+    "timestamp": "2026-08-26T23:56:13.132470",
+    "detail": {
+      "agent1_id": 0,
+      "agent1_name": "Agent_0",
+      "agent2_id": 5,
+      "agent2_name": "Agent_5",
+      "side_payment_1_to_2": 2,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Announcing S=2 makes the effective payoff for mutual cooperation 3-2=1 for me and 3+2=5 for the opponent, aligning mutual cooperation with their highest payoff to incentivize them to choose Yes, while still guaranteeing me a payoff of 1 which is better than the 0 I would get by cooperating without a side payment.",
+      "commit_explanation2": "Given the opponent's consistent history of choosing No (Defect), committing to any positive side payment creates an unnecessary risk of losing points if the opponent unexpectedly cooperates, while offering no benefit since they are highly likely to defect again.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Choosing No yields 3 points if the opponent chooses Yes (5 - 2) and 1 point if they choose No, both of which are strictly better than the 1 and 0 points respectively obtained from choosing Yes, making No the dominant strategy.",
+      "explanation2": "Choosing No yields a higher payoff than Yes regardless of the opponent's action (5 or 1 vs. 2), making it the strictly dominant strategy.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 120,
+    "pair_ids": [
+      23,
+      10
+    ],
+    "pair_names": [
+      "Agent_23",
+      "Agent_10"
+    ],
+    "timestamp": "2026-08-26T23:56:47.405383",
+    "detail": {
+      "agent1_id": 23,
+      "agent1_name": "Agent_23",
+      "agent2_id": 10,
+      "agent2_name": "Agent_10",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Agent_10 has consistently chosen No regardless of my actions, so committing any positive S would only incur a cost if they unexpectedly choose Yes, with no reliable benefit to incentivize their cooperation.",
+      "commit_explanation2": "Given the history of Agent_23 consistently choosing No (Defect), there is no incentive to offer a side payment since they are highly unlikely to choose Yes, meaning I would simply lose the payment without gaining cooperation.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the opponent's consistent history of choosing No and the zero commitments making cooperation unprofitable, defecting is the dominant strategy to maximize my payoff.",
+      "explanation2": "Given the opponent's consistent history of choosing No and the zero commitments ensuring no penalty for defecting, choosing No maximizes my payoff by securing 1 point instead of 0.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  }
+]

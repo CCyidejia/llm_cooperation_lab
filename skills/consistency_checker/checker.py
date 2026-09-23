@@ -11,6 +11,28 @@ from .prompts import SYSTEM_PROMPT, build_repair_prompt, build_user_prompt
 from .review_schema import ReviewValidationError, validate_review_document
 
 
+def enforce_compatibility_gate(review: dict[str, Any], plan: dict[str, Any]) -> dict[str, Any]:
+    """Prevent an LLM review from approving a plan blocked by deterministic topology checks."""
+    compatibility = plan.get("compatibility", {})
+    if compatibility.get("code_implementation_allowed", True):
+        return review
+    reason = str(compatibility.get("reason", "The mapper compatibility gate did not allow implementation."))
+    review["overall_status"] = "fail" if compatibility.get("status") == "blocked" else "needs_revision"
+    review["approval_for_next_step"] = {
+        "ready_for_code_implementation": False,
+        "reason": reason,
+    }
+    fixes = review.setdefault("required_fixes", [])
+    if not any(isinstance(item, dict) and item.get("issue") == "Compatibility gate blocks implementation." for item in fixes):
+        fixes.append({
+            "priority": "high",
+            "target": "pipeline",
+            "issue": "Compatibility gate blocks implementation.",
+            "suggested_fix": reason,
+        })
+    return review
+
+
 def call_llm(system_prompt: str, user_prompt: str, provider: str) -> str:
     if provider != "zgc":
         raise ValueError(f"Unsupported provider: {provider}")
@@ -119,6 +141,7 @@ def check_consistency(
     for attempt in range(repair_attempts + 1):
         try:
             data = extract_json_object(last_raw)
+            data = enforce_compatibility_gate(data, plan)
             validate_review_document(data)
             return data
         except (json.JSONDecodeError, ReviewValidationError) as exc:

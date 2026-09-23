@@ -1,42 +1,29 @@
-﻿---
+---
 name: literature-mechanism-extractor
-description: Extract cooperation-promoting mechanisms from public goods game literature PDFs, text notes, or literature tables into validated mechanism.json for the llm_cooperation_lab public goods baseline.
+description: Extract cooperation mechanisms from public-goods, prisoner's-dilemma, or trust-game papers, PDFs, text notes, and treatment tables into validated cooperation-mechanism-v2 JSON. Use when identifying roles, sequential or simultaneous actions, timing, information, payoffs, treatments, network requirements, or transfer requirements before mapping code.
 ---
 
 # Literature Mechanism Extractor
 
-Use this skill to convert a public-goods-game paper, PDF text, or literature summary table into a structured `mechanism.json`.
-
-The skill is scoped to the current baseline `env_main_public_goods_group.py`. It does not modify baseline code. It only extracts mechanisms and maps them to implementation surfaces.
+Extract the paper's native game and mechanism design without assuming a target baseline.
 
 ## Workflow
 
-1. Read the source paper or summary.
-2. Extract only mechanisms that can plausibly promote cooperation.
-3. Output valid JSON following `schema.py`.
-4. Validate the JSON with `validate_mechanism_document`.
-5. Save the result as `mechanism.json`.
+1. Read the source and preserve page labels where available.
+2. Identify game family, topology, roles, decision stages, native actions, decision protocol, and treatments.
+3. Extract every mechanism into `cooperation-mechanism-v2` format.
+4. Distinguish simultaneous actions from later response stages.
+5. Mark network, matching, history, and information requirements explicitly.
+6. Validate with `schema.validate_mechanism_document` and save JSON.
 
-## Mechanism Requirements
-
-Each mechanism must specify mechanism type, timing, actors and targets, information structure, action-space changes, payoff changes, state variables, prompt requirements, metrics, implementation surfaces, and uncertainties.
-
-## Baseline Mapping
-
-Use `baseline_capabilities.json` when deciding whether a mechanism is directly implementable or requires extension.
-
-Current baseline supports contribution-only decisions. Punishment, reward, reputation, image scoring, and institution choice usually require adding state variables, prompt context, payoff rules, and logging metrics.
+Read [game-adapters.md](references/game-adapters.md) when the source uses a trust game, punishment, reputation, social knowledge, partner choice, or networks.
 
 ## CLI
 
-Text or table-summary input:
-
 ```powershell
-python -m skills.literature_mechanism_extractor.extractor --text path\to\paper_summary.txt --output mechanisms\paper_mechanism.json
+python -m skills.literature_mechanism_extractor.extractor --pdf "papers\paper.pdf" --output "mechanisms\paper.json"
 ```
 
-PDF input requires `pypdf`:
+For trust games, keep Trustor transfer, Trustee return, and any later Trustor sanction as separate stages. Record strategy-method elicitation separately from the game-tree sequence and record measured personality traits as heterogeneity rather than randomized treatments.
 
-```powershell
-python -m skills.literature_mechanism_extractor.extractor --pdf path\to\paper.pdf --output mechanisms\paper_mechanism.json
-```
+On a checker-directed rerun, pass `--feedback-file review.json` so required fixes affect the new extraction.

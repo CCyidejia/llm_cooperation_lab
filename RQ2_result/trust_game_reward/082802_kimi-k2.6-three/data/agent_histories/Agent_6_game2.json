@@ -1,0 +1,1316 @@
+{
+  "id": 5,
+  "name": "Agent_6",
+  "agent_type": "TrustGamePopulationAgent",
+  "profile": "You are Agent_6, a decision-maker participating in a Trust Game with anticipated third-party reward.\nIn each population round you are randomly assigned as Trustor, Trustee, or Rewarder.\nMake each decision from the information and material incentives shown in that role's prompt.",
+  "history": [
+    {
+      "interaction": 8,
+      "population_round": 1,
+      "role": "Trustor",
+      "partner_id": 8,
+      "partner_name": "Agent_9",
+      "rewarder_id": 15,
+      "rewarder_name": "Agent_16",
+      "sent_amount": 0,
+      "returned_amount": 0,
+      "return_rate": 0.0,
+      "return_multiple": 0.0,
+      "reward_cost": 0,
+      "reward_bonus_to_trustee": 0,
+      "payoff": 10,
+      "partner_payoff": 0,
+      "explanation": "With no prior interaction history, I have zero information about Agent_9's trustworthiness or reciprocity behavior. Sending coins requires me to trust that Agent_9 will return enough to make the exchange profitable (I need >3.33 coins returned per 10 sent just to break even, which is unlikely without established cooperation). The third-party Rewarder creates additional incentive for Agent_9 to build a reputation, but without knowing if Agent_9 responds to such incentives or has a history of cooperation, the rational choice is to send 0 and observe behavior in future rounds before risking my coins.",
+      "multiplication_factor": 3,
+      "timestamp": "2026-08-28T22:51:31.072778"
+    },
+    {
+      "interaction": 12,
+      "population_round": 2,
+      "role": "Trustee",
+      "partner_id": 20,
+      "partner_name": "Agent_21",
+      "rewarder_id": 19,
+      "rewarder_name": "Agent_20",
+      "sent_amount": 10,
+      "received_amount": 30,
+      "returned_amount": 15,
+      "reward_cost": 3,
+      "reward_bonus": 9,
+      "payoff_before_reward": 15,
+      "payoff": 24,
+      "partner_payoff": 15,
+      "explanation": "With no prior history with Agent_21, I need to balance building trust for future rounds against immediate payoff. Returning 15 (half) signals reasonable fairness—neither greedy nor naive—making me a good candidate for the Rewarder's bonus. The Rewarder can add 0-30 coins to my payoff, and fair behavior typically attracts rewards. Returning 15 leaves me with 15 base coins plus potential reward, while encouraging Agent_21 to trust me again in future rounds where the multiplier effect compounds.",
+      "multiplication_factor": 3,
+      "timestamp": "2026-08-28T22:52:46.456591"
+    },
+    {
+      "interaction": 21,
+      "population_round": 3,
+      "role": "Trustee",
+      "partner_id": 17,
+      "partner_name": "Agent_18",
+      "rewarder_id": 10,
+      "rewarder_name": "Agent_11",
+      "sent_amount": 0,
+      "received_amount": 0,
+      "returned_amount": 0,
+      "reward_cost": 0,
+      "reward_bonus": 0,
+      "payoff_before_reward": 0,
+      "payoff": 0,
+      "partner_payoff": 10,
+      "explanation": "Agent_18 sent 0 coins, so I received 0 and can only return 0. Since I have nothing to return, my payoff depends entirely on the Rewarder's bonus (0-30 coins). The Rewarder observes both decisions; since Agent_18 sent nothing, this signals distrust or non-cooperation. There's nothing I can do to influence the situation—returning 0 is the only option, and I hope the Rewarder still rewards me despite the failed interaction, though the lack of trust from Agent_18 makes reward likelihood uncertain.",
+      "multiplication_factor": 3,
+      "timestamp": "2026-08-28T22:55:37.324240"
+    },
+    {
+      "interaction": 29,
+      "population_round": 4,
+      "role": "Trustee",
+      "partner_id": 10,
+      "partner_name": "Agent_11",
+      "rewarder_id": 8,
+      "rewarder_name": "Agent_9",
+      "sent_amount": 5,
+      "received_amount": 15,
+      "returned_amount": 8,
+      "reward_cost": 6,
+      "reward_bonus": 18,
+      "payoff_before_reward": 7,
+      "payoff": 25,
+      "partner_payoff": 13,
+      "explanation": "No history with Agent_11, so I focus on the known reward mechanism. Returning 8 shows substantial reciprocity (53% return ratio, above the 1/3 that would make Trustor break even), which signals trustworthiness to the Rewarder while still keeping 7 coins. The Rewarder observing this fair-but-not-excessive return may reward me, and each reward coin yields 3× value. This balances immediate payoff preservation with reward potential.",
+      "multiplication_factor": 3,
+      "timestamp": "2026-08-28T22:58:08.592461"
+    },
+    {
+      "interaction": 36,
+      "population_round": 5,
+      "role": "Trustee",
+      "partner_id": 9,
+      "partner_name": "Agent_10",
+      "rewarder_id": 17,
+      "rewarder_name": "Agent_18",
+      "sent_amount": 7,
+      "received_amount": 21,
+      "returned_amount": 7,
+      "reward_cost": 0,
+      "reward_bonus": 0,
+      "payoff_before_reward": 14,
+      "payoff": 14,
+      "partner_payoff": 10,
+      "explanation": "Agent_10 sent a moderate amount (7 out of possible endowment, likely 10). With no prior history, I'll return roughly 33% of received coins, signaling reasonable trustworthiness. This leaves me 14 coins plus any reward bonus. The rewarder may incentivize fair behavior, and a non-zero return makes me eligible for rewards while keeping substantial payoff.",
+      "multiplication_factor": 3,
+      "timestamp": "2026-08-28T23:00:09.366353"
+    },
+    {
+      "interaction": 46,
+      "population_round": 6,
+      "role": "Trustee",
+      "partner_id": 10,
+      "partner_name": "Agent_11",
+      "rewarder_id": 20,
+      "rewarder_name": "Agent_21",
+      "sent_amount": 5,
+      "received_amount": 15,
+      "returned_amount": 5,
+      "reward_cost": 0,
+      "reward_bonus": 0,
+      "payoff_before_reward": 10,
+      "payoff": 10,
+      "partner_payoff": 10,
+      "explanation": "In the only prior interaction with Agent_11, I returned 8 coins and received a substantial reward bonus of 18 coins (6 coins spent by the third party), yielding a strong payoff of 25 coins. However, Agent_11 only sent 5 coins again this round (same as round 1), suggesting they may not be highly responsive to my returns or are risk-averse. A moderate return of 5 coins (33% of received) signals cooperation while preserving 10 coins base. This should still appear reasonably fair to the third-party rewarder, potentially eliciting some reward spending without over-giving to a trustor who hasn't increased their investment across 46 rounds.",
+      "multiplication_factor": 3,
+      "timestamp": "2026-08-28T23:03:18.736302"
+    },
+    {
+      "interaction": 49,
+      "population_round": 7,
+      "role": "Trustee",
+      "partner_id": 3,
+      "partner_name": "Agent_4",
+      "rewarder_id": 12,
+      "rewarder_name": "Agent_13",
+      "sent_amount": 5,
+      "received_amount": 15,
+      "returned_amount": 8,
+      "reward_cost": 5,
+      "reward_bonus": 15,
+      "payoff_before_reward": 7,
+      "payoff": 22,
+      "partner_payoff": 13,
+      "explanation": "With no prior history with Agent_4, I need to balance building trust for future rounds against maximizing immediate payoff. Returning 8 coins (slightly more than half of 15) signals moderate trustworthiness—generous enough to encourage future sending and potential rewarder investment, while still securing 7 coins base payoff. The rewarder is more likely to spend coins if they observe cooperative behavior, and returning roughly 53% demonstrates reciprocity without excessive self-sacrifice. If Agent_4 perceives this as fair, they may send more in future encounters, compounding long-term gains.",
+      "multiplication_factor": 3,
+      "timestamp": "2026-08-28T23:04:16.829477"
+    },
+    {
+      "interaction": 58,
+      "population_round": 8,
+      "role": "Trustee",
+      "partner_id": 11,
+      "partner_name": "Agent_12",
+      "rewarder_id": 22,
+      "rewarder_name": "Agent_23",
+      "sent_amount": 5,
+      "received_amount": 15,
+      "returned_amount": 5,
+      "reward_cost": 0,
+      "reward_bonus": 0,
+      "payoff_before_reward": 10,
+      "payoff": 10,
+      "partner_payoff": 10,
+      "explanation": "With no prior history, I want to signal trustworthiness while preserving value. Returning 5 (the original sent amount, or 33% of received) balances reciprocity with self-interest. This modest return may encourage future cooperation from Agent_12 while still leaving me 10 coins base. The rewarder's likely response is uncertain, but a non-zero return demonstrates good faith, potentially earning reward spending that could add 0-30 coins to my payoff.",
+      "multiplication_factor": 3,
+      "timestamp": "2026-08-28T23:07:07.332623"
+    },
+    {
+      "interaction": 76,
+      "population_round": 10,
+      "role": "Trustor",
+      "partner_id": 15,
+      "partner_name": "Agent_16",
+      "rewarder_id": 16,
+      "rewarder_name": "Agent_17",
+      "sent_amount": 0,
+      "returned_amount": 0,
+      "return_rate": 0.0,
+      "return_multiple": 0.0,
+      "reward_cost": 0,
+      "reward_bonus_to_trustee": 0,
+      "payoff": 10,
+      "partner_payoff": 0,
+      "explanation": "With no previous interactions with Agent_16, I have no information about their trustworthiness or reciprocity behavior. Without any reputation data to suggest they would return a favorable amount, sending coins involves substantial risk. The trustee's incentive to return coins is weakened by the fact that the third-party Rewarder may reward them independently of their return decision, potentially reducing their reliance on reciprocal trust-building. To maximize cumulative coins given complete uncertainty about this new counterpart, I will send 0 coins and observe their behavior in future rounds if interactions continue.",
+      "multiplication_factor": 3,
+      "timestamp": "2026-08-28T23:12:41.863929"
+    },
+    {
+      "interaction": 84,
+      "population_round": 11,
+      "role": "Trustee",
+      "partner_id": 12,
+      "partner_name": "Agent_13",
+      "rewarder_id": 22,
+      "rewarder_name": "Agent_23",
+      "sent_amount": 0,
+      "received_amount": 0,
+      "returned_amount": 0,
+      "reward_cost": 0,
+      "reward_bonus": 0,
+      "payoff_before_reward": 0,
+      "payoff": 0,
+      "partner_payoff": 10,
+      "explanation": "No coins were received, so the only possible return is 0. The rewarder may still spend up to 10 coins to reward me (yielding up to 30 bonus), but my return decision doesn't affect that since I have nothing to return.",
+      "multiplication_factor": 3,
+      "timestamp": "2026-08-28T23:15:54.574347"
+    },
+    {
+      "interaction": 100,
+      "population_round": 13,
+      "role": "Trustee",
+      "partner_id": 19,
+      "partner_name": "Agent_20",
+      "rewarder_id": 18,
+      "rewarder_name": "Agent_19",
+      "sent_amount": 10,
+      "received_amount": 30,
+      "returned_amount": 15,
+      "reward_cost": 0,
+      "reward_bonus": 0,
+      "payoff_before_reward": 15,
+      "payoff": 15,
+      "partner_payoff": 15,
+      "explanation": "With no previous interactions with Agent_20, I need to balance incentivizing future trust while maximizing current payoff. Returning 15 coins (50% of the 30 received) demonstrates trustworthiness—Agent_20 gets their 10 investment back plus 5 profit, a 50% return on their investment. This should encourage future cooperation. I also preserve 15 coins for myself. The rewarder observing a fair, cooperative split is more likely to invest reward coins, potentially adding 0-30 bonus coins to my payoff. A 50% return signals I'm neither exploitative nor naive, positioning me well for the rewarder's judgment and future rounds.",
+      "multiplication_factor": 3,
+      "timestamp": "2026-08-28T23:20:56.262473"
+    },
+    {
+      "interaction": 109,
+      "population_round": 14,
+      "role": "Trustor",
+      "partner_id": 21,
+      "partner_name": "Agent_22",
+      "rewarder_id": 22,
+      "rewarder_name": "Agent_23",
+      "sent_amount": 5,
+      "returned_amount": 5,
+      "return_rate": 0.3333333333333333,
+      "return_multiple": 1.0,
+      "reward_cost": 0,
+      "reward_bonus_to_trustee": 0,
+      "payoff": 10,
+      "partner_payoff": 10,
+      "explanation": "With no prior interaction history, I face uncertainty about Agent_22's trustworthiness. Sending 5 coins (which becomes 15 for them) represents a moderate trust signal that tests their reciprocity without excessive risk. If they return a fair portion, I benefit from cooperation; if they defect, I only lose 5 coins. The rewarder mechanism incentivizes the Trustee to behave well (since rewarders likely reward cooperative Trustees), which slightly increases the chance of reciprocation. This balanced approach allows me to gather information about Agent_22's behavior for future rounds while maintaining reasonable expected payoff.",
+      "multiplication_factor": 3,
+      "timestamp": "2026-08-28T23:24:56.289435"
+    },
+    {
+      "interaction": 125,
+      "population_round": 16,
+      "role": "Trustee",
+      "partner_id": 23,
+      "partner_name": "Agent_24",
+      "rewarder_id": 11,
+      "rewarder_name": "Agent_12",
+      "sent_amount": 5,
+      "received_amount": 15,
+      "returned_amount": 8,
+      "reward_cost": 6,
+      "reward_bonus": 18,
+      "payoff_before_reward": 7,
+      "payoff": 25,
+      "partner_payoff": 13,
+      "explanation": "Since this is the first interaction with Agent_24, I need to establish a reputation for trustworthiness to encourage future cooperation. Returning 8 coins (slightly more than half, or 53% of the received 15) signals goodwill while still keeping 7 coins for myself. This demonstrates I'm not selfish (returning 0) but also not naive (returning too much). The rewarder may appreciate this balanced approach and potentially spend coins to reward cooperative behavior, which would further benefit me at 3x return on their spending. If Agent_24 perceives me as reliable, they're more likely to send larger amounts in future rounds, increasing the total pie we can share.",
+      "multiplication_factor": 3,
+      "timestamp": "2026-08-28T23:30:02.148756"
+    },
+    {
+      "interaction": 135,
+      "population_round": 17,
+      "role": "Trustor",
+      "partner_id": 6,
+      "partner_name": "Agent_7",
+      "rewarder_id": 8,
+      "rewarder_name": "Agent_9",
+      "sent_amount": 10,
+      "returned_amount": 15,
+      "return_rate": 0.5,
+      "return_multiple": 1.5,
+      "reward_cost": 0,
+      "reward_bonus_to_trustee": 0,
+      "payoff": 15,
+      "partner_payoff": 15,
+      "explanation": "This is a first interaction with Agent_7, so I have no behavioral history to guide me. The Rewarder mechanism creates a strong incentive for the Trustee to be cooperative—if Agent_7 returns a generous amount, the Rewarder may reward them 1-10 coins (becoming 3-30 coins for Agent_7). This external reinforcement of prosocial behavior makes trust more rational than in standard trust games. By sending the maximum 10 coins, Agent_7 receives 30 coins and has maximum flexibility to return a substantial amount while still benefiting from potential Rewarder incentives. Even if they return only a modest fraction (e.g., 15-20 coins), my payoff exceeds the 10 I would keep by sending nothing. The Rewarder system effectively subsidizes trustworthy behavior, making full cooperation the expected-value-maximizing first move.",
+      "multiplication_factor": 3,
+      "timestamp": "2026-08-28T23:33:22.922687"
+    },
+    {
+      "interaction": 140,
+      "population_round": 18,
+      "role": "Trustor",
+      "partner_id": 0,
+      "partner_name": "Agent_1",
+      "rewarder_id": 16,
+      "rewarder_name": "Agent_17",
+      "sent_amount": 5,
+      "returned_amount": 15,
+      "return_rate": 1.0,
+      "return_multiple": 3.0,
+      "reward_cost": 10,
+      "reward_bonus_to_trustee": 30,
+      "payoff": 20,
+      "partner_payoff": 30,
+      "explanation": "With no prior history, I'm making a moderate initial offer to test Agent_1's trustworthiness. Sending 5 costs me 5 coins but gives them 15, creating substantial surplus to share. This is enough to signal trust and incentivize reciprocation, while limiting downside if they defect. I'll observe their return behavior for future rounds.",
+      "multiplication_factor": 3,
+      "timestamp": "2026-08-28T23:34:52.978734"
+    },
+    {
+      "interaction": 148,
+      "population_round": 19,
+      "role": "Trustee",
+      "partner_id": 8,
+      "partner_name": "Agent_9",
+      "rewarder_id": 13,
+      "rewarder_name": "Agent_14",
+      "sent_amount": 5,
+      "received_amount": 15,
+      "returned_amount": 5,
+      "reward_cost": 0,
+      "reward_bonus": 0,
+      "payoff_before_reward": 10,
+      "payoff": 10,
+      "partner_payoff": 10,
+      "explanation": "Agent_9 has consistently shown untrustworthy behavior—returning 0 when I sent them 0 in Round 1. However, the key factor here is the third-party rewarder who can spend 0-10 coins to reward me, with each reward coin giving me 3 coins. To maximize my payoff, I need to balance two things: keeping coins from the 15 received AND incentivizing the rewarder to reward me generously. Returning 5 coins (33% return) signals reasonable cooperation without being overly generous, which may encourage the rewarder to spend close to 10 coins. If the rewarder spends 10, I get 30 bonus coins. My payoff would be 15 - 5 + 30 = 40, which dominates any strategy of keeping everything without reward consideration. Even a moderate reward of 5 coins gives me 15 - 5 + 15 = 25, still better than keeping all 15 with no reward. The cooperative signal of returning 5 should be sufficient to attract meaningful rewards.",
+      "multiplication_factor": 3,
+      "timestamp": "2026-08-28T23:37:47.152425"
+    },
+    {
+      "interaction": 157,
+      "population_round": 20,
+      "role": "Trustee",
+      "partner_id": 8,
+      "partner_name": "Agent_9",
+      "rewarder_id": 17,
+      "rewarder_name": "Agent_18",
+      "sent_amount": 5,
+      "received_amount": 15,
+      "returned_amount": 5,
+      "reward_cost": 0,
+      "reward_bonus": 0,
+      "payoff_before_reward": 10,
+      "payoff": 10,
+      "partner_payoff": 10,
+      "explanation": "In the only prior interaction where Agent_9 was the trustor (Round 2), I returned 5 out of 15 and received no reward bonus. With only 2 rounds of history and no clear pattern of rewarder behavior, I'll match my previous return of 5 coins (33% return rate). This balances keeping some coins while signaling some trustworthiness. The rewarder mechanism is unpredictable, so I won't rely on it and instead secure a moderate guaranteed payoff of 10 coins.",
+      "multiplication_factor": 3,
+      "timestamp": "2026-08-28T23:40:51.774014"
+    },
+    {
+      "interaction": 162,
+      "population_round": 21,
+      "role": "Trustor",
+      "partner_id": 0,
+      "partner_name": "Agent_1",
+      "rewarder_id": 14,
+      "rewarder_name": "Agent_15",
+      "sent_amount": 10,
+      "returned_amount": 15,
+      "return_rate": 0.5,
+      "return_multiple": 1.5,
+      "reward_cost": 5,
+      "reward_bonus_to_trustee": 15,
+      "payoff": 15,
+      "partner_payoff": 30,
+      "explanation": "Agent_1 previously returned the full tripled amount (15/15), enabling maximum payoff of 20. The Rewarder maximally rewarded this pro-social behavior with 30 coins. Sending 10 offers potential for 30 coin payoff if Agent_1 repeats this trustworthy pattern, which the reward structure incentivizes.",
+      "multiplication_factor": 3,
+      "timestamp": "2026-08-28T23:42:47.623811"
+    },
+    {
+      "interaction": 171,
+      "population_round": 22,
+      "role": "Trustor",
+      "partner_id": 20,
+      "partner_name": "Agent_21",
+      "rewarder_id": 0,
+      "rewarder_name": "Agent_1",
+      "sent_amount": 10,
+      "returned_amount": 15,
+      "return_rate": 0.5,
+      "return_multiple": 1.5,
+      "reward_cost": 7,
+      "reward_bonus_to_trustee": 21,
+      "payoff": 15,
+      "partner_payoff": 36,
+      "explanation": "Round 1 data shows Agent_21 (as Trustee) returned 15 coins out of 30 received (50% return rate) and earned a 9-coin third-party reward. This indicates Agent_21 responds well to trust, returning half while benefiting from rewarder approval. As Trustor, I maximize expected return by sending 10: Agent_21 receives 30, likely returns ~15 again based on established pattern, giving me payoff of 10 - 10 + 15 = 15 coins. The reward mechanism incentivizes Agent_21 to maintain trustworthy behavior to continue earning third-party rewards, making full trust the optimal play.",
+      "multiplication_factor": 3,
+      "timestamp": "2026-08-28T23:49:16.097555"
+    },
+    {
+      "interaction": 184,
+      "population_round": 23,
+      "role": "Trustor",
+      "partner_id": 22,
+      "partner_name": "Agent_23",
+      "rewarder_id": 19,
+      "rewarder_name": "Agent_20",
+      "sent_amount": 0,
+      "returned_amount": 0,
+      "return_rate": 0.0,
+      "return_multiple": 0.0,
+      "reward_cost": 0,
+      "reward_bonus_to_trustee": 0,
+      "payoff": 10,
+      "partner_payoff": 0,
+      "explanation": "No previous interactions with Agent_23 means I have zero information about their trustworthiness or reciprocity behavior. Without any reputation data, sending coins is a blind gamble—the Trustee could return nothing and I'd lose my investment entirely. The optimal strategy with an unknown Trustee is to send 0 to establish a baseline observation first, or wait for future rounds where I might learn their behavior pattern. Since I cannot observe their past actions with others, I must protect my 10 coins rather than risk them on an unproven partner.",
+      "multiplication_factor": 3,
+      "timestamp": "2026-08-28T23:58:42.674458"
+    },
+    {
+      "interaction": 195,
+      "population_round": 25,
+      "role": "Trustee",
+      "partner_id": 17,
+      "partner_name": "Agent_18",
+      "rewarder_id": 3,
+      "rewarder_name": "Agent_4",
+      "sent_amount": 0,
+      "received_amount": 0,
+      "returned_amount": 0,
+      "reward_cost": 0,
+      "reward_bonus": 0,
+      "payoff_before_reward": 0,
+      "payoff": 0,
+      "partner_payoff": 10,
+      "explanation": "Agent_18 sent 0 coins, so I received 0 and can only return 0. The rewarder observes my behavior, but since there's nothing to return and no history of cooperation from this agent, I simply return 0. No strategic leverage exists in this round.",
+      "multiplication_factor": 3,
+      "timestamp": "2026-08-29T00:02:02.350905"
+    },
+    {
+      "interaction": 201,
+      "population_round": 26,
+      "role": "Trustor",
+      "partner_id": 6,
+      "partner_name": "Agent_7",
+      "rewarder_id": 23,
+      "rewarder_name": "Agent_24",
+      "sent_amount": 10,
+      "returned_amount": 15,
+      "return_rate": 0.5,
+      "return_multiple": 1.5,
+      "reward_cost": 6,
+      "reward_bonus_to_trustee": 18,
+      "payoff": 15,
+      "partner_payoff": 33,
+      "explanation": "Agent_7 has established a pattern of returning 15 coins when sent 10, which equals a 50% return rate on the tripled amount (30 coins). This gives me a payoff of 15, which is better than keeping 10 coins. The third-party reward doesn't affect my payoff, so I should continue trusting Agent_7 based on their consistent history. Even with only one round of data, returning 15 out of 30 is a reasonable signal of cooperation worth encouraging.",
+      "multiplication_factor": 3,
+      "timestamp": "2026-08-29T00:04:06.055359"
+    },
+    {
+      "interaction": 211,
+      "population_round": 27,
+      "role": "Trustor",
+      "partner_id": 10,
+      "partner_name": "Agent_11",
+      "rewarder_id": 19,
+      "rewarder_name": "Agent_20",
+      "sent_amount": 10,
+      "returned_amount": 10,
+      "return_rate": 0.3333333333333333,
+      "return_multiple": 1.0,
+      "reward_cost": 0,
+      "reward_bonus_to_trustee": 0,
+      "payoff": 10,
+      "partner_payoff": 20,
+      "explanation": "The history reveals Agent_11 was actually the Trustor in rounds 1-2, not me—I was the Trustee (I received 15 coins, meaning Agent_11 sent 5, and I returned 8 then 5). Since I'm now the Trustor, I have no direct history of Agent_11's behavior as Trustee. However, I know: (1) Agent_11 sent 5/10 as Trustor, suggesting moderate trust, (2) I returned generously (8/15 and 5/15) showing I'm trustworthy, (3) third-party rewards are unpredictable (18 vs 0). Without knowing Agent_11's return patterns as Trustee, I should signal strong trust to encourage reciprocity. Sending 10 maximizes the tripled amount to 30, giving Agent_11 maximum opportunity to return generously. Even a modest return (e.g., 11) beats keeping 10, and strong trust may build cooperation for future rounds.",
+      "multiplication_factor": 3,
+      "timestamp": "2026-08-29T00:08:59.920545"
+    },
+    {
+      "interaction": 223,
+      "population_round": 28,
+      "role": "Trustee",
+      "partner_id": 16,
+      "partner_name": "Agent_17",
+      "rewarder_id": 2,
+      "rewarder_name": "Agent_3",
+      "sent_amount": 7,
+      "received_amount": 21,
+      "returned_amount": 7,
+      "reward_cost": 0,
+      "reward_bonus": 0,
+      "payoff_before_reward": 14,
+      "payoff": 14,
+      "partner_payoff": 10,
+      "explanation": "With no prior history, I use a default reciprocity strategy—returning exactly what was sent (7×3=21 received, so returning 7 preserves the 1:1 ratio). This signals trustworthiness to both Agent_17 (encouraging future cooperation) and the Rewarder (who likely favors fair/above-minimum returns), balancing immediate payoff with long-term relationship potential. Returning 7 keeps 14 base coins plus potential reward bonus, versus risking zero future trust by keeping everything.",
+      "multiplication_factor": 3,
+      "timestamp": "2026-08-29T00:20:28.901617"
+    },
+    {
+      "interaction": 229,
+      "population_round": 29,
+      "role": "Trustee",
+      "partner_id": 19,
+      "partner_name": "Agent_20",
+      "rewarder_id": 8,
+      "rewarder_name": "Agent_9",
+      "sent_amount": 10,
+      "received_amount": 30,
+      "returned_amount": 15,
+      "reward_cost": 3,
+      "reward_bonus": 9,
+      "payoff_before_reward": 15,
+      "payoff": 24,
+      "partner_payoff": 15,
+      "explanation": "Agent_20 sent the maximum 10 coins, showing consistent trust. Returning 15 (half of 30 received, i.e., 1.5× their original investment) is a fair split that rewards their trust while preserving my payoff. This balanced approach may encourage continued cooperation without being exploitative. The third-party reward is uncertain, so I shouldn't rely on it; a moderate return sustains the relationship while securing reasonable profit.",
+      "multiplication_factor": 3,
+      "timestamp": "2026-08-29T00:22:12.405828"
+    },
+    {
+      "interaction": 235,
+      "population_round": 30,
+      "role": "Trustor",
+      "partner_id": 13,
+      "partner_name": "Agent_14",
+      "rewarder_id": 21,
+      "rewarder_name": "Agent_22",
+      "sent_amount": 10,
+      "returned_amount": 15,
+      "return_rate": 0.5,
+      "return_multiple": 1.5,
+      "reward_cost": 0,
+      "reward_bonus_to_trustee": 0,
+      "payoff": 15,
+      "partner_payoff": 15,
+      "explanation": "No prior history with Agent_14, so I must rely on structural incentives. The rewarder mechanism means Agent_14's reputation matters—they may want to appear trustworthy to attract future rewards. Sending the maximum (10) gives them 30 coins to split. If they return a reasonable amount, I profit. Even if they return only ~10, I break even (10 - 10 + 10 = 10). The rewarder observation incentivizes good behavior from Agent_14, making cooperation attractive.",
+      "multiplication_factor": 3,
+      "timestamp": "2026-08-29T00:27:44.358396"
+    }
+  ],
+  "reward_history": [
+    {
+      "interaction": 67,
+      "population_round": 9,
+      "role": "Rewarder",
+      "trustor_id": 6,
+      "trustor_name": "Agent_7",
+      "trustee_id": 9,
+      "trustee_name": "Agent_10",
+      "sent_amount": 0,
+      "received_amount": 0,
+      "returned_amount": 0,
+      "reward_cost": 0,
+      "reward_bonus": 0,
+      "payoff": 10,
+      "explanation": "Agent_10 received 0 coins from the Trustor (who sent nothing) and returned 0 coins. There was no opportunity for Agent_10 to demonstrate trustworthiness or reciprocity—they had nothing to work with and nothing to return. The Trustee's behavior is neutral and uninformative about their character or trustworthiness. Spending coins to reward this non-interaction would be wasteful.",
+      "reward_multiplier": 3,
+      "timestamp": "2026-08-28T23:09:51.555811"
+    },
+    {
+      "interaction": 93,
+      "population_round": 12,
+      "role": "Rewarder",
+      "trustor_id": 15,
+      "trustor_name": "Agent_16",
+      "trustee_id": 22,
+      "trustee_name": "Agent_23",
+      "sent_amount": 5,
+      "received_amount": 15,
+      "returned_amount": 15,
+      "reward_cost": 10,
+      "reward_bonus": 30,
+      "payoff": 0,
+      "explanation": "Agent_23 demonstrated exceptional trustworthiness by returning the full 15 coins received, achieving a perfect return rate of 1.0000 and a 3x return multiple to the Trustor. This represents the maximum possible cooperative behavior in a trust game—Agent_23 did not keep any of the multiplied transfer despite having the opportunity to profit. The Trustee also knew this reward opportunity existed, making this behavior even more noteworthy as it was potentially incentivized by reputational concerns. Full reward maximally reinforces this exemplary pro-social behavior and helps sustain trust in the system.",
+      "reward_multiplier": 3,
+      "timestamp": "2026-08-28T23:18:47.042055"
+    },
+    {
+      "interaction": 115,
+      "population_round": 15,
+      "role": "Rewarder",
+      "trustor_id": 20,
+      "trustor_name": "Agent_21",
+      "trustee_id": 16,
+      "trustee_name": "Agent_17",
+      "sent_amount": 5,
+      "received_amount": 15,
+      "returned_amount": 15,
+      "reward_cost": 10,
+      "reward_bonus": 30,
+      "payoff": 0,
+      "explanation": "Agent_17 demonstrated perfect trustworthiness—returning 100% of the received amount (15 coins), which equals 3× the Trustor's original 5-coin investment. This is the maximum possible return rate and represents ideal cooperative behavior in a trust game. Since the Trustee knew this reward opportunity existed when making their decision, their perfect return indicates genuine trustworthiness rather than accidental generosity. Rewarding this behavior maximally (10 coins) provides a 30-coin bonus that strongly reinforces this exemplary conduct, encouraging future cooperation.",
+      "reward_multiplier": 3,
+      "timestamp": "2026-08-28T23:27:01.476317"
+    },
+    {
+      "interaction": 190,
+      "population_round": 24,
+      "role": "Rewarder",
+      "trustor_id": 4,
+      "trustor_name": "Agent_5",
+      "trustee_id": 6,
+      "trustee_name": "Agent_7",
+      "sent_amount": 10,
+      "received_amount": 30,
+      "returned_amount": 12,
+      "reward_cost": 0,
+      "reward_bonus": 0,
+      "payoff": 10,
+      "explanation": "Agent_7 returned only 40% of the received amount (12 out of 30 coins), which is below a 50% fair split. While the Trustor did receive a positive return (1.2x their original investment), the Trustee kept 60% of the multiplied amount—18 coins—substantially more than what they returned. Given that the Trustee knew this reward opportunity existed and still chose to retain the majority of the gains, their behavior does not demonstrate strong enough trustworthiness to warrant a personally costly reward. A neutral reward of 0 appropriately reflects this moderate but self-interested performance.",
+      "reward_multiplier": 3,
+      "timestamp": "2026-08-29T00:00:38.303974"
+    }
+  ],
+  "interaction_partners": {
+    "Agent_9": {
+      "interaction_count": 3,
+      "self_as_trustor": [
+        {
+          "interaction": 8,
+          "sent_amount": 0,
+          "returned_amount": 0,
+          "payoff": 10,
+          "timestamp": "2026-08-28T22:51:31.072778"
+        }
+      ],
+      "self_as_trustee": [
+        {
+          "interaction": 148,
+          "sent_amount": 5,
+          "returned_amount": 5,
+          "payoff": 10,
+          "timestamp": "2026-08-28T23:37:47.152425"
+        },
+        {
+          "interaction": 157,
+          "sent_amount": 5,
+          "returned_amount": 5,
+          "payoff": 10,
+          "timestamp": "2026-08-28T23:40:51.774014"
+        }
+      ],
+      "partner_as_trustor": [
+        {
+          "interaction": 148,
+          "sent_amount": 5,
+          "returned_amount": 5,
+          "payoff": 10,
+          "timestamp": "2026-08-28T23:37:47.152425"
+        },
+        {
+          "interaction": 157,
+          "sent_amount": 5,
+          "returned_amount": 5,
+          "payoff": 10,
+          "timestamp": "2026-08-28T23:40:51.774014"
+        }
+      ],
+      "partner_as_trustee": [
+        {
+          "interaction": 8,
+          "sent_amount": 0,
+          "returned_amount": 0,
+          "payoff": 0,
+          "timestamp": "2026-08-28T22:51:31.072778"
+        }
+      ]
+    },
+    "Agent_21": {
+      "interaction_count": 2,
+      "self_as_trustor": [
+        {
+          "interaction": 171,
+          "sent_amount": 10,
+          "returned_amount": 15,
+          "payoff": 15,
+          "timestamp": "2026-08-28T23:49:16.097555"
+        }
+      ],
+      "self_as_trustee": [
+        {
+          "interaction": 12,
+          "sent_amount": 10,
+          "returned_amount": 15,
+          "payoff": 24,
+          "timestamp": "2026-08-28T22:52:46.456591"
+        }
+      ],
+      "partner_as_trustor": [
+        {
+          "interaction": 12,
+          "sent_amount": 10,
+          "returned_amount": 15,
+          "payoff": 15,
+          "timestamp": "2026-08-28T22:52:46.456591"
+        }
+      ],
+      "partner_as_trustee": [
+        {
+          "interaction": 171,
+          "sent_amount": 10,
+          "returned_amount": 15,
+          "payoff": 36,
+          "timestamp": "2026-08-28T23:49:16.097555"
+        }
+      ]
+    },
+    "Agent_18": {
+      "interaction_count": 2,
+      "self_as_trustor": [],
+      "self_as_trustee": [
+        {
+          "interaction": 21,
+          "sent_amount": 0,
+          "returned_amount": 0,
+          "payoff": 0,
+          "timestamp": "2026-08-28T22:55:37.324240"
+        },
+        {
+          "interaction": 195,
+          "sent_amount": 0,
+          "returned_amount": 0,
+          "payoff": 0,
+          "timestamp": "2026-08-29T00:02:02.350905"
+        }
+      ],
+      "partner_as_trustor": [
+        {
+          "interaction": 21,
+          "sent_amount": 0,
+          "returned_amount": 0,
+          "payoff": 10,
+          "timestamp": "2026-08-28T22:55:37.324240"
+        },
+        {
+          "interaction": 195,
+          "sent_amount": 0,
+          "returned_amount": 0,
+          "payoff": 10,
+          "timestamp": "2026-08-29T00:02:02.350905"
+        }
+      ],
+      "partner_as_trustee": []
+    },
+    "Agent_11": {
+      "interaction_count": 3,
+      "self_as_trustor": [
+        {
+          "interaction": 211,
+          "sent_amount": 10,
+          "returned_amount": 10,
+          "payoff": 10,
+          "timestamp": "2026-08-29T00:08:59.920545"
+        }
+      ],
+      "self_as_trustee": [
+        {
+          "interaction": 29,
+          "sent_amount": 5,
+          "returned_amount": 8,
+          "payoff": 25,
+          "timestamp": "2026-08-28T22:58:08.592461"
+        },
+        {
+          "interaction": 46,
+          "sent_amount": 5,
+          "returned_amount": 5,
+          "payoff": 10,
+          "timestamp": "2026-08-28T23:03:18.736302"
+        }
+      ],
+      "partner_as_trustor": [
+        {
+          "interaction": 29,
+          "sent_amount": 5,
+          "returned_amount": 8,
+          "payoff": 13,
+          "timestamp": "2026-08-28T22:58:08.592461"
+        },
+        {
+          "interaction": 46,
+          "sent_amount": 5,
+          "returned_amount": 5,
+          "payoff": 10,
+          "timestamp": "2026-08-28T23:03:18.736302"
+        }
+      ],
+      "partner_as_trustee": [
+        {
+          "interaction": 211,
+          "sent_amount": 10,
+          "returned_amount": 10,
+          "payoff": 20,
+          "timestamp": "2026-08-29T00:08:59.920545"
+        }
+      ]
+    },
+    "Agent_10": {
+      "interaction_count": 1,
+      "self_as_trustor": [],
+      "self_as_trustee": [
+        {
+          "interaction": 36,
+          "sent_amount": 7,
+          "returned_amount": 7,
+          "payoff": 14,
+          "timestamp": "2026-08-28T23:00:09.366353"
+        }
+      ],
+      "partner_as_trustor": [
+        {
+          "interaction": 36,
+          "sent_amount": 7,
+          "returned_amount": 7,
+          "payoff": 10,
+          "timestamp": "2026-08-28T23:00:09.366353"
+        }
+      ],
+      "partner_as_trustee": []
+    },
+    "Agent_4": {
+      "interaction_count": 1,
+      "self_as_trustor": [],
+      "self_as_trustee": [
+        {
+          "interaction": 49,
+          "sent_amount": 5,
+          "returned_amount": 8,
+          "payoff": 22,
+          "timestamp": "2026-08-28T23:04:16.829477"
+        }
+      ],
+      "partner_as_trustor": [
+        {
+          "interaction": 49,
+          "sent_amount": 5,
+          "returned_amount": 8,
+          "payoff": 13,
+          "timestamp": "2026-08-28T23:04:16.829477"
+        }
+      ],
+      "partner_as_trustee": []
+    },
+    "Agent_12": {
+      "interaction_count": 1,
+      "self_as_trustor": [],
+      "self_as_trustee": [
+        {
+          "interaction": 58,
+          "sent_amount": 5,
+          "returned_amount": 5,
+          "payoff": 10,
+          "timestamp": "2026-08-28T23:07:07.332623"
+        }
+      ],
+      "partner_as_trustor": [
+        {
+          "interaction": 58,
+          "sent_amount": 5,
+          "returned_amount": 5,
+          "payoff": 10,
+          "timestamp": "2026-08-28T23:07:07.332623"
+        }
+      ],
+      "partner_as_trustee": []
+    },
+    "Agent_16": {
+      "interaction_count": 1,
+      "self_as_trustor": [
+        {
+          "interaction": 76,
+          "sent_amount": 0,
+          "returned_amount": 0,
+          "payoff": 10,
+          "timestamp": "2026-08-28T23:12:41.863929"
+        }
+      ],
+      "self_as_trustee": [],
+      "partner_as_trustor": [],
+      "partner_as_trustee": [
+        {
+          "interaction": 76,
+          "sent_amount": 0,
+          "returned_amount": 0,
+          "payoff": 0,
+          "timestamp": "2026-08-28T23:12:41.863929"
+        }
+      ]
+    },
+    "Agent_13": {
+      "interaction_count": 1,
+      "self_as_trustor": [],
+      "self_as_trustee": [
+        {
+          "interaction": 84,
+          "sent_amount": 0,
+          "returned_amount": 0,
+          "payoff": 0,
+          "timestamp": "2026-08-28T23:15:54.574347"
+        }
+      ],
+      "partner_as_trustor": [
+        {
+          "interaction": 84,
+          "sent_amount": 0,
+          "returned_amount": 0,
+          "payoff": 10,
+          "timestamp": "2026-08-28T23:15:54.574347"
+        }
+      ],
+      "partner_as_trustee": []
+    },
+    "Agent_20": {
+      "interaction_count": 2,
+      "self_as_trustor": [],
+      "self_as_trustee": [
+        {
+          "interaction": 100,
+          "sent_amount": 10,
+          "returned_amount": 15,
+          "payoff": 15,
+          "timestamp": "2026-08-28T23:20:56.262473"
+        },
+        {
+          "interaction": 229,
+          "sent_amount": 10,
+          "returned_amount": 15,
+          "payoff": 24,
+          "timestamp": "2026-08-29T00:22:12.405828"
+        }
+      ],
+      "partner_as_trustor": [
+        {
+          "interaction": 100,
+          "sent_amount": 10,
+          "returned_amount": 15,
+          "payoff": 15,
+          "timestamp": "2026-08-28T23:20:56.262473"
+        },
+        {
+          "interaction": 229,
+          "sent_amount": 10,
+          "returned_amount": 15,
+          "payoff": 15,
+          "timestamp": "2026-08-29T00:22:12.405828"
+        }
+      ],
+      "partner_as_trustee": []
+    },
+    "Agent_22": {
+      "interaction_count": 1,
+      "self_as_trustor": [
+        {
+          "interaction": 109,
+          "sent_amount": 5,
+          "returned_amount": 5,
+          "payoff": 10,
+          "timestamp": "2026-08-28T23:24:56.289435"
+        }
+      ],
+      "self_as_trustee": [],
+      "partner_as_trustor": [],
+      "partner_as_trustee": [
+        {
+          "interaction": 109,
+          "sent_amount": 5,
+          "returned_amount": 5,
+          "payoff": 10,
+          "timestamp": "2026-08-28T23:24:56.289435"
+        }
+      ]
+    },
+    "Agent_24": {
+      "interaction_count": 1,
+      "self_as_trustor": [],
+      "self_as_trustee": [
+        {
+          "interaction": 125,
+          "sent_amount": 5,
+          "returned_amount": 8,
+          "payoff": 25,
+          "timestamp": "2026-08-28T23:30:02.148756"
+        }
+      ],
+      "partner_as_trustor": [
+        {
+          "interaction": 125,
+          "sent_amount": 5,
+          "returned_amount": 8,
+          "payoff": 13,
+          "timestamp": "2026-08-28T23:30:02.148756"
+        }
+      ],
+      "partner_as_trustee": []
+    },
+    "Agent_7": {
+      "interaction_count": 2,
+      "self_as_trustor": [
+        {
+          "interaction": 135,
+          "sent_amount": 10,
+          "returned_amount": 15,
+          "payoff": 15,
+          "timestamp": "2026-08-28T23:33:22.922687"
+        },
+        {
+          "interaction": 201,
+          "sent_amount": 10,
+          "returned_amount": 15,
+          "payoff": 15,
+          "timestamp": "2026-08-29T00:04:06.055359"
+        }
+      ],
+      "self_as_trustee": [],
+      "partner_as_trustor": [],
+      "partner_as_trustee": [
+        {
+          "interaction": 135,
+          "sent_amount": 10,
+          "returned_amount": 15,
+          "payoff": 15,
+          "timestamp": "2026-08-28T23:33:22.922687"
+        },
+        {
+          "interaction": 201,
+          "sent_amount": 10,
+          "returned_amount": 15,
+          "payoff": 33,
+          "timestamp": "2026-08-29T00:04:06.055359"
+        }
+      ]
+    },
+    "Agent_1": {
+      "interaction_count": 2,
+      "self_as_trustor": [
+        {
+          "interaction": 140,
+          "sent_amount": 5,
+          "returned_amount": 15,
+          "payoff": 20,
+          "timestamp": "2026-08-28T23:34:52.978734"
+        },
+        {
+          "interaction": 162,
+          "sent_amount": 10,
+          "returned_amount": 15,
+          "payoff": 15,
+          "timestamp": "2026-08-28T23:42:47.623811"
+        }
+      ],
+      "self_as_trustee": [],
+      "partner_as_trustor": [],
+      "partner_as_trustee": [
+        {
+          "interaction": 140,
+          "sent_amount": 5,
+          "returned_amount": 15,
+          "payoff": 30,
+          "timestamp": "2026-08-28T23:34:52.978734"
+        },
+        {
+          "interaction": 162,
+          "sent_amount": 10,
+          "returned_amount": 15,
+          "payoff": 30,
+          "timestamp": "2026-08-28T23:42:47.623811"
+        }
+      ]
+    },
+    "Agent_23": {
+      "interaction_count": 1,
+      "self_as_trustor": [
+        {
+          "interaction": 184,
+          "sent_amount": 0,
+          "returned_amount": 0,
+          "payoff": 10,
+          "timestamp": "2026-08-28T23:58:42.674458"
+        }
+      ],
+      "self_as_trustee": [],
+      "partner_as_trustor": [],
+      "partner_as_trustee": [
+        {
+          "interaction": 184,
+          "sent_amount": 0,
+          "returned_amount": 0,
+          "payoff": 0,
+          "timestamp": "2026-08-28T23:58:42.674458"
+        }
+      ]
+    },
+    "Agent_17": {
+      "interaction_count": 1,
+      "self_as_trustor": [],
+      "self_as_trustee": [
+        {
+          "interaction": 223,
+          "sent_amount": 7,
+          "returned_amount": 7,
+          "payoff": 14,
+          "timestamp": "2026-08-29T00:20:28.901617"
+        }
+      ],
+      "partner_as_trustor": [
+        {
+          "interaction": 223,
+          "sent_amount": 7,
+          "returned_amount": 7,
+          "payoff": 10,
+          "timestamp": "2026-08-29T00:20:28.901617"
+        }
+      ],
+      "partner_as_trustee": []
+    },
+    "Agent_14": {
+      "interaction_count": 1,
+      "self_as_trustor": [
+        {
+          "interaction": 235,
+          "sent_amount": 10,
+          "returned_amount": 15,
+          "payoff": 15,
+          "timestamp": "2026-08-29T00:27:44.358396"
+        }
+      ],
+      "self_as_trustee": [],
+      "partner_as_trustor": [],
+      "partner_as_trustee": [
+        {
+          "interaction": 235,
+          "sent_amount": 10,
+          "returned_amount": 15,
+          "payoff": 15,
+          "timestamp": "2026-08-29T00:27:44.358396"
+        }
+      ]
+    }
+  },
+  "interaction_sequence": [
+    {
+      "interaction": 8,
+      "partner_name": "Agent_9",
+      "role": "Trustor",
+      "timestamp": "2026-08-28T22:51:31.072778"
+    },
+    {
+      "interaction": 12,
+      "partner_name": "Agent_21",
+      "role": "Trustee",
+      "timestamp": "2026-08-28T22:52:46.456591"
+    },
+    {
+      "interaction": 21,
+      "partner_name": "Agent_18",
+      "role": "Trustee",
+      "timestamp": "2026-08-28T22:55:37.324240"
+    },
+    {
+      "interaction": 29,
+      "partner_name": "Agent_11",
+      "role": "Trustee",
+      "timestamp": "2026-08-28T22:58:08.592461"
+    },
+    {
+      "interaction": 36,
+      "partner_name": "Agent_10",
+      "role": "Trustee",
+      "timestamp": "2026-08-28T23:00:09.366353"
+    },
+    {
+      "interaction": 46,
+      "partner_name": "Agent_11",
+      "role": "Trustee",
+      "timestamp": "2026-08-28T23:03:18.736302"
+    },
+    {
+      "interaction": 49,
+      "partner_name": "Agent_4",
+      "role": "Trustee",
+      "timestamp": "2026-08-28T23:04:16.829477"
+    },
+    {
+      "interaction": 58,
+      "partner_name": "Agent_12",
+      "role": "Trustee",
+      "timestamp": "2026-08-28T23:07:07.332623"
+    },
+    {
+      "interaction": 67,
+      "partner_name": "Agent_10",
+      "role": "Rewarder",
+      "timestamp": "2026-08-28T23:09:51.555811"
+    },
+    {
+      "interaction": 76,
+      "partner_name": "Agent_16",
+      "role": "Trustor",
+      "timestamp": "2026-08-28T23:12:41.863929"
+    },
+    {
+      "interaction": 84,
+      "partner_name": "Agent_13",
+      "role": "Trustee",
+      "timestamp": "2026-08-28T23:15:54.574347"
+    },
+    {
+      "interaction": 93,
+      "partner_name": "Agent_23",
+      "role": "Rewarder",
+      "timestamp": "2026-08-28T23:18:47.042055"
+    },
+    {
+      "interaction": 100,
+      "partner_name": "Agent_20",
+      "role": "Trustee",
+      "timestamp": "2026-08-28T23:20:56.262473"
+    },
+    {
+      "interaction": 109,
+      "partner_name": "Agent_22",
+      "role": "Trustor",
+      "timestamp": "2026-08-28T23:24:56.289435"
+    },
+    {
+      "interaction": 115,
+      "partner_name": "Agent_17",
+      "role": "Rewarder",
+      "timestamp": "2026-08-28T23:27:01.476317"
+    },
+    {
+      "interaction": 125,
+      "partner_name": "Agent_24",
+      "role": "Trustee",
+      "timestamp": "2026-08-28T23:30:02.148756"
+    },
+    {
+      "interaction": 135,
+      "partner_name": "Agent_7",
+      "role": "Trustor",
+      "timestamp": "2026-08-28T23:33:22.922687"
+    },
+    {
+      "interaction": 140,
+      "partner_name": "Agent_1",
+      "role": "Trustor",
+      "timestamp": "2026-08-28T23:34:52.978734"
+    },
+    {
+      "interaction": 148,
+      "partner_name": "Agent_9",
+      "role": "Trustee",
+      "timestamp": "2026-08-28T23:37:47.152425"
+    },
+    {
+      "interaction": 157,
+      "partner_name": "Agent_9",
+      "role": "Trustee",
+      "timestamp": "2026-08-28T23:40:51.774014"
+    },
+    {
+      "interaction": 162,
+      "partner_name": "Agent_1",
+      "role": "Trustor",
+      "timestamp": "2026-08-28T23:42:47.623811"
+    },
+    {
+      "interaction": 171,
+      "partner_name": "Agent_21",
+      "role": "Trustor",
+      "timestamp": "2026-08-28T23:49:16.097555"
+    },
+    {
+      "interaction": 184,
+      "partner_name": "Agent_23",
+      "role": "Trustor",
+      "timestamp": "2026-08-28T23:58:42.674458"
+    },
+    {
+      "interaction": 190,
+      "partner_name": "Agent_7",
+      "role": "Rewarder",
+      "timestamp": "2026-08-29T00:00:38.303974"
+    },
+    {
+      "interaction": 195,
+      "partner_name": "Agent_18",
+      "role": "Trustee",
+      "timestamp": "2026-08-29T00:02:02.350905"
+    },
+    {
+      "interaction": 201,
+      "partner_name": "Agent_7",
+      "role": "Trustor",
+      "timestamp": "2026-08-29T00:04:06.055359"
+    },
+    {
+      "interaction": 211,
+      "partner_name": "Agent_11",
+      "role": "Trustor",
+      "timestamp": "2026-08-29T00:08:59.920545"
+    },
+    {
+      "interaction": 223,
+      "partner_name": "Agent_17",
+      "role": "Trustee",
+      "timestamp": "2026-08-29T00:20:28.901617"
+    },
+    {
+      "interaction": 229,
+      "partner_name": "Agent_20",
+      "role": "Trustee",
+      "timestamp": "2026-08-29T00:22:12.405828"
+    },
+    {
+      "interaction": 235,
+      "partner_name": "Agent_14",
+      "role": "Trustor",
+      "timestamp": "2026-08-29T00:27:44.358396"
+    }
+  ],
+  "initial_funds": 10,
+  "multiplication_factor": 3.0,
+  "num_rounds": 100,
+  "total_payoff": 368.0,
+  "decision_count": 30,
+  "error_count": 0,
+  "dump_timestamp": "2026-08-29T00:29:32.075814"
+}

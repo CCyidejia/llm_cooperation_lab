@@ -55,10 +55,37 @@ def call_llm(system_prompt: str, user_prompt: str, provider: str) -> str:
 def prepare_source_text(source_text: str, max_chars: int) -> str:
     if max_chars <= 0 or len(source_text) <= max_chars:
         return source_text
-    return (
-        source_text[:max_chars]
-        + f"\n\n[TRUNCATED: source text had {len(source_text)} characters; first {max_chars} characters were used for this extraction pass.]"
+
+    # PDFs are page-labelled by read_pdf_input. Keep the introduction plus pages
+    # likely to contain experimental design instead of blindly taking a prefix.
+    page_parts = re.split(r"(?=\n\[Page \d+\]\n)", source_text)
+    if len(page_parts) <= 1:
+        return source_text[:max_chars] + f"\n\n[TRUNCATED from {len(source_text)} characters.]"
+
+    keywords = (
+        "method", "experimental design", "treatment", "payoff", "punish", "reward",
+        "reputation", "network", "social knowledge", "prisoner", "public good",
+        "trust game", "trustor", "trustee", "investor", "back transfer", "strategy method",
     )
+    ranked: list[tuple[int, int, str]] = []
+    for index, part in enumerate(page_parts):
+        lower = part.lower()
+        score = sum(lower.count(keyword) for keyword in keywords)
+        if index <= 2:
+            score += 5 - index
+        ranked.append((-score, index, part))
+
+    selected: list[tuple[int, str]] = []
+    used = 0
+    for _, index, part in sorted(ranked):
+        if used >= max_chars:
+            break
+        remaining = max_chars - used
+        excerpt = part if len(part) <= remaining else part[:remaining]
+        selected.append((index, excerpt))
+        used += len(excerpt)
+    selected.sort(key=lambda item: item[0])
+    return "".join(part for _, part in selected) + f"\n\n[SELECTED {used} of {len(source_text)} characters by page relevance.]"
 
 
 def call_llm_with_length_retry(
@@ -66,6 +93,7 @@ def call_llm_with_length_retry(
     source_name: str,
     provider: str,
     max_source_chars: int,
+    review_feedback: str = "",
 ) -> str:
     if max_source_chars <= 0:
         retry_sizes = [0]
@@ -81,7 +109,7 @@ def call_llm_with_length_retry(
     last_raw = ""
     for size in retry_sizes:
         prepared_text = prepare_source_text(source_text, size)
-        raw = call_llm(SYSTEM_PROMPT, build_user_prompt(prepared_text, source_name), provider)
+        raw = call_llm(SYSTEM_PROMPT, build_user_prompt(prepared_text, source_name, review_feedback), provider)
         last_raw = raw
         if not raw.startswith("API Call Failed"):
             return raw
@@ -98,8 +126,9 @@ def extract_mechanism(
     provider: str = "zgc",
     repair_attempts: int = 1,
     max_source_chars: int = 8000,
+    review_feedback: str = "",
 ) -> dict[str, Any]:
-    raw = call_llm_with_length_retry(source_text, source_name, provider, max_source_chars)
+    raw = call_llm_with_length_retry(source_text, source_name, provider, max_source_chars, review_feedback)
     if raw.startswith("API Call Failed"):
         raise RuntimeError(
             "LLM API call failed before JSON extraction. "
@@ -121,13 +150,14 @@ def extract_mechanism(
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Extract public-goods cooperation mechanisms into mechanism.json.")
+    parser = argparse.ArgumentParser(description="Extract public-goods, prisoner's-dilemma, or trust-game cooperation mechanisms into mechanism.json.")
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("--text", type=Path, help="Path to a UTF-8 text or table-summary file.")
     group.add_argument("--pdf", type=Path, help="Path to a PDF file.")
     parser.add_argument("--output", type=Path, default=Path("mechanism.json"))
     parser.add_argument("--provider", default="zgc", choices=["zgc"])
     parser.add_argument("--repair-attempts", type=int, default=1)
+    parser.add_argument("--feedback-file", type=Path, help="Optional checker review whose fixes should guide a rerun.")
     parser.add_argument(
         "--max-source-chars",
         type=int,
@@ -146,7 +176,15 @@ def main() -> None:
     if not source_text.strip():
         raise ValueError(f"No text extracted from {source_path}")
 
-    data = extract_mechanism(source_text, source_path.name, args.provider, args.repair_attempts, args.max_source_chars)
+    feedback = args.feedback_file.read_text(encoding="utf-8-sig") if args.feedback_file else ""
+    data = extract_mechanism(
+        source_text,
+        source_path.name,
+        args.provider,
+        args.repair_attempts,
+        args.max_source_chars,
+        feedback,
+    )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"Saved mechanism JSON to {args.output}")

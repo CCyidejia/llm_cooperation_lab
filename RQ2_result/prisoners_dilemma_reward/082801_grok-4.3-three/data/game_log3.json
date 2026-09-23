@@ -1,0 +1,3482 @@
+[
+  {
+    "interaction": 1,
+    "pair_ids": [
+      23,
+      10
+    ],
+    "pair_names": [
+      "Agent_23",
+      "Agent_10"
+    ],
+    "timestamp": "2026-08-28T19:57:28.779500",
+    "detail": {
+      "agent1_id": 23,
+      "agent1_name": "Agent_23",
+      "agent2_id": 10,
+      "agent2_name": "Agent_10",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Setting S=0 avoids any risk of paying unnecessary points if the opponent cooperates, preserving my maximum possible payoff from the base matrix without altering incentives in a one-shot interaction.",
+      "commit_explanation2": "Choosing S=0 avoids committing to any side-payment that would reduce my payoff if the opponent cooperates, preserving flexibility for the action phase based on their revealed S.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With zero side payments this reduces to a standard Prisoner's Dilemma; defecting yields 5 instead of 3 if the opponent cooperates and 1 instead of 0 if the opponent defects, so No is strictly dominant.",
+      "explanation2": "Defecting (No) is the dominant strategy: it yields 5 instead of 3 if opponent chooses Yes and 1 instead of 0 if opponent chooses No, with zero side-payments changing nothing.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 2,
+    "pair_ids": [
+      13,
+      21
+    ],
+    "pair_names": [
+      "Agent_13",
+      "Agent_21"
+    ],
+    "timestamp": "2026-08-28T19:57:52.675325",
+    "detail": {
+      "agent1_id": 13,
+      "agent1_name": "Agent_13",
+      "agent2_id": 21,
+      "agent2_name": "Agent_21",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Choosing S=0 avoids any risk of paying points if opponent cooperates, preserving my payoffs under the dominant defect strategy in this one-shot PD.",
+      "commit_explanation2": "With no prior history against Agent_13, committing S=0 avoids any risk of paying out points if they cooperate while preserving flexibility to respond optimally in the action phase based on their revealed S.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With zero commitments, this reduces to a one-shot PD where No strictly dominates: it yields +2 vs Yes if opponent Yes, and +1 vs Yes if opponent No.",
+      "explanation2": "With zero commitments, this is a standard one-shot PD where defecting (No) dominates: it yields 5>3 if opponent Yes and 1>0 if opponent No.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 3,
+    "pair_ids": [
+      23,
+      7
+    ],
+    "pair_names": [
+      "Agent_23",
+      "Agent_7"
+    ],
+    "timestamp": "2026-08-28T19:58:20.614014",
+    "detail": {
+      "agent1_id": 23,
+      "agent1_name": "Agent_23",
+      "agent2_id": 7,
+      "agent2_name": "Agent_7",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows mutual defection; setting S=0 avoids any payment risk if opponent chooses Yes while minimizing my loss under dominant defect strategy.",
+      "commit_explanation2": "Setting S=0 avoids any risk of paying side-payments if the opponent chooses Yes, preserving my payoffs from the base matrix while still allowing mutual cooperation if both select Yes after seeing commitments.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With zero side payments, defecting is the dominant strategy: it yields 5 instead of 3 if opponent chooses Yes and 1 instead of 0 if opponent chooses No.",
+      "explanation2": "With zero side payments from commitments, defecting (No) is the dominant strategy: it yields 5 instead of 3 if opponent Yes, and 1 instead of 0 if opponent No.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 4,
+    "pair_ids": [
+      8,
+      5
+    ],
+    "pair_names": [
+      "Agent_8",
+      "Agent_5"
+    ],
+    "timestamp": "2026-08-28T19:58:49.155317",
+    "detail": {
+      "agent1_id": 8,
+      "agent1_name": "Agent_8",
+      "agent2_id": 5,
+      "agent2_name": "Agent_5",
+      "side_payment_1_to_2": 3,
+      "side_payment_2_to_1": 3,
+      "commit_explanation1": "To encourage mutual cooperation by matching the base payoff of 3 while allowing flexibility to defect if needed; high S risks overpaying without guaranteed reciprocity in this one-shot interaction.",
+      "commit_explanation2": "I select S=3 to symmetrically reward cooperation and promote mutual Yes choices for 3+net side payments each, while limiting my maximum loss if they defect.",
+      "choice1": "Yes",
+      "choice2": "Yes",
+      "explanation1": "Given the mutual 3-point commitments, Yes yields 3 against their Yes (better than 2) and 3 against their No (better than 1), making Yes the dominant strategy that maximizes my payoff.",
+      "explanation2": "Choosing Yes yields 3 regardless of opponent's action (due to the symmetric 3-point side payments), which strictly dominates No (yielding at most 2).",
+      "payoff1": 3,
+      "payoff2": 3,
+      "cooperation": true
+    }
+  },
+  {
+    "interaction": 5,
+    "pair_ids": [
+      22,
+      3
+    ],
+    "pair_names": [
+      "Agent_22",
+      "Agent_3"
+    ],
+    "timestamp": "2026-08-28T19:59:21.704792",
+    "detail": {
+      "agent1_id": 22,
+      "agent1_name": "Agent_22",
+      "agent2_id": 3,
+      "agent2_name": "Agent_3",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Choosing S=0 minimizes my potential loss if the opponent cooperates while still allowing the base payoffs to guide action-phase decisions rationally toward defection as the dominant strategy.",
+      "commit_explanation2": "Setting S=0 avoids any payment if opponent cooperates while preserving my option to defect for 5 points, maximizing expected score given simultaneous commitments and dominant strategy to defect in the base game.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With zero side-payments, defecting is dominant: it yields 5 instead of 3 if opponent cooperates and 1 instead of 0 if opponent defects.",
+      "explanation2": "With zero side payments, defecting (No) is dominant: it yields 5 instead of 3 if opponent chooses Yes and 1 instead of 0 if opponent chooses No.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 6,
+    "pair_ids": [
+      12,
+      1
+    ],
+    "pair_names": [
+      "Agent_12",
+      "Agent_1"
+    ],
+    "timestamp": "2026-08-28T19:59:49.599067",
+    "detail": {
+      "agent1_id": 12,
+      "agent1_name": "Agent_12",
+      "agent2_id": 1,
+      "agent2_name": "Agent_1",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Choosing S=0 avoids any risk of paying extra points if opponent cooperates, preserving the original payoff matrix without unnecessary transfers in this one-shot interaction.",
+      "commit_explanation2": "To maximize my score I avoid committing to any transfer, so S=0 ensures I pay nothing if opponent cooperates while still allowing me to defect for 5 if advantageous.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With zero side payments, defecting yields strictly higher payoff regardless of opponent's choice (5>3 if they Yes; 1>0 if they No), so No maximizes my score in this one-shot interaction.",
+      "explanation2": "Commitments are both zero so payoffs match the standard PD matrix; defecting is dominant because it yields 5>3 if opponent Yes and 1>0 if opponent No.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 7,
+    "pair_ids": [
+      15,
+      7
+    ],
+    "pair_names": [
+      "Agent_15",
+      "Agent_7"
+    ],
+    "timestamp": "2026-08-28T20:00:15.180492",
+    "detail": {
+      "agent1_id": 15,
+      "agent1_name": "Agent_15",
+      "agent2_id": 7,
+      "agent2_name": "Agent_7",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "With no history against Agent_7, setting S=0 avoids risking side-payment losses if they cooperate while preserving the standard dominant strategy of defecting in the action phase to maximize my score.",
+      "commit_explanation2": "History of mutual defection indicates opponent likely defects again, so S=0 avoids any risk of paying while allowing me to safely defect for 1 point minimum.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With zero side payments, defecting (No) is dominant: it yields 5>3 if opponent Yes and 1>0 if opponent No.",
+      "explanation2": "With zero side payments, this is a standard Prisoner's Dilemma where No is the dominant strategy that maximizes my payoff no matter what the opponent chooses.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 8,
+    "pair_ids": [
+      6,
+      14
+    ],
+    "pair_names": [
+      "Agent_6",
+      "Agent_14"
+    ],
+    "timestamp": "2026-08-28T20:00:49.150506",
+    "detail": {
+      "agent1_id": 6,
+      "agent1_name": "Agent_6",
+      "agent2_id": 14,
+      "agent2_name": "Agent_14",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 5,
+      "commit_explanation1": "Setting S=0 avoids any risk of paying points if opponent cooperates while the dominant strategy remains defecting regardless of announced S values.",
+      "commit_explanation2": "High S maximally rewards opponent's Yes to enable mutual cooperation payoffs after side-payments, outweighing defection risks in this PD setup.",
+      "choice1": "Yes",
+      "choice2": "No",
+      "explanation1": "Choosing Yes yields 8 if they Yes or 5 if they No, which is strictly better than No's payoffs of 5 or 1 in both cases, so Yes dominates regardless of their action.",
+      "explanation2": "Opponent likely chooses Yes (yielding them 8 or 5), so I select No to get 0 rather than -2.",
+      "payoff1": 5,
+      "payoff2": 0,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 9,
+    "pair_ids": [
+      11,
+      9
+    ],
+    "pair_names": [
+      "Agent_11",
+      "Agent_9"
+    ],
+    "timestamp": "2026-08-28T20:01:34.584562",
+    "detail": {
+      "agent1_id": 11,
+      "agent1_name": "Agent_11",
+      "agent2_id": 9,
+      "agent2_name": "Agent_9",
+      "side_payment_1_to_2": 3,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Choosing S=3 encourages mutual cooperation by making the (Yes,Yes) outcome payoff-neutral after transfers while deterring unilateral defection, maximizing expected long-term score against an unknown opponent.",
+      "commit_explanation2": "With no prior history and a one-shot interaction, setting S=0 avoids any risk of side-payment losses while preserving the standard PD incentive to defect in stage 2 regardless of opponent's S.",
+      "choice1": "No",
+      "choice2": "Yes",
+      "explanation1": "Choosing No yields 2 if opponent Yes or 1 if No, strictly better than the 0 payoff from Yes in either case after side payments.",
+      "explanation2": "Opponent gets 0 from Yes but 2 from No (if I Yes), so will choose No; thus I choose Yes for 3 points rather than 1.",
+      "payoff1": 2,
+      "payoff2": 3,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 10,
+    "pair_ids": [
+      7,
+      0
+    ],
+    "pair_names": [
+      "Agent_7",
+      "Agent_0"
+    ],
+    "timestamp": "2026-08-28T20:02:07.179915",
+    "detail": {
+      "agent1_id": 7,
+      "agent1_name": "Agent_7",
+      "agent2_id": 0,
+      "agent2_name": "Agent_0",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given repeated mutual defection in history, Agent_0 is expected to defect again so S=0 avoids any risk of paying while preserving the dominant defect strategy in the base matrix.",
+      "commit_explanation2": "Committing to S>0 risks losing points if opponent cooperates, without guaranteed reciprocity in this one-shot interaction; S=0 preserves flexibility to defect after seeing their S.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows mutual No choices, and with zero side payments the dominant strategy is No to guarantee 1 point rather than risking 0 if opponent defects again.",
+      "explanation2": "Commitments are zero so payoffs match the standard matrix; defecting dominates as it yields 5>3 if they Yes and 1>0 if they No.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 11,
+    "pair_ids": [
+      21,
+      6
+    ],
+    "pair_names": [
+      "Agent_21",
+      "Agent_6"
+    ],
+    "timestamp": "2026-08-28T20:02:36.213368",
+    "detail": {
+      "agent1_id": 21,
+      "agent1_name": "Agent_21",
+      "agent2_id": 6,
+      "agent2_name": "Agent_6",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the history of mutual defection and the dominant strategy to defect in this PD payoff matrix, committing to any positive side-payment risks reducing my score without guaranteed reciprocity, so S=0 avoids unnecessary costs.",
+      "commit_explanation2": "Agent_21 defected last round, so setting S=0 avoids any risk of paying for their potential Yes while expecting similar behavior.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Defecting is dominant strategy regardless of opponent's choice since 5>3 and 1>0, and prior round both defected with zero side-payments.",
+      "explanation2": "Given Agent_21's prior defection and zero commitments creating a standard PD, defecting yields higher payoffs regardless of their choice (5>3 or 1>0).",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 12,
+    "pair_ids": [
+      12,
+      10
+    ],
+    "pair_names": [
+      "Agent_12",
+      "Agent_10"
+    ],
+    "timestamp": "2026-08-28T20:03:02.694627",
+    "detail": {
+      "agent1_id": 12,
+      "agent1_name": "Agent_12",
+      "agent2_id": 10,
+      "agent2_name": "Agent_10",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows mutual defection; offering S>0 risks paying for their Yes without guaranteed reciprocity in this PD structure, so S=0 avoids unnecessary loss while preserving dominant defect strategy.",
+      "commit_explanation2": "History shows Agent_12 defected previously, so committing S=0 avoids any risk of paying for their potential Yes while preserving my option to defect for higher payoff.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With zero side-payments, defecting (No) is dominant: it yields 5 instead of 3 if opponent Yes and 1 instead of 0 if opponent No, maximizing my score regardless of their choice.",
+      "explanation2": "Given zero commitments and the dominant strategy in this payoff matrix, choosing No secures at least 1 point and potentially 5 if the opponent cooperates, outperforming mutual cooperation.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 13,
+    "pair_ids": [
+      8,
+      2
+    ],
+    "pair_names": [
+      "Agent_8",
+      "Agent_2"
+    ],
+    "timestamp": "2026-08-28T20:03:23.632879",
+    "detail": {
+      "agent1_id": 8,
+      "agent1_name": "Agent_8",
+      "agent2_id": 2,
+      "agent2_name": "Agent_2",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given mutual cooperation in round 1 and the ability to observe S before acting, setting S=0 avoids any unnecessary side-payment cost while still allowing a cooperative outcome if Agent_2 also signals willingness to cooperate.",
+      "commit_explanation2": "Choosing S=0 avoids any risk of paying points if the opponent cooperates, preserving my option to defect for higher payoff in the action phase based on the standard matrix.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With zero side-payments, defecting is the dominant strategy: it yields 5 instead of 3 if the opponent cooperates and 1 instead of 0 if the opponent defects. The prior mutual cooperation provides no binding reason to deviate from this payoff-maximizing choice.",
+      "explanation2": "With zero side payments, defecting (No) is dominant: it yields 5>3 if opponent chooses Yes and 1>0 if opponent chooses No.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 14,
+    "pair_ids": [
+      8,
+      11
+    ],
+    "pair_names": [
+      "Agent_8",
+      "Agent_11"
+    ],
+    "timestamp": "2026-08-28T20:03:56.703913",
+    "detail": {
+      "agent1_id": 8,
+      "agent1_name": "Agent_8",
+      "agent2_id": 11,
+      "agent2_name": "Agent_11",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Setting S=0 avoids any unnecessary side-payment costs while preserving full flexibility to respond optimally in the action phase based on Agent_11's revealed commitment and history of mixed cooperation.",
+      "commit_explanation2": "Given history of opponent cooperating while I defected, committing S=0 avoids any payment risk if they choose Yes while still allowing me to exploit via No for max points per matrix.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With zero side payments, defecting is dominant: it yields 5 instead of 3 if they cooperate and 1 instead of 0 if they defect. History of mutual defection in round 2 reinforces choosing No to maximize points.",
+      "explanation2": "Since side payments are zero and this is a standard PD where No strictly dominates (5>3 or 1>0), defecting maximizes payoff regardless of their choice.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 15,
+    "pair_ids": [
+      20,
+      16
+    ],
+    "pair_names": [
+      "Agent_20",
+      "Agent_16"
+    ],
+    "timestamp": "2026-08-28T20:04:30.475041",
+    "detail": {
+      "agent1_id": 20,
+      "agent1_name": "Agent_20",
+      "agent2_id": 16,
+      "agent2_name": "Agent_16",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 3,
+      "commit_explanation1": "With no prior history and no knowledge of Agent_16's S, committing to any positive side-payment risks reducing my payoff without guaranteed reciprocity, so S=0 preserves the dominant strategy of defecting in the action phase to maximize expected points.",
+      "commit_explanation2": "Choosing S=3 signals willingness to compensate cooperation, encouraging mutual Yes for net 3 each after transfers, which exceeds the 1 from mutual No.",
+      "choice1": "Yes",
+      "choice2": "No",
+      "explanation1": "Opponent's payoffs make Yes strictly dominated (0 either way) so they will choose No, and choosing Yes against No yields 3 rather than 1.",
+      "explanation2": "Choosing Yes yields 0 payoff regardless of opponent's action after side payments, while No yields 1 or 2; thus No maximizes my score.",
+      "payoff1": 3,
+      "payoff2": 2,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 16,
+    "pair_ids": [
+      12,
+      21
+    ],
+    "pair_names": [
+      "Agent_12",
+      "Agent_21"
+    ],
+    "timestamp": "2026-08-28T20:05:04.643461",
+    "detail": {
+      "agent1_id": 12,
+      "agent1_name": "Agent_12",
+      "agent2_id": 21,
+      "agent2_name": "Agent_21",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given repeated mutual defection in history, setting S=0 avoids any risk of paying for cooperation while still allowing defection to dominate in the action phase for max points.",
+      "commit_explanation2": "Given repeated mutual defection in history, setting S=0 avoids any risk of paying for their potential Yes while still allowing me to respond optimally in action phase based on their revealed S.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Opponent has defected in both prior rounds and zero commitments eliminate side payments, so No yields 1 (vs 0) if they defect and 5 (vs 3) if they cooperate.",
+      "explanation2": "Agent_12 defected in both prior rounds and zero commitments leave payoffs unchanged, so choosing No secures 1 point over the 0 risk if they defect again.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 17,
+    "pair_ids": [
+      17,
+      10
+    ],
+    "pair_names": [
+      "Agent_17",
+      "Agent_10"
+    ],
+    "timestamp": "2026-08-28T20:05:34.299514",
+    "detail": {
+      "agent1_id": 17,
+      "agent1_name": "Agent_17",
+      "agent2_id": 10,
+      "agent2_name": "Agent_10",
+      "side_payment_1_to_2": 3,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Setting S=3 rewards cooperation symmetrically with the base matrix payoff, encouraging mutual Yes without excessive risk on first interaction.",
+      "commit_explanation2": "History shows mutual defection, so S=0 minimizes risk with no payment if opponent chooses No while preserving dominant strategy to defect for 5 or 1 points.",
+      "choice1": "No",
+      "choice2": "Yes",
+      "explanation1": "Choosing Yes yields 0 in both cases due to the opponent's 0 commitment. Choosing No yields 1 or 2, which is strictly higher.",
+      "explanation2": "Given their commitment to pay me 3 only if I choose Yes and their payoff of 0 if both Yes, they will likely choose No, so Yes yields 3 rather than 1 from both No.",
+      "payoff1": 2,
+      "payoff2": 3,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 18,
+    "pair_ids": [
+      0,
+      3
+    ],
+    "pair_names": [
+      "Agent_0",
+      "Agent_3"
+    ],
+    "timestamp": "2026-08-28T20:06:13.249691",
+    "detail": {
+      "agent1_id": 0,
+      "agent1_name": "Agent_0",
+      "agent2_id": 3,
+      "agent2_name": "Agent_3",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given history of mutual defection, setting S=0 avoids any unnecessary payment risk while planning to defect in stage 2, which is the dominant strategy in the payoff matrix.",
+      "commit_explanation2": "Given history of mutual defection and standard PD incentives, committing S=0 avoids any risk of paying out while allowing me to defect safely in stage 2 for 1 point.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With zero side payments, defecting dominates: No yields 5>3 if they cooperate and 1>0 if they defect, and prior round both chose No.",
+      "explanation2": "With zero side payments, defecting (No) is the dominant strategy as it yields strictly higher payoff regardless of opponent's choice (5>3 or 1>0).",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 19,
+    "pair_ids": [
+      8,
+      5
+    ],
+    "pair_names": [
+      "Agent_8",
+      "Agent_5"
+    ],
+    "timestamp": "2026-08-28T20:06:38.124961",
+    "detail": {
+      "agent1_id": 8,
+      "agent1_name": "Agent_8",
+      "agent2_id": 5,
+      "agent2_name": "Agent_5",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 3,
+      "commit_explanation1": "Given Agent_5's recent defections in rounds 2-3, committing S=0 avoids any side-payment risk if they cooperate while still allowing me to respond optimally in the action phase based on their revealed commitment.",
+      "commit_explanation2": "Given prior mutual cooperation with S=3 yielding (3,3), matching that commitment encourages continued cooperation for maximized joint payoffs without risk of asymmetric loss.",
+      "choice1": "Yes",
+      "choice2": "No",
+      "explanation1": "Yes strictly dominates: it yields 6 if they Yes (vs 5) and 3 if they No (vs 1), given the binding side payments.",
+      "explanation2": "Choosing No yields 2 if they Yes or 1 if they No, both strictly better than the 0 from choosing Yes regardless of their action given their 0 commitment.",
+      "payoff1": 3,
+      "payoff2": 2,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 20,
+    "pair_ids": [
+      18,
+      8
+    ],
+    "pair_names": [
+      "Agent_18",
+      "Agent_8"
+    ],
+    "timestamp": "2026-08-28T20:07:09.288232",
+    "detail": {
+      "agent1_id": 18,
+      "agent1_name": "Agent_18",
+      "agent2_id": 8,
+      "agent2_name": "Agent_8",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Choosing S=0 avoids committing to any side-payment loss if they cooperate, preserving my payoff in all outcomes of the base PD matrix without giving them extra incentive that could backfire in a one-shot interaction.",
+      "commit_explanation2": "Given Agent_18's recent defection in round 4 and the dominant strategy to defect in this one-shot PD, S=0 avoids risking any payment while still allowing best response to their likely No.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Commitments are zero so side payments do not alter payoffs; defecting yields strictly higher payoff (5>3 or 1>0) regardless of opponent's action.",
+      "explanation2": "Given Agent_18's defection in round 4 after my cooperation and no side payments to alter incentives, defecting maximizes my payoff per the dominant strategy in the payoff matrix.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 21,
+    "pair_ids": [
+      1,
+      3
+    ],
+    "pair_names": [
+      "Agent_1",
+      "Agent_3"
+    ],
+    "timestamp": "2026-08-28T20:07:33.616174",
+    "detail": {
+      "agent1_id": 1,
+      "agent1_name": "Agent_1",
+      "agent2_id": 3,
+      "agent2_name": "Agent_3",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given history of mutual defection and dominant strategy to defect, committing S=0 avoids any risk of paying out while still allowing best response to opponent's action.",
+      "commit_explanation2": "History shows mutual defection, so Agent_1 is likely to choose No again; setting S=0 avoids any unnecessary payment risk without altering incentives enough to change that expectation.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With zero side payments, defecting dominates: No yields 5 if they Yes or 1 if they No, strictly better than Yes in either case, and prior round both defected.",
+      "explanation2": "With zero side payments, defecting (No) is dominant as it yields 5 or 1 versus 3 or 0, and history shows mutual defection.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 22,
+    "pair_ids": [
+      19,
+      13
+    ],
+    "pair_names": [
+      "Agent_19",
+      "Agent_13"
+    ],
+    "timestamp": "2026-08-28T20:07:55.284106",
+    "detail": {
+      "agent1_id": 19,
+      "agent1_name": "Agent_19",
+      "agent2_id": 13,
+      "agent2_name": "Agent_13",
+      "side_payment_1_to_2": 3,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Setting S=3 symmetrically encourages mutual Yes by balancing side-payments with base cooperate payoffs of 3, maximizing expected total without prior history. This yields (3 + oppS - 3) if both cooperate.",
+      "commit_explanation2": "Given the history of mutual defection and dominant strategy to defect in PD, setting S=0 avoids risking payments while still allowing me to choose No for 1-5 payoff.",
+      "choice1": "No",
+      "choice2": "Yes",
+      "explanation1": "Choosing Yes yields 0 payoff regardless of opponent's action, while No yields 1 (if they No) or 2 (if they Yes), so No strictly maximizes my score.",
+      "explanation2": "Opponent's payoffs are always higher by choosing No (2>0 if I Yes; 1>0 if I No), so they will defect and I get 3 by choosing Yes vs 1 by No.",
+      "payoff1": 2,
+      "payoff2": 3,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 23,
+    "pair_ids": [
+      11,
+      23
+    ],
+    "pair_names": [
+      "Agent_11",
+      "Agent_23"
+    ],
+    "timestamp": "2026-08-28T20:08:28.614095",
+    "detail": {
+      "agent1_id": 11,
+      "agent1_name": "Agent_11",
+      "agent2_id": 23,
+      "agent2_name": "Agent_23",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows Agent_23 defected in round 2 after cooperating in round 1, so committing S>0 risks net loss if they choose Yes without guaranteed reciprocity; S=0 preserves the dominant defect strategy to maximize expected points.",
+      "commit_explanation2": "History shows mutual defection, so I set S=0 to avoid paying if opponent cooperates and will defect in action phase per dominant strategy.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Defecting is the dominant strategy here as it yields 5 or 1 versus 3 or 0 depending on opponent's choice, and with zero side-payments and mixed prior history there is no incentive to cooperate this round.",
+      "explanation2": "History shows mutual No choices, and with zero side payments the dominant strategy is to defect for higher payoff (5>3 or 1>0) regardless of opponent's action.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 24,
+    "pair_ids": [
+      10,
+      13
+    ],
+    "pair_names": [
+      "Agent_10",
+      "Agent_13"
+    ],
+    "timestamp": "2026-08-28T20:08:55.630214",
+    "detail": {
+      "agent1_id": 10,
+      "agent1_name": "Agent_10",
+      "agent2_id": 13,
+      "agent2_name": "Agent_13",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given Agent_13's consistent No choices in all prior rounds, including defecting against my Yes, committing S=0 avoids any risk of paying for their unlikely cooperation while still allowing me to respond optimally in the action phase.",
+      "commit_explanation2": "History shows Agent_10 defected after my cooperation, so S=0 avoids paying extra if they choose Yes while still allowing me to exploit or match their likely No.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Agent_13 defected in all prior rounds including when I cooperated, so defecting maximizes my payoff at 1 (or 5 if they cooperate) with zero side-payments. Cooperating risks the sucker payoff of 0 against a known defector.",
+      "explanation2": "History shows Agent_10 always chose No, so defecting yields 1 point vs 0 if I cooperate.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 25,
+    "pair_ids": [
+      19,
+      16
+    ],
+    "pair_names": [
+      "Agent_19",
+      "Agent_16"
+    ],
+    "timestamp": "2026-08-28T20:09:18.322898",
+    "detail": {
+      "agent1_id": 19,
+      "agent1_name": "Agent_19",
+      "agent2_id": 16,
+      "agent2_name": "Agent_16",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows Agent_16 cooperated previously while I defected, so I commit to S=0 to avoid any side-payment cost if they choose Yes again while I defect for 5 points.",
+      "commit_explanation2": "Given history where opponent cooperated while I defected, setting S=0 avoids any risk of paying them if they Yes again, allowing me to safely choose No for 5 points (or 1 if both defect) without side-payment losses.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Defecting is the dominant strategy in this payoff matrix with zero side payments, yielding strictly higher payoffs regardless of the opponent's choice, and the prior round provides no binding commitment or altered incentives.",
+      "explanation2": "With zero side payments, defecting (No) is the dominant strategy to maximize my payoff in this prisoner's dilemma regardless of their action.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 26,
+    "pair_ids": [
+      3,
+      12
+    ],
+    "pair_names": [
+      "Agent_3",
+      "Agent_12"
+    ],
+    "timestamp": "2026-08-28T20:09:46.059836",
+    "detail": {
+      "agent1_id": 3,
+      "agent1_name": "Agent_3",
+      "agent2_id": 12,
+      "agent2_name": "Agent_12",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows consistent No/No outcomes, so Agent_12 is expected to defect again; setting S=0 avoids any unnecessary payment risk if they unexpectedly choose Yes while I defect for 5 or 1 points.",
+      "commit_explanation2": "History shows consistent mutual defection, so I expect No again and S has no cost; choosing 0 avoids any unnecessary payment risk while maximizing my base payoff under dominant defect strategy.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows Agent_12 always chose No, and with zero side payments, choosing No yields 1 point versus 0 if they defect again.",
+      "explanation2": "Given the history of mutual defection and zero side-payments, defecting yields 1 point for sure while cooperating risks 0 if the opponent defects again.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 27,
+    "pair_ids": [
+      18,
+      6
+    ],
+    "pair_names": [
+      "Agent_18",
+      "Agent_6"
+    ],
+    "timestamp": "2026-08-28T20:10:16.549258",
+    "detail": {
+      "agent1_id": 18,
+      "agent1_name": "Agent_18",
+      "agent2_id": 6,
+      "agent2_name": "Agent_6",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given history of mutual defection, setting S=0 avoids any risk of paying for their potential Yes while still allowing me to choose No in stage 2 for 1 point minimum or 5 if they Yes.",
+      "commit_explanation2": "Given history of Agent_18 defecting after my cooperation, setting S=0 avoids any risk of paying for their potential Yes while still allowing me to defect for 5 or 1 points safely.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With zero side payments, defecting (No) is the dominant strategy as it yields 5 instead of 3 if opponent Yes and 1 instead of 0 if opponent No.",
+      "explanation2": "Given the history of Agent_18 defecting in round 1 and mutual defection in round 2, plus zero side payments, defecting (No) is the dominant strategy to maximize payoff regardless of their choice.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 28,
+    "pair_ids": [
+      8,
+      1
+    ],
+    "pair_names": [
+      "Agent_8",
+      "Agent_1"
+    ],
+    "timestamp": "2026-08-28T20:10:44.828698",
+    "detail": {
+      "agent1_id": 8,
+      "agent1_name": "Agent_8",
+      "agent2_id": 1,
+      "agent2_name": "Agent_1",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows Agent_1 defects in 4/5 rounds, so S=0 avoids paying for their likely No while preserving my option to defect for 5 or 1 points.",
+      "commit_explanation2": "History shows consistent mutual defection, so Agent_8 will likely choose No again and S has no effect; selecting 0 avoids any risk of paying out if they unexpectedly cooperate.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows Agent_1 defected in round 4 and chose No in rounds 2-3 and 5; with zero commitments and no side payments, No guarantees at least 1 and exploits any Yes.",
+      "explanation2": "History shows mutual defection in prior rounds with zero commitments, so No remains dominant to secure 1 point over risking 0.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 29,
+    "pair_ids": [
+      22,
+      13
+    ],
+    "pair_names": [
+      "Agent_22",
+      "Agent_13"
+    ],
+    "timestamp": "2026-08-28T20:11:08.516775",
+    "detail": {
+      "agent1_id": 22,
+      "agent1_name": "Agent_22",
+      "agent2_id": 13,
+      "agent2_name": "Agent_13",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the prior mutual defection and dominant strategy to defect for max points, setting S=0 avoids any risk of paying out while still allowing exploitation if they cooperate.",
+      "commit_explanation2": "History shows Agent_22 defects whenever I cooperate, so committing any positive S risks losing points with no gain; S=0 maximizes my payoff regardless of their action.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Commitments are zero so this reduces to standard PD where No strictly dominates; history of mutual No confirms opponent is likely to defect again, yielding 1 > 0 expected payoff.",
+      "explanation2": "Agent_22 defected in all prior rounds, so choosing No secures 1 point rather than risking 0 if they defect again.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 30,
+    "pair_ids": [
+      0,
+      16
+    ],
+    "pair_names": [
+      "Agent_0",
+      "Agent_16"
+    ],
+    "timestamp": "2026-08-28T20:11:39.444319",
+    "detail": {
+      "agent1_id": 0,
+      "agent1_name": "Agent_0",
+      "agent2_id": 16,
+      "agent2_name": "Agent_16",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Agent_16 has defected in both prior rounds, so I set S=0 to avoid any risk of paying for a Yes they are unlikely to choose.",
+      "commit_explanation2": "History shows Agent_0 mixes Yes/No without pattern, so committing S=0 avoids any risk of paying out while still allowing me to defect for 5 if they cooperate or 1 if both defect.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given zero side payments and the dominant strategy in this payoff matrix, No yields strictly higher payoffs regardless of their choice (5>3 or 1>0); history of mutual defection reinforces expecting No from them.",
+      "explanation2": "Defecting (No) is the dominant strategy as it yields strictly higher payoff regardless of opponent's choice (5>3 if they Yes; 1>0 if they No), and prior history with zero commitments provides no incentive to cooperate.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 31,
+    "pair_ids": [
+      17,
+      21
+    ],
+    "pair_names": [
+      "Agent_17",
+      "Agent_21"
+    ],
+    "timestamp": "2026-08-28T20:12:01.503888",
+    "detail": {
+      "agent1_id": 17,
+      "agent1_name": "Agent_17",
+      "agent2_id": 21,
+      "agent2_name": "Agent_21",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given history of defecting against their cooperation and PD incentives, S=0 avoids any payment risk if they Yes while allowing defection for 5 or 1 points.",
+      "commit_explanation2": "History shows consistent mutual defection so no incentive exists to promise payments that could reduce my payoff without inducing cooperation.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With zero side payments, this reduces to standard PD where No strictly dominates regardless of opponent's choice. History shows opponent cooperated previously but provides no reason to risk 0 when defecting secures at least 1.",
+      "explanation2": "History shows Agent_17 always defects, and with zero side-payments the dominant strategy is to defect for 1 point rather than risk 0.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 32,
+    "pair_ids": [
+      23,
+      21
+    ],
+    "pair_names": [
+      "Agent_23",
+      "Agent_21"
+    ],
+    "timestamp": "2026-08-28T20:12:32.735770",
+    "detail": {
+      "agent1_id": 23,
+      "agent1_name": "Agent_23",
+      "agent2_id": 21,
+      "agent2_name": "Agent_21",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows consistent mutual defection with no cooperation, so promising any side payment would reduce my score without benefit. I therefore commit S=0 to avoid unnecessary transfers.",
+      "commit_explanation2": "History shows consistent mutual defection, so I set S=0 to avoid any unnecessary payments while defecting for the 5 or 1 payoff.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Opponent has defected in all prior rounds and zero commitments mean no side payments, so defecting is dominant to secure 1 instead of 0.",
+      "explanation2": "History shows Agent_23 always defects, and with zero side payments the dominant strategy remains No to secure 1 point over risking 0.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 33,
+    "pair_ids": [
+      6,
+      11
+    ],
+    "pair_names": [
+      "Agent_6",
+      "Agent_11"
+    ],
+    "timestamp": "2026-08-28T20:12:54.742062",
+    "detail": {
+      "agent1_id": 6,
+      "agent1_name": "Agent_6",
+      "agent2_id": 11,
+      "agent2_name": "Agent_11",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows repeated defection by Agent_11, so setting S=0 minimizes my risk of paying for their cooperation while preserving my dominant strategy to defect in the action phase.",
+      "commit_explanation2": "History shows Agent_6 defects after initial cooperation, so setting S=0 avoids any payment risk while defecting remains dominant per the matrix.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows mutual defection in recent rounds with zero side payments, so defecting is the dominant strategy to secure 1 point rather than risking 0.",
+      "explanation2": "Defecting (No) is the dominant strategy in this payoff matrix, securing at least 1 and up to 5 regardless of opponent's choice, especially with zero side-payments and a history of mutual defection in recent rounds.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 34,
+    "pair_ids": [
+      13,
+      2
+    ],
+    "pair_names": [
+      "Agent_13",
+      "Agent_2"
+    ],
+    "timestamp": "2026-08-28T20:13:22.803935",
+    "detail": {
+      "agent1_id": 13,
+      "agent1_name": "Agent_13",
+      "agent2_id": 2,
+      "agent2_name": "Agent_2",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Agent_2 has defected in 3/4 prior rounds, so setting S=0 avoids any risk of paying out on an unexpected Yes while providing no incentive for them to cooperate given the dominant strategy to defect.",
+      "commit_explanation2": "History shows mutual defection last round, so I set S=0 to avoid any side-payment cost if they cooperate while still allowing me to defect for higher payoff.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Agent_2 has chosen No in all prior rounds, so defecting secures 1 point rather than risking 0 if they defect again with zero side-payments in effect.",
+      "explanation2": "With zero side payments, defecting (No) is dominant regardless of opponent's choice, yielding 5 or 1 instead of 3 or 0.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 35,
+    "pair_ids": [
+      21,
+      10
+    ],
+    "pair_names": [
+      "Agent_21",
+      "Agent_10"
+    ],
+    "timestamp": "2026-08-28T20:13:53.600104",
+    "detail": {
+      "agent1_id": 21,
+      "agent1_name": "Agent_21",
+      "agent2_id": 10,
+      "agent2_name": "Agent_10",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows consistent mutual defection, so Agent_10 will likely choose No again making S irrelevant; choosing 0 avoids any unnecessary payment risk if they cooperate while still allowing me to defect for 5 points.",
+      "commit_explanation2": "Agent_21 has defected in all prior rounds including after my cooperation, so setting S=0 avoids any unnecessary payment risk while still allowing the base payoff matrix to guide the action phase.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows Agent_10 always defects, and zero commitments create no incentive to cooperate, so defecting secures 1 point rather than risking 0.",
+      "explanation2": "Opponent has chosen No in all prior rounds including after my Yes, so defecting secures 1 point instead of risking 0.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 36,
+    "pair_ids": [
+      19,
+      10
+    ],
+    "pair_names": [
+      "Agent_19",
+      "Agent_10"
+    ],
+    "timestamp": "2026-08-28T20:14:18.153566",
+    "detail": {
+      "agent1_id": 19,
+      "agent1_name": "Agent_19",
+      "agent2_id": 10,
+      "agent2_name": "Agent_10",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows Agent_10 defected last round, so S=0 avoids unnecessary payments if they choose Yes while preserving the dominant strategy of defecting for max points.",
+      "commit_explanation2": "Agent_19 has defected in every round including after my cooperation, so they will likely choose No again regardless of S; setting S=0 avoids any unnecessary payment risk while maximizing my expected payoff under defection.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Defecting is the dominant strategy in this one-shot PD with zero side-payments, guaranteeing at least 1 point regardless of opponent's choice. History shows inconsistent opponent behavior, providing no basis for cooperation.",
+      "explanation2": "History shows Agent_19 defected in all prior rounds (including exploiting my one Yes), and zero side-payments make this standard PD where No is dominant strategy to secure 1 or 5 instead of 0 or 3.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 37,
+    "pair_ids": [
+      21,
+      3
+    ],
+    "pair_names": [
+      "Agent_21",
+      "Agent_3"
+    ],
+    "timestamp": "2026-08-28T20:14:45.964289",
+    "detail": {
+      "agent1_id": 21,
+      "agent1_name": "Agent_21",
+      "agent2_id": 3,
+      "agent2_name": "Agent_3",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows Agent_3 always defects, so I commit S=0 to avoid any payment risk while also defecting for the dominant 1-point payoff.",
+      "commit_explanation2": "History shows consistent mutual defection, so S=0 avoids any unnecessary payment risk while expecting No from Agent_21 again.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows consistent mutual defection and zero commitments eliminate transfers, so No is dominant to secure at least 1 rather than risk 0.",
+      "explanation2": "Given the history of mutual defection and zero side payments, defecting yields 1 point rather than risking 0 if opponent defects.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 38,
+    "pair_ids": [
+      23,
+      9
+    ],
+    "pair_names": [
+      "Agent_23",
+      "Agent_9"
+    ],
+    "timestamp": "2026-08-28T20:15:10.355047",
+    "detail": {
+      "agent1_id": 23,
+      "agent1_name": "Agent_23",
+      "agent2_id": 9,
+      "agent2_name": "Agent_9",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given Agent_9's consistent defection history, S=0 avoids any risk of payment while maximizing expected payoff under likely mutual No.",
+      "commit_explanation2": "Agent_23 defected last round by choosing No after my Yes, so I set S=0 to avoid rewarding potential cooperation and minimize losses if they defect again.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows Agent_9 always defects, and with zero side-payments the dominant strategy is to defect for a guaranteed 1 point rather than risk 0.",
+      "explanation2": "Defecting is dominant regardless of opponent's action and history shows they defected previously, so No maximizes my payoff.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 39,
+    "pair_ids": [
+      16,
+      9
+    ],
+    "pair_names": [
+      "Agent_16",
+      "Agent_9"
+    ],
+    "timestamp": "2026-08-28T20:15:33.080271",
+    "detail": {
+      "agent1_id": 16,
+      "agent1_name": "Agent_16",
+      "agent2_id": 9,
+      "agent2_name": "Agent_9",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows Agent_9 mostly defects, so committing S=0 avoids any risk of paying for their possible Yes while still allowing me to exploit or match in the action phase based on their revealed S.",
+      "commit_explanation2": "History shows Agent_16 defected against my cooperation then mutual defected, so offering any side-payment risks loss without gain; S=0 avoids paying while still allowing standard payoffs to maximize my score.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Defecting (No) is the dominant strategy here as it yields strictly higher payoffs regardless of opponent's choice (5>3 or 1>0), and zero side-payments do not change the matrix.",
+      "explanation2": "Opponent has defected in prior rounds and commitments are zero, so defecting yields higher payoff (5 or 1) than cooperating (3 or 0) in this PD matrix.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 40,
+    "pair_ids": [
+      21,
+      13
+    ],
+    "pair_names": [
+      "Agent_21",
+      "Agent_13"
+    ],
+    "timestamp": "2026-08-28T20:15:59.412120",
+    "detail": {
+      "agent1_id": 21,
+      "agent1_name": "Agent_21",
+      "agent2_id": 13,
+      "agent2_name": "Agent_13",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Agent_13 has always chosen No in prior rounds, so setting S=0 avoids any payment risk while preserving the mutual-defect equilibrium of 1 point each.",
+      "commit_explanation2": "History shows Agent_21 defects every round, so S=0 avoids any unnecessary payment while expecting mutual No for 1 point each.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Agent_13 has defected in all 7 prior rounds, and with zero commitments there is no incentive to risk cooperating against likely defection.",
+      "explanation2": "Opponent has always chosen No in prior rounds, so defecting yields 1 rather than 0 with zero side-payments in effect.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 41,
+    "pair_ids": [
+      10,
+      12
+    ],
+    "pair_names": [
+      "Agent_10",
+      "Agent_12"
+    ],
+    "timestamp": "2026-08-28T20:16:22.801387",
+    "detail": {
+      "agent1_id": 10,
+      "agent1_name": "Agent_10",
+      "agent2_id": 12,
+      "agent2_name": "Agent_12",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given Agent_12's consistent history of defecting (No) in all prior rounds, committing to S=0 avoids any unnecessary payment risk without altering their likely action, while still allowing me to defect for a safe 1-point payoff.",
+      "commit_explanation2": "History shows consistent mutual defection with zero commitments, so S=0 avoids any risk of paying while preserving the 1-point defect equilibrium.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Opponent has defected every round including after my cooperation attempt, and zero commitments make this standard PD where No is dominant strategy.",
+      "explanation2": "Agent_10 has defected in all prior rounds, so choosing No secures 1 point safely rather than risking 0 against likely defection.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 42,
+    "pair_ids": [
+      22,
+      9
+    ],
+    "pair_names": [
+      "Agent_22",
+      "Agent_9"
+    ],
+    "timestamp": "2026-08-28T20:16:46.884986",
+    "detail": {
+      "agent1_id": 22,
+      "agent1_name": "Agent_22",
+      "agent2_id": 9,
+      "agent2_name": "Agent_9",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows repeated mutual defection so I set S=0 to avoid any risk of paying if Agent_9 chooses Yes while still defecting myself to maximize payoff per the matrix.",
+      "commit_explanation2": "Given Agent_22's history of defecting after my cooperation, S=0 avoids any side-payment risk while still allowing play based on the standard matrix.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With zero side payments, defecting is dominant as it yields 5>3 if they cooperate and 1>0 if they defect, consistent with prior mutual No outcomes.",
+      "explanation2": "Given the history of Agent_22 defecting in round 1 and both defecting thereafter, plus zero side payments, defecting is the dominant strategy to maximize payoff regardless of their choice.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 43,
+    "pair_ids": [
+      17,
+      4
+    ],
+    "pair_names": [
+      "Agent_17",
+      "Agent_4"
+    ],
+    "timestamp": "2026-08-28T20:17:14.382666",
+    "detail": {
+      "agent1_id": 17,
+      "agent1_name": "Agent_17",
+      "agent2_id": 4,
+      "agent2_name": "Agent_4",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows Agent_4 alternates cooperation and defection, so setting S=0 avoids any risk of paying while still allowing me to defect for maximum payoff in the dominant strategy.",
+      "commit_explanation2": "Setting S=0 avoids any risk of paying extra points if the opponent cooperates while still allowing the base PD payoffs; any positive S would reduce my net score without a guaranteed reciprocal commitment from the simultaneous announcement.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Defecting (No) is the dominant strategy as it yields strictly higher payoffs than Yes regardless of opponent's action, and zero side-payments provide no incentive to cooperate.",
+      "explanation2": "Since side payments are zero, No is the dominant strategy as it yields 5 instead of 3 if opponent chooses Yes and 1 instead of 0 if opponent chooses No.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 44,
+    "pair_ids": [
+      6,
+      13
+    ],
+    "pair_names": [
+      "Agent_6",
+      "Agent_13"
+    ],
+    "timestamp": "2026-08-28T20:17:40.940599",
+    "detail": {
+      "agent1_id": 6,
+      "agent1_name": "Agent_6",
+      "agent2_id": 13,
+      "agent2_name": "Agent_13",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given Agent_13's consistent defection in prior rounds, committing S=0 avoids any risk of paying for their potential Yes while still allowing me to defect for max payoff.",
+      "commit_explanation2": "Given Agent_6's repeated defections in history (including exploiting my Yes), setting S=0 avoids any risk of paying for their likely No choice while still allowing optimal play in the action phase.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Opponent has chosen No in all prior rounds after the first, making mutual No (1 point each) the safe equilibrium to maximize my score over Yes (risking 0 if they defect). No side payments apply due to zero commitments.",
+      "explanation2": "Agent_6 has defected in every round including after my prior cooperation, and with zero side payments the dominant strategy is to defect for 1 point rather than risk 0.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 45,
+    "pair_ids": [
+      21,
+      12
+    ],
+    "pair_names": [
+      "Agent_21",
+      "Agent_12"
+    ],
+    "timestamp": "2026-08-28T20:18:04.916392",
+    "detail": {
+      "agent1_id": 21,
+      "agent1_name": "Agent_21",
+      "agent2_id": 12,
+      "agent2_name": "Agent_12",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Agent_12 has defected in all prior rounds, so S has no effect on payments; choosing 0 avoids any risk of overpaying if they unexpectedly cooperate while still allowing mutual defection for 1 point each.",
+      "commit_explanation2": "History shows consistent mutual defection, so I commit S=0 to avoid any risk of paying for cooperation that is unlikely to occur.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Agent_12 has defected in all 8 prior rounds, so defecting yields 1 rather than 0 against their likely No; zero commitments add no incentive to cooperate.",
+      "explanation2": "Agent_21 has defected in all prior rounds, so defecting maximizes my payoff at 1 rather than risking 0 against a likely No.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 46,
+    "pair_ids": [
+      21,
+      23
+    ],
+    "pair_names": [
+      "Agent_21",
+      "Agent_23"
+    ],
+    "timestamp": "2026-08-28T20:18:23.825351",
+    "detail": {
+      "agent1_id": 21,
+      "agent1_name": "Agent_21",
+      "agent2_id": 23,
+      "agent2_name": "Agent_23",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows consistent mutual defection with zero commitments, so no incentive exists to promise payments that reduce my payoff if they cooperate while I can still defect for 5.",
+      "commit_explanation2": "History shows consistent mutual defection with no cooperation, so committing to any positive payment risks loss without benefit; S=0 preserves the Nash equilibrium of (No,No) for 1 point each.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows consistent mutual defection with Agent_23 and zero commitments provide no incentive to deviate, so No secures 1 point safely.",
+      "explanation2": "Agent_21 has chosen No in all prior rounds, so defecting secures 1 point rather than risking 0 against a known defector.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 47,
+    "pair_ids": [
+      5,
+      19
+    ],
+    "pair_names": [
+      "Agent_5",
+      "Agent_19"
+    ],
+    "timestamp": "2026-08-28T20:18:45.135937",
+    "detail": {
+      "agent1_id": 5,
+      "agent1_name": "Agent_5",
+      "agent2_id": 19,
+      "agent2_name": "Agent_19",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Setting S=0 avoids any side-payment costs if they cooperate while the history shows they may still choose Yes, maximizing my net payoff from the base matrix.",
+      "commit_explanation2": "History shows Agent_5 defected in recent rounds, so I set S=0 to avoid any payment risk while planning to defect for max payoff (5 or 1).",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the history of mutual cooperation followed by my defection (which they did not punish), defecting now maximizes my payoff at 5 if they cooperate again or 1 if they do not, dominating the 3 from mutual Yes under zero side-payments.",
+      "explanation2": "Defecting is the dominant strategy in this payoff matrix with zero side payments, yielding at least 1 and up to 5 regardless of their choice; history shows inconsistent cooperation from Agent_5, providing no basis to risk cooperating.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 48,
+    "pair_ids": [
+      18,
+      9
+    ],
+    "pair_names": [
+      "Agent_18",
+      "Agent_9"
+    ],
+    "timestamp": "2026-08-28T20:19:11.669554",
+    "detail": {
+      "agent1_id": 18,
+      "agent1_name": "Agent_18",
+      "agent2_id": 9,
+      "agent2_name": "Agent_9",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows consistent mutual defection, so offering any positive S risks unnecessary payment with no cooperation expected; S=0 avoids costs while preserving the dominant defect strategy in the base PD matrix.",
+      "commit_explanation2": "Given Agent_18's consistent defection in all prior rounds, they are likely to choose No again regardless of S, so committing 0 avoids any unnecessary payment risk while preserving my option to defect for higher payoff.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Zero commitments mean no side payments, so the dominant strategy is No: it yields strictly higher payoff than Yes regardless of opponent's choice (5>3 or 1>0). Prior rounds with Agent_9 also ended in mutual No, reinforcing this equilibrium.",
+      "explanation2": "Opponent defected in round 1 and both defected in rounds 2-4, so defecting maximizes payoff given zero commitments and dominant strategy in the matrix.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 49,
+    "pair_ids": [
+      12,
+      17
+    ],
+    "pair_names": [
+      "Agent_12",
+      "Agent_17"
+    ],
+    "timestamp": "2026-08-28T20:19:36.566036",
+    "detail": {
+      "agent1_id": 12,
+      "agent1_name": "Agent_12",
+      "agent2_id": 17,
+      "agent2_name": "Agent_17",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given six rounds of mutual defection, Agent_17 is expected to choose No again, so committing to any positive S risks an unnecessary payment with no gain.",
+      "commit_explanation2": "History shows Agent_12 defected last two rounds; setting S=0 maximizes my payoff (5-S) if they Yes and I No, without rewarding cooperation.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Opponent has defected in all 6 prior rounds, so defecting yields 1 rather than 0 against certain No. Side payments are zero and do not alter the dominant strategy.",
+      "explanation2": "Given zero side payments and opponent's last two defections, choosing No secures 1 point safely rather than risking 0 if they defect again.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 50,
+    "pair_ids": [
+      0,
+      9
+    ],
+    "pair_names": [
+      "Agent_0",
+      "Agent_9"
+    ],
+    "timestamp": "2026-08-28T20:20:05.348971",
+    "detail": {
+      "agent1_id": 0,
+      "agent1_name": "Agent_0",
+      "agent2_id": 9,
+      "agent2_name": "Agent_9",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows consistent mutual defection, so no positive S is warranted as it risks paying for cooperation that won't occur while the payoff matrix already favors defecting.",
+      "commit_explanation2": "Agent_0 has defected in all prior rounds, so S=0 avoids any risk of paying for unlikely cooperation while preserving my option to defect for max payoff.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows Agent_9 always defects, and with zero side-payments the dominant strategy is to choose No for a guaranteed 1 point rather than risking 0 if they defect again.",
+      "explanation2": "History shows Agent_0 defected in all prior rounds, so defecting secures 1 point rather than risking 0 against likely No.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 51,
+    "pair_ids": [
+      9,
+      6
+    ],
+    "pair_names": [
+      "Agent_9",
+      "Agent_6"
+    ],
+    "timestamp": "2026-08-28T20:20:31.210705",
+    "detail": {
+      "agent1_id": 9,
+      "agent1_name": "Agent_9",
+      "agent2_id": 6,
+      "agent2_name": "Agent_6",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows Agent_6 defected in 5 of 6 prior rounds, so they will likely choose No regardless of S and I avoid any unnecessary payment risk if they cooperate. S=0 also aligns with maximizing my payoff under repeated defection without altering the dominant No strategy.",
+      "commit_explanation2": "Agent_9 has defected in all prior rounds, so I set S=0 to avoid any side-payment risk if they choose Yes while I defect for 5 points.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Agent_6 has defected in all 6 prior rounds, so defecting maximizes my payoff at 1 rather than risking 0.",
+      "explanation2": "Given Agent_9's consistent history of choosing No (including after my Yes), defecting maximizes my payoff at 1 over risking 0.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 52,
+    "pair_ids": [
+      13,
+      18
+    ],
+    "pair_names": [
+      "Agent_13",
+      "Agent_18"
+    ],
+    "timestamp": "2026-08-28T20:20:57.047173",
+    "detail": {
+      "agent1_id": 13,
+      "agent1_name": "Agent_13",
+      "agent2_id": 18,
+      "agent2_name": "Agent_18",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Agent_18 has defected in all prior rounds regardless of my action, so setting S=0 avoids any unnecessary payment risk while still allowing me to defect for the highest expected payoff.",
+      "commit_explanation2": "Given three prior rounds of mutual defection, Agent_13 is expected to defect again, so committing S=0 avoids any unnecessary payment risk while preserving the dominant defect strategy for maximum points.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows Agent_18 defects in nearly all rounds and exploited my prior Yes, so defecting maximizes payoff at 1 vs risk of 0; zero commitments add no incentive to cooperate.",
+      "explanation2": "History shows consistent mutual defection, and with zero side payments the dominant strategy remains No to secure 1 point rather than risk 0 if opponent defects again.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 53,
+    "pair_ids": [
+      19,
+      20
+    ],
+    "pair_names": [
+      "Agent_19",
+      "Agent_20"
+    ],
+    "timestamp": "2026-08-28T20:21:21.760768",
+    "detail": {
+      "agent1_id": 19,
+      "agent1_name": "Agent_19",
+      "agent2_id": 20,
+      "agent2_name": "Agent_20",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows Agent_20 defected in 3 of 4 prior rounds, so I expect No again and set S=0 to avoid any unnecessary payment risk while planning to defect for 5 or 1 points.",
+      "commit_explanation2": "Given Agent_19 defected last round while I cooperated, setting S=0 avoids any risk of paying them if they choose Yes now, preserving my points under the payoff matrix without encouraging unreliable cooperation.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the history of mutual defection in recent rounds and zero side payments, defecting yields at least 1 and up to 5 points, which strictly dominates cooperating.",
+      "explanation2": "Since commitments are zero, this is standard PD where No strictly dominates (5>3 if they Yes; 1>0 if they No), and history shows they defected previously.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 54,
+    "pair_ids": [
+      10,
+      14
+    ],
+    "pair_names": [
+      "Agent_10",
+      "Agent_14"
+    ],
+    "timestamp": "2026-08-28T20:21:49.759439",
+    "detail": {
+      "agent1_id": 10,
+      "agent1_name": "Agent_10",
+      "agent2_id": 14,
+      "agent2_name": "Agent_14",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows consistent defection by Agent_14, so setting S=0 avoids any risk of paying for their unlikely cooperation while still allowing me to defect for max payoff if needed.",
+      "commit_explanation2": "Given the history of my prior defection against Agent_10, S=0 avoids any unnecessary side-payment cost if they cooperate while preserving the option to defect for a higher payoff in stage 2.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows Agent_14 defected in all 7 prior rounds, so defecting yields 1 point rather than 0 if they defect again.",
+      "explanation2": "Choosing No is the dominant strategy here since commitments are zero and yield 5 if they cooperate or 1 if they defect, exceeding the Yes payoffs regardless of their action.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 55,
+    "pair_ids": [
+      14,
+      21
+    ],
+    "pair_names": [
+      "Agent_14",
+      "Agent_21"
+    ],
+    "timestamp": "2026-08-28T20:22:15.940350",
+    "detail": {
+      "agent1_id": 14,
+      "agent1_name": "Agent_14",
+      "agent2_id": 21,
+      "agent2_name": "Agent_21",
+      "side_payment_1_to_2": 3,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows Agent_21 cooperated once before defecting, so S=3 rewards potential Yes without overpaying on defection and supports mutual 3+side-payments equilibrium over repeated defect (1,1).",
+      "commit_explanation2": "History shows consistent mutual defection, so I expect Agent_14 to choose No again; committing S=0 avoids any risk of paying out while preserving the dominant defect strategy.",
+      "choice1": "No",
+      "choice2": "Yes",
+      "explanation1": "Choosing No yields 2 if they Yes or 1 if they No, strictly dominating the 0 payoff from choosing Yes in either case given their 0 commitment.",
+      "explanation2": "Given Agent_14's history of always defecting and the payoffs showing they get at most 0 by choosing Yes, they will choose No; thus I choose Yes to receive 3 instead of 1.",
+      "payoff1": 2,
+      "payoff2": 3,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 56,
+    "pair_ids": [
+      6,
+      16
+    ],
+    "pair_names": [
+      "Agent_6",
+      "Agent_16"
+    ],
+    "timestamp": "2026-08-28T20:22:41.547424",
+    "detail": {
+      "agent1_id": 6,
+      "agent1_name": "Agent_6",
+      "agent2_id": 16,
+      "agent2_name": "Agent_16",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Agent_16 has defected in 5 of 6 prior rounds, so S=0 avoids any unnecessary payment risk while still allowing me to defect for 5 or 1 points.",
+      "commit_explanation2": "History shows Agent_6 defected in 3/4 rounds, so I set S=0 to avoid paying anything if they cooperate while planning to defect myself for max payoff.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows Agent_16 defected in every round, so choosing No secures 1 point instead of risking 0 if they defect again.",
+      "explanation2": "History shows Agent_6 defected in the last three rounds and commitments of 0 eliminate any side-payment incentive, so No is the dominant strategy to maximize payoff.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 57,
+    "pair_ids": [
+      15,
+      23
+    ],
+    "pair_names": [
+      "Agent_15",
+      "Agent_23"
+    ],
+    "timestamp": "2026-08-28T20:23:05.249862",
+    "detail": {
+      "agent1_id": 15,
+      "agent1_name": "Agent_15",
+      "agent2_id": 23,
+      "agent2_name": "Agent_23",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given history of mutual defection, setting S=0 avoids unnecessary risk of paying for uncertain cooperation.",
+      "commit_explanation2": "History shows consistent mutual defection, so no benefit to promising side-payments; choosing S=0 avoids any risk of paying while still allowing No in the action phase to secure 1 point.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With zero side payments and the standard PD matrix, defecting (No) is the dominant strategy that maximizes my payoff no matter what the opponent does.",
+      "explanation2": "Opponent has chosen No in all 6 prior rounds, so defecting secures 1 point instead of risking 0.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 58,
+    "pair_ids": [
+      5,
+      21
+    ],
+    "pair_names": [
+      "Agent_5",
+      "Agent_21"
+    ],
+    "timestamp": "2026-08-28T20:23:29.210137",
+    "detail": {
+      "agent1_id": 5,
+      "agent1_name": "Agent_5",
+      "agent2_id": 21,
+      "agent2_name": "Agent_21",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows inconsistent cooperation from Agent_21 after my prior defection, so setting S=0 avoids any payment risk while still allowing a No choice to secure at least 1 point (or 5 if they Yes).",
+      "commit_explanation2": "Agent_5 has defected in all 11 prior rounds including when I cooperated last, so they will likely choose No again making my S irrelevant; setting S=0 avoids any unnecessary payment risk while still allowing the base matrix to maximize my score if they defect.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "With zero side payments and a history of mutual defection in round 3, the dominant strategy is No to secure at least 1 point (or 5 if they cooperate).",
+      "explanation2": "Agent_5 has defected in all 11 prior rounds (including after my Yes), so choosing Yes yields 0 while No secures 1 with no side payments.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 59,
+    "pair_ids": [
+      2,
+      9
+    ],
+    "pair_names": [
+      "Agent_2",
+      "Agent_9"
+    ],
+    "timestamp": "2026-08-28T20:23:58.124805",
+    "detail": {
+      "agent1_id": 2,
+      "agent1_name": "Agent_2",
+      "agent2_id": 9,
+      "agent2_name": "Agent_9",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows Agent_9 always defects, so my S has no effect as they will choose No and trigger no payment; setting S=0 avoids any unnecessary risk while maximizing my payoff under expected defection.",
+      "commit_explanation2": "History shows Agent_2 defected in all prior rounds, so they will likely choose No again and my S payment is irrelevant; setting S=0 avoids any risk of paying if they unexpectedly cooperate while still maximizing my score under expected defection.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given zero side payments and the dominant strategy in this payoff matrix, choosing No yields strictly higher payoff regardless of opponent's action (5>3 or 1>0), and history shows consistent mutual defection.",
+      "explanation2": "History shows consistent mutual No after round 1 with zero side-payments, so defecting secures 1 point safely.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 60,
+    "pair_ids": [
+      16,
+      21
+    ],
+    "pair_names": [
+      "Agent_16",
+      "Agent_21"
+    ],
+    "timestamp": "2026-08-28T20:24:23.406394",
+    "detail": {
+      "agent1_id": 16,
+      "agent1_name": "Agent_16",
+      "agent2_id": 21,
+      "agent2_name": "Agent_21",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows Agent_21 defected in 4/5 prior rounds so they are likely to defect again (rendering S irrelevant); setting S=0 avoids any unnecessary payment risk while preserving my option to defect for max payoff.",
+      "commit_explanation2": "History shows Agent_16 always defects, so S=0 avoids any unnecessary payment risk while still allowing me to defect for 1 point (or 5 if they ever cooperate).",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Defection is the dominant strategy regardless of opponent's choice (5>3 or 1>0) and history shows repeated mutual defection after the first round, maximizing my score at 1 point with zero side-payments.",
+      "explanation2": "History shows Agent_16 always chose No (except my failed Yes in round 11), so choosing No secures 1 point instead of 0 against their likely defect, with zero side payments.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 61,
+    "pair_ids": [
+      20,
+      19
+    ],
+    "pair_names": [
+      "Agent_20",
+      "Agent_19"
+    ],
+    "timestamp": "2026-08-28T20:24:50.002652",
+    "detail": {
+      "agent1_id": 20,
+      "agent1_name": "Agent_20",
+      "agent2_id": 19,
+      "agent2_name": "Agent_19",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Agent_19 previously defected after my cooperation, so committing S>0 risks paying for their Yes without reciprocal benefit; S=0 avoids any side-payment loss while still allowing mutual No for 1 point each.",
+      "commit_explanation2": "History shows Agent_20 mostly defects, so I will defect for 5 or 1 payoff; setting S=0 minimizes any loss if they cooperate while I defect (net 5-S).",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Commitments are zero so this is standard PD where No strictly dominates; history shows Agent_19 defected previously when I cooperated.",
+      "explanation2": "Given Agent_20's consistent No choices in the last four rounds and zero commitments, defecting secures 1 point rather than risking 0 if they defect again.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 62,
+    "pair_ids": [
+      10,
+      2
+    ],
+    "pair_names": [
+      "Agent_10",
+      "Agent_2"
+    ],
+    "timestamp": "2026-08-28T20:25:13.511814",
+    "detail": {
+      "agent1_id": 10,
+      "agent1_name": "Agent_10",
+      "agent2_id": 2,
+      "agent2_name": "Agent_2",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given Agent_2's consistent history of choosing No, promising any S>0 risks unnecessary payment without increasing likelihood of cooperation.",
+      "commit_explanation2": "History shows consistent mutual defection, so Agent_10 is likely to choose No again, making any positive S irrelevant and risky if they cooperate.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows Agent_2 always chooses No, so defecting secures 1 point rather than risking 0; zero commitments leave the base PD matrix unchanged.",
+      "explanation2": "History shows consistent mutual defection by Agent_10 and commitments of 0 eliminate side payments, so No yields 1 point safely instead of risking the sucker's payoff of 0.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 63,
+    "pair_ids": [
+      7,
+      21
+    ],
+    "pair_names": [
+      "Agent_7",
+      "Agent_21"
+    ],
+    "timestamp": "2026-08-28T20:25:44.942241",
+    "detail": {
+      "agent1_id": 7,
+      "agent1_name": "Agent_7",
+      "agent2_id": 21,
+      "agent2_name": "Agent_21",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given repeated mutual defection in history, setting S=0 avoids any risk of unnecessary payment while still allowing optimal defection in the action phase.",
+      "commit_explanation2": "Agent_7 has defected in all 13 prior rounds, so committing any positive S risks an unnecessary payout with no benefit; S=0 avoids this while still allowing the standard payoff matrix to apply.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows repeated mutual defection and dominant strategy is No regardless of opponent's action, as it yields 5>3 or 1>0.",
+      "explanation2": "Agent_7 has defected in all 13 prior rounds, so defecting yields 1 rather than 0 against a consistent defector.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 64,
+    "pair_ids": [
+      9,
+      7
+    ],
+    "pair_names": [
+      "Agent_9",
+      "Agent_7"
+    ],
+    "timestamp": "2026-08-28T20:26:08.169605",
+    "detail": {
+      "agent1_id": 9,
+      "agent1_name": "Agent_9",
+      "agent2_id": 7,
+      "agent2_name": "Agent_7",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given Agent_7's consistent No choices in rounds 2-8, I set S=0 to avoid any unnecessary payment risk if they cooperate, maximizing my expected payoff under the matrix regardless of their commitment.",
+      "commit_explanation2": "History shows consistent mutual defection, so opponent is likely to defect again making S irrelevant; choosing 0 avoids any unnecessary payment risk if they unexpectedly cooperate.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Agent_7 has chosen No in the last 7 rounds, so defecting yields 1 rather than 0 against expected No.",
+      "explanation2": "History shows repeated mutual No with no side payments, so defecting secures 1 point rather than risking 0.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 65,
+    "pair_ids": [
+      6,
+      4
+    ],
+    "pair_names": [
+      "Agent_6",
+      "Agent_4"
+    ],
+    "timestamp": "2026-08-28T20:26:27.566942",
+    "detail": {
+      "agent1_id": 6,
+      "agent1_name": "Agent_6",
+      "agent2_id": 4,
+      "agent2_name": "Agent_4",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Agent_4 has defected in all 7 prior rounds, so they will likely choose No again, making my S irrelevant to payments while avoiding any risk of paying for their cooperation.",
+      "commit_explanation2": "Given history of mutual defection, S=0 avoids any payment risk while preserving dominant strategy of No in action phase.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Agent_4 has defected in all 6 rounds since the first, so defecting secures 1 point rather than risking 0 against their likely No.",
+      "explanation2": "With zero side payments, defecting dominates: if opponent Yes I score 5 instead of 3, if No I score 1 instead of 0; prior mutual defection gives no reason to deviate.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 66,
+    "pair_ids": [
+      0,
+      1
+    ],
+    "pair_names": [
+      "Agent_0",
+      "Agent_1"
+    ],
+    "timestamp": "2026-08-28T20:26:53.874436",
+    "detail": {
+      "agent1_id": 0,
+      "agent1_name": "Agent_0",
+      "agent2_id": 1,
+      "agent2_name": "Agent_1",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows consistent mutual defection, so S=0 avoids any payment risk if opponent switches to Yes while preserving dominant No strategy for max points.",
+      "commit_explanation2": "History shows consistent defection by Agent_0, so S=0 avoids any risk of paying for cooperation that won't occur while still allowing me to defect for 1 point.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given the history of mutual defection and zero side payments, defecting is the dominant strategy to secure at least 1 point rather than risking 0.",
+      "explanation2": "Given zero side-payments and Agent_0's consistent prior defections, No is the dominant strategy that secures the highest payoff of 1 (or 5 if they cooperate) without risk of exploitation.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 67,
+    "pair_ids": [
+      7,
+      15
+    ],
+    "pair_names": [
+      "Agent_7",
+      "Agent_15"
+    ],
+    "timestamp": "2026-08-28T20:27:22.296600",
+    "detail": {
+      "agent1_id": 7,
+      "agent1_name": "Agent_7",
+      "agent2_id": 15,
+      "agent2_name": "Agent_15",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows consistent mutual defection, so S=0 avoids any unnecessary payment risk while matching the equilibrium strategy of always choosing No.",
+      "commit_explanation2": "Agent_7 has always defected previously with zero commitments, so setting S=0 avoids any risk of paying for cooperation that won't occur while preserving the dominant defect strategy for max points.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Opponent has always defected in prior rounds and commitments are zero so no side payments apply, making No the dominant strategy to secure 1 instead of 0.",
+      "explanation2": "With zero commitments and thus no side payments, defecting (No) is the dominant strategy in this payoff matrix as it yields 5 if opponent cooperates or 1 if they defect, outperforming cooperation regardless of their choice.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 68,
+    "pair_ids": [
+      19,
+      2
+    ],
+    "pair_names": [
+      "Agent_19",
+      "Agent_2"
+    ],
+    "timestamp": "2026-08-28T20:27:44.596541",
+    "detail": {
+      "agent1_id": 19,
+      "agent1_name": "Agent_19",
+      "agent2_id": 2,
+      "agent2_name": "Agent_2",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows repeated mutual defection, so I expect Agent_2 to choose No again; committing S=0 avoids any unnecessary payment risk while preserving the dominant strategy of defecting for 1-5 points.",
+      "commit_explanation2": "History shows consistent mutual defection, so setting S=0 avoids any risk of paying for their potential Yes while maximizing my 1-point outcome from mutual No.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows Agent_2 defected in rounds 2-6, and zero side-payments provide no incentive to cooperate, so defecting secures 1 point rather than risking 0.",
+      "explanation2": "Given zero side-payments and mutual defection in all prior rounds, defecting remains dominant: it yields 5 instead of 3 if opponent cooperates and 1 instead of 0 if opponent defects.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 69,
+    "pair_ids": [
+      14,
+      13
+    ],
+    "pair_names": [
+      "Agent_14",
+      "Agent_13"
+    ],
+    "timestamp": "2026-08-28T20:28:07.458799",
+    "detail": {
+      "agent1_id": 14,
+      "agent1_name": "Agent_14",
+      "agent2_id": 13,
+      "agent2_name": "Agent_13",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows Agent_13 alternates between Yes and No, so setting S=0 avoids any payment risk if they cooperate while still allowing me to defect for 5 points if they Yes or 1 if both No.",
+      "commit_explanation2": "History shows Agent_14 defects almost always, so setting S=0 avoids any unnecessary payment risk while still allowing me to respond optimally in action phase based on their revealed commitment.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Defecting (No) is the dominant strategy in the payoff matrix, yielding 5 if they Yes or 1 if they No, which exceeds the alternatives; history shows inconsistent opponent behavior but does not alter the one-shot incentives here with zero side payments.",
+      "explanation2": "History shows Agent_14 always chose No, so defecting yields 1 point versus 0 if cooperating.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 70,
+    "pair_ids": [
+      20,
+      18
+    ],
+    "pair_names": [
+      "Agent_20",
+      "Agent_18"
+    ],
+    "timestamp": "2026-08-28T20:28:29.230654",
+    "detail": {
+      "agent1_id": 20,
+      "agent1_name": "Agent_20",
+      "agent2_id": 18,
+      "agent2_name": "Agent_18",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows Agent_18 defected after my cooperation, so S=0 avoids any risk of paying them if they choose Yes while preserving flexibility to defect for higher payoff in stage 2.",
+      "commit_explanation2": "History shows consistent mutual defection, so S=0 avoids any unnecessary payment risk if Agent_20 unexpectedly chooses Yes while maximizing my payoff under likely continued defection.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given Agent_18's consistent history of defecting and zero side payments, No is the dominant strategy that maximizes my payoff per the matrix regardless of their choice.",
+      "explanation2": "Given Agent_20 defected (No) in all 4 prior rounds, choosing No secures 1 point rather than risking 0 if they defect again.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 71,
+    "pair_ids": [
+      6,
+      22
+    ],
+    "pair_names": [
+      "Agent_6",
+      "Agent_22"
+    ],
+    "timestamp": "2026-08-28T20:28:53.708356",
+    "detail": {
+      "agent1_id": 6,
+      "agent1_name": "Agent_6",
+      "agent2_id": 22,
+      "agent2_name": "Agent_22",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Agent_22 has defected in 7 of 8 prior rounds, so promising any payment for Yes is unlikely to induce cooperation and risks unnecessary loss if they switch. Thus S=0 avoids rewarding defection while preserving my option to defect for 1 or 5 points.",
+      "commit_explanation2": "History shows consistent mutual defection, so setting S=0 avoids any risk of unnecessary payment while maintaining the dominant strategy of No in the action phase to secure 1 point reliably.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Opponent has defected (No) in the last 7 rounds, so defecting yields 1 point rather than 0 with no side payments.",
+      "explanation2": "History shows Agent_6 always chooses No, and zero commitments mean no side payments, so defecting yields 1 (vs 0) if they No or 5 (vs 3) if they Yes.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 72,
+    "pair_ids": [
+      22,
+      12
+    ],
+    "pair_names": [
+      "Agent_22",
+      "Agent_12"
+    ],
+    "timestamp": "2026-08-28T20:29:17.204273",
+    "detail": {
+      "agent1_id": 22,
+      "agent1_name": "Agent_22",
+      "agent2_id": 12,
+      "agent2_name": "Agent_12",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Agent_12 defected in all prior rounds, so I set S=0 to avoid paying for an unlikely Yes while still allowing mutual No for 1 point each.",
+      "commit_explanation2": "History shows Agent_22 defected in all 7 prior rounds, indicating they will likely defect again regardless of S, so promising any payment risks loss with no gain.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows Agent_12 always chose No, so defecting yields 1 rather than 0 against their likely No; commitments of 0 change nothing in the matrix.",
+      "explanation2": "Opponent has defected in all 7 prior rounds, so defecting yields 1 rather than 0 against their No.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 73,
+    "pair_ids": [
+      15,
+      12
+    ],
+    "pair_names": [
+      "Agent_15",
+      "Agent_12"
+    ],
+    "timestamp": "2026-08-28T20:29:39.397240",
+    "detail": {
+      "agent1_id": 15,
+      "agent1_name": "Agent_15",
+      "agent2_id": 12,
+      "agent2_name": "Agent_12",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows consistent mutual defection, so I set S=0 to avoid any risk of paying if Agent_12 unexpectedly cooperates while still allowing me to defect for 5 or 1 points.",
+      "commit_explanation2": "Agent_15 has defected in all 8 prior rounds, so committing any positive S risks an unnecessary payout with no realistic chance of inducing cooperation from them.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given zero side payments and history of mutual defection, No yields 1 rather than 0 if opponent defects again, and the dominant strategy remains defect regardless.",
+      "explanation2": "History shows consistent mutual defection and the dominant strategy is always No regardless of opponent's choice.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 74,
+    "pair_ids": [
+      7,
+      4
+    ],
+    "pair_names": [
+      "Agent_7",
+      "Agent_4"
+    ],
+    "timestamp": "2026-08-28T20:30:03.947196",
+    "detail": {
+      "agent1_id": 7,
+      "agent1_name": "Agent_7",
+      "agent2_id": 4,
+      "agent2_name": "Agent_4",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows Agent_4 always defects, so S=0 avoids any payment risk with no benefit to encouraging cooperation.",
+      "commit_explanation2": "History shows consistent mutual defection, so I set S=0 to avoid any payment risk if they cooperate while still allowing me to defect for 1 point safely.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Agent_4 has defected in all 6 prior rounds, and with zero commitments there is no incentive to cooperate, so defecting secures 1 point rather than risking 0.",
+      "explanation2": "Given the history of mutual defection and zero side-payments, defecting (No) is the dominant strategy to avoid the sucker's payoff while securing at least 1 point.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 75,
+    "pair_ids": [
+      20,
+      22
+    ],
+    "pair_names": [
+      "Agent_20",
+      "Agent_22"
+    ],
+    "timestamp": "2026-08-28T20:30:30.392711",
+    "detail": {
+      "agent1_id": 20,
+      "agent1_name": "Agent_20",
+      "agent2_id": 22,
+      "agent2_name": "Agent_22",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given Agent_22's consistent defection in prior rounds, setting S=0 avoids any unnecessary payment risk if they unexpectedly choose Yes while preserving my option to defect for maximum payoff.",
+      "commit_explanation2": "History shows consistent mutual defection with no basis for trust, so committing S>0 risks unnecessary loss if opponent cooperates while yielding no gain if they defect as before.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows repeated defection by Agent_22 and commitments add no side payments, so defecting is dominant to maximize payoff regardless of their choice.",
+      "explanation2": "History shows Agent_20 has always chosen No, so defecting yields 1 rather than 0; with zero side-payments, mutual defection remains the dominant strategy.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 76,
+    "pair_ids": [
+      0,
+      3
+    ],
+    "pair_names": [
+      "Agent_0",
+      "Agent_3"
+    ],
+    "timestamp": "2026-08-28T20:30:56.339181",
+    "detail": {
+      "agent1_id": 0,
+      "agent1_name": "Agent_0",
+      "agent2_id": 3,
+      "agent2_name": "Agent_3",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Agent_3 has defected in all prior rounds, so promising any payment risks loss without gain; S=0 maintains the mutual-defect equilibrium of 1 point each.",
+      "commit_explanation2": "History shows Agent_0 always defects, so S has no effect on payoffs and choosing 0 avoids any risk if they unexpectedly cooperate while I defect.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given mutual defection history and zero commitments, No is dominant as it yields 5>3 or 1>0 regardless of opponent's choice.",
+      "explanation2": "Agent_0 has defected in all prior rounds, so defecting yields 1 rather than 0 against their likely No.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 77,
+    "pair_ids": [
+      13,
+      7
+    ],
+    "pair_names": [
+      "Agent_13",
+      "Agent_7"
+    ],
+    "timestamp": "2026-08-28T20:31:17.549658",
+    "detail": {
+      "agent1_id": 13,
+      "agent1_name": "Agent_13",
+      "agent2_id": 7,
+      "agent2_name": "Agent_7",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows Agent_7 always defects, so S=0 minimizes risk if they Yes while their S will determine whether cooperating is viable for me.",
+      "commit_explanation2": "Given 7 rounds of mutual defection, Agent_13 will likely defect again, making any side-payment irrelevant and S=0 the safest choice to avoid risking points if they unexpectedly cooperate.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Agent_7 has chosen No in all 9 prior rounds, so defecting secures 1 point rather than risking 0 from cooperating against a known defector.",
+      "explanation2": "History shows consistent mutual defection by Agent_13, and zero commitments provide no incentive to cooperate, so defecting secures 1 point safely instead of risking 0.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 78,
+    "pair_ids": [
+      5,
+      22
+    ],
+    "pair_names": [
+      "Agent_5",
+      "Agent_22"
+    ],
+    "timestamp": "2026-08-28T20:31:46.743419",
+    "detail": {
+      "agent1_id": 5,
+      "agent1_name": "Agent_5",
+      "agent2_id": 22,
+      "agent2_name": "Agent_22",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows Agent_22 defected after initial cooperation and then both defected, so S=0 avoids risking payments on uncertain Yes while preserving my option to defect for higher payoff.",
+      "commit_explanation2": "Agent_5 has defected in all 6 prior rounds with no cooperation, so setting S=0 avoids any unnecessary payment risk while still allowing mutual defection payoff of 1.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Defecting is the dominant strategy here since commitments are zero and yield the standard PD payoffs, and recent history shows mutual defection.",
+      "explanation2": "History shows mutual defection in all prior rounds with zero side payments, making No the dominant strategy to secure 1 point rather than risking 0.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 79,
+    "pair_ids": [
+      16,
+      14
+    ],
+    "pair_names": [
+      "Agent_16",
+      "Agent_14"
+    ],
+    "timestamp": "2026-08-28T20:32:14.685729",
+    "detail": {
+      "agent1_id": 16,
+      "agent1_name": "Agent_16",
+      "agent2_id": 14,
+      "agent2_name": "Agent_14",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows Agent_14 defects in 5/6 rounds, so setting S=0 avoids any risk of paying out if they cooperate while still allowing me to defect for 5 points.",
+      "commit_explanation2": "History shows Agent_16 alternates Yes/No while I defect for 5 or 1; setting S=0 avoids any payment on their Yes without reducing my incentive to defect.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows Agent_14 choosing No in the last 5 rounds, so defecting secures 1 point rather than risking 0 if they defect again, with zero side payments changing nothing.",
+      "explanation2": "Defecting yields 5 if they cooperate or 1 if they defect (strictly better than cooperating in both cases), and history shows they have defected half the time with zero side-payments this round.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 80,
+    "pair_ids": [
+      1,
+      17
+    ],
+    "pair_names": [
+      "Agent_1",
+      "Agent_17"
+    ],
+    "timestamp": "2026-08-28T20:32:41.962190",
+    "detail": {
+      "agent1_id": 1,
+      "agent1_name": "Agent_1",
+      "agent2_id": 17,
+      "agent2_name": "Agent_17",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows consistent mutual defection, so I set S=0 to avoid any risk of paying for a Yes that won't occur while still allowing the action phase to proceed as before.",
+      "commit_explanation2": "History shows consistent defection by both, so I will defect for 1-5 payoff; S=0 avoids any side-payment loss if opponent chooses Yes.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given Agent_17's consistent No choices in all prior rounds, defecting secures 1 point rather than risking 0.",
+      "explanation2": "History shows consistent mutual No choices recently and standard PD payoffs make No dominant to guarantee at least 1 point (or 5 if they Yes) with zero side-payments.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 81,
+    "pair_ids": [
+      7,
+      3
+    ],
+    "pair_names": [
+      "Agent_7",
+      "Agent_3"
+    ],
+    "timestamp": "2026-08-28T20:33:05.834017",
+    "detail": {
+      "agent1_id": 7,
+      "agent1_name": "Agent_7",
+      "agent2_id": 3,
+      "agent2_name": "Agent_3",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows consistent mutual defection, so I expect No again and set S=0 to avoid any unnecessary payment risk if opponent deviates to Yes while I defect for 5 points.",
+      "commit_explanation2": "History shows Agent_7 always defects, so no reason to risk paying positive S if they choose Yes; S=0 maximizes expected payoff under dominant defect strategy.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given that Agent_3 has chosen No in all 8 prior rounds and commitments are zero, No secures 1 point rather than risking 0 if they defect again.",
+      "explanation2": "Opponent has defected in all 6 prior rounds, so defecting yields 1 rather than 0 against certain No.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 82,
+    "pair_ids": [
+      14,
+      4
+    ],
+    "pair_names": [
+      "Agent_14",
+      "Agent_4"
+    ],
+    "timestamp": "2026-08-28T20:33:33.183388",
+    "detail": {
+      "agent1_id": 14,
+      "agent1_name": "Agent_14",
+      "agent2_id": 4,
+      "agent2_name": "Agent_4",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows consistent defection by both; setting S=0 maximizes my payoff if I defect (retaining full 5 against their Yes) without committing to side-payments.",
+      "commit_explanation2": "History shows consistent mutual defection, so S=0 avoids risking side payments on an untrusted opponent while still allowing the dominant No strategy to maximize my payoff.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows Agent_4 alternates between Yes and No while I have always defected for higher payoffs, and with zero commitments the dominant strategy remains No to guarantee at least 1 point (or 5 if they Yes).",
+      "explanation2": "History of mutual No and zero commitments make defecting dominant, as it yields 5 or 1 vs. 3 or 0.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 83,
+    "pair_ids": [
+      14,
+      21
+    ],
+    "pair_names": [
+      "Agent_14",
+      "Agent_21"
+    ],
+    "timestamp": "2026-08-28T20:33:59.768682",
+    "detail": {
+      "agent1_id": 14,
+      "agent1_name": "Agent_14",
+      "agent2_id": 21,
+      "agent2_name": "Agent_21",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows opponent mostly defects, so I set S=0 to avoid paying if they cooperate while I plan to defect for max payoff.",
+      "commit_explanation2": "Agent_14 has defected in all 14 prior rounds, so committing S>0 risks unnecessary payment with no upside; S=0 avoids any loss if they defect again while still allowing me to defect safely for 1 point.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows Agent_21 mostly defects recently and commitments are zero so no side payments alter the dominant strategy to defect for higher payoff in all cases.",
+      "explanation2": "History shows Agent_14 always chose No (defect) in all 14 prior rounds, so defecting yields 1 rather than 0 with zero side-payments from mutual 0 commitments.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 84,
+    "pair_ids": [
+      16,
+      17
+    ],
+    "pair_names": [
+      "Agent_16",
+      "Agent_17"
+    ],
+    "timestamp": "2026-08-28T20:34:25.673183",
+    "detail": {
+      "agent1_id": 16,
+      "agent1_name": "Agent_16",
+      "agent2_id": 17,
+      "agent2_name": "Agent_17",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows consistent defection by Agent_17, so committing any S>0 risks unnecessary payment without inducing cooperation; S=0 preserves maximum payoff in expected defect-defect outcome.",
+      "commit_explanation2": "History shows repeated mutual defection, so Agent_16 will likely choose No making my S irrelevant; setting S=0 avoids any unnecessary payment risk while maximizing my expected score.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows repeated mutual defection in recent rounds, so defecting maximizes my payoff given zero side-payments.",
+      "explanation2": "History shows Agent_16 chose No in 4 of 5 rounds and commitments are zero so no side payments, making No the dominant strategy to secure at least 1 (or 5 if they Yes).",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 85,
+    "pair_ids": [
+      19,
+      10
+    ],
+    "pair_names": [
+      "Agent_19",
+      "Agent_10"
+    ],
+    "timestamp": "2026-08-28T20:34:48.362125",
+    "detail": {
+      "agent1_id": 19,
+      "agent1_name": "Agent_19",
+      "agent2_id": 10,
+      "agent2_name": "Agent_10",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Agent_10 has defected in 6 of 7 prior rounds, so setting S=0 avoids any risk of paying for an unlikely Yes while still allowing me to defect for 1 or 5 points.",
+      "commit_explanation2": "Agent_19 has defected in all prior rounds, so committing to any positive S risks paying for cooperation that will not occur; S=0 avoids this cost while still allowing mutual defection payoffs of 1.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Opponent has defected in all recent rounds and commitments are zero, so defecting yields 1 point rather than 0 if they defect again.",
+      "explanation2": "Agent_19 has chosen No in every prior round, so choosing No secures 1 point instead of risking 0 against certain defection.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 86,
+    "pair_ids": [
+      14,
+      19
+    ],
+    "pair_names": [
+      "Agent_14",
+      "Agent_19"
+    ],
+    "timestamp": "2026-08-28T20:35:09.718936",
+    "detail": {
+      "agent1_id": 14,
+      "agent1_name": "Agent_14",
+      "agent2_id": 19,
+      "agent2_name": "Agent_19",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows Agent_19 defecting in 5 of 7 rounds, so promising payment for cooperation risks unnecessary loss without likely benefit; S=0 maximizes my expected payoff by avoiding side-payments while still allowing defection gains.",
+      "commit_explanation2": "Given the history of mutual defection in 7/8 rounds, setting S=0 avoids any unnecessary payment if Agent_14 chooses Yes while preserving the dominant strategy of No to secure at least 1 point.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Defecting with No is dominant in the payoff matrix (5>3 if they Yes; 1>0 if they No) and history shows they mostly defect anyway.",
+      "explanation2": "History shows opponent defected in 7 of 8 prior rounds, so choosing No secures 1 point rather than risking 0 if they defect again.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 87,
+    "pair_ids": [
+      23,
+      16
+    ],
+    "pair_names": [
+      "Agent_23",
+      "Agent_16"
+    ],
+    "timestamp": "2026-08-28T20:35:29.792092",
+    "detail": {
+      "agent1_id": 23,
+      "agent1_name": "Agent_23",
+      "agent2_id": 16,
+      "agent2_name": "Agent_16",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given consistent defection in all prior rounds, S=0 avoids any risk of paying for a Yes that won't occur while preserving the dominant defect strategy.",
+      "commit_explanation2": "History shows Agent_23 defects in 7/8 rounds, so they will likely defect again and S has no effect; choosing 0 avoids any unnecessary payment risk if they cooperate.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given that Agent_16 has chosen No in all 7 prior rounds and commitments are zero, defecting yields 1 point rather than 0 if they defect again.",
+      "explanation2": "History shows consistent mutual defection in recent rounds with zero commitments, so defecting secures 1 point rather than risking 0 if opponent continues No.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 88,
+    "pair_ids": [
+      13,
+      17
+    ],
+    "pair_names": [
+      "Agent_13",
+      "Agent_17"
+    ],
+    "timestamp": "2026-08-28T20:35:52.233810",
+    "detail": {
+      "agent1_id": 13,
+      "agent1_name": "Agent_13",
+      "agent2_id": 17,
+      "agent2_name": "Agent_17",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows Agent_17 always defects (No), so S=0 avoids unnecessary payments while preserving my option to defect for 1 or 5 points.",
+      "commit_explanation2": "History shows Agent_13 defects in 5/6 rounds, so committing S=0 avoids unnecessary payments if they choose Yes while preserving my incentive to defect for 5 or 1 points.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows Agent_17 always chose No (defect), so choosing No secures 1 point rather than risking 0.",
+      "explanation2": "History shows opponent mostly defects (No), and with zero commitments the dominant strategy is to choose No to avoid getting 0 if they defect while securing at least 1 point.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 89,
+    "pair_ids": [
+      14,
+      5
+    ],
+    "pair_names": [
+      "Agent_14",
+      "Agent_5"
+    ],
+    "timestamp": "2026-08-28T20:36:14.800629",
+    "detail": {
+      "agent1_id": 14,
+      "agent1_name": "Agent_14",
+      "agent2_id": 5,
+      "agent2_name": "Agent_5",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given history of repeated mutual defection with Agent_5, setting S=0 avoids any unnecessary payment risk while preserving dominant strategy of defecting in action phase.",
+      "commit_explanation2": "History shows repeated mutual defection after initial play, so promising any side payment risks loss without guaranteed reciprocity; S=0 avoids extra cost while still allowing standard matrix maximization in action phase.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Defecting is the dominant strategy here as it yields 5 if they cooperate or 1 if they defect, both strictly better than cooperating given zero side-payments.",
+      "explanation2": "History shows Agent_14 defected in the last 3 rounds, making mutual No (1 point each) the expected outcome; defecting secures 1 rather than risking 0 if they No again.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 90,
+    "pair_ids": [
+      23,
+      15
+    ],
+    "pair_names": [
+      "Agent_23",
+      "Agent_15"
+    ],
+    "timestamp": "2026-08-28T20:36:41.126867",
+    "detail": {
+      "agent1_id": 23,
+      "agent1_name": "Agent_23",
+      "agent2_id": 15,
+      "agent2_name": "Agent_15",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Agent_15 has defected in all prior rounds regardless of commitments, so S=0 avoids unnecessary payments while expecting mutual No for 1 point each.",
+      "commit_explanation2": "Agent_23 has always chosen No in prior rounds, so S=0 avoids any payment risk while preserving my defect payoff of 1.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Agent_15 has defected in all prior rounds, so defecting secures 1 point rather than risking 0.",
+      "explanation2": "Given the history of mutual defection and zero commitments eliminating side payments, defecting (No) is the dominant strategy as it yields higher payoffs regardless of opponent's choice (5>3 if they Yes; 1>0 if they No).",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 91,
+    "pair_ids": [
+      14,
+      8
+    ],
+    "pair_names": [
+      "Agent_14",
+      "Agent_8"
+    ],
+    "timestamp": "2026-08-28T20:37:04.100756",
+    "detail": {
+      "agent1_id": 14,
+      "agent1_name": "Agent_14",
+      "agent2_id": 8,
+      "agent2_name": "Agent_8",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows Agent_8 defecting in recent rounds, so setting S=0 avoids any risk of paying out if they unexpectedly cooperate while I defect for 5 points.",
+      "commit_explanation2": "History shows Agent_14 defected in 5/6 rounds, so S=0 avoids paying for unlikely cooperation while preserving my option to defect for 5 or 1 points.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows Agent_8 defecting in all recent rounds, and with zero commitments the dominant strategy is to choose No to secure 1 point rather than risk 0 if they defect again.",
+      "explanation2": "History shows Agent_14 defected in 5 of 6 rounds, so defecting secures 1 point rather than risking 0. Zero side-payments leave the standard matrix unchanged.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 92,
+    "pair_ids": [
+      7,
+      20
+    ],
+    "pair_names": [
+      "Agent_7",
+      "Agent_20"
+    ],
+    "timestamp": "2026-08-28T20:37:27.521563",
+    "detail": {
+      "agent1_id": 7,
+      "agent1_name": "Agent_7",
+      "agent2_id": 20,
+      "agent2_name": "Agent_20",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows consistent mutual defection, so Agent_20 is expected to choose No again regardless of S; setting S=0 avoids any unnecessary payment risk while preserving the safe 1-point mutual-No outcome.",
+      "commit_explanation2": "Agent_7 has defected in all prior rounds, so I set S=0 to minimize any risk of paying out if they choose Yes while expecting continued defection for max personal points.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows consistent mutual defection with zero side-payments, so defecting secures 1 point and exploits any cooperation for 5.",
+      "explanation2": "Agent_7 has chosen No in the last 4 rounds, so defecting maximizes my payoff at 1 rather than risking 0. No side payments apply given the zero commitments.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 93,
+    "pair_ids": [
+      8,
+      16
+    ],
+    "pair_names": [
+      "Agent_8",
+      "Agent_16"
+    ],
+    "timestamp": "2026-08-28T20:37:54.873472",
+    "detail": {
+      "agent1_id": 8,
+      "agent1_name": "Agent_8",
+      "agent2_id": 16,
+      "agent2_name": "Agent_16",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows Agent_16 defected in 5 of last 6 rounds, so S=0 avoids any risk of paying for cooperation that will not occur while allowing safe defection for 5 or 1 points.",
+      "commit_explanation2": "History shows consistent mutual defection so a zero commitment avoids any risk of paying for cooperation that is unlikely to occur while still allowing me to defect for 1 or 5 points.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows Agent_16 defected in 6 of 7 prior rounds, so defecting maximizes payoff given zero commitments.",
+      "explanation2": "History shows Agent_8 defected in all recent rounds and commitments are zero so no side payments alter the dominant strategy of choosing No to secure 5 or 1 instead of 3 or 0.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 94,
+    "pair_ids": [
+      15,
+      20
+    ],
+    "pair_names": [
+      "Agent_15",
+      "Agent_20"
+    ],
+    "timestamp": "2026-08-28T20:38:14.634513",
+    "detail": {
+      "agent1_id": 15,
+      "agent1_name": "Agent_15",
+      "agent2_id": 20,
+      "agent2_name": "Agent_20",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows consistent mutual defection, so S=0 avoids any risk of paying for opponent's potential Yes while preserving the dominant defect strategy in the base PD matrix.",
+      "commit_explanation2": "Given Agent_15's consistent No choices in rounds 2-6 after initial betrayal, setting S=0 avoids any risk of paying for their potential Yes while still allowing me to defect for max payoff if they cooperate.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Opponent has defected in all prior rounds and commitments are zero so no side-payments apply; defecting remains the dominant strategy for higher payoff regardless of their choice.",
+      "explanation2": "History shows consistent mutual defection after initial betrayal, and with zero side payments the dominant strategy is No to secure 1 point rather than risk 0.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 95,
+    "pair_ids": [
+      7,
+      8
+    ],
+    "pair_names": [
+      "Agent_7",
+      "Agent_8"
+    ],
+    "timestamp": "2026-08-28T20:38:40.468798",
+    "detail": {
+      "agent1_id": 7,
+      "agent1_name": "Agent_7",
+      "agent2_id": 8,
+      "agent2_name": "Agent_8",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Agent_8 has always defected in 10 prior rounds, so commitments will not trigger and S=0 avoids any unnecessary risk while still allowing mutual defection payoff of 1.",
+      "commit_explanation2": "Given Agent_7's consistent defection in 7 of 8 prior rounds, committing S=0 avoids any risk of side payments while still allowing mutual cooperation if they surprise with Yes.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given that Agent_8 has defected in all 10 prior rounds and commitments are zero (no side payments), defecting yields 1 point rather than 0 if they defect again.",
+      "explanation2": "History shows repeated mutual No after initial cooperation and one exploitation, and No strictly dominates regardless of opponent's choice or zero side-payments.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 96,
+    "pair_ids": [
+      14,
+      2
+    ],
+    "pair_names": [
+      "Agent_14",
+      "Agent_2"
+    ],
+    "timestamp": "2026-08-28T20:39:02.456221",
+    "detail": {
+      "agent1_id": 14,
+      "agent1_name": "Agent_14",
+      "agent2_id": 2,
+      "agent2_name": "Agent_2",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows Agent_2 mostly defects to No recently while I always defect, so I will choose No to secure at least 1 (or 5 if they Yes); setting S=0 avoids any payment risk if they Yes without reducing my incentive to defect.",
+      "commit_explanation2": "History shows Agent_14 always defects, so S is irrelevant as no payment occurs; choosing 0 avoids any unnecessary cost if they unexpectedly cooperate while still maximizing my expected score from mutual defection.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows Agent_2 defecting in most rounds, so choosing No secures 1 point rather than risking 0 if they defect again.",
+      "explanation2": "History shows Agent_14 always chose No, so defecting secures 1 point rather than risking 0 if they defect again; commitments of 0 add no incentive to cooperate.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 97,
+    "pair_ids": [
+      22,
+      9
+    ],
+    "pair_names": [
+      "Agent_22",
+      "Agent_9"
+    ],
+    "timestamp": "2026-08-28T20:39:26.662012",
+    "detail": {
+      "agent1_id": 22,
+      "agent1_name": "Agent_22",
+      "agent2_id": 9,
+      "agent2_name": "Agent_9",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows consistent mutual defection in all prior rounds with this agent, so S=0 avoids any risk of paying for unreciprocated cooperation while still allowing the standard 1-point DD outcome.",
+      "commit_explanation2": "History shows Agent_22 always defects (No), so S=0 avoids unnecessary payment risk while preserving my max payoff of 5 or 1 from defecting.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Agent_9 has always chosen No in all prior rounds, so defecting secures 1 point instead of 0 against their likely No.",
+      "explanation2": "Agent_22 has defected in all prior rounds and commitments are zero so No yields 1 rather than 0 against certain defection.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 98,
+    "pair_ids": [
+      7,
+      8
+    ],
+    "pair_names": [
+      "Agent_7",
+      "Agent_8"
+    ],
+    "timestamp": "2026-08-28T20:39:48.802819",
+    "detail": {
+      "agent1_id": 7,
+      "agent1_name": "Agent_7",
+      "agent2_id": 8,
+      "agent2_name": "Agent_8",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows Agent_8 always defects, so committing any S>0 risks paying for a Yes that won't occur and won't change their behavior; thus S=0 maximizes expected payoff under repeated No-No outcome.",
+      "commit_explanation2": "Agent_7 has defected in 8 of 9 prior rounds, so committing any positive S risks paying for cooperation that is unlikely to occur and reduces my expected payoff under the matrix.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Agent_8 has defected in all 11 prior rounds with zero commitments, so defecting secures 1 point rather than risking 0.",
+      "explanation2": "Agent_7 has defected in the last 8 rounds and commitments are both 0 so side payments do not change the dominant strategy of defecting for a higher payoff of 1 over 0.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 99,
+    "pair_ids": [
+      10,
+      17
+    ],
+    "pair_names": [
+      "Agent_10",
+      "Agent_17"
+    ],
+    "timestamp": "2026-08-28T20:40:09.619768",
+    "detail": {
+      "agent1_id": 10,
+      "agent1_name": "Agent_10",
+      "agent2_id": 17,
+      "agent2_name": "Agent_17",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Agent_17 has defected in nearly all prior rounds, so I set S=0 to avoid any unnecessary payment risk while expecting No from them again.",
+      "commit_explanation2": "History shows Agent_10 defects in most rounds, so I set S=0 to avoid any payment risk while defecting myself for max payoff.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows Agent_17 always chooses No (except once exploiting my Yes), so defecting yields 1 point vs 0 if cooperating.",
+      "explanation2": "Agent_10 has chosen No in the last 6 rounds, so defecting yields 1 rather than 0 if they defect again.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 100,
+    "pair_ids": [
+      2,
+      4
+    ],
+    "pair_names": [
+      "Agent_2",
+      "Agent_4"
+    ],
+    "timestamp": "2026-08-28T20:40:34.476709",
+    "detail": {
+      "agent1_id": 2,
+      "agent1_name": "Agent_2",
+      "agent2_id": 4,
+      "agent2_name": "Agent_4",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Agent_4 has defected in all 6 prior rounds, so committing any S>0 risks unnecessary payment with no cooperation expected.",
+      "commit_explanation2": "History shows consistent mutual defection, so Agent_2 will likely choose No again; setting S=0 avoids any unnecessary payment risk while planning to defect for 1 point.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Given that Agent_4 has chosen No in all 6 prior rounds and commitments are zero, defecting maximizes my payoff (1 vs 0 if they No again).",
+      "explanation2": "With zero commitments and no side payments, defecting (No) is the dominant strategy to maximize payoff regardless of opponent's choice, consistent with all prior rounds.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 101,
+    "pair_ids": [
+      4,
+      7
+    ],
+    "pair_names": [
+      "Agent_4",
+      "Agent_7"
+    ],
+    "timestamp": "2026-08-28T20:40:54.077686",
+    "detail": {
+      "agent1_id": 4,
+      "agent1_name": "Agent_4",
+      "agent2_id": 7,
+      "agent2_name": "Agent_7",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows consistent mutual defection with zero prior commitments, so setting S=0 avoids any risk of paying for their cooperation while still allowing mutual 1-point outcomes if they defect again.",
+      "commit_explanation2": "History shows consistent mutual defection, so S=0 avoids any risk of paying on unexpected cooperation while preserving the 1-point equilibrium.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Agent_7 has defected in all prior rounds and commitments are zero so side-payments do not alter the dominant strategy; defecting secures 1 rather than risking 0.",
+      "explanation2": "Given Agent_4's history of always choosing No, selecting No secures 1 point instead of 0 from cooperating against a defector.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 102,
+    "pair_ids": [
+      12,
+      22
+    ],
+    "pair_names": [
+      "Agent_12",
+      "Agent_22"
+    ],
+    "timestamp": "2026-08-28T20:41:12.336311",
+    "detail": {
+      "agent1_id": 12,
+      "agent1_name": "Agent_12",
+      "agent2_id": 22,
+      "agent2_name": "Agent_22",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows consistent mutual defection with no cooperation, so setting S=0 avoids any unnecessary payment risk without altering expected payoffs of 1 each.",
+      "commit_explanation2": "History shows consistent mutual defection, so setting S=0 avoids any unnecessary payment risk while still allowing defection for 1 point. No incentive exists to encourage cooperation given repeated No choices.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Agent_22 has chosen No in all 9 prior rounds, so defecting yields 1 rather than 0.",
+      "explanation2": "History shows consistent mutual defection by Agent_12, and with zero commitments the dominant strategy remains No to secure at least 1 point.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 103,
+    "pair_ids": [
+      4,
+      22
+    ],
+    "pair_names": [
+      "Agent_4",
+      "Agent_22"
+    ],
+    "timestamp": "2026-08-28T20:41:34.825576",
+    "detail": {
+      "agent1_id": 4,
+      "agent1_name": "Agent_4",
+      "agent2_id": 22,
+      "agent2_name": "Agent_22",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows Agent_22 always defects, so S=0 avoids any risk of paying for a Yes while planning to defect myself for the (1,1) outcome.",
+      "commit_explanation2": "History shows consistent mutual defection, so S=0 avoids any risk of paying for an unlikely Yes while preserving the dominant No strategy.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows Agent_22 always defects and commitments are zero so defecting maximizes my payoff at 1 rather than risking 0.",
+      "explanation2": "Agent_4 has defected in all 9 prior rounds, so choosing No secures 1 point rather than risking 0 if they defect again.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 104,
+    "pair_ids": [
+      6,
+      2
+    ],
+    "pair_names": [
+      "Agent_6",
+      "Agent_2"
+    ],
+    "timestamp": "2026-08-28T20:42:01.848235",
+    "detail": {
+      "agent1_id": 6,
+      "agent1_name": "Agent_6",
+      "agent2_id": 2,
+      "agent2_name": "Agent_2",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows repeated mutual defection, so S=0 avoids any risk of paying for cooperation that is unlikely to occur while preserving my incentive to defect for 5 or 1 points.",
+      "commit_explanation2": "Given Agent_6's consistent defection in all prior rounds, setting S=0 minimizes any risk of unnecessary payment while still allowing mutual defection for 1 point each.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Opponent has chosen No in the last 8 rounds, so defecting secures 1 point rather than risking 0.",
+      "explanation2": "Opponent has always chosen No in prior rounds with zero side-payments, so defecting yields 1 rather than 0.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 105,
+    "pair_ids": [
+      13,
+      10
+    ],
+    "pair_names": [
+      "Agent_13",
+      "Agent_10"
+    ],
+    "timestamp": "2026-08-28T20:42:20.670476",
+    "detail": {
+      "agent1_id": 13,
+      "agent1_name": "Agent_13",
+      "agent2_id": 10,
+      "agent2_name": "Agent_10",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows Agent_10 always defects (No), so I will defect too; S=0 avoids paying anything on their potential Yes while still allowing 1-point mutual defect outcome.",
+      "commit_explanation2": "History shows Agent_13 always defects (No), so committing any positive S risks paying for a Yes that will not occur and cannot improve my payoff over the (No,No) baseline of 1.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Agent_10 has chosen No in every prior round, so defecting secures 1 point rather than risking 0 against certain betrayal with zero side-payments.",
+      "explanation2": "Agent_13 has chosen No in all 11 prior rounds (defecting in the single instance of my Yes), so defecting secures 1 point rather than risking 0 against a consistent defector with zero side-payments.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 106,
+    "pair_ids": [
+      17,
+      14
+    ],
+    "pair_names": [
+      "Agent_17",
+      "Agent_14"
+    ],
+    "timestamp": "2026-08-28T20:42:41.023331",
+    "detail": {
+      "agent1_id": 17,
+      "agent1_name": "Agent_17",
+      "agent2_id": 14,
+      "agent2_name": "Agent_14",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows consistent mutual defection so I set S=0 to avoid any side-payment risk while defecting again for the dominant 1-point payoff.",
+      "commit_explanation2": "History shows Agent_17 mostly defects (No), so S=0 avoids any risk of paying for their cooperation while I continue defecting to maximize my score per the payoff matrix.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows Agent_14 defecting (No) in the last 7 rounds, so defecting maximizes my payoff at 1 rather than risking 0 if they continue No.",
+      "explanation2": "Defecting (No) is the dominant strategy here as it yields strictly higher payoffs than Yes regardless of opponent's choice, especially with zero side payments and a history of mutual No.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 107,
+    "pair_ids": [
+      13,
+      1
+    ],
+    "pair_names": [
+      "Agent_13",
+      "Agent_1"
+    ],
+    "timestamp": "2026-08-28T20:43:03.607812",
+    "detail": {
+      "agent1_id": 13,
+      "agent1_name": "Agent_13",
+      "agent2_id": 1,
+      "agent2_name": "Agent_1",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows Agent_1 defects every round, so my S has no effect and I will also defect to maximize points at 1 each.",
+      "commit_explanation2": "History shows consistent mutual defection, so no value in committing payments for cooperation that will not occur; S=0 avoids any unnecessary loss while preserving the dominant defect strategy in the action phase.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Agent_1 has chosen No in all 12 prior rounds regardless of my action, so defecting yields 1 rather than 0 against their consistent betrayal.",
+      "explanation2": "History shows Agent_13 always chose No, so defecting yields 1 rather than 0; zero side-payments leave the dominant strategy unchanged.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 108,
+    "pair_ids": [
+      6,
+      13
+    ],
+    "pair_names": [
+      "Agent_6",
+      "Agent_13"
+    ],
+    "timestamp": "2026-08-28T20:43:22.942857",
+    "detail": {
+      "agent1_id": 6,
+      "agent1_name": "Agent_6",
+      "agent2_id": 13,
+      "agent2_name": "Agent_13",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows repeated mutual defection with Agent_13, so they will likely defect again regardless of S; choosing 0 avoids any unnecessary payment risk while still allowing me to defect for 1 point.",
+      "commit_explanation2": "History shows consistent defection by Agent_6, so S=0 avoids any unnecessary payment risk while still allowing potential mutual benefit if they unexpectedly cooperate.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Agent_13 has chosen No in the last 9 rounds, so defecting secures 1 point rather than risking 0.",
+      "explanation2": "Agent_6 has chosen No in all 13 prior rounds, so choosing Yes yields 0 while No yields 1 with no side payments from 0 commitments.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 109,
+    "pair_ids": [
+      12,
+      18
+    ],
+    "pair_names": [
+      "Agent_12",
+      "Agent_18"
+    ],
+    "timestamp": "2026-08-28T20:43:40.835746",
+    "detail": {
+      "agent1_id": 12,
+      "agent1_name": "Agent_12",
+      "agent2_id": 18,
+      "agent2_name": "Agent_18",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given consistent mutual defection in all prior rounds, S=0 avoids any unnecessary payment risk while preserving the 1-point equilibrium payoff.",
+      "commit_explanation2": "History shows consistent mutual defection, so S=0 avoids paying for cooperation that won't occur while preserving the dominant defect strategy.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows Agent_18 always chose No in all prior rounds, so defecting yields 1 point rather than risking 0 if they defect again.",
+      "explanation2": "History shows Agent_12 always chose No, so defecting yields 1 rather than 0 against their likely No; commitments of 0 change nothing.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 110,
+    "pair_ids": [
+      22,
+      0
+    ],
+    "pair_names": [
+      "Agent_22",
+      "Agent_0"
+    ],
+    "timestamp": "2026-08-28T20:44:04.364265",
+    "detail": {
+      "agent1_id": 22,
+      "agent1_name": "Agent_22",
+      "agent2_id": 0,
+      "agent2_name": "Agent_0",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows consistent mutual defection so I set S=0 to avoid any risk of paying for a cooperation that will not occur.",
+      "commit_explanation2": "History shows consistent No/No play so opponent likely defects again; choosing S=0 avoids any unnecessary payment risk while maximizing my payoff under defection.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows Agent_0 always chose No, so defecting yields 1 point instead of 0 if they defect again.",
+      "explanation2": "Given the history of mutual defection and zero side payments, No is the dominant strategy as it yields 5 if they Yes or 1 if they No, both superior to cooperating.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 111,
+    "pair_ids": [
+      18,
+      12
+    ],
+    "pair_names": [
+      "Agent_18",
+      "Agent_12"
+    ],
+    "timestamp": "2026-08-28T20:44:26.827278",
+    "detail": {
+      "agent1_id": 18,
+      "agent1_name": "Agent_18",
+      "agent2_id": 12,
+      "agent2_name": "Agent_12",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows consistent mutual defection with zero commitments, so matching S=0 avoids unnecessary payments while preserving the dominant No strategy for 1 point.",
+      "commit_explanation2": "History shows consistent mutual defection with no cooperation, so promising any side payment risks losing points without benefit; S=0 maximizes expected payoff under the matrix.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Opponent has always chosen No in prior rounds, so defecting secures 1 point rather than risking 0 from cooperating against a likely No.",
+      "explanation2": "Given mutual defection in all prior rounds and zero commitments, defecting remains dominant as it yields higher payoff regardless of opponent's choice (5>3 or 1>0).",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 112,
+    "pair_ids": [
+      15,
+      0
+    ],
+    "pair_names": [
+      "Agent_15",
+      "Agent_0"
+    ],
+    "timestamp": "2026-08-28T20:44:46.572392",
+    "detail": {
+      "agent1_id": 15,
+      "agent1_name": "Agent_15",
+      "agent2_id": 0,
+      "agent2_name": "Agent_0",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Agent_0 defected in all 6 prior rounds, so committing any S>0 risks an unnecessary payment with no realistic chance of inducing cooperation.",
+      "commit_explanation2": "History shows consistent mutual defection so Agent_15 will likely choose No again, making any S>0 irrelevant and risky if they unexpectedly cooperate.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Agent_0 has defected in all 6 prior rounds, so defecting maximizes my payoff at 1 rather than risking 0.",
+      "explanation2": "Opponent has chosen No in all 7 prior rounds with zero side-payments, so defecting secures 1 point rather than risking 0 if they defect again.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 113,
+    "pair_ids": [
+      11,
+      9
+    ],
+    "pair_names": [
+      "Agent_11",
+      "Agent_9"
+    ],
+    "timestamp": "2026-08-28T20:45:04.131645",
+    "detail": {
+      "agent1_id": 11,
+      "agent1_name": "Agent_11",
+      "agent2_id": 9,
+      "agent2_name": "Agent_9",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows Agent_9 mostly defects after the first round, so committing S=0 avoids unnecessary side-payments while still allowing me to defect for 5 or 1 points. This maximizes expected payoff given the dominant strategy to choose No in the action phase regardless of their S.",
+      "commit_explanation2": "Agent_11 has defected (No) in all recent rounds, so committing S=0 avoids any risk of payment while maximizing my payoff under likely mutual defection.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Commitments are zero so this is standard PD where No strictly dominates (5>3 if they Yes; 1>0 if they No); history shows opponent mostly defects anyway.",
+      "explanation2": "Agent_11 has defected in all 10 prior rounds, so choosing Yes would yield 0 while No secures 1 against their likely No; zero commitments mean no side payments alter this.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 114,
+    "pair_ids": [
+      12,
+      13
+    ],
+    "pair_names": [
+      "Agent_12",
+      "Agent_13"
+    ],
+    "timestamp": "2026-08-28T20:45:29.331242",
+    "detail": {
+      "agent1_id": 12,
+      "agent1_name": "Agent_12",
+      "agent2_id": 13,
+      "agent2_name": "Agent_13",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows consistent mutual defection, so setting S=0 avoids any risk of paying for an unlikely Yes while still allowing me to defect for 5 or 1 points safely.",
+      "commit_explanation2": "Agent_12 has defected in all 14 prior rounds, so they will likely choose No again (making my S irrelevant); setting S=0 avoids any risk of paying for an unlikely cooperation while maximizing my payoff under repeated defection.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Opponent has defected in all 12 prior rounds, and zero commitments leave the dominant strategy as No to guarantee 1 point rather than risk 0.",
+      "explanation2": "History shows Agent_12 always chose No (defect), so choosing Yes would yield 0 while No secures 1 with zero side payments; mutual defection is the only stable outcome here.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 115,
+    "pair_ids": [
+      17,
+      23
+    ],
+    "pair_names": [
+      "Agent_17",
+      "Agent_23"
+    ],
+    "timestamp": "2026-08-28T20:45:53.460838",
+    "detail": {
+      "agent1_id": 17,
+      "agent1_name": "Agent_17",
+      "agent2_id": 23,
+      "agent2_name": "Agent_23",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given the history of repeated mutual defection, committing S=0 avoids any risk of paying out while still allowing me to defect for maximum payoff.",
+      "commit_explanation2": "History shows Agent_17 always defects, so promising any payment for Yes yields no benefit and risks loss if they switch; S=0 avoids unnecessary cost while still allowing mutual No payoff of 1 each.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Opponent has defected in the last 8 rounds, so defecting secures 1 point rather than risking 0 against a likely No.",
+      "explanation2": "Opponent has chosen No in all 9 prior rounds, so defecting with No secures 1 point while risking Yes would likely yield 0.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 116,
+    "pair_ids": [
+      23,
+      17
+    ],
+    "pair_names": [
+      "Agent_23",
+      "Agent_17"
+    ],
+    "timestamp": "2026-08-28T20:46:16.490869",
+    "detail": {
+      "agent1_id": 23,
+      "agent1_name": "Agent_23",
+      "agent2_id": 17,
+      "agent2_name": "Agent_17",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows consistent mutual defection, so S=0 avoids any risk of paying for cooperation that won't occur while preserving the dominant defect strategy in the action phase.",
+      "commit_explanation2": "History shows consistent mutual defection with Agent_23, so no incentive exists to promise side payments that would only apply if they cooperate; S=0 avoids any risk while preserving the dominant defect strategy for max points.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Opponent has chosen No in all 10 prior rounds, so defecting secures 1 point instead of risking 0.",
+      "explanation2": "Agent_23 has defected (No) in the last 9 rounds with zero commitments, so defecting secures 1 point rather than risking 0 against a likely No.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 117,
+    "pair_ids": [
+      19,
+      7
+    ],
+    "pair_names": [
+      "Agent_19",
+      "Agent_7"
+    ],
+    "timestamp": "2026-08-28T20:46:35.459663",
+    "detail": {
+      "agent1_id": 19,
+      "agent1_name": "Agent_19",
+      "agent2_id": 7,
+      "agent2_name": "Agent_7",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows Agent_7 defected in 8/9 prior rounds, so promising payment for cooperation is unnecessary; S=0 avoids any risk of paying while still allowing me to defect for maximum payoff.",
+      "commit_explanation2": "Given 13 rounds of mutual defection, Agent_19 is expected to choose No again, so committing S=0 avoids any unnecessary payment risk while preserving my incentive to defect for 1 point.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows opponent has defected in every round since the first, so defecting maximizes my payoff at 1 rather than risking 0.",
+      "explanation2": "Agent_19 has defected in all 13 prior rounds with no side payments active, so defecting yields 1 rather than 0.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 118,
+    "pair_ids": [
+      15,
+      7
+    ],
+    "pair_names": [
+      "Agent_15",
+      "Agent_7"
+    ],
+    "timestamp": "2026-08-28T20:46:59.630513",
+    "detail": {
+      "agent1_id": 15,
+      "agent1_name": "Agent_15",
+      "agent2_id": 7,
+      "agent2_name": "Agent_7",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "History shows consistent mutual defection, so setting S=0 avoids any unnecessary payment risk if opponent cooperates while preserving the 1-point mutual-defect equilibrium.",
+      "commit_explanation2": "Agent_15 has defected in all 14 prior rounds with zero commitments, so no incentive exists to promise payment for their cooperation; S=0 avoids any risk while preserving the mutual-defect equilibrium payoff of 1.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Agent_7 has always chosen No in prior rounds, so defecting secures 1 point while cooperating risks 0 against their likely No.",
+      "explanation2": "Agent_15 has defected in all 14 prior rounds with zero commitments, so defecting secures 1 point rather than risking 0.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 119,
+    "pair_ids": [
+      8,
+      13
+    ],
+    "pair_names": [
+      "Agent_8",
+      "Agent_13"
+    ],
+    "timestamp": "2026-08-28T20:47:25.660745",
+    "detail": {
+      "agent1_id": 8,
+      "agent1_name": "Agent_8",
+      "agent2_id": 13,
+      "agent2_name": "Agent_13",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given Agent_13's consistent No choices in recent rounds, S=0 avoids any risk of paying for a cooperation that is unlikely to occur.",
+      "commit_explanation2": "Agent_8 has defected in all 15 prior rounds, so S=0 avoids any unnecessary payment risk while still allowing mutual No for 1 point each.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "History shows Agent_13 defected in 9 of 10 rounds, so defecting secures 1 point rather than risking 0 from cooperating against likely No.",
+      "explanation2": "Agent_8 has defected in all 15 prior rounds, so defecting secures 1 point rather than risking 0 against certain betrayal.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  },
+  {
+    "interaction": 120,
+    "pair_ids": [
+      15,
+      0
+    ],
+    "pair_names": [
+      "Agent_15",
+      "Agent_0"
+    ],
+    "timestamp": "2026-08-28T20:47:48.534674",
+    "detail": {
+      "agent1_id": 15,
+      "agent1_name": "Agent_15",
+      "agent2_id": 0,
+      "agent2_name": "Agent_0",
+      "side_payment_1_to_2": 0,
+      "side_payment_2_to_1": 0,
+      "commit_explanation1": "Given consistent mutual defection in all prior rounds with Agent_0, setting S=0 avoids any unnecessary payment risk while maintaining the Nash equilibrium of (No, No) for 1 point each.",
+      "commit_explanation2": "History shows consistent mutual defection, so no benefit to committing payment that only applies if they cooperate; S=0 avoids any risk without changing likely outcome.",
+      "choice1": "No",
+      "choice2": "No",
+      "explanation1": "Agent_0 has defected in all 8 prior rounds, so defecting yields 1 rather than 0 with zero side-payments.",
+      "explanation2": "Agent_15 has defected every round so far, so defecting secures 1 point instead of risking 0 with no side-payments in effect.",
+      "payoff1": 1,
+      "payoff2": 1,
+      "cooperation": false
+    }
+  }
+]

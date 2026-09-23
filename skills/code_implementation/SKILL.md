@@ -1,31 +1,16 @@
-﻿# code_implementation
+---
+name: code-implementation
+description: Implement an approved implementation-plan-v2 into a new public-goods, prisoner's-dilemma, or trust-game environment file using validated structured Python edits. Use only after compatibility and consistency approval.
+---
 
-Use this skill to turn an approved `implementation_plan.json` into a new mechanism-specific env file with an LLM coding agent plus deterministic program checks.
+# Code Implementation
 
-Inputs:
-- `implementation_plan.json` from `skills/baseline_mapper`.
-- Source baseline env file.
-- Optional `review_report.json` from `skills/consistency_checker`; when provided, it must approve code implementation.
+Generate and apply structured edits to a copy of the baseline. Supported targets include class methods, module functions, and module assignments. Class names and decision methods come from the selected game adapter rather than fixed public-goods names.
 
-Output:
-- A new env file. The source baseline is never overwritten.
-- A JSON implementation report recording applied edits, preserved baseline hash, syntax status, validation issues, and manual-review notes.
+For trust games, preserve the Trustor-transfer -> Trustee-return sequence, role-specific bounds and histories, transfer multiplier, both base payoff formulas, and all baseline agent profiles exactly. Add any approved later sanction as a separate Trustor response and keep mechanism context separate from protected profiles.
 
-Run example:
+Fail closed when the review is not approved, compatibility blocks implementation, the detected baseline game differs from the plan, a required change lacks an edit, syntax fails, a baseline invariant disappears, or an agent-profile AST fingerprint changes.
 
 ```powershell
-python -m skills.code_implementation.implementer --plan "implementation_plans\altruistic_punishment_public_goods_plan.json" --review "review_reports\altruistic_punishment_public_goods_review.json" --baseline "env_main_public_goods_group.py" --output "env_main_public_goods_group_altruistic_punishment.py" --report "implementation_logs\altruistic_punishment_public_goods_code_report.json"
+python -m skills.code_implementation.implementer --plan implementation_plans\paper.json --review review_reports\paper.json --baseline env_main_trust_game_group.py --output generated\paper_trust.py --report implementation_logs\paper.json
 ```
-
-Provider:
-- Uses `LLMAPI.zgc` by default.
-- Set `ZGC_LLM_API_KEY` in the same terminal before running.
-- Optional model override: `ZGC_DEFAULT_MODEL`.
-- Optional output budget override: `ZGC_MAX_TOKENS`.
-
-Contract:
-- Use the LLM only to generate structured local edits.
-- Apply edits by program against the baseline copy.
-- Preserve baseline-native settings: agent count, initial endowment, public pool multiplier/MPCR, total rounds, seed, and existing experiment loop.
-- Preserve original result fields and add mechanism fields instead of deleting old fields.
-- Fail closed when syntax or required mechanism checks fail.

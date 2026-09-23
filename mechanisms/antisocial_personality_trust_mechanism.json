@@ -1,0 +1,372 @@
+{
+  "schema_version": "cooperation-mechanism-v2",
+  "source": {
+    "input_type": "text",
+    "file_name": "On the Psychology and Economics of Antisocial Personality.pdf",
+    "extraction_method": "llm_structured_extraction"
+  },
+  "paper": {
+    "title": "On the Psychology and Economics of Antisocial Personality",
+    "authors": [
+      "Engelmann et al."
+    ],
+    "year": 2019,
+    "research_question": "How antisocial personality characteristics relate to behavioral trust, trustworthiness, beliefs, and how these effects interact with a strong situational punishment opportunity in a trust game.",
+    "study_type": "Laboratory experiment with incentivized trust games and personality measurement.",
+    "sample": "Healthy volunteers, n=182; 98 females; randomly assigned to investor/P1 or agent/P2 roles; reported role counts P1 n=90, P2 n=89.",
+    "setting": "Laboratory; four trust-game versions; anonymous randomly assigned partners; one randomly selected round paid."
+  },
+  "game_context": {
+    "game_family": "trust_game",
+    "topology": "dyadic_random_matching",
+    "rounds": 6,
+    "group_size": 2,
+    "endowment": "CHF 20 each for investor and agent in main binary games",
+    "native_actions": [
+      "Investor decides whether to keep CHF 20 or transfer CHF 10 to agent in binary trust game.",
+      "Transferred amount is tripled.",
+      "Agent conditionally chooses back-transfer amount for each possible investor transfer using strategy method.",
+      "In punishment treatment, investor conditionally chooses punishment for each possible agent back transfer using strategy method.",
+      "Investor belief about agent back transfer is elicited after investor trust decision."
+    ],
+    "payoff_structure": "If investor transfers CHF 10, it is tripled for the agent; agent's back transfer is not tripled. In PT, after the agent's back-transfer decision, each CHF spent by investor on punishment reduces agent final payoff by CHF 5. One round randomly selected for payoff to avoid wealth effects.",
+    "real_incentives": true,
+    "decision_protocol": "strategy_method",
+    "baseline_condition": "No punishment treatment (NPT): binary trust game without investor punishment opportunity.",
+    "decision_stages": [
+      {
+        "stage_id": "S1",
+        "stage_type": "primary_action",
+        "actions": [
+          "Investor/Trustor chooses transfer: CHF 0 or CHF 10 in main binary game."
+        ],
+        "observed_before_decision": [
+          "Own role",
+          "Endowments",
+          "Treatment rules",
+          "Anonymous random matching"
+        ]
+      },
+      {
+        "stage_id": "S2",
+        "stage_type": "post_action_response",
+        "actions": [
+          "Agent/Trustee chooses conditional back-transfer amounts for possible investor transfers CHF 0 and CHF 10; actual payoff-relevant return depends on realized investor transfer."
+        ],
+        "observed_before_decision": [
+          "Own role",
+          "Endowments",
+          "Treatment rules",
+          "Possible investor transfer levels",
+          "Not the realized transfer at elicitation under strategy method"
+        ]
+      },
+      {
+        "stage_id": "S3",
+        "stage_type": "post_action_response",
+        "actions": [
+          "In PT only, investor chooses conditional punishment amounts for possible agent back transfers."
+        ],
+        "observed_before_decision": [
+          "Punishment technology",
+          "Possible agent back-transfer amounts",
+          "Not the realized agent back transfer at elicitation under strategy method"
+        ]
+      },
+      {
+        "stage_id": "S4",
+        "stage_type": "information_update",
+        "actions": [
+          "Investor states belief about agent's back transfer."
+        ],
+        "observed_before_decision": [
+          "Own trust decision",
+          "Treatment rules"
+        ]
+      }
+    ]
+  },
+  "treatment_matrix": [
+    {
+      "treatment_id": "B",
+      "label": "NPT: binary trust game without punishment opportunity",
+      "active_mechanism_ids": [],
+      "information_available": [
+        "Endowments",
+        "Transfer tripling rule",
+        "Back transfer not tripled",
+        "Anonymous random partner",
+        "No punishment opportunity"
+      ],
+      "network_rule": "Anonymous random dyadic matching each round."
+    },
+    {
+      "treatment_id": "T1",
+      "label": "PT: binary trust game with costly punishment opportunity",
+      "active_mechanism_ids": [
+        "M1"
+      ],
+      "information_available": [
+        "Endowments",
+        "Transfer tripling rule",
+        "Back transfer not tripled",
+        "Anonymous random partner",
+        "Investor can punish after agent back-transfer decision; CHF 1 punishment cost reduces agent payoff by CHF 5"
+      ],
+      "network_rule": "Anonymous random dyadic matching each round."
+    },
+    {
+      "treatment_id": "T2",
+      "label": "NBT robustness version: nonbinary trust game without punishment, details partly outside provided excerpt",
+      "active_mechanism_ids": [],
+      "information_available": [
+        "Investor can invest any amount between CHF 0 and CHF 10",
+        "Other details not fully available in provided text"
+      ],
+      "network_rule": "Anonymous random dyadic matching each round."
+    },
+    {
+      "treatment_id": "T3",
+      "label": "Additional trust-game robustness version, unspecified in provided excerpt",
+      "active_mechanism_ids": [],
+      "information_available": [],
+      "network_rule": "Anonymous random dyadic matching each round; exact rules uncertain."
+    }
+  ],
+  "mechanisms": [
+    {
+      "mechanism_id": "M1",
+      "name": "Investor costly punishment opportunity after trustee return",
+      "type": "punishment",
+      "summary": "The punishment treatment adds a sanctioning option to the trust game: after the agent's back-transfer decision, the investor can spend money to reduce the agent's payoff at a 1:5 cost-to-impact ratio. The mechanism is known to both players and was elicited by strategy method as punishment conditional on possible back transfers.",
+      "actors": {
+        "decision_maker": "Investor/Trustor/P1",
+        "target": "Agent/Trustee/P2",
+        "observer": "Experimenter; counterpart is informed that punishment opportunity exists"
+      },
+      "timing": {
+        "stage": "S3 after trustee back-transfer stage in PT",
+        "stage_type": "post_action_response",
+        "frequency": "Available in each PT round; participants played six PT rounds.",
+        "simultaneous_with_primary_action": false
+      },
+      "information_structure": {
+        "anonymity": "Partners were anonymous and randomly assigned each round.",
+        "public_information": [
+          "Existence of punishment opportunity in PT",
+          "Cost and impact of punishment: CHF 1 spent reduces agent payoff by CHF 5",
+          "Transfer and back-transfer rules"
+        ],
+        "private_information": [
+          "Personality questionnaire scores",
+          "Investor belief about agent back transfer",
+          "Conditional strategy-method choices before realization"
+        ],
+        "history_visibility": "No partner-specific history reported; random anonymous matching limits repeated-partner history."
+      },
+      "action_space_changes": [
+        {
+          "action": "Investor punishment spend",
+          "range_or_options": "Nonnegative CHF punishment amounts over possible back transfers; exact allowable grid or upper bound not stated in provided excerpt.",
+          "condition": "PT only, after agent's back-transfer decision in the underlying game; elicited conditionally before realized back transfer is known."
+        }
+      ],
+      "payoff_changes": [
+        {
+          "who_pays": "Investor/Trustor",
+          "who_receives_or_loses": "Agent/Trustee loses payoff",
+          "amount_or_formula": "For each CHF 1 spent by investor, agent final payoff is reduced by CHF 5.",
+          "condition": "Only when investor assigns punishment in PT."
+        }
+      ],
+      "state_variables": [
+        {
+          "name": "treatment_PT",
+          "type": "environment_state",
+          "update_rule": "1 in punishment treatment, 0 in no-punishment treatment."
+        },
+        {
+          "name": "investor_transfer",
+          "type": "round_log",
+          "update_rule": "Record CHF 0 or CHF 10 in binary game; nonbinary robustness version allows CHF 0-10."
+        },
+        {
+          "name": "agent_back_transfer",
+          "type": "round_log",
+          "update_rule": "Record agent's conditional back transfer for each possible investment and select payoff-relevant value according to realized investment."
+        },
+        {
+          "name": "investor_punishment",
+          "type": "round_log",
+          "update_rule": "In PT, record investor's conditional punishment for each possible back transfer and apply payoff-relevant punishment according to realized back transfer."
+        },
+        {
+          "name": "investor_belief_back_transfer",
+          "type": "metric",
+          "update_rule": "Elicit after investor trust decision in NPT and PT."
+        },
+        {
+          "name": "personality_factors",
+          "type": "agent_state",
+          "update_rule": "Factor analysis of questionnaires produced emotional reactivity, antisociality, sensation seeking, anger, and impulsivity scores; used as heterogeneity predictors, not treatments."
+        }
+      ],
+      "prompt_requirements": [
+        "Explain to participants/agents that the counterpart is anonymous and randomly matched.",
+        "In PT, state that the investor may spend CHF after the agent's back transfer and each CHF spent reduces the agent payoff by CHF 5.",
+        "If simulating strategy method, request conditional trustee returns and conditional trustor punishments for each relevant contingency."
+      ],
+      "metrics": [
+        {
+          "name": "behavioral_trust",
+          "definition": "Probability that investor transfers CHF 10 in binary trust game."
+        },
+        {
+          "name": "belief_about_trustworthiness",
+          "definition": "Investor's belief about agent's back-transfer amount."
+        },
+        {
+          "name": "actual_trustworthiness",
+          "definition": "Agent's back-transfer amount, especially conditional on positive investor transfer."
+        },
+        {
+          "name": "punishment_behavior",
+          "definition": "Investor punishment assigned to possible agent back transfers in PT."
+        },
+        {
+          "name": "personality_interactions",
+          "definition": "Interactions of PT indicator with antisociality and other personality-factor scores in regressions."
+        }
+      ],
+      "effect_profile": {
+        "cooperation_direction": "increase",
+        "conditions": [
+          "Compared PT with NPT in the binary trust game.",
+          "Punishment opportunity was strong and known to both players.",
+          "Effects measured under anonymous random rematching and strategy-method elicitation."
+        ],
+        "heterogeneity": [
+          "In NPT, higher antisociality was associated with lower behavioral trust and more pessimistic beliefs about back transfers.",
+          "Higher antisociality was associated with lower agent back transfers/trustworthiness.",
+          "Punishment opportunity had larger positive effects for more antisocial subjects: it increased their transfers, beliefs, and back transfers more strongly.",
+          "Anger showed similar but weaker associations for some outcomes; emotional reactivity showed a weaker negative interaction for beliefs."
+        ],
+        "reported_evidence": "PT increased investor transfer probability from 60.7% to 74.3% and increased average back transfers after positive investment from CHF 11.30 to CHF 14.90. PT also made investors more optimistic about agent back transfers. Antisociality reduced trust and trustworthiness in NPT but amplified the positive PT effect."
+      },
+      "transfer_requirements": {
+        "required_game_features": [
+          "Sequential dyadic trust-game structure with a trustor transfer and trustee return.",
+          "Payoff accounting that allows a costly sanction imposed by the trustor after observing or conditioning on trustee return.",
+          "Ability to represent conditional choices if using strategy method."
+        ],
+        "required_topology_features": [
+          "Dyadic matching; random anonymous rematching is native but not essential to the sanction technology."
+        ],
+        "required_information_features": [
+          "Public knowledge of sanction availability and sanction cost-impact ratio.",
+          "Trustor must know or be able to condition on trustee return before punishment is applied.",
+          "Private beliefs and personality measures are optional metrics/heterogeneity variables, not required treatments."
+        ],
+        "requires_network": false,
+        "requires_new_decision_stage": true
+      },
+      "implementation_notes": {
+        "candidate_surfaces": [
+          "action_space",
+          "payoff_function",
+          "state_memory",
+          "prompt_context",
+          "logging_metrics",
+          "experiment_config",
+          "matching_or_grouping"
+        ],
+        "minimal_code_changes": [
+          "Add a post-return trustor punishment stage in PT.",
+          "Add punishment action validation and payoff transformation: trustor cost p, trustee loss 5p.",
+          "Log conditional or realized punishment decisions and trustee returns.",
+          "Add treatment flag for NPT versus PT and optionally belief elicitation metrics."
+        ],
+        "risks_or_assumptions": [
+          "Do not model punishment as a simultaneous public-goods punishment stage; it is a later trustor sanction stage after trustee return.",
+          "Exact punishment amount range is not available in the provided excerpt.",
+          "Strategy method changes elicitation timing but not the underlying sequential trust-game stages.",
+          "Personality traits should be represented as measured heterogeneity, not as treatment conditions."
+        ]
+      },
+      "confidence": 0.86
+    }
+  ],
+  "experiment_design": {
+    "baseline_condition": "NPT: binary trust game without punishment opportunity.",
+    "treatment_conditions": [
+      "PT: binary trust game with investor costly punishment opportunity.",
+      "NBT robustness game without punishment: investor may invest any amount CHF 0-10; other details not fully provided.",
+      "One additional robustness trust-game version not specified in provided excerpt."
+    ],
+    "control_variables": [
+      "Order effects",
+      "First-round dummies",
+      "Socioeconomic characteristics",
+      "Mood",
+      "Stress level",
+      "Personality factors: emotional reactivity, antisociality, sensation seeking, anger, impulsivity"
+    ],
+    "suggested_rounds": 6,
+    "suggested_runs": null
+  },
+  "evidence": {
+    "cooperation_outcomes": [
+      "Investor transfer probability: PT 74.3% versus NPT 60.7%; increase of 15 percentage points, P<0.001, effect size 0.15.",
+      "Investor beliefs about agent back transfers were more optimistic in PT, P<0.001, effect size 0.16.",
+      "Agent back transfers after positive investment increased from CHF 11.30 in NPT to CHF 14.90 in PT, P<0.001, effect size 0.22.",
+      "Higher antisociality predicted lower back transfers; example 25th percentile CHF 13.1 versus 75th percentile CHF 9.1 in NPT.",
+      "PT by antisociality interaction increased the punishment-option effect on back transfers; one-SD antisociality increase raised PT effect from about CHF 3.5 to CHF 5.1."
+    ],
+    "reported_effect_direction": "Punishment opportunity increased trust, optimistic beliefs, and trustworthiness; antisociality was associated with lower cooperation in NPT but stronger positive response to punishment availability.",
+    "reported_effect_size": "Trust transfer effect size 0.15; belief effect size 0.16; back-transfer PT effect size 0.22; antisociality-back-transfer effect size 0.23; PT x antisociality back-transfer effect size 0.12.",
+    "key_passages": [
+      {
+        "page": 2,
+        "paraphrase": "Participants played four trust-game versions; main comparison was NPT versus PT. Each version had six rounds with randomly assigned anonymous partners, fixed roles, and one randomly selected payoff-relevant round.",
+        "supports": "Game context, topology, rounds, incentives, baseline and treatment conditions."
+      },
+      {
+        "page": 2,
+        "paraphrase": "In NPT both players had CHF 20; investor chose whether to transfer CHF 10, the transfer was tripled, and agent chose a back transfer that was not tripled.",
+        "supports": "Trust-game native stages and payoff structure."
+      },
+      {
+        "page": 2,
+        "paraphrase": "PT was identical to NPT except that after the agent's back-transfer decision, the investor could punish; each CHF spent reduced the agent's final payoff by CHF 5.",
+        "supports": "Punishment mechanism timing, action-space change, and payoff change."
+      },
+      {
+        "page": 2,
+        "paraphrase": "Strategy method was used: agents chose back transfers for both possible investments before knowing actual investment; in PT investors assigned punishment for each possible back transfer before knowing actual back transfer.",
+        "supports": "Decision protocol and conditional post-action stages."
+      },
+      {
+        "page": 2,
+        "paraphrase": "Investors with punishment option were 15 percentage points more likely to transfer CHF 10; PT mean 74.3%, NPT mean 60.7%, P<0.001.",
+        "supports": "Effect of punishment on behavioral trust."
+      },
+      {
+        "page": 3,
+        "paraphrase": "Punishment opportunity made investors more optimistic about back transfers, and antisocial investors had more pessimistic beliefs absent punishment but responded more strongly to punishment availability.",
+        "supports": "Belief outcome and heterogeneity."
+      },
+      {
+        "page": 3,
+        "paraphrase": "Punishment increased average back transfers from CHF 11.30 to CHF 14.90, while antisociality predicted lower back transfers and amplified the positive PT effect.",
+        "supports": "Trustworthiness outcome and heterogeneity."
+      }
+    ]
+  },
+  "uncertainties": [
+    "Full author list was not present in the provided excerpt; recorded as Engelmann et al.",
+    "Exact publication year inferred from DOI/article context and may need bibliographic confirmation.",
+    "Exact action grid and upper bound for punishment amounts are not stated in the provided excerpt.",
+    "Details of the two additional trust-game robustness versions are only partly available; one nonbinary trust game without punishment is described, the other remains unspecified.",
+    "Whether the sample role counts discrepancy versus total n reflects exclusions or reporting in excerpt is unclear."
+  ]
+}

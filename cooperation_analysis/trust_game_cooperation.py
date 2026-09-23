@@ -7,11 +7,12 @@
 支持分析多个实验文件，计算每轮的合作率以及特定轮次的平均合作率。
 
 修改后的计算规则：
-- 发送方合作率 = 发送金额 / 最大发送金额（20）
+- 发送方合作率 = 发送金额 / 最大发送金额（10）
 - 接收方合作率 = 返还金额 / 收到金额（3 * 发送金额）
 - 每个game_log文件代表一次完整的实验
 - 实验包含多轮，每轮包含多个配对交互
 - 总体合作率 = (实验1合作率 + 实验2合作率 + 实验3合作率) / 3
+- 标准差 = 三次实验总体合作率的样本标准差（ddof=1）
 """
 
 import json
@@ -23,13 +24,13 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 
 # 定义数据目录路径
 # 这里使用指定的llama3-8b模型结果目录
-data_dir = r"d:\常用\agentsociety\agentsociety\packages\agentsociety2\result_trust_game_population\053001_claude-haiku-4-5-20251001-thinking\data"
+data_dir = r"d:\常用\agentsociety2\result_trust_game_population\091601_deepseek-v4-pro\data"
 
 # 定义实验配置
 NUM_ROUNDS_PER_GAME = 30  # 每个实验的轮数
 NUM_PAIRS_PER_ROUND = 12  # 每轮的配对数（24个agent，每对2人）
 TRUSTEE_MULTIPLIER = 3  # 受托者收到金额的乘数
-MAX_SEND_AMOUNT = 20  # 最大发送金额
+MAX_SEND_AMOUNT = 10  # 最大发送金额
 
 # 尝试获取数据目录中的所有game_log文件
 try:
@@ -93,8 +94,12 @@ for file_name in file_names:
                     round_sender_cooperation_rates[round_num].append(sender_cooperation_rate)
                     experiment_sender_scores.append(sender_cooperation_rate)
                 
-                # 计算接收方合作率：返还金额 / 收到金额（3 * 发送金额）
-                received_amount = sent_amount * TRUSTEE_MULTIPLIER
+                # 计算接收方合作率：返还金额 / 实际收到金额
+                # 优先使用日志值；旧日志缺少该字段时再按乘数推算
+                received_amount = detail.get(
+                    'trustee_received',
+                    sent_amount * TRUSTEE_MULTIPLIER
+                )
                 if received_amount > 0:
                     receiver_cooperation_rate = returned_amount / received_amount
                     round_receiver_cooperation_rates[round_num].append(receiver_cooperation_rate)
@@ -191,10 +196,36 @@ print("-" * 50)
 
 if experiment_sender_cooperation_rates:
     overall_sender_cooperation_rate = np.mean(experiment_sender_cooperation_rates)
-    print(f"{NUM_ROUNDS_PER_GAME}轮的平均发送方合作率（{num_games}次实验平均）: {overall_sender_cooperation_rate:.2%}")
-    print(f"各实验发送方合作率:")
+    sender_experiment_count = len(experiment_sender_cooperation_rates)
+    print("各实验发送方合作率:")
     for i, rate in enumerate(experiment_sender_cooperation_rates, 1):
         print(f"  实验{i}: {rate:.2%}")
+    print(
+        f"{NUM_ROUNDS_PER_GAME}轮的平均发送方合作率"
+        f"（{sender_experiment_count}次实验平均）: "
+        f"{overall_sender_cooperation_rate:.2%}"
+    )
+    if sender_experiment_count >= 2:
+        sender_cooperation_std = np.std(
+            experiment_sender_cooperation_rates,
+            ddof=1,
+        )
+        print(
+            "三次实验发送方合作率的样本标准差（ddof=1）: "
+            f"{sender_cooperation_std:.2%}"
+        )
+        print(
+            "发送方合作率（Mean ± SD）: "
+            f"{overall_sender_cooperation_rate:.2%} ± "
+            f"{sender_cooperation_std:.2%}"
+        )
+    else:
+        print("警告: 至少需要2次有效实验才能计算发送方合作率的样本标准差。")
+    if sender_experiment_count != 3:
+        print(
+            f"警告: 预期3次发送方实验，实际得到{sender_experiment_count}次；"
+            "当前均值和标准差基于实际有效实验计算。"
+        )
 else:
     print("警告: 无法计算发送方总体平均合作率，因为没有数据。")
 
@@ -202,10 +233,36 @@ print()
 
 if experiment_receiver_cooperation_rates:
     overall_receiver_cooperation_rate = np.mean(experiment_receiver_cooperation_rates)
-    print(f"{NUM_ROUNDS_PER_GAME}轮的平均接收方合作率（{num_games}次实验平均）: {overall_receiver_cooperation_rate:.2%}")
-    print(f"各实验接收方合作率:")
+    receiver_experiment_count = len(experiment_receiver_cooperation_rates)
+    print("各实验接收方合作率:")
     for i, rate in enumerate(experiment_receiver_cooperation_rates, 1):
         print(f"  实验{i}: {rate:.2%}")
+    print(
+        f"{NUM_ROUNDS_PER_GAME}轮的平均接收方合作率"
+        f"（{receiver_experiment_count}次实验平均）: "
+        f"{overall_receiver_cooperation_rate:.2%}"
+    )
+    if receiver_experiment_count >= 2:
+        receiver_cooperation_std = np.std(
+            experiment_receiver_cooperation_rates,
+            ddof=1,
+        )
+        print(
+            "三次实验接收方合作率的样本标准差（ddof=1）: "
+            f"{receiver_cooperation_std:.2%}"
+        )
+        print(
+            "接收方合作率（Mean ± SD）: "
+            f"{overall_receiver_cooperation_rate:.2%} ± "
+            f"{receiver_cooperation_std:.2%}"
+        )
+    else:
+        print("警告: 至少需要2次有效实验才能计算接收方合作率的样本标准差。")
+    if receiver_experiment_count != 3:
+        print(
+            f"警告: 预期3次接收方实验，实际得到{receiver_experiment_count}次；"
+            "当前均值和标准差基于实际有效实验计算。"
+        )
 else:
     print("警告: 无法计算接收方总体平均合作率，因为没有数据。")
 

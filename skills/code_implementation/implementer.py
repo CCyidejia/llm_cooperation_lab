@@ -13,6 +13,7 @@ from typing import Any
 from skills.literature_mechanism_extractor.extractor import extract_json_object
 from skills.baseline_mapper.plan_schema import validate_implementation_plan
 from skills.consistency_checker.review_schema import validate_review_document
+from skills.game_adapters import collect_agent_profile_invariants, profile_baseline
 
 from .patch_schema import PatchValidationError, validate_patch_document
 from .prompts import SYSTEM_PROMPT, build_repair_prompt, build_user_prompt
@@ -39,13 +40,17 @@ def summarize_plan_for_llm(plan: dict[str, Any]) -> dict[str, Any]:
         "target_baseline": plan.get("target_baseline"),
         "mechanism_source": plan.get("mechanism_source"),
         "baseline_invariants": plan.get("baseline_invariants"),
-        "mechanism_summary": plan.get("mechanism_summary"),
+        "game_adapter": plan.get("game_adapter"),
+        "transfer_policy": plan.get("transfer_policy"),
+        "compatibility": plan.get("compatibility"),
+        "mechanism_summaries": plan.get("mechanism_summaries", [plan.get("mechanism_summary")]),
         "required_code_changes": plan.get("required_code_changes"),
         "new_state_variables": plan.get("new_state_variables"),
         "new_logs": plan.get("new_logs"),
         "new_metrics": plan.get("new_metrics"),
         "implementation_order": plan.get("implementation_order"),
         "tests_or_checks": plan.get("tests_or_checks"),
+        "validation_requirements": plan.get("validation_requirements"),
     }
 
 
@@ -82,105 +87,121 @@ def call_llm(system_prompt: str, user_prompt: str, provider: str, api_retries: i
     return last_response
 
 
-def _class_and_method_maps(source: str) -> tuple[dict[str, ast.ClassDef], dict[tuple[str, str], ast.AST]]:
+def _source_maps(source: str) -> tuple[
+    dict[str, ast.ClassDef], dict[tuple[str, str], ast.AST], dict[str, ast.AST], dict[str, ast.AST]
+]:
     tree = ast.parse(source)
     classes: dict[str, ast.ClassDef] = {}
     methods: dict[tuple[str, str], ast.AST] = {}
+    functions: dict[str, ast.AST] = {}
+    assignments: dict[str, ast.AST] = {}
     for node in tree.body:
         if isinstance(node, ast.ClassDef):
             classes[node.name] = node
             for item in node.body:
                 if isinstance(item, (ast.FunctionDef, ast.AsyncFunctionDef)):
                     methods[(node.name, item.name)] = item
-    return classes, methods
+        elif isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+            functions[node.name] = node
+        elif isinstance(node, (ast.Assign, ast.AnnAssign)):
+            targets = node.targets if isinstance(node, ast.Assign) else [node.target]
+            for target in targets:
+                if isinstance(target, ast.Name):
+                    assignments[target.id] = node
+    return classes, methods, functions, assignments
 
 def _node_source(source: str, node: ast.AST) -> str:
     lines = source.splitlines()
-    start = getattr(node, "lineno", 1) - 1
+    decorators = getattr(node, "decorator_list", [])
+    first_line = min([getattr(node, "lineno", 1)] + [item.lineno for item in decorators])
+    start = first_line - 1
     end = getattr(node, "end_lineno", start + 1)
     return "\n".join(lines[start:end])
 
 
-def build_baseline_excerpt_for_llm(source: str) -> str:
-    """Return only code surfaces needed by the coding agent to reduce empty/length responses."""
-    tree = ast.parse(source)
-    classes, methods = _class_and_method_maps(source)
-    sections: list[str] = []
-
-    header_lines = []
-    for line in source.splitlines()[:45]:
-        header_lines.append(line)
-    sections.append("# FILE HEADER / IMPORTS\n" + "\n".join(header_lines))
-
-    wanted_methods = [
-        ("PublicGoodsAgent", "__init__"),
-        ("PublicGoodsAgent", "update_state"),
-        ("PublicGoodsAgent", "update_history"),
-        ("PublicGoodsAgent", "get_state_summary"),
-        ("PublicGoodsAgent", "_build_history_string"),
-        ("PublicGoodsAgent", "choose_action"),
-        ("PublicGoodsAgent", "_call_llm_with_retry"),
-        ("PublicGoodsEnvironment", "__init__"),
-        ("PublicGoodsEnvironment", "run_interaction"),
-        ("PublicGoodsEnvironment", "get_game_summary"),
-    ]
-    for class_name, method_name in wanted_methods:
-        node = methods.get((class_name, method_name))
+def build_baseline_excerpt_for_llm(source: str, plan: dict[str, Any], max_chars: int = 50000) -> str:
+    """Expose complete target code without hard-coding either game's class names."""
+    if len(source) <= max_chars:
+        return source
+    classes, methods, functions, assignments = _source_maps(source)
+    sections = ["# FILE HEADER / IMPORTS\n" + "\n".join(source.splitlines()[:60])]
+    wanted = {
+        str(change.get("target_location", ""))
+        for change in plan.get("required_code_changes", []) if isinstance(change, dict)
+    }
+    adapter = plan.get("game_adapter", {})
+    wanted.update(adapter.get("decision_methods", []))
+    wanted.update(adapter.get("round_methods", []))
+    wanted.update(adapter.get("payoff_locations", []))
+    for location in sorted(wanted):
+        if "." in location:
+            class_name, method_name = location.rsplit(".", 1)
+            node = methods.get((class_name, method_name))
+        else:
+            node = functions.get(location) or assignments.get(location) or classes.get(location)
         if node is not None:
-            method_source = _node_source(source, node)
-            if method_name == "choose_action":
-                method_lines = method_source.splitlines()
-                method_source = "\n".join(method_lines[:75]) + "\n        # ... contribution parsing and fallback logic unchanged ...\n        return contribution, explanation"
-            sections.append(f"# {class_name}.{method_name}\n" + method_source)
-
-    for node in tree.body:
-        if isinstance(node, (ast.AsyncFunctionDef, ast.FunctionDef)) and node.name in {"main", "run_experiment"}:
-            method_source = _node_source(source, node)
-            if node.name == "main":
-                method_source = "\n".join(method_source.splitlines()[:90]) + "\n# ... main continues with unchanged save logic ..."
-            sections.append(f"# module function {node.name}\n" + method_source)
-
-    return "\n\n".join(sections)
+            sections.append(f"# TARGET {location}\n{_node_source(source, node)}")
+    return "\n\n".join(sections)[:max_chars]
 
 
-def _ensure_method_code(code: str, expected_method_name: str) -> str:
+def _ensure_definition_code(code: str, expected_name: str, indent: bool) -> str:
     if not code.endswith("\n"):
         code += "\n"
     dedented = textwrap.dedent(code).strip("\n") + "\n"
     try:
         parsed = ast.parse(dedented)
     except SyntaxError as exc:
-        raise CodeApplicationError(f"Generated code for {expected_method_name} is not valid as a standalone method block: {exc}") from exc
+        raise CodeApplicationError(f"Generated code for {expected_name} is not valid as a standalone definition: {exc}") from exc
     defs = [node for node in parsed.body if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))]
-    if len(defs) != 1 or defs[0].name != expected_method_name:
-        raise CodeApplicationError(f"Generated code must contain exactly one method named {expected_method_name}")
-    return textwrap.indent(dedented, "    ")
+    if len(defs) != 1 or defs[0].name != expected_name:
+        raise CodeApplicationError(f"Generated code must contain exactly one function/method named {expected_name}")
+    return textwrap.indent(dedented, "    ") if indent else dedented
+
+
+def _ensure_assignment_code(code: str, expected_name: str) -> str:
+    normalized = textwrap.dedent(code).strip("\n") + "\n"
+    try:
+        tree = ast.parse(normalized)
+    except SyntaxError as exc:
+        raise CodeApplicationError(f"Generated assignment {expected_name} is invalid: {exc}") from exc
+    names = set()
+    for node in tree.body:
+        if isinstance(node, ast.Assign):
+            names.update(target.id for target in node.targets if isinstance(target, ast.Name))
+        elif isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name):
+            names.add(node.target.id)
+    if len(tree.body) != 1 or expected_name not in names:
+        raise CodeApplicationError(f"Generated code must contain exactly one assignment to {expected_name}")
+    return normalized
 
 
 def apply_edits(source: str, patch: dict[str, Any]) -> tuple[str, list[str]]:
     lines = source.splitlines(keepends=True)
-    _, methods = _class_and_method_maps(source)
+    classes, methods, functions, assignments = _source_maps(source)
     applied: list[str] = []
 
     # Apply bottom-up so line numbers remain stable.
     normalized_edits = []
     for edit in patch["edits"]:
         op = edit["operation"]
-        class_name = edit["class_name"]
-        method_name = edit["method_name"]
-        code = _ensure_method_code(edit["code"], method_name)
         if op == "replace_method":
+            class_name = edit["class_name"]
+            method_name = edit["method_name"]
+            code = _ensure_definition_code(edit["code"], method_name, indent=True)
             node = methods.get((class_name, method_name))
             if node is None:
                 raise CodeApplicationError(f"Cannot replace missing method {class_name}.{method_name}")
-            normalized_edits.append((node.lineno - 1, node.end_lineno, code, edit["change_id"], f"replace {class_name}.{method_name}"))
+            start = min([node.lineno] + [item.lineno for item in getattr(node, "decorator_list", [])]) - 1
+            normalized_edits.append((start, node.end_lineno, code, edit["change_id"], f"replace {class_name}.{method_name}"))
         elif op == "insert_method_in_class":
+            class_name = edit["class_name"]
+            method_name = edit["method_name"]
+            code = _ensure_definition_code(edit["code"], method_name, indent=True)
             if (class_name, method_name) in methods:
                 raise CodeApplicationError(f"Cannot insert {class_name}.{method_name}; method already exists")
             after_method = edit.get("after_method")
             anchor = methods.get((class_name, after_method)) if after_method else None
             if anchor is None:
-                classes, _ = _class_and_method_maps(source)
                 cls = classes.get(class_name)
                 if cls is None:
                     raise CodeApplicationError(f"Cannot insert into missing class {class_name}")
@@ -188,6 +209,30 @@ def apply_edits(source: str, patch: dict[str, Any]) -> tuple[str, list[str]]:
             else:
                 insert_at = anchor.end_lineno
             normalized_edits.append((insert_at, insert_at, "\n" + code, edit["change_id"], f"insert {class_name}.{method_name}"))
+        elif op == "replace_function":
+            name = edit["function_name"]
+            node = functions.get(name)
+            if node is None:
+                raise CodeApplicationError(f"Cannot replace missing function {name}")
+            code = _ensure_definition_code(edit["code"], name, indent=False)
+            start = min([node.lineno] + [item.lineno for item in getattr(node, "decorator_list", [])]) - 1
+            normalized_edits.append((start, node.end_lineno, code, edit["change_id"], f"replace function {name}"))
+        elif op == "insert_function":
+            name = edit["function_name"]
+            if name in functions:
+                raise CodeApplicationError(f"Cannot insert function {name}; it already exists")
+            code = _ensure_definition_code(edit["code"], name, indent=False)
+            after = edit.get("after_function")
+            anchor = functions.get(after) if after else None
+            insert_at = anchor.end_lineno if anchor is not None else len(lines)
+            normalized_edits.append((insert_at, insert_at, "\n" + code, edit["change_id"], f"insert function {name}"))
+        elif op == "replace_module_assignment":
+            name = edit["assignment_name"]
+            node = assignments.get(name)
+            if node is None:
+                raise CodeApplicationError(f"Cannot replace missing module assignment {name}")
+            code = _ensure_assignment_code(edit["code"], name)
+            normalized_edits.append((node.lineno - 1, node.end_lineno, code, edit["change_id"], f"replace assignment {name}"))
         else:
             raise CodeApplicationError(f"Unsupported operation: {op}")
 
@@ -198,7 +243,9 @@ def apply_edits(source: str, patch: dict[str, Any]) -> tuple[str, list[str]]:
     return "".join(lines), list(reversed(applied))
 
 
-def validate_generated_code(source: str, baseline_text: str, plan: dict[str, Any]) -> list[str]:
+def validate_generated_code(
+    source: str, baseline_text: str, plan: dict[str, Any], patch: dict[str, Any] | None = None,
+) -> list[str]:
     issues: list[str] = []
     try:
         compile(source, "generated_env.py", "exec")
@@ -206,86 +253,43 @@ def validate_generated_code(source: str, baseline_text: str, plan: dict[str, Any
         issues.append(f"syntax error: {exc}")
         return issues
 
-    mechanism = plan.get("mechanism_summary", {})
-    mechanism_type = str(mechanism.get("type", "")).lower()
-    mechanism_name = str(mechanism.get("name", "")).lower()
-    target_locations = {
-        str(change.get("target_location", "")).lower()
-        for change in plan.get("required_code_changes", [])
-        if isinstance(change, dict)
-    }
-    required_snippets = ["final_payoffs"]
+    if not plan.get("compatibility", {}).get("code_implementation_allowed", True):
+        issues.append("compatibility gate does not allow code implementation")
 
-    requires_punishment = (
-        "punishment" in mechanism_type
-        or "punishment" in mechanism_name
-        or any("choose_punishment_actions" in item for item in target_locations)
-    )
-    requires_ir_help = (
-        any(token in mechanism_type for token in ("reputation", "indirect", "reciprocity"))
-        or any(token in mechanism_name for token in ("reputation", "indirect", "reciprocity"))
-        or any("choose_ir_help_action" in item for item in target_locations)
-    )
-    requires_reward = (
-        "reward" in mechanism_type
-        or "reward" in mechanism_name
-        or any("choose_reward_actions" in item for item in target_locations)
-    )
-
-    if requires_punishment:
-        required_snippets.extend(
-            [
-                "choose_punishment_actions",
-                "punishment_matrix",
-                "punishment_costs",
-                "punishment_penalties",
-                "base_payoffs",
-                "punishment_frequency",
-                "average_punishment_sent",
-                "average_punishment_received",
-            ]
-        )
-
-    if requires_ir_help:
-        required_snippets.extend(
-            [
-                "choose_ir_help_action",
-                "public_reputation_ledger",
-                "ir_logs",
-                "reputation",
-                "help",
-                "ir_payoff_adjustments",
-            ]
-        )
-
-    if requires_reward:
-        required_snippets.extend(
-            [
-                "choose_reward_actions",
-                "reward_actions",
-                "reward_cost",
-                "reward_benefit",
-                "baseline_payoffs",
-                "final_payoffs",
-            ]
-        )
-
-    for snippet in required_snippets:
-        if snippet not in source:
-            issues.append(f"missing required snippet: {snippet}")
-
-    invariant_snippets = [
-        '"num_agents": 24',
-        '"initial_endowment": 20',
-        '"public_pool_multiplier": 9.6',
-        '"num_rounds": 30',
-    ]
+    invariant_snippets = plan.get("baseline_invariants", {}).get("required_source_snippets", [])
     for snippet in invariant_snippets:
         if snippet in baseline_text and snippet not in source:
             issues.append(f"baseline invariant changed or removed: {snippet}")
 
-    if plan.get("baseline_invariants", {}).get("preserve_existing_group_architecture") and "num_agents=EXPERIMENT_SETTINGS[\"num_agents\"]" not in source:
-        issues.append("environment construction no longer uses EXPERIMENT_SETTINGS['num_agents']")
+    baseline_invariants = plan.get("baseline_invariants", {})
+    expected_profiles = baseline_invariants.get("agent_profile_invariants", [])
+    if baseline_invariants.get("preserve_agent_profiles") and expected_profiles:
+        specs = [item.get("spec", {}) for item in expected_profiles if isinstance(item, dict)]
+        actual_profiles = collect_agent_profile_invariants(source, specs)
+        for expected, actual in zip(expected_profiles, actual_profiles):
+            if expected != actual:
+                issues.append(f"agent profile invariant changed: {expected.get('spec', {})}")
+        if len(expected_profiles) != len(actual_profiles):
+            issues.append("agent profile invariant set changed")
+
+    for requirement in plan.get("validation_requirements", []):
+        if isinstance(requirement, str) and requirement.startswith("source_contains:"):
+            snippet = requirement.split(":", 1)[1].strip()
+            if snippet and snippet not in source:
+                issues.append(f"missing plan validation snippet: {snippet}")
+
+    if patch is not None:
+        required_ids = {
+            change.get("change_id") for change in plan.get("required_code_changes", [])
+            if isinstance(change, dict) and change.get("change_id")
+        }
+        edited_ids = {
+            edit.get("change_id") for edit in patch.get("edits", [])
+            if isinstance(edit, dict) and edit.get("change_id")
+        }
+        missing_ids = sorted(required_ids - edited_ids)
+        if missing_ids:
+            issues.append(f"required plan changes have no structured edit: {missing_ids}")
 
     return issues
 
@@ -308,6 +312,7 @@ def build_report(
         "implementation_plan": str(plan_path),
         "review_report": str(review_path) if review_path else None,
         "output_file": str(output_path),
+        "output_written": not validation_issues,
         "baseline_sha256_before": sha256_text(baseline_text),
         "output_sha256": sha256_text(output_text),
         "implemented_change_ids": implemented,
@@ -330,7 +335,7 @@ def generate_patch(
     repair_attempts: int,
     api_retries: int = 3,
 ) -> dict[str, Any]:
-    baseline_excerpt = build_baseline_excerpt_for_llm(baseline_text)
+    baseline_excerpt = build_baseline_excerpt_for_llm(baseline_text, plan)
     prompt_plan = summarize_plan_for_llm(plan)
     prompt_review = summarize_review_for_llm(review)
     raw = call_llm(SYSTEM_PROMPT, build_user_prompt(prompt_plan, prompt_review, baseline_excerpt, baseline_name, output_name), provider, api_retries=api_retries)
@@ -372,6 +377,26 @@ def implement_code(
 ) -> dict[str, Any]:
     plan = load_json(plan_path)
     validate_implementation_plan(plan)
+    compatibility = plan.get("compatibility", {})
+    if compatibility and not compatibility.get("code_implementation_allowed", False):
+        raise ValueError(
+            f"compatibility gate does not approve implementation: {compatibility.get('status')} - "
+            f"{compatibility.get('reason')}"
+        )
+
+    planned_game = plan.get("game_adapter", {}).get("game_type")
+    detected_profile: dict[str, Any] | None = None
+    if planned_game:
+        detected_profile = profile_baseline(baseline_path, "auto")
+        if detected_profile.get("game_family") != planned_game:
+            raise ValueError(
+                f"plan targets game adapter {planned_game}, but baseline was detected as "
+                f"{detected_profile.get('game_family')}"
+            )
+        if detected_profile.get("agent_profile_policy") == "preserve_exact":
+            invariants = plan.setdefault("baseline_invariants", {})
+            invariants["preserve_agent_profiles"] = True
+            invariants["agent_profile_invariants"] = detected_profile.get("agent_profile_invariants", [])
 
     review = None
     if review_path:
@@ -395,13 +420,11 @@ def implement_code(
         last_patch = patch
         try:
             output_text, applied_edits = apply_edits(baseline_text, patch)
-            validation_issues = validate_generated_code(output_text, baseline_text, plan)
+            validation_issues = validate_generated_code(output_text, baseline_text, plan, patch)
             if validation_issues:
                 last_error = "; ".join(validation_issues)
                 if attempt < repair_attempts:
                     continue
-            output_path.parent.mkdir(parents=True, exist_ok=True)
-            output_path.write_text(output_text, encoding="utf-8")
             report = build_report(
                 baseline_path,
                 output_path,
@@ -415,6 +438,10 @@ def implement_code(
             )
             report_path.parent.mkdir(parents=True, exist_ok=True)
             report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+            if validation_issues:
+                return report
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            output_path.write_text(output_text, encoding="utf-8")
             return report
         except CodeApplicationError as exc:
             last_error = str(exc)
@@ -446,9 +473,12 @@ def main() -> None:
         repair_attempts=args.repair_attempts,
         api_retries=args.api_retries,
     )
-    print(f"Saved implemented env file to {args.output}")
     print(f"Saved implementation report to {args.report}")
     print(f"Validation status: {report['validation_status']}")
+    if report["validation_status"] == "pass":
+        print(f"Saved implemented env file to {args.output}")
+    else:
+        print("Validation failed; no generated environment file was written.")
 
 
 if __name__ == "__main__":

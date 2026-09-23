@@ -3,7 +3,7 @@ import numpy as np
 import os
 
 # 数据文件所在目录
-data_dir = r"D:\常用\agentsociety2\result_prisoners_dilemma_group_random_defector\062901_claude-opus-4-6\data"
+data_dir = r"D:\常用\agentsociety2\result_prisoners_dilemma_group\092001_qwen3-next-80b-a3b-instruct\data"
 
 # 合作行为的标记
 COOPERATE_ACTION = "Yes"
@@ -67,11 +67,17 @@ def main():
         )
 
     all_cooperation_rates = []
+    # 每个元素是一份 game_log（一次独立实验）的总体合作率。
+    experiment_cooperation_rates = []
 
     for file_name in file_names:
         file_path = os.path.join(data_dir, file_name)
         cooperation_rates = calculate_cooperation_rate_for_file(file_path)
         all_cooperation_rates.append(cooperation_rates)
+        experiment_rate = np.mean(cooperation_rates)
+        experiment_cooperation_rates.append(experiment_rate)
+        print(f"处理文件: {file_name}")
+        print(f"  该实验合作率: {experiment_rate:.2%}")
 
     if all_cooperation_rates:
         average_cooperation_rates = np.mean(all_cooperation_rates, axis=0)
@@ -97,9 +103,36 @@ def main():
         if round_num <= len(average_cooperation_rates):
             print(f"第 {round_num} 轮: {average_cooperation_rates[round_num - 1]:.2%}")
 
-    if all_cooperation_rates:
-        overall_average = np.mean(average_cooperation_rates)
-        print(f"\n总体平均合作率: {overall_average:.2%}")
+    if experiment_cooperation_rates:
+        experiment_count = len(experiment_cooperation_rates)
+        overall_average = np.mean(experiment_cooperation_rates)
+        print("\n各实验合作率:")
+        for index, rate in enumerate(experiment_cooperation_rates, start=1):
+            print(f"  实验{index}: {rate:.2%}")
+        print(
+            f"三次实验的平均合作率（实际有效实验数: {experiment_count}）: "
+            f"{overall_average:.2%}"
+        )
+        if experiment_count >= 2:
+            cooperation_std = np.std(
+                experiment_cooperation_rates,
+                ddof=1,
+            )
+            print(
+                "三次实验合作率的样本标准差（ddof=1）: "
+                f"{cooperation_std:.2%}"
+            )
+            print(
+                "合作率（Mean ± SD）: "
+                f"{overall_average:.2%} ± {cooperation_std:.2%}"
+            )
+        else:
+            print("警告: 至少需要2次有效实验才能计算合作率的样本标准差。")
+        if experiment_count != 3:
+            print(
+                f"警告: 预期3次实验，实际得到{experiment_count}次；"
+                "当前均值和标准差基于实际实验计算。"
+            )
     else:
         print("\n警告: 无法计算总体平均合作率，因为没有数据。")
 

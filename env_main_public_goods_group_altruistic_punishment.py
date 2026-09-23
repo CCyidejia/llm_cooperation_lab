@@ -21,7 +21,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspa
 # V2 framework core components import
 from llm_cooperation_lab.agent.base import AgentBase, AgentLLM
 from dotenv import load_dotenv
-from LLMAPI.zgc import LLMAgent
+from LLMAPI.wuwen import LLMAgent
 
 # 加载环境变量
 load_dotenv()
@@ -104,23 +104,16 @@ class PublicGoodsAgent(AgentBase):
         }
     
     def _build_history_string(self, all_agent_names: list) -> str:
-        """Build history string with only total contribution and public gain"""
-        if not self.history:
-            return "No previous rounds have been played."
-        
-        history_lines = []
-        history_lines.append("History of previous rounds:")
-        
-        for round_summary in self.history:
-            r = round_summary["round"]
-            total_contrib = round_summary["total_contribution"]
-            public_gain = round_summary["public_pool_gain"]
-            
-            history_lines.append(f"Round {r}:")
-            history_lines.append(f"  Total contributed to public fund: {total_contrib} coins.")
-            history_lines.append(f"  Public fund gain: {public_gain:.2f} coins.")
-        
-        return "\n".join(history_lines)
+        """Return the experiment's history-confidentiality notice.
+
+        Complete round summaries are retained internally for logging and state
+        accounting, but no previous contribution, punishment, payoff, or
+        identity information is disclosed to an agent's decision prompt.
+        """
+        return (
+            "Previous-round information is confidential and unavailable. "
+            "Do not infer or assume any previous player's behavior."
+        )
     
     async def init(self, llm: AgentLLM):
         self._llm = llm
@@ -146,10 +139,9 @@ class PublicGoodsAgent(AgentBase):
         return ""
     
     async def choose_action(self, initial_endowment: int, public_pool_multiplier: float, num_agents: int, total_rounds: int, memory_size: int = 5):
-        """ Choose contribution amount using LLM, considering history in group mode """
-        # 1. Build History using baseline-style format
-        agent_names = [agent.name for agent in self._env.agents] if hasattr(self, '_env') and self._env else []
-        histories_text = self._build_history_string(agent_names)
+        """Choose a contribution without access to any previous-round history."""
+        # Historical outcomes are deliberately not exposed to the participant.
+        confidentiality_notice = self._build_history_string([])
         
         # Current round information
         current_round_true = len(self.history) + 1
@@ -161,12 +153,13 @@ class PublicGoodsAgent(AgentBase):
             f"This is round {current_round_true}.\n"
             f"You have {initial_endowment} coins.\n"
             f"Public fund contributions are multiplied by {public_pool_multiplier} and divided equally among all {num_agents} players.\n"
-            "After all players choose contributions, every player will observe the current round contributions.\n"
+            "After all players choose contributions, you will be shown the other group members' current-round investments under temporary anonymous labels.\n"
+            "The anonymous labels reveal no persistent identity and are reset for every round.\n"
             "Then every player may assign 0 to 10 punishment points to each other player.\n"
             "Each punishment point costs the punisher 1 coin and reduces the target player's payoff by 3 coins.\n"
             "Your final payoff equals the baseline public goods payoff minus punishment costs you send and punishment penalties you receive.\n\n"
-            f"{histories_text}\n\n"
-            "***CRITICAL INSTRUCTION***: Based ONLY on the rules and history, determine your contribution amount.\n"
+            f"{confidentiality_notice}\n\n"
+            "***CRITICAL INSTRUCTION***: Based ONLY on the rules and current game state, determine your contribution amount.\n"
             f"Your decision must be an integer between {self.min_contribution} and {self.max_contribution} (inclusive).\n"
             "Return ONLY the following two lines:\n"
             "Contribution: <one integer from 0 to 20>\n"
@@ -237,30 +230,45 @@ class PublicGoodsAgent(AgentBase):
         return contribution, explanation
 
     async def choose_punishment_actions(self, round_contributions: dict, punishment_point_range=(0, 10)):
-        """Choose punishment points for other agents based on their contributions."""
+        """Choose punishment using temporary, current-round anonymous labels.
+
+        Real agent names never enter the LLM prompt. The temporary labels are
+        mapped back to real names only after the response has been parsed.
+        """
         min_points, max_points = punishment_point_range
 
-        # Build history string for context
         agent_names = [agent.name for agent in self._env.agents] if hasattr(self, '_env') and self._env else []
-        histories_text = self._build_history_string(agent_names)
 
-        # Construct a compact second-stage punishment prompt.
-        contribution_lines = []
-        for agent_name, contribution in round_contributions.items():
-            if agent_name != self.name:
-                contribution_lines.append(f"  {agent_name}: {contribution} coins")
+        # Create a fresh, deterministic permutation for this participant and
+        # round. This prevents a temporary label from becoming a persistent
+        # cross-round identity while keeping seeded runs reproducible.
+        other_agent_names = [name for name in agent_names if name != self.name]
+        current_round = len(self.history) + 1
+        alias_rng = random.Random(f"{RANDOM_SEED}:{current_round}:{self._id}")
+        alias_rng.shuffle(other_agent_names)
+        alias_to_name = {
+            f"Anonymous_Member_{index}": name
+            for index, name in enumerate(other_agent_names, start=1)
+        }
+
+        # Reveal only this round's investments under temporary aliases.
+        contribution_lines = [
+            f"  {alias}: {round_contributions[real_name]} coins"
+            for alias, real_name in alias_to_name.items()
+        ]
         contributions_text = "\n".join(contribution_lines) if contribution_lines else "  No other contributions available."
 
         prompt_context = (
             f"Current round contributions:\n"
             f"{contributions_text}\n\n"
             f"Punishment decision:\n"
-            f"Assign {min_points}-{max_points} punishment points to each other player.\n"
+            f"Assign {min_points}-{max_points} punishment points to each temporary anonymous member.\n"
             "Cost: 1 coin per point you assign.\n"
             "Effect: the target loses 3 coins per point.\n"
-            "Do not punish yourself.\n\n"
-            "Return ONLY a JSON object mapping player names to integer punishment points.\n"
-            "Example: {\"Agent_2\": 0, \"Agent_3\": 3}"
+            "Only current-round investments are available; no previous-round information is available.\n"
+            "These labels apply only to this decision and contain no persistent identity information.\n\n"
+            "Return ONLY a JSON object mapping the exact anonymous labels above to integer punishment points.\n"
+            "Example: {\"Anonymous_Member_1\": 0, \"Anonymous_Member_2\": 3}"
         )
         try:
             content = await self._call_llm_with_retry("", prompt_context)
@@ -282,21 +290,16 @@ class PublicGoodsAgent(AgentBase):
                     punishment_dict = {}
 
             # Validate and sanitize punishment decisions
+            # Accept only aliases supplied in this prompt. Unknown keys,
+            # including hallucinated real Agent_N names, are ignored.
             sanitized_punishment = {}
-            for target_name, points in punishment_dict.items():
-                if target_name == self.name:
-                    # Self-punishment is not allowed
-                    sanitized_punishment[target_name] = 0
-                elif not isinstance(points, int) or points < 0 or points > max_points:
-                    # Clamp invalid points to 0
-                    sanitized_punishment[target_name] = 0
-                else:
-                    sanitized_punishment[target_name] = points
-
-            # Ensure all other agents have entries
-            for agent_name in agent_names:
-                if agent_name != self.name and agent_name not in sanitized_punishment:
-                    sanitized_punishment[agent_name] = 0
+            for alias, real_name in alias_to_name.items():
+                points = punishment_dict.get(alias, 0)
+                if not isinstance(points, int) or isinstance(points, bool):
+                    points = 0
+                elif points < min_points or points > max_points:
+                    points = 0
+                sanitized_punishment[real_name] = points
 
             return sanitized_punishment
         except Exception as e:
@@ -342,10 +345,11 @@ class PublicGoodsAgent(AgentBase):
                     system_message,
                     user_prompt
                 )
-                if generated_text:
-                    return generated_text
-                else:
+                if not generated_text:
                     raise ValueError("LLM returned empty string")
+                if generated_text.lstrip().startswith("API Call Failed"):
+                    raise RuntimeError(generated_text)
+                return generated_text
             except Exception as e:
                 logging.error(f"[{self.name}] LLM Attempt {attempt + 1} failed: {str(e)}")
                 if attempt < max_retries - 1:
@@ -699,7 +703,7 @@ if __name__ == "__main__":
     if not base_experiment_name:
         base_experiment_name = datetime.now().strftime("%m%d_%H%M%S_PG")
 
-    NUM_EXPERIMENT_RUNS = 1  # 完整实验运行次数
+    NUM_EXPERIMENT_RUNS = 1  # Run three independent experiments
     for i in range(NUM_EXPERIMENT_RUNS):
         experiment_index = i + 1
         print(f"\n=== Running experiment {experiment_index}/{NUM_EXPERIMENT_RUNS} ===")
